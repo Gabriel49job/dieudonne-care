@@ -120,7 +120,7 @@
                     <button onclick="executeIdSearch()" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Chercher</button>
                 </div>
             </div>
-            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-3"></div>
+            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
         </section>
 
         <section id="sec-notifications" class="hidden space-y-6 max-w-3xl mx-auto">
@@ -140,7 +140,7 @@
         <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Statistiques</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl">Imprimer le rapport</button></div></section>
         <section id="sec-profile" class="hidden space-y-6"><h2 class="text-2xl font-black">Mon Profil</h2><div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm"></div></section>
 
-        <!-- ADMINISTRATION CENTRALE AVEC BOUTON SUPPRIMER -->
+        <!-- ADMINISTRATION CENTRALE -->
         <section id="sec-admin" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
                 <div>
@@ -156,7 +156,7 @@
 
     </main>
 
-    <!-- MODALE ENFANT -->
+    <!-- 1. FORMULAIRE ENFANT TRÈS COMPLET -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Dossier Complet Enfant (BKDD-E)</h3><button onclick="closeForm('child')">✕</button></div>
@@ -175,18 +175,36 @@
                         <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded-lg"></div>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer le Dossier Enfant</button>
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-green-700 uppercase">2. Famille & Parents</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="font-bold">Situation Père</label><select id="c-father" class="w-full p-2 border rounded-lg"><option>Décédé</option><option>Vivant</option><option>Inconnu</option></select></div>
+                        <div><label class="font-bold">Situation Mère</label><select id="c-mother" class="w-full p-2 border rounded-lg"><option>Décédée</option><option>Vivante</option><option>Inconnue</option></select></div>
+                        <div><label class="font-bold">Personnes au foyer</label><input type="number" id="c-fam-count" value="1" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Vulnérabilité</label><select id="c-situation" class="w-full p-2 border rounded-lg"><option>Orphelin de père</option><option>Orphelin de mère</option><option>Orphelin des deux parents</option><option>Abandonné</option><option>Vulnérable</option></select></div>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-green-700 uppercase">6. Scolarité & Santé</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="font-bold">École</label><input type="text" id="c-school" placeholder="Nom de l'école" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Classe</label><input type="text" id="c-class" placeholder="Classe / Niveau" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Frais annuels ($)</label><input type="number" id="c-fees" value="0" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Besoins</label><input type="text" id="c-needs" placeholder="Frais, santé, vivres..." class="w-full p-2 border rounded-lg"></div>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer le Dossier Enfant (BKDD-E)</button>
             </form>
         </div>
     </div>
 
-    <!-- MODALE VEUVE -->
+    <!-- 2. FORMULAIRE VEUVE TRÈS COMPLET -->
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Dossier Complet Veuve (BKDD-V)</h3><button onclick="closeForm('widow')">✕</button></div>
             <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs">
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-emerald-700 uppercase">1. Identification</h4>
+                    <h4 class="font-bold text-emerald-700 uppercase">1. Identification Personnelle</h4>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                         <div><label class="font-bold">Prénom *</label><input type="text" id="w-firstname" required class="w-full p-2 border rounded-lg"></div>
                         <div><label class="font-bold">Nom *</label><input type="text" id="w-lastname" required class="w-full p-2 border rounded-lg"></div>
@@ -198,12 +216,21 @@
                         <div><label class="font-bold">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded-lg"></div>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer le Dossier Veuve</button>
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-emerald-700 uppercase">2. Foyer & Projet d'Autonomie</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="font-bold">Enfants à charge *</label><input type="number" id="w-children" value="0" required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Personnes foyer</label><input type="number" id="w-fam-count" value="1" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Projet d'autonomie *</label><input type="text" id="w-project" placeholder="Commerce, Couture..." required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Besoins</label><input type="text" id="w-needs" placeholder="Capital, vivres..." class="w-full p-2 border rounded-lg"></div>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer le Dossier Veuve (BKDD-V)</button>
             </form>
         </div>
     </div>
 
-    <!-- MODALE AGENT -->
+    <!-- 3. FORMULAIRE AGENT TRÈS COMPLET -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Enregistrer Agent (BKDD-A)</h3><button onclick="closeForm('agent')">✕</button></div>
@@ -213,13 +240,20 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                         <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded-lg"></div>
                         <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Département</label><input type="text" id="a-dept" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Département</label><input type="text" id="a-dept" placeholder="Service..." class="w-full p-2 border rounded-lg"></div>
                         <div><label class="font-bold">Téléphone</label><input type="text" id="a-phone" class="w-full p-2 border rounded-lg"></div>
                         <div><label class="font-bold">Pays *</label><select id="a-country" class="w-full p-2 border rounded-lg"><option value="CD">RDC</option><option value="UG">Ouganda</option><option value="KE">Kenya</option><option value="RW">Rwanda</option><option value="TZ">Tanzanie</option></select></div>
                         <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded-lg"></div>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer l'Agent</button>
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-purple-700 uppercase">2. Administration</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="font-bold">Statut</label><select id="a-status" class="w-full p-2 border rounded-lg"><option>Permanent</option><option>Bénévole</option><option>Contractuel</option></select></div>
+                        <div><label class="font-bold">Contact d'urgence</label><input type="text" id="a-emergency" class="w-full p-2 border rounded-lg"></div>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer l'Agent (BKDD-A)</button>
             </form>
         </div>
     </div>
@@ -352,6 +386,14 @@
                 country: document.getElementById('c-country').value,
                 city: document.getElementById('c-city').value,
                 center: document.getElementById('c-center').value,
+                fatherStatus: document.getElementById('c-father').value,
+                motherStatus: document.getElementById('c-mother').value,
+                famCount: parseInt(document.getElementById('c-fam-count').value),
+                situation: document.getElementById('c-situation').value,
+                school: document.getElementById('c-school').value,
+                classLevel: document.getElementById('c-class').value,
+                schoolFees: document.getElementById('c-fees').value,
+                needs: document.getElementById('c-needs').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
@@ -374,6 +416,10 @@
                 phone: document.getElementById('w-phone').value,
                 country: document.getElementById('w-country').value,
                 city: document.getElementById('w-city').value,
+                childrenCount: parseInt(document.getElementById('w-children').value),
+                famCount: parseInt(document.getElementById('w-fam-count').value),
+                projectType: document.getElementById('w-project').value,
+                needs: document.getElementById('w-needs').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
@@ -394,6 +440,8 @@
                 phone: document.getElementById('a-phone').value,
                 country: document.getElementById('a-country').value,
                 city: document.getElementById('a-city').value,
+                status: document.getElementById('a-status').value,
+                emergency: document.getElementById('a-emergency').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
@@ -402,25 +450,25 @@
             refreshCounters();
         }
 
-        // --- SUPPRESSION D'UN DOSSIER DEPUIS L'ADMINISTRATION ---
         async function deleteDocument(collectionName, docId) {
             if (!currentUser) {
-                alert("Sécurité : Vous devez être connecté en tant qu'agent pour supprimer un dossier.");
+                alert("Sécurité : Connexion requise.");
                 openAuthModal();
                 return;
             }
-            if (confirm("Voulez-vous vraiment supprimer définitivement ce dossier ?")) {
+            if (confirm("Voulez-vous vraiment supprimer ce dossier ?")) {
                 try {
                     await db.collection(collectionName).doc(docId).delete();
-                    alert("Dossier supprimé avec succès.");
+                    alert("Supprimé avec succès.");
                     loadAdminMasterList();
                     refreshCounters();
                 } catch (err) {
-                    alert("Erreur lors de la suppression : " + err.message);
+                    alert("Erreur : " + err.message);
                 }
             }
         }
 
+        // --- RECHERCHE PAR ID AVEC TOUTES LES INFORMATIONS ET PHOTO ---
         async function executeIdSearch() {
             const queryVal = document.getElementById('input-search-id').value.trim().toUpperCase();
             const resultCard = document.getElementById('search-result-card');
@@ -436,16 +484,32 @@
                     if (!snap.empty) { foundData = snap.docs[0].data(); foundType = col; break; }
                 }
                 if (foundData) {
-                    let title = foundData.firstName ? `${foundData.firstName} ${foundData.lastName || ''}` : (foundData.fullName || 'Inconnu');
+                    let name = foundData.firstName ? `${foundData.firstName} ${foundData.postName || ''} ${foundData.lastName || ''}` : (foundData.fullName || 'Inconnu');
                     resultCard.innerHTML = `
-                        <div class="space-y-2 text-xs">
-                            <span class="font-mono font-bold bg-slate-900 text-green-400 px-2 py-0.5 rounded">${foundData.matricule}</span>
-                            <h3 class="font-bold text-slate-900 text-sm mt-1">${title}</h3>
-                            <p class="text-slate-600"><strong>Catégorie :</strong> <span class="uppercase">${foundType}</span></p>
-                            <p class="text-slate-600"><strong>Ville :</strong> ${foundData.city || 'Bukavu'}</p>
-                        </div>`;
+                        <div class="flex items-start gap-4 border-b pb-4">
+                            <div class="w-20 h-20 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400 font-bold overflow-hidden border">
+                                <span class="text-2xl">👤</span>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="font-mono font-bold bg-slate-900 text-green-400 px-2.5 py-1 rounded-md text-xs">${foundData.matricule}</span>
+                                <h3 class="font-black text-slate-900 text-lg mt-1">${name}</h3>
+                                <p class="text-xs text-slate-500 uppercase font-bold">Catégorie : ${foundType}</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-xs pt-2">
+                            <div><strong>Âge :</strong> ${foundData.age || 'N/C'} ans</div>
+                            <div><strong>Sexe :</strong> ${foundData.gender || 'N/C'}</div>
+                            <div><strong>ID Famille :</strong> ${foundData.famId || 'N/C'}</div>
+                            <div><strong>Pays / Ville :</strong> ${foundData.country || 'CD'} / ${foundData.city || 'Bukavu'}</div>
+                            <div><strong>École / Projet :</strong> ${foundData.school || foundData.projectType || foundData.role || 'N/C'}</div>
+                            <div><strong>Classe / Service :</strong> ${foundData.classLevel || foundData.department || 'N/C'}</div>
+                            <div><strong>Père / Mère :</strong> ${foundData.fatherStatus || 'N/C'} / ${foundData.motherStatus || 'N/C'}</div>
+                            <div><strong>Besoins :</strong> ${foundData.needs || 'Aucun'}</div>
+                        </div>
+                        <p class="text-[10px] text-slate-400 text-right mt-2">Enregistré par : ${foundData.agentEmail || 'Admin'}</p>
+                    `;
                 } else {
-                    resultCard.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier trouvé pour : ${queryVal}</p>`;
+                    resultCard.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier trouvé pour le matricule : ${queryVal}</p>`;
                 }
             } catch (err) { resultCard.innerHTML = `<p class="text-xs text-red-600">Erreur : ${err.message}</p>`; }
         }
