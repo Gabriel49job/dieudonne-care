@@ -85,10 +85,10 @@
                         <i data-lucide="user-plus" class="w-5 h-5"></i> + Dossier Enfant Complet (BKDD-E)
                     </button>
                     <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> + Dossier Veuve (BKDD-V)
+                        <i data-lucide="user-plus" class="w-5 h-5"></i> + Dossier Veuve Complet (BKDD-V)
                     </button>
                     <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="shield-plus" class="w-5 h-5"></i> + Enregistrer Agent (BKDD-A)
+                        <i data-lucide="shield-plus" class="w-5 h-5"></i> + Dossier Agent Complet (BKDD-A)
                     </button>
                 </div>
             </div>
@@ -111,17 +111,17 @@
         </section>
 
         <section id="sec-children" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants Orphelins & Vulnérables</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter Dossier</button></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants Orphelins & Vulnérables</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter Enfant</button></div>
             <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </section>
 
         <section id="sec-widows" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Veuves</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter</button></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Veuves</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter Veuve</button></div>
             <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
         <section id="sec-team" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Agent</button></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter Agent</button></div>
             <div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
@@ -164,7 +164,7 @@
 
     </main>
 
-    <!-- FORMULAIRE TRÈS COMPLET (CAHIER DES CHARGES ENFANT) -->
+    <!-- 1. FORMULAIRE ENFANT COMPLET (BKDD-E) -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3">
@@ -172,8 +172,6 @@
                 <button onclick="closeForm('child')" class="text-slate-400 font-bold text-lg">✕</button>
             </div>
             <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs">
-                
-                <!-- 1. IDENTIFICATION -->
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-green-700 uppercase tracking-wide text-[11px]">1. Identification de l'enfant</h4>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -189,7 +187,6 @@
                     </div>
                 </div>
 
-                <!-- 2. FAMILLE ET PARENTS -->
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-green-700 uppercase tracking-wide text-[11px]">2. Composition de la Famille & Parents</h4>
                     <div class="grid grid-cols-2 gap-3">
@@ -200,7 +197,6 @@
                     </div>
                 </div>
 
-                <!-- 6. ÉTUDES ET SCOLARITÉ -->
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-green-700 uppercase tracking-wide text-[11px]">6. Études & Scolarité</h4>
                     <div class="grid grid-cols-2 gap-3">
@@ -211,7 +207,6 @@
                     </div>
                 </div>
 
-                <!-- 9. SANTÉ ET BESOINS -->
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-green-700 uppercase tracking-wide text-[11px]">9. Santé, Protection & Besoins</h4>
                     <div class="grid grid-cols-2 gap-3">
@@ -225,28 +220,78 @@
         </div>
     </div>
 
-    <!-- FORMULAIRE VEUVE -->
-    <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Enregistrer une Veuve (BKDD-V)</h3><button onclick="closeForm('widow')">✕</button></div>
-            <form onsubmit="saveWidowForm(event)" class="space-y-3 text-xs">
-                <input type="text" id="w-firstname" placeholder="Prénom" required class="w-full p-2.5 border rounded-xl">
-                <input type="text" id="w-lastname" placeholder="Nom" required class="w-full p-2.5 border rounded-xl">
-                <input type="number" id="w-children" placeholder="Nombre d'enfants à charge" required class="w-full p-2.5 border rounded-xl">
-                <input type="text" id="w-project" placeholder="Projet d'autonomie (ex: Commerce, Couture)" required class="w-full p-2.5 border rounded-xl">
-                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl">Enregistrer & Générer le Matricule</button>
+    <!-- 2. FORMULAIRE VEUVE COMPLET (BKDD-V) -->
+    <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900 text-base">Dossier Complet de Suivi de la Veuve (BKDD-V)</h3>
+                <button onclick="closeForm('widow')" class="text-slate-400 font-bold text-lg">✕</button>
+            </div>
+            <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs">
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-emerald-700 uppercase tracking-wide text-[11px]">1. Identification Personnelle</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <div><label class="font-bold">Prénom *</label><input type="text" id="w-firstname" required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Nom *</label><input type="text" id="w-lastname" required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Post-nom</label><input type="text" id="w-postname" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Âge</label><input type="number" id="w-age" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">ID Famille (ex: FAM0001)</label><input type="text" id="w-famid" value="FAM0001" required class="w-full p-2 border rounded-lg font-mono"></div>
+                        <div><label class="font-bold">Téléphone / WhatsApp</label><input type="text" id="w-phone" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Pays *</label><select id="w-country" class="w-full p-2 border rounded-lg"><option value="CD">RDC</option><option value="UG">Ouganda</option><option value="KE">Kenya</option><option value="RW">Rwanda</option><option value="TZ">Tanzanie</option></select></div>
+                        <div><label class="font-bold">Ville / Centre *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded-lg"></div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-emerald-700 uppercase tracking-wide text-[11px]">2. Situation Sociale & Foyer</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="font-bold">Nombre d'enfants à charge *</label><input type="number" id="w-children" value="0" required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Nombre total de personnes au foyer</label><input type="number" id="w-fam-count" value="1" class="w-full p-2 border rounded-lg"></div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-emerald-700 uppercase tracking-wide text-[11px]">3. Projet d'Autonomie & Besoins</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="font-bold">Type de projet d'autonomie *</label><input type="text" id="w-project" placeholder="Ex: Commerce, Couture, Savonnerie" required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Besoins principaux de soutien</label><input type="text" id="w-needs" placeholder="Capital de démarrage, vivres, soins..." class="w-full p-2 border rounded-lg"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-sm shadow">Enregistrer le Dossier Veuve & Générer le Matricule BKDD-V</button>
             </form>
         </div>
     </div>
 
-    <!-- FORMULAIRE AGENT -->
-    <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Enregistrer un Agent (BKDD-A)</h3><button onclick="closeForm('agent')">✕</button></div>
-            <form onsubmit="saveAgentForm(event)" class="space-y-3 text-xs">
-                <input type="text" id="a-fullname" placeholder="Nom complet" required class="w-full p-2.5 border rounded-xl">
-                <input type="text" id="a-role" placeholder="Fonction (ex: Travailleur Social)" required class="w-full p-2.5 border rounded-xl">
-                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl">Enregistrer & Générer le Matricule</button>
+    <!-- 3. FORMULAIRE AGENT COMPLET (BKDD-A) -->
+    <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900 text-base">Enregistrer un Agent / Personnel (BKDD-A)</h3>
+                <button onclick="closeForm('agent')" class="text-slate-400 font-bold text-lg">✕</button>
+            </div>
+            <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs">
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-purple-700 uppercase tracking-wide text-[11px]">1. Identification Professionnelle</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <div><label class="font-bold">Nom complet / Prénom *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Fonction / Rôle exact *</label><input type="text" id="a-role" placeholder="Ex: Travailleur Social, Coordinateur" required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Département / Service</label><input type="text" id="a-dept" placeholder="Ex: Suivi Social & Protection" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Téléphone professionnel</label><input type="text" id="a-phone" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Pays d'affectation *</label><select id="a-country" class="w-full p-2 border rounded-lg"><option value="CD">RDC</option><option value="UG">Ouganda</option><option value="KE">Kenya</option><option value="RW">Rwanda</option><option value="TZ">Tanzanie</option></select></div>
+                        <div><label class="font-bold">Ville / Centre *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded-lg"></div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-purple-700 uppercase tracking-wide text-[11px]">2. Informations Administratives</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="font-bold">Statut de l'agent</label><select id="a-status" class="w-full p-2 border rounded-lg"><option>Permanent</option><option>Bénévole</option><option>Contractuel</option></select></div>
+                        <div><label class="font-bold">Contact d'urgence (Nom & Tél)</label><input type="text" id="a-emergency" placeholder="Personne à prévenir" class="w-full p-2 border rounded-lg"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl text-sm shadow">Enregistrer l'Agent & Générer le Matricule BKDD-A</button>
             </form>
         </div>
     </div>
@@ -388,14 +433,22 @@
             const matricule = await generateNextMatricule('widows', 'V');
             await db.collection("widows").add({
                 matricule,
+                famId: document.getElementById('w-famid').value,
                 firstName: document.getElementById('w-firstname').value,
                 lastName: document.getElementById('w-lastname').value,
+                postName: document.getElementById('w-postname').value,
+                age: parseInt(document.getElementById('w-age').value) || 0,
+                phone: document.getElementById('w-phone').value,
+                country: document.getElementById('w-country').value,
+                city: document.getElementById('w-city').value,
                 childrenCount: parseInt(document.getElementById('w-children').value),
+                famCount: parseInt(document.getElementById('w-fam-count').value),
                 projectType: document.getElementById('w-project').value,
+                needs: document.getElementById('w-needs').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
-            alert(`Dossier Veuve enregistré !\nMatricule : ${matricule}`);
+            alert(`Dossier Veuve enregistré avec succès !\nMatricule Unique : ${matricule}`);
             closeForm('widow');
             refreshCounters();
         }
@@ -408,10 +461,16 @@
                 matricule,
                 fullName: document.getElementById('a-fullname').value,
                 role: document.getElementById('a-role').value,
+                department: document.getElementById('a-dept').value,
+                phone: document.getElementById('a-phone').value,
+                country: document.getElementById('a-country').value,
+                city: document.getElementById('a-city').value,
+                status: document.getElementById('a-status').value,
+                emergency: document.getElementById('a-emergency').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
-            alert(`Agent enregistré !\nMatricule : ${matricule}`);
+            alert(`Agent enregistré avec succès !\nMatricule Professionnel : ${matricule}`);
             closeForm('agent');
             refreshCounters();
         }
@@ -436,7 +495,7 @@
                     <div class="bg-white p-4 rounded-2xl border shadow-sm space-y-1 text-xs">
                         <span class="font-mono font-bold bg-slate-900 text-green-400 px-2 py-0.5 rounded">${d.matricule}</span>
                         <h3 class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || ''} ${d.lastName || ''}</h3>
-                        <p class="text-slate-500">${d.role || d.projectType || ('Âge: ' + d.age + ' ans • Famille: ' + d.famId)}</p>
+                        <p class="text-slate-500">${d.role || d.projectType || ('Enfants à charge: ' + d.childrenCount)}</p>
                     </div>`;
             });
         }
