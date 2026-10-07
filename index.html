@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIEUDONNÉ CARE — Plateforme Panafricaine de Gestion Humanitaire</title>
+    <title>DIEUDONNÉ CARE — Système Panafricain de Gestion Humanitaire</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,42 +13,53 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     
-    <!-- QRCode.js pour la génération autonome de QR Codes -->
+    <!-- QRCode.js pour la génération de QR Codes -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- HTML5-QRCode pour le scan par caméra -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-green-500 selection:text-white">
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- BARRE DE NAVIGATION SUPÉRIEURE -->
+    <!-- BARRE SUPERIEURE FIXE -->
     <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-40 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo & Brand -->
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-xl text-white shadow-md">
-                    DC
-                </div>
-                <div>
-                    <span class="text-xl font-black tracking-wider text-white block leading-none">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
-                    <span class="text-[10px] text-slate-400 font-medium tracking-widest uppercase">Plateforme Panafricaine</span>
+        <div class="max-w-7xl mx-auto px-4 py-2.5 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleSidebar()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 focus:outline-none">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-lg text-white shadow-md">
+                        DC
+                    </div>
+                    <div>
+                        <span class="text-lg font-black tracking-wider text-white block leading-none">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
+                        <span class="text-[9px] text-slate-400 font-medium tracking-widest uppercase">Plateforme Panafricaine</span>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Navigation desktop -->
-            <nav class="hidden lg:flex space-x-1 text-sm font-semibold">
-                <button onclick="switchTab('home')" id="tab-home" class="px-3 py-2 rounded-lg text-green-400 hover:bg-slate-800 transition">Accueil</button>
-                <button onclick="switchTab('search-id')" id="tab-search-id" class="px-3 py-2 rounded-lg text-amber-400 hover:bg-slate-800 transition flex items-center gap-1.5"><i data-lucide="qr-code" class="w-4 h-4"></i> Rechercher / Scan</button>
-                <button onclick="switchTab('children')" id="tab-children" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">Enfants</button>
-                <button onclick="switchTab('widows')" id="tab-widows" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">Veuves</button>
-                <button onclick="switchTab('programs')" id="tab-programs" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">Programmes</button>
-                <button onclick="switchTab('partners')" id="tab-partners" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition">Partenaires</button>
-                <button onclick="switchTab('admin')" id="tab-admin" class="px-3 py-2 rounded-lg text-emerald-400 hover:bg-slate-800 transition hidden">Administration</button>
-            </nav>
 
-            <!-- Language & User Auth -->
-            <div class="flex items-center space-x-2 text-sm">
-                <select onchange="setLanguage(this.value)" class="bg-slate-800 text-slate-200 border border-slate-700 text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-green-500">
+            <!-- FILTRE PAYS DE L'ENTÊTE -->
+            <div class="hidden md:flex items-center space-x-2 bg-slate-800/80 px-3 py-1 rounded-xl border border-slate-700">
+                <i data-lucide="globe" class="w-4 h-4 text-green-400"></i>
+                <select id="global-country-filter" onchange="filterByCountry(this.value)" class="bg-transparent text-white text-xs font-bold focus:outline-none">
+                    <option value="ALL" class="bg-slate-900">🌐 Tous les pays (Panafricain)</option>
+                    <option value="CD" class="bg-slate-900">🇨🇩 RDC (Congo)</option>
+                    <option value="UG" class="bg-slate-900">🇺🇬 Ouganda</option>
+                    <option value="KE" class="bg-slate-900">🇰🇪 Kenya</option>
+                    <option value="RW" class="bg-slate-900">🇷🇼 Rwanda</option>
+                    <option value="TZ" class="bg-slate-900">🇹🇿 Tanzanie</option>
+                    <option value="BI" class="bg-slate-900">🇧🇮 Burundi</option>
+                    <option value="SS" class="bg-slate-900">🇸🇸 Soudan du Sud</option>
+                    <option value="CM" class="bg-slate-900">🇨🇲 Cameroun</option>
+                </select>
+            </div>
+
+            <!-- LANGUE ET AUTH -->
+            <div class="flex items-center space-x-2">
+                <select onchange="setLanguage(this.value)" class="bg-slate-800 text-slate-200 border border-slate-700 text-xs rounded-lg px-2 py-1.5 focus:outline-none">
                     <option value="fr">🇫🇷 FR</option>
                     <option value="en">🇬🇧 EN</option>
                     <option value="sw">🇨🇩 SW</option>
@@ -66,312 +77,268 @@
         </div>
     </header>
 
-    <!-- BANNIÈRE SLOGAN & FILTRE PAYS -->
-    <div class="bg-gradient-to-r from-green-800 via-emerald-700 to-green-900 text-white text-xs md:text-sm font-medium py-2 px-4 shadow-inner">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-            <span class="flex items-center gap-2 text-center md:text-left">
-                <i data-lucide="globe" class="w-4 h-4 text-green-300"></i>
-                Ensemble pour une Afrique où chaque enfant et chaque veuve grandit dans la dignité.
-            </span>
-            <div class="flex items-center space-x-2">
-                <span class="text-[11px] uppercase tracking-wider text-green-200">Pays affiché :</span>
-                <select id="global-country-filter" onchange="filterByCountry(this.value)" class="bg-green-950/80 text-white text-xs font-bold rounded px-2 py-0.5 border border-green-600 focus:outline-none">
-                    <option value="ALL">🌐 Tous les pays</option>
-                    <option value="CD">🇨🇩 RDC (Congo)</option>
-                    <option value="UG">🇺🇬 Ouganda</option>
-                    <option value="KE">🇰🇪 Kenya</option>
-                    <option value="RW">🇷🇼 Rwanda</option>
-                    <option value="TZ">🇹🇿 Tanzanie</option>
-                </select>
-            </div>
-        </div>
-    </div>
+    <div class="flex flex-grow relative">
 
-    <!-- CONTENU PRINCIPAL -->
-    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
-
-        <!-- SECTION : ACCUEIL -->
-        <section id="sec-home" class="space-y-8">
-            <!-- Hero Banner -->
-            <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white rounded-3xl p-6 md:p-12 shadow-2xl border border-slate-800">
-                <div class="relative z-10 max-w-2xl space-y-4">
-                    <span class="inline-flex items-center gap-1.5 bg-green-500/20 text-green-300 text-xs font-bold px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">
-                        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Siège Opérationnel : Bukavu, RDC — Panafricain
-                    </span>
-                    <h1 class="text-3xl md:text-5xl font-black leading-tight tracking-tight">
-                        Protéger, Éduquer & Autonomiser
-                    </h1>
-                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
-                        Système d'identification unique (ID & QR Code), suivi social en temps réel, parrainage direct et programmes d'autonomisation durable pour les orphelins et les veuves.
-                    </p>
-                    <div class="flex flex-wrap gap-3 pt-2">
-                        <button onclick="switchTab('search-id')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition transform hover:-translate-y-0.5">
-                            <i data-lucide="search" class="w-4 h-4"></i> Recherche Rapide par ID
-                        </button>
-                        <button onclick="switchTab('children')" class="bg-green-600 hover:bg-green-500 text-white font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition">
-                            <i data-lucide="heart" class="w-4 h-4"></i> Parrainer un Enfant
-                        </button>
-                        <button onclick="switchTab('widows')" class="bg-slate-700 hover:bg-slate-600 text-white font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition">
-                            <i data-lucide="briefcase" class="w-4 h-4"></i> Soutenir une Veuve
-                        </button>
-                    </div>
-                </div>
+        <!-- MENU LATÉRAL COMPLET (NAVIGATION RÔLES & MODULES) -->
+        <aside id="sidebar" class="w-64 bg-slate-900 text-slate-300 flex-shrink-0 hidden md:block border-r border-slate-800 p-4 space-y-6 overflow-y-auto max-h-[calc(100vh-60px)] sticky top-[60px]">
+            <div class="space-y-1 text-xs">
+                <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-wider">Navigation Principale</p>
+                <button onclick="switchTab('home')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5 font-semibold text-white"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> 🏠 Accueil</button>
+                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5 font-semibold text-amber-400"><i data-lucide="search" class="w-4 h-4"></i> 🔎 Recherche ID / Scan</button>
+                <button onclick="switchTab('children')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5 font-semibold"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> 👦 Enfants</button>
+                <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5 font-semibold"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> 👩 Veuves</button>
+                <button onclick="switchTab('partners')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5 font-semibold"><i data-lucide="handshake" class="w-4 h-4 text-amber-400"></i> 🤝 Partenaires</button>
+                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5 font-semibold"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> 👥 Équipe / Bénévoles</button>
             </div>
 
-            <!-- Cartes Statistiques Clés -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-green-300 transition">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Enfants Suivis</span>
-                        <div class="p-2 bg-green-100 text-green-700 rounded-xl"><i data-lucide="baby" class="w-5 h-5"></i></div>
-                    </div>
-                    <div class="mt-4">
-                        <p id="stat-home-children" class="text-3xl font-black text-slate-900">10</p>
-                        <p class="text-xs text-green-600 font-semibold mt-1 flex items-center gap-1"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> IDs uniques attribués</p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-emerald-300 transition">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Veuves Accompagnées</span>
-                        <div class="p-2 bg-emerald-100 text-emerald-700 rounded-xl"><i data-lucide="users" class="w-5 h-5"></i></div>
-                    </div>
-                    <div class="mt-4">
-                        <p id="stat-home-widows" class="text-3xl font-black text-slate-900">5</p>
-                        <p class="text-xs text-emerald-600 font-semibold mt-1 flex items-center gap-1"><i data-lucide="trending-up" class="w-3.5 h-3.5"></i> Projets d'autonomie</p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-blue-300 transition">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Centres d'Accueil</span>
-                        <div class="p-2 bg-blue-100 text-blue-700 rounded-xl"><i data-lucide="building-2" class="w-5 h-5"></i></div>
-                    </div>
-                    <div class="mt-4">
-                        <p id="stat-home-centers" class="text-3xl font-black text-slate-900">1</p>
-                        <p class="text-xs text-slate-500 font-semibold mt-1">CENTRE DIEUDONNÉ BUKAVU</p>
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-purple-300 transition">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Pays de Couverture</span>
-                        <div class="p-2 bg-purple-100 text-purple-700 rounded-xl"><i data-lucide="globe-2" class="w-5 h-5"></i></div>
-                    </div>
-                    <div class="mt-4">
-                        <p id="stat-home-countries" class="text-3xl font-black text-slate-900">1</p>
-                        <p class="text-xs text-slate-500 font-semibold mt-1">Expansion Afrique de l'Est</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION : RECHERCHE PAR ID UNIQUE ET SCANNER QR CODE -->
-        <section id="sec-search-id" class="hidden space-y-6 max-w-4xl mx-auto">
-            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl space-y-4">
-                <div class="flex items-center space-x-3">
-                    <div class="p-3 bg-amber-500/20 text-amber-400 rounded-xl border border-amber-500/30">
-                        <i data-lucide="qr-code" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-xl font-bold">Système d'Identification Unique DIEUDONNÉ CARE</h2>
-                        <p class="text-xs text-slate-400">Format d'ID officiel : DC-[PAYS]-[ANNÉE]-[SÉQUENCE] (ex: DC-CD-2026-000001)</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-3 pt-2">
-                    <div class="relative flex-grow">
-                        <input type="text" id="input-search-id" placeholder="Ex: DC-CD-2026-000001, DCP-UG-2026-000001..." class="w-full bg-slate-800 text-white border border-slate-700 rounded-xl px-4 py-3 text-sm font-mono tracking-wider focus:outline-none focus:ring-2 focus:ring-amber-500 uppercase">
-                    </div>
-                    <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg">
-                        <i data-lucide="search" class="w-4 h-4"></i> Rechercher le Dossier
-                    </button>
-                </div>
+            <div class="space-y-1 text-xs">
+                <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-wider">Programmes & Projets</p>
+                <button onclick="switchTab('programs')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="heart" class="w-4 h-4 text-red-400"></i> ❤️ Programmes</button>
+                <button onclick="switchTab('projects')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="folder-kanban" class="w-4 h-4 text-cyan-400"></i> 📁 Projets</button>
+                <button onclick="switchTab('activities')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="calendar" class="w-4 h-4 text-yellow-400"></i> 📅 Activités</button>
+                <button onclick="switchTab('donations')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="coins" class="w-4 h-4 text-green-400"></i> 💰 Donations</button>
+                <button onclick="switchTab('aids')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="gift" class="w-4 h-4 text-pink-400"></i> 💝 Aides Distribuées</button>
             </div>
 
-            <!-- Résultat de la recherche par ID -->
-            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-lg space-y-6">
-                <!-- Rempli dynamiquement en JS -->
-            </div>
-        </section>
-
-        <!-- SECTION : ENFANTS BÉNÉFICIAIRES -->
-        <section id="sec-children" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h2 class="text-2xl font-black text-slate-900">Enfants Pris en Charge</h2>
-                    <p class="text-xs text-slate-500">Registre officiel des orphelins et enfants vulnérables</p>
-                </div>
-                <button id="btn-add-child" onclick="openAddChildModal()" class="hidden bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow">
-                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Enregistrer un Enfant
-                </button>
+            <div class="space-y-1 text-xs">
+                <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-wider">Gestion & Rapports</p>
+                <button onclick="switchTab('documents')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i> 📄 Documents</button>
+                <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> 📊 Rapports</button>
+                <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> 🌍 Pays & Centres</button>
+                <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="bell" class="w-4 h-4 text-amber-400"></i> 🔔 Notifications</button>
             </div>
 
-            <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Cartes d'enfants injectées dynamiquement -->
+            <div class="space-y-1 text-xs pt-4 border-t border-slate-800">
+                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> 👤 Mon Profil</button>
+                <button onclick="switchTab('settings')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 flex items-center gap-2.5"><i data-lucide="settings" class="w-4 h-4 text-slate-300"></i> ⚙️ Paramètres</button>
+                <button onclick="switchTab('admin')" id="menu-admin-btn" class="w-full text-left px-3 py-2 rounded-xl bg-green-950/60 text-green-400 hover:bg-green-900/60 flex items-center gap-2.5 font-bold hidden"><i data-lucide="shield" class="w-4 h-4"></i> 🔐 Administration</button>
             </div>
-        </section>
+        </aside>
 
-        <!-- SECTION : VEUVES ET AUTONOMISATION -->
-        <section id="sec-widows" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h2 class="text-2xl font-black text-slate-900">Veuves & Projets d'Autonomie</h2>
-                    <p class="text-xs text-slate-500">Accompagnement, micro-projets et réhabilitation économique</p>
-                </div>
-                <button id="btn-add-widow" onclick="openAddWidowModal()" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow">
-                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Enregistrer une Veuve
-                </button>
-            </div>
+        <!-- ZONE DE CONTENU PRINCIPALE -->
+        <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 overflow-x-hidden">
 
-            <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Cartes de veuves injectées dynamiquement -->
-            </div>
-        </section>
-
-        <!-- SECTION : PROGRAMMES D'ACTIVITÉS -->
-        <section id="sec-programs" class="hidden space-y-6">
-            <div>
-                <h2 class="text-2xl font-black text-slate-900">Programmes d'Intervention Humanitaire</h2>
-                <p class="text-xs text-slate-500">Les 8 piliers stratégiques de DIEUDONNÉ CARE en Afrique</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                    <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold"><i data-lucide="shield" class="w-5 h-5"></i></div>
-                    <h3 class="font-bold text-slate-900 text-sm">1. Protection de l'Enfant</h3>
-                    <p class="text-xs text-slate-500">Prévention contre les violences, le travail forcé, les abandons et assistance juridique.</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
-                    <h3 class="font-bold text-slate-900 text-sm">2. Éducation & Scolarité</h3>
-                    <p class="text-xs text-slate-500">Prise en charge des frais, fournitures, uniformes, livres et bourses d'études.</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold"><i data-lucide="heart-pulse" class="w-5 h-5"></i></div>
-                    <h3 class="font-bold text-slate-900 text-sm">3. Santé & Nutrition</h3>
-                    <p class="text-xs text-slate-500">Consultations médicales, soins, mutuelle de santé et distributions nutritionnelles.</p>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold"><i data-lucide="coins" class="w-5 h-5"></i></div>
-                    <h3 class="font-bold text-slate-900 text-sm">4. Autonomisation Veuves</h3>
-                    <p class="text-xs text-slate-500">Financement de micro-commerces, couture, élevage, agriculture et formations.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION : PARTENAIRES & ÉQUIPE -->
-        <section id="sec-partners" class="hidden space-y-6">
-            <div>
-                <h2 class="text-2xl font-black text-slate-900">Réseau de Partenaires & Équipe</h2>
-                <p class="text-xs text-slate-500">ONG, Institutions, Églises, Bénévoles et Travailleurs Sociaux</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-                    <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Partner ID: DCP-CD-2026-000001</span>
-                    <h3 class="font-bold text-slate-900">KIDS HOPE INTERNATIONAL</h3>
-                    <p class="text-xs text-slate-500">Partenaire stratégique pour le parrainage des orphelins et le soutien logistique.</p>
-                    <span class="inline-block bg-slate-100 text-slate-700 text-[10px] px-2 py-1 rounded font-semibold">RDC / International</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION : PANNEAU ADMINISTRATEUR EXÉCUTIF -->
-        <section id="sec-admin" class="hidden space-y-6">
-            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-bold">Administration Centrale Panafricaine</h2>
-                    <p class="text-xs text-slate-400">Contrôle global du système DIEUDONNÉ CARE</p>
-                </div>
-                <button onclick="exportFullReportPDF()" class="bg-green-600 hover:bg-green-500 text-white text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 shadow">
-                    <i data-lucide="file-text" class="w-4 h-4"></i> Générer Rapport Exécutif
-                </button>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-xl border border-slate-200"><p class="text-xs text-slate-500 font-semibold">Total Enfants</p><p id="admin-stat-children" class="text-2xl font-black text-slate-900">0</p></div>
-                <div class="bg-white p-4 rounded-xl border border-slate-200"><p class="text-xs text-slate-500 font-semibold">Total Veuves</p><p id="admin-stat-widows" class="text-2xl font-black text-slate-900">0</p></div>
-                <div class="bg-white p-4 rounded-xl border border-slate-200"><p class="text-xs text-slate-500 font-semibold">Centres Actifs</p><p id="admin-stat-centers" class="text-2xl font-black text-slate-900">1</p></div>
-                <div class="bg-white p-4 rounded-xl border border-slate-200"><p class="text-xs text-slate-500 font-semibold">Fonds de Soutien</p><p id="admin-stat-donations" class="text-2xl font-black text-green-600">$0</p></div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- MODALE : CARTE OFFICIELLE DE BÉNÉFICIAIRE (AVEC QR CODE IMPRIMABLE) -->
-    <div id="card-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-6 shadow-2xl relative">
-            <button onclick="closeCardModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 font-bold p-2">✕</button>
-
-            <div id="printable-card" class="bg-gradient-to-br from-slate-900 via-slate-800 to-green-950 text-white rounded-2xl p-6 shadow-2xl border-2 border-green-500/30 space-y-4">
-                <div class="flex justify-between items-start border-b border-slate-700/80 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center text-xs font-black text-slate-950">DC</div>
+            <!-- 1. ACCUEIL -->
+            <section id="sec-home" class="space-y-6">
+                <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-green-950 text-white rounded-3xl p-6 md:p-10 shadow-2xl border border-slate-800">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div>
-                            <p class="text-xs font-black tracking-wider text-green-400 uppercase">DIEUDONNÉ CARE</p>
-                            <p class="text-[9px] text-slate-300 uppercase">Carte Officielle de Bénéficiaire</p>
+                            <span class="inline-block bg-green-500/20 text-green-300 text-xs font-bold px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest mb-2">
+                                📍 Siège Opérationnel : Bukavu, RDC — Panafricain
+                            </span>
+                            <h1 class="text-3xl md:text-4xl font-black">Tableau de Bord Général</h1>
+                            <p class="text-slate-300 text-sm mt-1">Plateforme complète de gestion, identification unique et autonomisation.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow">
+                                <i data-lucide="user-plus" class="w-4 h-4"></i> + Enfant
+                            </button>
+                            <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow">
+                                <i data-lucide="user-plus" class="w-4 h-4"></i> + Veuve
+                            </button>
+                            <button onclick="switchTab('search-id')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow">
+                                <i data-lucide="search" class="w-4 h-4"></i> Scan / ID
+                            </button>
                         </div>
                     </div>
-                    <span id="card-country-flag" class="text-xs bg-slate-800 px-2 py-0.5 rounded border border-slate-700">🇨🇩 RDC</span>
                 </div>
 
-                <div class="flex gap-4 items-center">
-                    <img id="card-photo" src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=300" class="w-24 h-28 object-cover rounded-xl border-2 border-green-400 shadow">
-                    <div class="space-y-1 text-xs">
-                        <p class="text-[10px] text-slate-400 uppercase">ID Unique :</p>
-                        <p id="card-id" class="font-mono font-bold text-amber-400 text-sm">DC-CD-2026-000001</p>
-                        <p id="card-fullname" class="font-bold text-sm text-white mt-1">Nouveau Bénéficiaire</p>
-                        <p id="card-category" class="text-[11px] text-green-300 font-semibold">Enfant Orphelin</p>
-                        <p id="card-center" class="text-[10px] text-slate-300">Centre Dieudonné Bukavu</p>
+                <!-- CARTE DE STATISTIQUES PRINCIPALES -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <p class="text-xs font-bold text-slate-500 uppercase">Enfants Pris en Charge</p>
+                        <p id="stat-home-children" class="text-3xl font-black text-slate-900 mt-2">10</p>
+                        <p class="text-[11px] text-green-600 font-semibold mt-1">✓ Bukavu & Centres</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <p class="text-xs font-bold text-slate-500 uppercase">Veuves Accompagnées</p>
+                        <p id="stat-home-widows" class="text-3xl font-black text-slate-900 mt-2">5</p>
+                        <p class="text-[11px] text-emerald-600 font-semibold mt-1">✓ Projets d'autonomie</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <p class="text-xs font-bold text-slate-500 uppercase">Centres Actifs</p>
+                        <p class="text-3xl font-black text-slate-900 mt-2">1</p>
+                        <p class="text-[11px] text-slate-500 font-semibold mt-1">CENTRE DIEUDONNÉ</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                        <p class="text-xs font-bold text-slate-500 uppercase">Pays de Couverture</p>
+                        <p class="text-3xl font-black text-slate-900 mt-2">8</p>
+                        <p class="text-[11px] text-slate-500 font-semibold mt-1">Réseau Panafricain</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. RECHERCHE PAR ID UNIQUE ET SCANNER QR CODE -->
+            <section id="sec-search-id" class="hidden space-y-6 max-w-4xl mx-auto">
+                <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-3 bg-amber-500/20 text-amber-400 rounded-xl">
+                            <i data-lucide="qr-code" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold">Recherche par ID & Scanner QR Code</h2>
+                            <p class="text-xs text-slate-400">Format d'ID : DC-[PAYS]-[ANNÉE]-[SÉQUENCE] (ex: DC-CD-2026-000001)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-3">
+                        <input type="text" id="input-search-id" placeholder="Ex: DC-CD-2026-000001, DCP-UG-2026-000001..." class="w-full bg-slate-800 text-white border border-slate-700 rounded-xl px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-amber-500 uppercase">
+                        <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-xl text-sm flex items-center justify-center gap-2 shadow">
+                            <i data-lucide="search" class="w-4 h-4"></i> Rechercher
+                        </button>
+                        <button onclick="startQrScanner()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-4 py-3 rounded-xl text-sm flex items-center justify-center gap-2 border border-slate-700">
+                            <i data-lucide="camera" class="w-4 h-4 text-green-400"></i> Scanner Caméra
+                        </button>
+                    </div>
+
+                    <!-- CAMERA SCAN CONTAINER -->
+                    <div id="reader-container" class="hidden bg-slate-950 p-4 rounded-xl border border-slate-800 text-center space-y-2">
+                        <div id="reader" class="w-full max-w-sm mx-auto overflow-hidden rounded-lg"></div>
+                        <button onclick="stopQrScanner()" class="bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Arrêter la caméra</button>
                     </div>
                 </div>
 
-                <div class="flex justify-between items-center pt-2 border-t border-slate-700/80">
-                    <div id="qrcode-container" class="bg-white p-1.5 rounded-lg border border-slate-300"></div>
-                    <div class="text-right text-[9px] text-slate-400 space-y-0.5">
-                        <p>Délivré par DIEUDONNÉ CARE</p>
-                        <p>Vérification sécurisée par QR Code</p>
-                        <p class="text-green-400 font-semibold">Valide Panafricain</p>
-                    </div>
-                </div>
-            </div>
+                <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-lg space-y-6"></div>
+            </section>
 
-            <button onclick="window.print()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow">
-                <i data-lucide="printer" class="w-4 h-4"></i> Imprimer / Exporter la Carte
-            </button>
-        </div>
+            <!-- 3. ENFANTS -->
+            <section id="sec-children" class="hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">Registre des Enfants Orphelins</h2>
+                        <p class="text-xs text-slate-500">Dossiers individuels, prise en charge et suivi médical/scolaire</p>
+                    </div>
+                    <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Nouveau Dossier Enfant
+                    </button>
+                </div>
+                <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </section>
+
+            <!-- 4. VEUVES -->
+            <section id="sec-widows" class="hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900">Registre des Veuves & Autonomisation</h2>
+                        <p class="text-xs text-slate-500">Micro-projets, commerce, agriculture et formation professionnelle</p>
+                    </div>
+                    <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Nouveau Dossier Veuve
+                    </button>
+                </div>
+                <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            </section>
+
+            <!-- 5. PARTENAIRES -->
+            <section id="sec-partners" class="hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-black text-slate-900">Partenaires Institutionnels & ONG</h2>
+                    <button onclick="openForm('partner')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Nouveau Partenaire
+                    </button>
+                </div>
+                <div id="partners-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+            </section>
+
+            <!-- 6. ÉQUIPE & BÉNÉVOLES -->
+            <section id="sec-team" class="hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-black text-slate-900">Équipe, Travailleurs Sociaux & Bénévoles</h2>
+                    <button onclick="openForm('team')" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Ajouter un Membre
+                    </button>
+                </div>
+                <div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+            </section>
+
+            <!-- SECTIONS SECONDAIRES (PROGRAMMES, PROJETS, ACTIVITÉS, DONATIONS, AIDES, DOCUMENTS, RAPPORTS, PAYS, NOTIFICATIONS, PROFIL, PARAMÈTRES, ADMIN) -->
+            <section id="sec-programs" class="hidden space-y-6">
+                <h2 class="text-2xl font-black text-slate-900">Les 8 Programmes Stratégiques DIEUDONNÉ CARE</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-sm text-red-600">1. Protection de l'Enfant</h3><p class="text-xs text-slate-500 mt-1">Identification, lutte contre les violences et suivi juridique.</p></div>
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-sm text-blue-600">2. Éducation</h3><p class="text-xs text-slate-500 mt-1">Paiement des frais, fournitures, uniformes et bourses.</p></div>
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-sm text-emerald-600">3. Santé & Nutrition</h3><p class="text-xs text-slate-500 mt-1">Consultations, traitements, kit nutritionnel et hôpital.</p></div>
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-sm text-amber-600">4. Autonomisation Veuves</h3><p class="text-xs text-slate-500 mt-1">Commerce, élevage, couture, capital de démarrage.</p></div>
+                </div>
+            </section>
+
+            <section id="sec-projects" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestion des Projets Panafricains</h2><p class="text-xs text-slate-500">Projets en préparation, en cours, suspendus et terminés.</p></section>
+            <section id="sec-activities" class="hidden space-y-6"><h2 class="text-2xl font-black">Calendrier d'Activités & Visites</h2><p class="text-xs text-slate-500">Planification des visites familiales, distributions et formations.</p></section>
+            <section id="sec-donations" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestion des Donations Reçues</h2><p class="text-xs text-slate-500">Traçabilité financière et dons en nature (nourriture, vêtements).</p></section>
+            <section id="sec-aids" class="hidden space-y-6"><h2 class="text-2xl font-black">Historique des Aides Distribuées</h2><p class="text-xs text-slate-500">Registre d'attribution par bénéficiaire.</p></section>
+            <section id="sec-documents" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestionnaire de Documents Sécurisés</h2><p class="text-xs text-slate-500">Certificats de décès, pièces d'identité et bulletins scolaires.</p></section>
+            <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Rapports & Analytics</h2><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl">Exporter le Rapport PDF</button></section>
+            <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau des Pays & Centres Localisés</h2></section>
+            <section id="sec-notifications" class="hidden space-y-6"><h2 class="text-2xl font-black">Alertes & Notifications Rôle</h2></section>
+            <section id="sec-profile" class="hidden space-y-6"><h2 class="text-2xl font-black">Mon Profil Utilisateur</h2></section>
+            <section id="sec-settings" class="hidden space-y-6"><h2 class="text-2xl font-black">Paramètres du Système</h2></section>
+            <section id="sec-admin" class="hidden space-y-6"><h2 class="text-2xl font-black text-red-600">Panneau d'Administration Centrale (Super Admin)</h2></section>
+
+        </main>
     </div>
 
-    <!-- MODALE : AUTHENTIFICATION -->
-    <div id="auth-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+    <!-- MODAL FORMULAIRE AJOUT ENFANT -->
+    <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 space-y-4 shadow-2xl my-8">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-slate-900">Accès Sécurisé — DIEUDONNÉ CARE</h3>
-                <button onclick="closeAuthModal()" class="text-slate-400 font-bold">✕</button>
+                <h3 class="font-bold text-slate-900 text-lg">Nouveau Dossier Enfant — Formulaire Complet</h3>
+                <button onclick="closeForm('child')" class="text-slate-400 font-bold">✕</button>
             </div>
-            <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
-                <input type="text" id="auth-name" placeholder="Nom complet (pour inscription)" class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-green-500 outline-none">
-                <input type="email" id="auth-email" placeholder="Adresse e-mail" required class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-green-500 outline-none">
-                <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-green-500 outline-none">
-                <select id="auth-role" class="w-full p-2.5 border rounded-xl text-sm bg-white">
-                    <option value="VISITOR">Visiteur / Parrain</option>
-                    <option value="SOCIAL_WORKER">Travailleur Social</option>
-                    <option value="CENTER_MANAGER">Chef de Centre</option>
-                    <option value="NATIONAL_ADMIN">Administrateur National</option>
-                    <option value="SUPER_ADMIN">Super Administrateur Central</option>
-                </select>
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-xl text-sm transition">Se Connecter / S'inscrire</button>
+            <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs">
+                <div class="grid grid-cols-2 gap-3">
+                    <div><label class="font-bold">Prénom</label><input type="text" id="c-firstname" required class="w-full p-2 border rounded-lg"></div>
+                    <div><label class="font-bold">Nom</label><input type="text" id="c-lastname" required class="w-full p-2 border rounded-lg"></div>
+                    <div><label class="font-bold">Âge</label><input type="number" id="c-age" required class="w-full p-2 border rounded-lg"></div>
+                    <div><label class="font-bold">Sexe</label><select id="c-gender" class="w-full p-2 border rounded-lg"><option value="M">Masculin</option><option value="F">Féminin</option></select></div>
+                    <div><label class="font-bold">Pays</label><select id="c-country" class="w-full p-2 border rounded-lg"><option value="CD">RDC</option><option value="UG">Ouganda</option><option value="KE">Kenya</option><option value="RW">Rwanda</option></select></div>
+                    <div><label class="font-bold">Ville / Centre</label><input type="text" id="c-city" value="Bukavu" class="w-full p-2 border rounded-lg"></div>
+                    <div><label class="font-bold">Situation Père</label><select id="c-father" class="w-full p-2 border rounded-lg"><option>Décédé</option><option>Vivant</option><option>Inconnu</option></select></div>
+                    <div><label class="font-bold">Situation Mère</label><select id="c-mother" class="w-full p-2 border rounded-lg"><option>Décédée</option><option>Vivante</option><option>Inconnue</option></select></div>
+                </div>
+                <div><label class="font-bold">École / Niveau Scolaire</label><input type="text" id="c-school" placeholder="Ex: E.P. Nyalukemba / 4ème Primaire" class="w-full p-2 border rounded-lg"></div>
+                <div><label class="font-bold">État de Santé & Besoins Particuliers</label><textarea id="c-health" class="w-full p-2 border rounded-lg" rows="2"></textarea></div>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl">Enregistrer le Dossier Enfant</button>
             </form>
         </div>
     </div>
 
-    <!-- SCRIPTS APPLICATIFS -->
+    <!-- MODAL FORMULAIRE AJOUT VEUVE -->
+    <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 space-y-4 shadow-2xl my-8">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900 text-lg">Nouveau Dossier Veuve — Formulaire Complet</h3>
+                <button onclick="closeForm('widow')" class="text-slate-400 font-bold">✕</button>
+            </div>
+            <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs">
+                <div class="grid grid-cols-2 gap-3">
+                    <div><label class="font-bold">Prénom</label><input type="text" id="w-firstname" required class="w-full p-2 border rounded-lg"></div>
+                    <div><label class="font-bold">Nom</label><input type="text" id="w-lastname" required class="w-full p-2 border rounded-lg"></div>
+                    <div><label class="font-bold">Enfants à charge</label><input type="number" id="w-children" required class="w-full p-2 border rounded-lg"></div>
+                    <div><label class="font-bold">Pays</label><select id="w-country" class="w-full p-2 border rounded-lg"><option value="CD">RDC</option><option value="UG">Ouganda</option><option value="KE">Kenya</option></select></div>
+                    <div class="col-span-2"><label class="font-bold">Projet d'Autonomisation / Activité</label><input type="text" id="w-project" placeholder="Ex: Commerce de vivres fraîches, Couture" class="w-full p-2 border rounded-lg"></div>
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl">Enregistrer le Dossier Veuve</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODALE AUTHENTIFICATION AGENT -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900">Connexion Agent / Administrateur</h3>
+                <button onclick="closeAuthModal()" class="text-slate-400 font-bold">✕</button>
+            </div>
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
+                <input type="email" id="auth-email" placeholder="E-mail" required class="w-full p-2.5 border rounded-xl text-sm">
+                <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-2.5 border rounded-xl text-sm">
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-2.5 rounded-xl text-sm">Se Connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- LOGIQUE JAVASCRIPT EXÉCUTIVE ET FIREBASE -->
     <script>
-        // CONFIGURATION FIREBASE INITIALISÉE
         const firebaseConfig = {
             apiKey: "AIzaSyATlu2mUJmPlmkJkVow1ap35RSl6zt30nY",
             authDomain: "dieudonne-f074d.firebaseapp.com",
@@ -385,11 +352,9 @@
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
-
         let currentUser = null;
-        let activeCountryFilter = 'ALL';
+        let html5QrCode = null;
 
-        // GESTION DE L'AUTHENTIFICATION & DES RÔLES
         function initAuthListener() {
             auth.onAuthStateChanged(user => {
                 if (user) {
@@ -398,216 +363,184 @@
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
                     document.getElementById('auth-btn').innerText = "Déconnexion";
                     document.getElementById('auth-btn').onclick = () => auth.signOut();
-                    document.getElementById('tab-admin').classList.remove('hidden');
-                    document.getElementById('btn-add-child')?.classList.remove('hidden');
-                    document.getElementById('btn-add-widow')?.classList.remove('hidden');
+                    document.getElementById('menu-admin-btn')?.classList.remove('hidden');
                 } else {
                     currentUser = null;
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
                     document.getElementById('auth-btn').innerText = "Connexion";
                     document.getElementById('auth-btn').onclick = openAuthModal;
-                    document.getElementById('tab-admin').classList.add('hidden');
-                    document.getElementById('btn-add-child')?.classList.add('hidden');
-                    document.getElementById('btn-add-widow')?.classList.add('hidden');
+                    document.getElementById('menu-admin-btn')?.classList.add('hidden');
                 }
             });
         }
 
-        // NAVIGATION ENTRE SESSIONS
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
         function switchTab(tab) {
-            ['home', 'search-id', 'children', 'widows', 'programs', 'partners', 'admin'].forEach(t => {
+            const tabs = ['home', 'search-id', 'children', 'widows', 'partners', 'team', 'programs', 'projects', 'activities', 'donations', 'aids', 'documents', 'reports', 'countries', 'notifications', 'profile', 'settings', 'admin'];
+            tabs.forEach(t => {
                 const el = document.getElementById(`sec-${t}`);
                 if (el) el.classList.add('hidden');
             });
-            document.getElementById(`sec-${tab}`).classList.remove('hidden');
+            document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
 
             if (tab === 'children') loadChildrenGrid();
             if (tab === 'widows') loadWidowsGrid();
-            if (tab === 'admin') loadAdminDashboard();
-
-            // Rafraîchir les icônes Lucide
             if (window.lucide) lucide.createIcons();
         }
 
+        function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
+        function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
         function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
-        function closeCardModal() { document.getElementById('card-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit(e) {
             e.preventDefault();
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
-            const name = document.getElementById('auth-name').value;
-
             try {
-                if (name) {
-                    await auth.createUserWithEmailAndPassword(email, password);
-                } else {
-                    await auth.signInWithEmailAndPassword(email, password);
-                }
+                await auth.signInWithEmailAndPassword(
+                    document.getElementById('auth-email').value,
+                    document.getElementById('auth-password').value
+                );
                 closeAuthModal();
-            } catch (err) {
-                alert("Erreur d'authentification : " + err.message);
-            }
+            } catch (err) { alert("Erreur d'authentification : " + err.message); }
         }
 
-        // RECHERCHE PAR ID ET QR CODE
-        async function executeIdSearch() {
-            const searchId = document.getElementById('input-search-id').value.trim().toUpperCase();
-            if (!searchId) return alert("Veuillez saisir un ID DIEUDONNÉ CARE valide.");
+        async function saveChildForm(e) {
+            e.preventDefault();
+            const country = document.getElementById('c-country').value;
+            const autoId = `DC-${country}-2026-${Math.floor(100000 + Math.random() * 900000)}`;
 
+            try {
+                await db.collection("children").add({
+                    id: autoId,
+                    firstName: document.getElementById('c-firstname').value,
+                    lastName: document.getElementById('c-lastname').value,
+                    age: parseInt(document.getElementById('c-age').value),
+                    gender: document.getElementById('c-gender').value,
+                    country: country,
+                    city: document.getElementById('c-city').value,
+                    fatherStatus: document.getElementById('c-father').value,
+                    motherStatus: document.getElementById('c-mother').value,
+                    school: document.getElementById('c-school').value,
+                    health: document.getElementById('c-health').value,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert(`Dossier créé avec succès ! ID Unique attribué : ${autoId}`);
+                closeForm('child');
+                loadChildrenGrid();
+            } catch (err) { alert("Erreur d'enregistrement : " + err.message); }
+        }
+
+        async function saveWidowForm(e) {
+            e.preventDefault();
+            const country = document.getElementById('w-country').value;
+            const autoId = `DC-${country}-2026-${Math.floor(100000 + Math.random() * 900000)}`;
+
+            try {
+                await db.collection("widows").add({
+                    id: autoId,
+                    firstName: document.getElementById('w-firstname').value,
+                    lastName: document.getElementById('w-lastname').value,
+                    childrenCount: parseInt(document.getElementById('w-children').value),
+                    country: country,
+                    projectType: document.getElementById('w-project').value,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert(`Dossier Veuve créé ! ID Unique : ${autoId}`);
+                closeForm('widow');
+                loadWidowsGrid();
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        async function executeIdSearch() {
+            if (!currentUser) {
+                alert("Accès restreint : Seuls les agents connectés peuvent consulter les dossiers complets.");
+                openAuthModal();
+                return;
+            }
+
+            const searchId = document.getElementById('input-search-id').value.trim().toUpperCase();
             const resCard = document.getElementById('search-result-card');
             resCard.classList.remove('hidden');
-            resCard.innerHTML = `<p class="text-xs text-slate-500 animate-pulse">Recherche du dossier ${searchId} dans la base de données panafricaine...</p>`;
+            resCard.innerHTML = `<p class="text-xs text-slate-500 animate-pulse">Recherche du dossier ${searchId} dans la base de données...</p>`;
 
-            try {
-                // Recherche dans les collections enfants, veuves et partenaires
-                let snapshot = await db.collection("children").where("id", "==", searchId).get();
-                if (snapshot.empty) snapshot = await db.collection("widows").where("id", "==", searchId).get();
+            let snapshot = await db.collection("children").where("id", "==", searchId).get();
+            if (snapshot.empty) snapshot = await db.collection("widows").where("id", "==", searchId).get();
 
-                if (snapshot.empty) {
-                    resCard.innerHTML = `
-                        <div class="text-center py-6 text-slate-500">
-                            <i data-lucide="alert-circle" class="w-10 h-10 text-amber-500 mx-auto mb-2"></i>
-                            <p class="font-bold text-sm">Aucun dossier trouvé pour l'ID : ${searchId}</p>
-                            <p class="text-xs mt-1">Vérifiez la saisie ou assurez-vous que le dossier a été enregistré.</p>
-                        </div>`;
-                } else {
-                    const doc = snapshot.docs[0].data();
-                    resCard.innerHTML = `
-                        <div class="flex flex-col md:flex-row justify-between items-start gap-4 pb-4 border-b">
-                            <div class="flex items-center gap-4">
-                                <img src="${doc.photoUrl || 'https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=300'}" class="w-20 h-20 object-cover rounded-xl border-2 border-green-500">
-                                <div>
-                                    <span class="text-xs font-mono font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded">${doc.id}</span>
-                                    <h3 class="text-xl font-extrabold text-slate-900 mt-1">${doc.firstName || doc.fullName || ''} ${doc.lastName || ''}</h3>
-                                    <p class="text-xs text-slate-500">${doc.center || 'Centre Dieudonné Bukavu'} — ${doc.country || 'RDC'}</p>
-                                </div>
-                            </div>
-                            <button onclick="openBeneficiaryCard('${doc.id}', '${doc.firstName || doc.fullName}', '${doc.photoUrl || ''}', '${doc.category || 'Enfant'}')" class="bg-slate-900 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2">
-                                <i data-lucide="credit-card" class="w-4 h-4"></i> Afficher la Carte Officielle
-                            </button>
-                        </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
-                            <div><span class="text-slate-400 block">Statut :</span><span class="font-bold text-green-600">${doc.status || 'ACTIF'}</span></div>
-                            <div><span class="text-slate-400 block">Âge :</span><span class="font-bold">${doc.age || 'N/A'} ans</span></div>
-                            <div><span class="text-slate-400 block">Sexe :</span><span class="font-bold">${doc.gender || 'N/A'}</span></div>
-                            <div><span class="text-slate-400 block">Enregistré le :</span><span class="font-bold">2026-10-07</span></div>
-                        </div>`;
-                }
-            } catch (err) {
-                resCard.innerHTML = `<p class="text-xs text-red-500">Erreur lors de la recherche : ${err.message}</p>`;
+            if (snapshot.empty) {
+                resCard.innerHTML = `<p class="font-bold text-xs text-amber-600">Aucun dossier trouvé pour l'ID : ${searchId}</p>`;
+            } else {
+                const doc = snapshot.docs[0].data();
+                resCard.innerHTML = `
+                    <div class="space-y-3 text-xs">
+                        <span class="font-mono font-bold bg-amber-100 text-amber-800 px-2.5 py-1 rounded text-sm">${doc.id}</span>
+                        <h3 class="text-xl font-black text-slate-900">${doc.firstName} ${doc.lastName}</h3>
+                        <p><strong>Pays / Ville :</strong> ${doc.country || 'RDC'} — ${doc.city || 'Bukavu'}</p>
+                        <p><strong>Situation Familiale :</strong> Père (${doc.fatherStatus || 'N/A'}), Mère (${doc.motherStatus || 'N/A'})</p>
+                        <p><strong>Scolarité / Activité :</strong> ${doc.school || doc.projectType || 'Non spécifié'}</p>
+                    </div>`;
             }
-            if (window.lucide) lucide.createIcons();
         }
 
-        // AFFICHER ET GÉNÉRER LA CARTE BÉNÉFICIAIRE AVEC QR CODE
-        function openBeneficiaryCard(id, fullName, photoUrl, category) {
-            document.getElementById('card-id').innerText = id;
-            document.getElementById('card-fullname').innerText = fullName;
-            document.getElementById('card-category').innerText = category;
-            if (photoUrl) document.getElementById('card-photo').src = photoUrl;
-
-            const qrContainer = document.getElementById('qrcode-container');
-            qrContainer.innerHTML = '';
-            new QRCode(qrContainer, {
-                text: `https://gabriel49job.github.io/dieudonne-care/?id=${id}`,
-                width: 64,
-                height: 64,
-                colorDark : "#0f172a",
-                colorLight : "#ffffff"
-            });
-
-            document.getElementById('card-modal').classList.replace('hidden', 'flex');
+        function startQrScanner() {
+            document.getElementById('reader-container').classList.remove('hidden');
+            html5QrCode = new Html5Qrcode("reader");
+            html5QrCode.start(
+                { facingMode: "environment" },
+                { fps: 10, qrbox: { width: 250, height: 250 } },
+                (decodedText) => {
+                    document.getElementById('input-search-id').value = decodedText;
+                    stopQrScanner();
+                    executeIdSearch();
+                },
+                () => {}
+            );
         }
 
-        // CHARGER LES GRILLES DE DONNÉES ENFANTS ET VEUVES
+        function stopQrScanner() {
+            if (html5QrCode) {
+                html5QrCode.stop().then(() => {
+                    document.getElementById('reader-container').classList.add('hidden');
+                });
+            }
+        }
+
         async function loadChildrenGrid() {
             const container = document.getElementById('children-grid-container');
-            container.innerHTML = `<p class="text-xs text-slate-500">Chargement des dossiers enfants depuis Firestore...</p>`;
-
-            try {
-                const snapshot = await db.collection("children").get();
-                if (snapshot.empty) {
-                    container.innerHTML = `<p class="text-xs text-slate-500">Aucun enfant enregistré pour le moment.</p>`;
-                    return;
-                }
-
-                container.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    container.innerHTML += `
-                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4 hover:shadow-md transition">
-                            <div class="flex items-center gap-4">
-                                <img src="${data.photoUrl || 'https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=300'}" class="w-16 h-16 object-cover rounded-xl border border-slate-200">
-                                <div class="space-y-1">
-                                    <span class="text-[10px] font-mono font-bold bg-green-100 text-green-800 px-2 py-0.5 rounded">${data.id || doc.id}</span>
-                                    <h3 class="font-bold text-slate-900 text-base">${data.firstName || ''} ${data.lastName || ''}</h3>
-                                    <p class="text-xs text-slate-500">${data.age || 'N/A'} ans • ${data.gender || ''} • ${data.center || 'Bukavu, RDC'}</p>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center border-t pt-3">
-                                <span class="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded">
-                                    ${data.status === 'WAITING' ? 'En attente de parrain' : 'Parrainé'}
-                                </span>
-                                <button onclick="openBeneficiaryCard('${data.id || doc.id}', '${data.firstName} ${data.lastName}', '${data.photoUrl || ''}', 'Enfant Orphelin')" class="text-xs font-bold text-slate-700 hover:text-green-600 flex items-center gap-1">
-                                    <i data-lucide="qr-code" class="w-3.5 h-3.5"></i> Carte ID
-                                </button>
-                            </div>
-                        </div>`;
-                });
-                if (window.lucide) lucide.createIcons();
-            } catch (err) {
-                container.innerHTML = `<p class="text-xs text-red-500">Erreur : ${err.message}</p>`;
-            }
+            const snapshot = await db.collection("children").get();
+            container.innerHTML = '';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                container.innerHTML += `
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                        <span class="text-[10px] font-mono font-bold bg-green-100 text-green-800 px-2 py-0.5 rounded">${data.id || doc.id}</span>
+                        <h3 class="font-bold text-slate-900 text-base">${data.firstName || ''} ${data.lastName || ''}</h3>
+                        <p class="text-xs text-slate-500">${data.age || 'N/A'} ans • ${data.country || 'RDC'}</p>
+                    </div>`;
+            });
         }
 
         async function loadWidowsGrid() {
             const container = document.getElementById('widows-grid-container');
-            container.innerHTML = `<p class="text-xs text-slate-500">Chargement des projets de veuves depuis Firestore...</p>`;
-
-            try {
-                const snapshot = await db.collection("widows").get();
-                if (snapshot.empty) {
-                    container.innerHTML = `<p class="text-xs text-slate-500">Aucune veuve enregistrée pour le moment.</p>`;
-                    return;
-                }
-
-                container.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    container.innerHTML += `
-                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4 hover:shadow-md transition">
-                            <div class="flex items-center gap-4">
-                                <img src="${data.photoUrl || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300'}" class="w-16 h-16 object-cover rounded-xl border border-slate-200">
-                                <div class="space-y-1">
-                                    <span class="text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">${data.id || doc.id}</span>
-                                    <h3 class="font-bold text-slate-900 text-base">${data.firstName || data.fullName || ''} ${data.lastName || ''}</h3>
-                                    <p class="text-xs text-slate-500">Projet : <span class="font-semibold text-slate-800">${data.projectType || 'Commerce local'}</span></p>
-                                </div>
-                            </div>
-                            <div class="flex justify-between items-center border-t pt-3">
-                                <span class="text-xs text-slate-500">${data.childrenCount || 0} enfants à charge</span>
-                                <button onclick="openBeneficiaryCard('${data.id || doc.id}', '${data.firstName || data.fullName}', '${data.photoUrl || ''}', 'Veuve Accompagnée')" class="text-xs font-bold text-slate-700 hover:text-emerald-600 flex items-center gap-1">
-                                    <i data-lucide="qr-code" class="w-3.5 h-3.5"></i> Carte ID
-                                </button>
-                            </div>
-                        </div>`;
-                });
-                if (window.lucide) lucide.createIcons();
-            } catch (err) {
-                container.innerHTML = `<p class="text-xs text-red-500">Erreur : ${err.message}</p>`;
-            }
+            const snapshot = await db.collection("widows").get();
+            container.innerHTML = '';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                container.innerHTML += `
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                        <span class="text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">${data.id || doc.id}</span>
+                        <h3 class="font-bold text-slate-900 text-base">${data.firstName || data.fullName || ''} ${data.lastName || ''}</h3>
+                        <p class="text-xs text-slate-500">Projet : ${data.projectType || 'Commerce'}</p>
+                    </div>`;
+            });
         }
 
         function filterByCountry(code) {
-            activeCountryFilter = code;
             loadChildrenGrid();
             loadWidowsGrid();
-        }
-
-        function setLanguage(lang) {
-            alert(`Langue changée vers : ${lang.toUpperCase()}`);
         }
 
         window.onload = () => {
