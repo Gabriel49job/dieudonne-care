@@ -111,7 +111,7 @@
             </div>
         </section>
 
-        <!-- RECHERCHE PAR MATRICULE -->
+        <!-- RECHERCHE -->
         <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl space-y-4">
                 <h2 class="text-xl font-bold">Recherche par Matricule Unique</h2>
@@ -139,11 +139,24 @@
         <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau Panafricain</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs">🇨🇩 RDC • 🇺🇬 Ouganda • 🇰🇪 Kenya • 🇷🇼 Rwanda • 🇹🇿 Tanzanie</p></div></section>
         <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Statistiques</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl">Imprimer le rapport</button></div></section>
         <section id="sec-profile" class="hidden space-y-6"><h2 class="text-2xl font-black">Mon Profil</h2><div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm"></div></section>
-        <section id="sec-admin" class="hidden space-y-6"><h2 class="text-2xl font-black text-green-600">Administration Centrale</h2><div id="admin-master-list" class="bg-white p-6 rounded-2xl border shadow-sm space-y-2 text-xs"></div></section>
+
+        <!-- ADMINISTRATION CENTRALE AVEC BOUTON SUPPRIMER -->
+        <section id="sec-admin" class="hidden space-y-6">
+            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-black text-green-400">Administration Centrale</h2>
+                    <p class="text-xs text-slate-400">Gestion et suppression des dossiers enregistrés.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-3">
+                <h3 class="font-bold text-slate-900">Base de Données Firestore (Tous les registres)</h3>
+                <div id="admin-master-list" class="space-y-2 text-xs"></div>
+            </div>
+        </section>
 
     </main>
 
-    <!-- 1. FORMULAIRE ENFANT COMPLET -->
+    <!-- MODALE ENFANT -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Dossier Complet Enfant (BKDD-E)</h3><button onclick="closeForm('child')">✕</button></div>
@@ -162,30 +175,12 @@
                         <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded-lg"></div>
                     </div>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-green-700 uppercase">2. Famille & Parents</h4>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div><label class="font-bold">Situation Père</label><select id="c-father" class="w-full p-2 border rounded-lg"><option>Décédé</option><option>Vivant</option><option>Inconnu</option></select></div>
-                        <div><label class="font-bold">Situation Mère</label><select id="c-mother" class="w-full p-2 border rounded-lg"><option>Décédée</option><option>Vivante</option><option>Inconnue</option></select></div>
-                        <div><label class="font-bold">Personnes au foyer</label><input type="number" id="c-fam-count" value="1" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Vulnérabilité</label><select id="c-situation" class="w-full p-2 border rounded-lg"><option>Orphelin de père</option><option>Orphelin de mère</option><option>Orphelin des deux parents</option><option>Abandonné</option><option>Vulnérable</option></select></div>
-                    </div>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-green-700 uppercase">6. Scolarité & Santé</h4>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div><label class="font-bold">École</label><input type="text" id="c-school" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Classe</label><input type="text" id="c-class" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Frais annuels ($)</label><input type="number" id="c-fees" value="0" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Besoins</label><input type="text" id="c-needs" class="w-full p-2 border rounded-lg"></div>
-                    </div>
-                </div>
-                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer le Dossier Enfant (BKDD-E)</button>
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer le Dossier Enfant</button>
             </form>
         </div>
     </div>
 
-    <!-- 2. FORMULAIRE VEUVE COMPLET -->
+    <!-- MODALE VEUVE -->
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Dossier Complet Veuve (BKDD-V)</h3><button onclick="closeForm('widow')">✕</button></div>
@@ -203,21 +198,12 @@
                         <div><label class="font-bold">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded-lg"></div>
                     </div>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-emerald-700 uppercase">2. Foyer & Projet d'Autonomie</h4>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div><label class="font-bold">Enfants à charge *</label><input type="number" id="w-children" value="0" required class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Personnes foyer</label><input type="number" id="w-fam-count" value="1" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Projet d'autonomie *</label><input type="text" id="w-project" placeholder="Commerce, Couture..." required class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Besoins</label><input type="text" id="w-needs" class="w-full p-2 border rounded-lg"></div>
-                    </div>
-                </div>
-                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer le Dossier Veuve (BKDD-V)</button>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer le Dossier Veuve</button>
             </form>
         </div>
     </div>
 
-    <!-- 3. FORMULAIRE AGENT COMPLET -->
+    <!-- MODALE AGENT -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Enregistrer Agent (BKDD-A)</h3><button onclick="closeForm('agent')">✕</button></div>
@@ -233,19 +219,12 @@
                         <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded-lg"></div>
                     </div>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-purple-700 uppercase">2. Administration</h4>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div><label class="font-bold">Statut</label><select id="a-status" class="w-full p-2 border rounded-lg"><option>Permanent</option><option>Bénévole</option><option>Contractuel</option></select></div>
-                        <div><label class="font-bold">Contact d'urgence</label><input type="text" id="a-emergency" class="w-full p-2 border rounded-lg"></div>
-                    </div>
-                </div>
-                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer l'Agent (BKDD-A)</button>
+                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl shadow">Enregistrer l'Agent</button>
             </form>
         </div>
     </div>
 
-    <!-- MODALE AUTHENTIFICATION -->
+    <!-- AUTH MODAL -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Connexion Agent</h3><button onclick="closeAuthModal()">✕</button></div>
@@ -373,14 +352,6 @@
                 country: document.getElementById('c-country').value,
                 city: document.getElementById('c-city').value,
                 center: document.getElementById('c-center').value,
-                fatherStatus: document.getElementById('c-father').value,
-                motherStatus: document.getElementById('c-mother').value,
-                famCount: parseInt(document.getElementById('c-fam-count').value),
-                situation: document.getElementById('c-situation').value,
-                school: document.getElementById('c-school').value,
-                classLevel: document.getElementById('c-class').value,
-                schoolFees: document.getElementById('c-fees').value,
-                needs: document.getElementById('c-needs').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
@@ -403,10 +374,6 @@
                 phone: document.getElementById('w-phone').value,
                 country: document.getElementById('w-country').value,
                 city: document.getElementById('w-city').value,
-                childrenCount: parseInt(document.getElementById('w-children').value),
-                famCount: parseInt(document.getElementById('w-fam-count').value),
-                projectType: document.getElementById('w-project').value,
-                needs: document.getElementById('w-needs').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
@@ -427,8 +394,6 @@
                 phone: document.getElementById('a-phone').value,
                 country: document.getElementById('a-country').value,
                 city: document.getElementById('a-city').value,
-                status: document.getElementById('a-status').value,
-                emergency: document.getElementById('a-emergency').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
@@ -437,51 +402,52 @@
             refreshCounters();
         }
 
-        // --- FONCTION DE RECHERCHE PAR MATRICULE ---
+        // --- SUPPRESSION D'UN DOSSIER DEPUIS L'ADMINISTRATION ---
+        async function deleteDocument(collectionName, docId) {
+            if (!currentUser) {
+                alert("Sécurité : Vous devez être connecté en tant qu'agent pour supprimer un dossier.");
+                openAuthModal();
+                return;
+            }
+            if (confirm("Voulez-vous vraiment supprimer définitivement ce dossier ?")) {
+                try {
+                    await db.collection(collectionName).doc(docId).delete();
+                    alert("Dossier supprimé avec succès.");
+                    loadAdminMasterList();
+                    refreshCounters();
+                } catch (err) {
+                    alert("Erreur lors de la suppression : " + err.message);
+                }
+            }
+        }
+
         async function executeIdSearch() {
             const queryVal = document.getElementById('input-search-id').value.trim().toUpperCase();
             const resultCard = document.getElementById('search-result-card');
-            if (!queryVal) {
-                alert("Veuillez entrer un matricule (ex: BKDD-E01)");
-                return;
-            }
-
+            if (!queryVal) { alert("Veuillez entrer un matricule"); return; }
             resultCard.classList.remove('hidden');
-            resultCard.innerHTML = "<p class='text-xs text-slate-500'>Recherche en cours dans la base de données...</p>";
+            resultCard.innerHTML = "<p class='text-xs text-slate-500'>Recherche en cours...</p>";
 
             const collections = ['children', 'widows', 'agents'];
-            let foundData = null;
-            let foundType = '';
-
+            let foundData = null, foundType = '';
             try {
                 for (let col of collections) {
                     const snap = await db.collection(col).where('matricule', '==', queryVal).get();
-                    if (!snap.empty) {
-                        foundData = snap.docs[0].data();
-                        foundType = col;
-                        break;
-                    }
+                    if (!snap.empty) { foundData = snap.docs[0].data(); foundType = col; break; }
                 }
-
                 if (foundData) {
                     let title = foundData.firstName ? `${foundData.firstName} ${foundData.lastName || ''}` : (foundData.fullName || 'Inconnu');
-                    let subtitle = foundData.role || foundData.projectType || foundData.situation || 'Bénéficiaire';
                     resultCard.innerHTML = `
                         <div class="space-y-2 text-xs">
-                            <span class="font-mono font-bold bg-slate-900 text-green-400 px-2.5 py-1 rounded-md text-sm">${foundData.matricule}</span>
-                            <h3 class="font-bold text-slate-900 text-base mt-2">${title}</h3>
+                            <span class="font-mono font-bold bg-slate-900 text-green-400 px-2 py-0.5 rounded">${foundData.matricule}</span>
+                            <h3 class="font-bold text-slate-900 text-sm mt-1">${title}</h3>
                             <p class="text-slate-600"><strong>Catégorie :</strong> <span class="uppercase">${foundType}</span></p>
-                            <p class="text-slate-600"><strong>Détails / Rôle :</strong> ${subtitle}</p>
-                            <p class="text-slate-600"><strong>Centre / Ville :</strong> ${foundData.city || 'Bukavu'} (${foundData.country || 'CD'})</p>
-                            <p class="text-slate-400 text-[10px] mt-2">Enregistré par : ${foundData.agentEmail || 'Admin'}</p>
-                        </div>
-                    `;
+                            <p class="text-slate-600"><strong>Ville :</strong> ${foundData.city || 'Bukavu'}</p>
+                        </div>`;
                 } else {
-                    resultCard.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier trouvé pour le matricule : ${queryVal}</p>`;
+                    resultCard.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier trouvé pour : ${queryVal}</p>`;
                 }
-            } catch (err) {
-                resultCard.innerHTML = `<p class="text-xs text-red-600">Erreur lors de la recherche : ${err.message}</p>`;
-            }
+            } catch (err) { resultCard.innerHTML = `<p class="text-xs text-red-600">Erreur : ${err.message}</p>`; }
         }
 
         async function refreshCounters() {
@@ -501,9 +467,8 @@
                 const d = doc.data();
                 container.innerHTML += `
                     <div class="bg-white p-4 rounded-2xl border shadow-sm space-y-1 text-xs">
-                        <span class="font-mono font-bold bg-slate-900 text-green-400 px-2 py-0.5 rounded">${d.matricule}</span>
-                        <h3 class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || ''} ${d.lastName || ''}</h3>
-                        <p class="text-slate-500">${d.role || d.projectType || ('Enfants: ' + (d.childrenCount || 0))}</p>
+                        <span class="font-mono font-bold bg-slate-900 text-green-400 px-2 py-0.5 rounded">${d.matricule || 'ID'}</span>
+                        <h3 class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || 'Sans nom'} ${d.lastName || ''}</h3>
                     </div>`;
             });
         }
@@ -517,17 +482,26 @@
                 const snap = await db.collection(col).get();
                 snap.forEach(doc => {
                     const d = doc.data();
-                    html += `<div class="p-2 border rounded flex justify-between"><span><strong>${d.matricule}</strong> — ${d.firstName || d.fullName || ''} ${d.lastName || ''}</span><span class="uppercase text-[10px] font-bold text-green-700">${col}</span></div>`;
+                    const name = d.firstName ? `${d.firstName} ${d.lastName || ''}` : (d.fullName || 'Inconnu');
+                    const mat = d.matricule || 'SANS ID';
+                    html += `
+                        <div class="p-3 border rounded-xl flex justify-between items-center bg-slate-50">
+                            <div>
+                                <span class="font-mono font-bold text-green-700">${mat}</span> — <span>${name}</span>
+                                <span class="ml-2 uppercase text-[9px] bg-slate-200 px-2 py-0.5 rounded text-slate-700 font-bold">${col}</span>
+                            </div>
+                            <button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">Supprimer</button>
+                        </div>`;
                 });
             }
-            container.innerHTML = html || 'Aucune donnée.';
+            container.innerHTML = html || 'Aucune donnée enregistrée.';
         }
 
         function updateProfileCard(user) {
             document.getElementById('profile-card').innerHTML = `
                 <p class="text-xs text-slate-500 font-mono">E-mail : ${user.email}</p>
                 <h3 class="font-bold text-lg">Agent Autorisé</h3>
-                <p class="text-xs text-slate-600">Statut : Connecté avec privilèges complets.</p>
+                <p class="text-xs text-slate-600">Statut : Connecté avec privilèges de gestion.</p>
             `;
         }
 
