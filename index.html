@@ -57,7 +57,7 @@
 
         <div class="space-y-1 text-xs">
             <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Gestion Panafricaine</p>
-            <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (RDC, Ouganda, etc.)</button>
+            <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres</button>
             <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> Statistiques & Indicateurs</button>
         </div>
 
@@ -82,13 +82,13 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
                     <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> + Nouveau Dossier Enfant (BKDD-E)
+                        <i data-lucide="user-plus" class="w-5 h-5"></i> + Dossier Enfant Complet (BKDD-E)
                     </button>
                     <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> + Nouveau Dossier Veuve (BKDD-V)
+                        <i data-lucide="user-plus" class="w-5 h-5"></i> + Dossier Veuve (BKDD-V)
                     </button>
                     <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="shield-plus" class="w-5 h-5"></i> + Enregistrer un Agent (BKDD-A)
+                        <i data-lucide="shield-plus" class="w-5 h-5"></i> + Enregistrer Agent (BKDD-A)
                     </button>
                 </div>
             </div>
@@ -111,7 +111,7 @@
         </section>
 
         <section id="sec-children" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants Orphelins & Vulnérables</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter</button></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants Orphelins & Vulnérables</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter Dossier</button></div>
             <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </section>
 
@@ -128,7 +128,7 @@
         <section id="sec-countries" class="hidden space-y-6">
             <h2 class="text-2xl font-black">Réseau Panafricain — Pays & Centres</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-blue-700">🇨🇩 RDC (République Démocratique du Congo)</h3><p class="text-xs text-slate-500 mt-1">Siège principal : Bukavu (Centre Dieudonné)</p></div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-blue-700">🇨🇩 RDC</h3><p class="text-xs text-slate-500 mt-1">Siège principal : Bukavu (Centre Dieudonné)</p></div>
                 <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-amber-700">🇺🇬 Ouganda</h3><p class="text-xs text-slate-500 mt-1">Centre d'accompagnement Kampala</p></div>
                 <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-red-700">🇰🇪 Kenya</h3><p class="text-xs text-slate-500 mt-1">Antenne Nairobi</p></div>
                 <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-sky-700">🇷🇼 Rwanda</h3><p class="text-xs text-slate-500 mt-1">Centre Kigali</p></div>
@@ -139,7 +139,7 @@
         <section id="sec-reports" class="hidden space-y-6">
             <h2 class="text-2xl font-black">Statistiques & Indicateurs Panafricains</h2>
             <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-3">
-                <p class="text-xs text-slate-600">📊 Génération automatique des rapports pour le suivi des orphelins, veuves et projets d'autonomie.</p>
+                <p class="text-xs text-slate-600">📊 Génération des rapports pour le suivi des orphelins et veuves.</p>
                 <button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl">Imprimer / Exporter le Rapport</button>
             </div>
         </section>
@@ -154,7 +154,7 @@
         <section id="sec-admin" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl">
                 <h2 class="text-2xl font-black text-green-400">Administration Centralisée</h2>
-                <p class="text-xs text-slate-400">Registre complet sécurisé (Réservé aux administrateurs autorisés).</p>
+                <p class="text-xs text-slate-400">Registre complet sécurisé.</p>
             </div>
             <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-4">
                 <h3 class="font-bold text-slate-900">Base de Données Firestore</h3>
@@ -164,24 +164,28 @@
 
     </main>
 
-    <!-- FORMULAIRE COMPLET DOSSIER ENFANT (CAHIER DES CHARGES) -->
+    <!-- FORMULAIRE TRÈS COMPLET (CAHIER DES CHARGES ENFANT) -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-lg">Nouveau Dossier de Suivi Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="text-slate-400 font-bold">✕</button></div>
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900 text-base">Dossier Complet de Suivi de l'Enfant (BKDD-E)</h3>
+                <button onclick="closeForm('child')" class="text-slate-400 font-bold text-lg">✕</button>
+            </div>
             <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs">
                 
                 <!-- 1. IDENTIFICATION -->
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-green-700 uppercase tracking-wide text-[11px]">1. Identification de l'enfant</h4>
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                         <div><label class="font-bold">Prénom *</label><input type="text" id="c-firstname" required class="w-full p-2 border rounded-lg"></div>
                         <div><label class="font-bold">Nom *</label><input type="text" id="c-lastname" required class="w-full p-2 border rounded-lg"></div>
                         <div><label class="font-bold">Post-nom</label><input type="text" id="c-postname" class="w-full p-2 border rounded-lg"></div>
                         <div><label class="font-bold">Sexe *</label><select id="c-gender" class="w-full p-2 border rounded-lg"><option value="M">Masculin</option><option value="F">Féminin</option></select></div>
                         <div><label class="font-bold">Âge *</label><input type="number" id="c-age" required class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">ID Famille (ex: FAM0001)</label><input type="text" id="c-famid" placeholder="FAM0001" class="w-full p-2 border rounded-lg font-mono"></div>
-                        <div><label class="font-bold">Pays *</label><select id="c-country" class="w-full p-2 border rounded-lg"><option value="CD">RDC (Congo)</option><option value="UG">Ouganda</option><option value="KE">Kenya</option><option value="RW">Rwanda</option><option value="TZ">Tanzanie</option></select></div>
+                        <div><label class="font-bold">ID Famille (ex: FAM0001)</label><input type="text" id="c-famid" value="FAM0001" required class="w-full p-2 border rounded-lg font-mono"></div>
+                        <div><label class="font-bold">Pays *</label><select id="c-country" class="w-full p-2 border rounded-lg"><option value="CD">RDC</option><option value="UG">Ouganda</option><option value="KE">Kenya</option><option value="RW">Rwanda</option><option value="TZ">Tanzanie</option></select></div>
                         <div><label class="font-bold">Ville / Centre *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Centre d'accueil</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded-lg"></div>
                     </div>
                 </div>
 
@@ -191,8 +195,8 @@
                     <div class="grid grid-cols-2 gap-3">
                         <div><label class="font-bold">Situation du Père</label><select id="c-father" class="w-full p-2 border rounded-lg"><option>Décédé</option><option>Vivant</option><option>Inconnu</option></select></div>
                         <div><label class="font-bold">Situation de la Mère</label><select id="c-mother" class="w-full p-2 border rounded-lg"><option>Décédée</option><option>Vivante</option><option>Inconnue</option></select></div>
-                        <div><label class="font-bold">Nombre total de personnes dans la famille</label><input type="number" id="c-fam-count" value="1" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold">Situation de l'enfant</label><select id="c-situation" class="w-full p-2 border rounded-lg"><option>Orphelin de père</option><option>Orphelin de mère</option><option>Orphelin des deux parents</option><option>Abandonné</option><option>Vulnérable</option></select></div>
+                        <div><label class="font-bold">Nombre total de personnes dans le foyer</label><input type="number" id="c-fam-count" value="1" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Situation de vulnérabilité</label><select id="c-situation" class="w-full p-2 border rounded-lg"><option>Orphelin de père</option><option>Orphelin de mère</option><option>Orphelin des deux parents</option><option>Abandonné</option><option>Vulnérable</option></select></div>
                     </div>
                 </div>
 
@@ -202,16 +206,21 @@
                     <div class="grid grid-cols-2 gap-3">
                         <div><label class="font-bold">Nom de l'école</label><input type="text" id="c-school" placeholder="Ex: E.P. Nyalukemba" class="w-full p-2 border rounded-lg"></div>
                         <div><label class="font-bold">Classe / Niveau</label><input type="text" id="c-class" placeholder="Ex: 4ème Primaire" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Frais scolaires annuels ($)</label><input type="number" id="c-fees" placeholder="0" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Objectif éducatif (Métier visé)</label><input type="text" id="c-goal" placeholder="Ex: Médecin, Enseignant" class="w-full p-2 border rounded-lg"></div>
                     </div>
                 </div>
 
                 <!-- 9. SANTÉ ET BESOINS -->
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-green-700 uppercase tracking-wide text-[11px]">9. Santé & Besoins Particuliers</h4>
-                    <div><label class="font-bold">État de santé & Besoins (Éducation, Santé, Vivres...)</label><textarea id="c-health" class="w-full p-2 border rounded-lg" rows="2" placeholder="Ex: Besoins en frais scolaires et suivi nutritionnel"></textarea></div>
+                    <h4 class="font-bold text-green-700 uppercase tracking-wide text-[11px]">9. Santé, Protection & Besoins</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="font-bold">État de santé & Handicaps</label><input type="text" id="c-health" placeholder="RAS ou description" class="w-full p-2 border rounded-lg"></div>
+                        <div><label class="font-bold">Besoins principaux</label><input type="text" id="c-needs" placeholder="Frais scolaires, vivres, soins..." class="w-full p-2 border rounded-lg"></div>
+                    </div>
                 </div>
 
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl text-sm shadow">Enregistrer le Dossier Enfant & Générer BKDD-E</button>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl text-sm shadow">Enregistrer le Dossier Complet & Générer le Matricule BKDD-E</button>
             </form>
         </div>
     </div>
@@ -311,7 +320,7 @@
 
         function openForm(type) {
             if (!currentUser) {
-                alert("Sécurité : Seul un agent ou un administrateur connecté peut enregistrer un dossier.");
+                alert("Sécurité : Seul un agent ou administrateur connecté peut remplir un dossier.");
                 openAuthModal();
                 return;
             }
@@ -330,8 +339,8 @@
                     document.getElementById('auth-password').value
                 );
                 closeAuthModal();
-                alert("Connexion réussie ! Vous avez les droits d'enregistrement.");
-            } catch (err) { alert("Erreur d'authentification : " + err.message); }
+                alert("Connexion réussie !");
+            } catch (err) { alert("Erreur : " + err.message); }
         }
 
         async function generateNextMatricule(col, prefix) {
@@ -346,7 +355,7 @@
             const matricule = await generateNextMatricule('children', 'E');
             await db.collection("children").add({
                 matricule,
-                famId: document.getElementById('c-famid').value || 'FAM0001',
+                famId: document.getElementById('c-famid').value,
                 firstName: document.getElementById('c-firstname').value,
                 lastName: document.getElementById('c-lastname').value,
                 postName: document.getElementById('c-postname').value,
@@ -354,13 +363,17 @@
                 age: parseInt(document.getElementById('c-age').value),
                 country: document.getElementById('c-country').value,
                 city: document.getElementById('c-city').value,
+                center: document.getElementById('c-center').value,
                 fatherStatus: document.getElementById('c-father').value,
                 motherStatus: document.getElementById('c-mother').value,
                 famCount: parseInt(document.getElementById('c-fam-count').value),
                 situation: document.getElementById('c-situation').value,
                 school: document.getElementById('c-school').value,
                 classLevel: document.getElementById('c-class').value,
+                schoolFees: document.getElementById('c-fees').value,
+                educationalGoal: document.getElementById('c-goal').value,
                 health: document.getElementById('c-health').value,
+                needs: document.getElementById('c-needs').value,
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
@@ -382,7 +395,7 @@
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
-            alert(`Dossier Veuve enregistré !\nMatricule Unique : ${matricule}`);
+            alert(`Dossier Veuve enregistré !\nMatricule : ${matricule}`);
             closeForm('widow');
             refreshCounters();
         }
@@ -398,7 +411,7 @@
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
-            alert(`Agent enregistré !\nMatricule Professionnel : ${matricule}`);
+            alert(`Agent enregistré !\nMatricule : ${matricule}`);
             closeForm('agent');
             refreshCounters();
         }
@@ -423,7 +436,7 @@
                     <div class="bg-white p-4 rounded-2xl border shadow-sm space-y-1 text-xs">
                         <span class="font-mono font-bold bg-slate-900 text-green-400 px-2 py-0.5 rounded">${d.matricule}</span>
                         <h3 class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || ''} ${d.lastName || ''}</h3>
-                        <p class="text-slate-500">${d.role || d.projectType || (d.age ? (d.age + ' ans • Famille: ' + d.famId) : '')}</p>
+                        <p class="text-slate-500">${d.role || d.projectType || ('Âge: ' + d.age + ' ans • Famille: ' + d.famId)}</p>
                     </div>`;
             });
         }
@@ -440,14 +453,14 @@
                     html += `<div class="p-2 border rounded flex justify-between"><span><strong>${d.matricule}</strong> — ${d.firstName || d.fullName || ''} ${d.lastName || ''}</span><span class="uppercase text-[10px] font-bold text-green-700">${col}</span></div>`;
                 });
             }
-            container.innerHTML = html || 'Aucune donnée enregistrée.';
+            container.innerHTML = html || 'Aucune donnée.';
         }
 
         function updateProfileCard(user) {
             document.getElementById('profile-card').innerHTML = `
                 <p class="text-xs text-slate-500 font-mono">E-mail : ${user.email}</p>
                 <h3 class="font-bold text-lg">Agent Autorisé DIEUDONNÉ CARE</h3>
-                <p class="text-xs text-slate-600">Statut : Connecté avec droits de saisie et de suivi.</p>
+                <p class="text-xs text-slate-600">Statut : Connecté avec privilèges de saisie complète.</p>
             `;
         }
 
