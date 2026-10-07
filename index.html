@@ -165,9 +165,9 @@
 
     <!-- 1. FORMULAIRE ENFANT -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] overflow-y-auto relative">
-            <div class="flex justify-between items-center border-b pb-3 sticky top-0 bg-white z-10"><h3 class="font-bold text-slate-900">Dossier Complet Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold text-lg">✕</button></div>
-            <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs pb-10">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900">Dossier Complet Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold text-lg">✕</button></div>
+            <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pr-1 pb-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="bg-green-50 p-3 rounded-xl space-y-2 border border-green-200">
                         <label class="font-bold text-green-800 uppercase flex items-center gap-1" data-i18n="lbl_photo_child">📷 Photo du Concerné</label>
@@ -192,16 +192,18 @@
                         <div><label class="font-bold" data-i18n="lbl_center">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded-lg bg-white"></div>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm relative z-20 cursor-pointer" data-i18n="save_child">Enregistrer le Dossier Enfant (BKDD-E)</button>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer" data-i18n="save_child">Enregistrer le Dossier Enfant (BKDD-E)</button>
+                </div>
             </form>
         </div>
     </div>
 
     <!-- 2. FORMULAIRE VEUVE -->
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] overflow-y-auto relative">
-            <div class="flex justify-between items-center border-b pb-3 sticky top-0 bg-white z-10"><h3 class="font-bold text-slate-900">Dossier Complet Veuve (BKDD-V)</h3><button onclick="closeForm('widow')" class="p-2 font-bold text-lg">✕</button></div>
-            <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs pb-10">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900">Dossier Complet Veuve (BKDD-V)</h3><button onclick="closeForm('widow')" class="p-2 font-bold text-lg">✕</button></div>
+            <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pr-1 pb-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="bg-emerald-50 p-3 rounded-xl space-y-2 border border-emerald-200">
                         <label class="font-bold text-emerald-800 uppercase flex items-center gap-1" data-i18n="lbl_photo_widow">📷 Photo de la Veuve</label>
@@ -225,16 +227,18 @@
                         <div><label class="font-bold" data-i18n="lbl_city">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded-lg bg-white"></div>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm relative z-20 cursor-pointer" data-i18n="save_widow">Enregistrer le Dossier Veuve (BKDD-V)</button>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer" data-i18n="save_widow">Enregistrer le Dossier Veuve (BKDD-V)</button>
+                </div>
             </form>
         </div>
     </div>
 
     <!-- 3. FORMULAIRE AGENT -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] overflow-y-auto relative">
-            <div class="flex justify-between items-center border-b pb-3 sticky top-0 bg-white z-10"><h3 class="font-bold text-slate-900">Enregistrer Agent (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold text-lg">✕</button></div>
-            <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs pb-10">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900">Enregistrer Agent (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold text-lg">✕</button></div>
+            <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pr-1 pb-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="bg-purple-50 p-3 rounded-xl space-y-2 border border-purple-200">
                         <label class="font-bold text-purple-800 uppercase flex items-center gap-1" data-i18n="lbl_photo_agent">📷 Photo de l'Agent</label>
@@ -256,7 +260,9 @@
                         <div><label class="font-bold" data-i18n="lbl_city">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded-lg bg-white"></div>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm relative z-20 cursor-pointer" data-i18n="save_agent">Enregistrer l'Agent (BKDD-A)</button>
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer" data-i18n="save_agent">Enregistrer l'Agent (BKDD-A)</button>
+                </div>
             </form>
         </div>
     </div>
@@ -268,7 +274,7 @@
             <form onsubmit="handleAuthSubmit(event)" class="space-y-3 text-xs">
                 <input type="email" id="auth-email" placeholder="E-mail Agent" required class="w-full p-2.5 border rounded-xl text-sm bg-white">
                 <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-2.5 border rounded-xl text-sm bg-white">
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl text-sm relative z-20 cursor-pointer" data-i18n="login_btn">Se Connecter</button>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl text-sm cursor-pointer" data-i18n="login_btn">Se Connecter</button>
             </form>
         </div>
     </div>
@@ -589,7 +595,7 @@
 
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit(e) {
             e.preventDefault();
