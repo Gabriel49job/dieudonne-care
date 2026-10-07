@@ -1,706 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>ISIG Goma | Higher Institute of Management Computing</title>
-
-  <style>
-    :root {
-      --primary: #0876a8;
-      --dark: #092f4f;
-      --accent: #f5b72c;
-      --light: #f4f8fb;
-      --white: #ffffff;
-      --text: #263746;
-      --muted: #667784;
-      --shadow: 0 12px 35px rgba(7, 47, 79, 0.12);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container { width: min(1120px, 92%); margin: auto; }
-
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-    }
-
-    .navbar {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--dark);
-      font-weight: 800;
-    }
-
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--white);
-      background: linear-gradient(135deg, var(--primary), var(--dark));
-      font-size: 13px;
-      letter-spacing: 1px;
-    }
-
-    .brand small {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--dark);
-    }
-
-    nav a:hover { color: var(--primary); }
-
-    .menu-button {
-      display: none;
-      border: 0;
-      background: var(--dark);
-      color: white;
-      padding: 9px 12px;
-      border-radius: 7px;
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    /* Hero */
-    .hero {
-      background:
-        linear-gradient(110deg, rgba(5, 43, 73, 0.97), rgba(8, 118, 168, 0.78)),
-        url("https://via.placeholder.com/1920x610?text=ISIG+Goma+Gate") center/cover;
-      color: white;
-      min-height: 610px;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-content { max-width: 700px; padding: 90px 0; }
-
-    .tag {
-      display: inline-block;
-      padding: 7px 13px;
-      border-radius: 30px;
-      color: var(--dark);
-      background: var(--accent);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      line-height: 1.05;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 span { color: var(--accent); }
-
-    .hero p {
-      max-width: 620px;
-      font-size: 18px;
-      color: #e4f3fa;
-      margin-bottom: 32px;
-    }
-
-    .buttons { display: flex; flex-wrap: wrap; gap: 14px; }
-
-    .button {
-      display: inline-block;
-      padding: 13px 21px;
-      border-radius: 7px;
-      border: 2px solid transparent;
-      font-weight: 800;
-      font-size: 14px;
-      transition: 0.25s ease;
-    }
-
-    .button.primary { background: var(--accent); color: var(--dark); }
-    .button.primary:hover { background: #ffd25d; transform: translateY(-2px); }
-
-    .button.outline { color: white; border-color: rgba(255,255,255,0.65); }
-    .button.outline:hover { background: white; color: var(--dark); }
-
-    /* General sections */
-    section { padding: 90px 0; }
-
-    .section-heading { text-align: center; max-width: 710px; margin: 0 auto 42px; }
-
-    .section-heading .eyebrow {
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 800;
-      font-size: 12px;
-    }
-
-    .section-heading h2 {
-      color: var(--dark);
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin: 9px 0 12px;
-    }
-
-    .section-heading p { color: var(--muted); }
-
-    /* About */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 55px;
-      align-items: center;
-    }
-
-    .about-image {
-      overflow: hidden;
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .about-image img {
-      width: 100%;
-      min-height: 370px;
-      object-fit: cover;
-    }
-
-    .about-text h2 { color: var(--dark); font-size: 34px; margin-bottom: 16px; }
-    .about-text p { color: var(--muted); margin-bottom: 18px; }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 26px;
-    }
-
-    .feature {
-      padding: 16px;
-      background: var(--light);
-      border-left: 4px solid var(--accent);
-      border-radius: 7px;
-      font-weight: 700;
-      color: var(--dark);
-    }
-
-    /* Photo Gallery Section */
-    .gallery {
-      background: var(--white);
-      padding: 40px 0 80px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .gallery-item {
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: 0.3s ease;
-    }
-
-    .gallery-item:hover { transform: translateY(-5px); }
-    .gallery-item img { width: 100%; height: 200px; object-fit: cover; }
-
-    /* Programs */
-    .programs { background: var(--light); }
-
-    .program-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-    }
-
-    .tab {
-      border: 0;
-      padding: 12px 18px;
-      border-radius: 30px;
-      cursor: pointer;
-      color: var(--dark);
-      background: white;
-      font-weight: 800;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-    }
-
-    .tab.active, .tab:hover { color: white; background: var(--primary); }
-
-    .program-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .program-card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      border-top: 4px solid var(--primary);
-      box-shadow: 0 7px 22px rgba(7, 47, 79, 0.07);
-      transition: 0.25s ease;
-    }
-
-    .program-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-
-    .program-card .icon {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      background: #e4f4fa;
-      color: var(--primary);
-      font-size: 20px;
-      margin-bottom: 13px;
-    }
-
-    .program-card h3 { color: var(--dark); font-size: 16px; margin-bottom: 5px; }
-    .program-card p { font-size: 13px; color: var(--muted); }
-
-    /* CTA */
-    .cta {
-      background: linear-gradient(120deg, var(--dark), var(--primary));
-      color: white;
-      text-align: center;
-    }
-
-    .cta h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 13px; }
-    .cta p { color: #d9eef6; max-width: 650px; margin: 0 auto 26px; }
-
-    /* Contact */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 45px;
-    }
-
-    .contact-info h2 { color: var(--dark); font-size: 32px; margin-bottom: 15px; }
-    .contact-info p { color: var(--muted); margin-bottom: 18px; }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      margin: 18px 0;
-      color: var(--dark);
-      font-weight: 700;
-    }
-
-    .contact-item span:first-child { font-size: 21px; }
-
-    .contact-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 25px;
-    }
-
-    .contact-buttons a {
-      background: var(--primary);
-      color: white;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.25s ease;
-    }
-
-    .contact-buttons a:hover { background: var(--dark); transform: translateY(-2px); }
-    .contact-buttons a.whatsapp { background: #25D366; }
-    .contact-buttons a.email { background: var(--primary); }
-
-    form {
-      padding: 27px;
-      background: var(--light);
-      border-radius: 14px;
-    }
-
-    label {
-      display: block;
-      color: var(--dark);
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d7e1e7;
-      border-radius: 6px;
-      margin-bottom: 16px;
-      font: inherit;
-      outline: none;
-    }
-
-    input:focus, textarea:focus { border-color: var(--primary); }
-    textarea { min-height: 125px; resize: vertical; }
-    form button { width: 100%; border: 0; cursor: pointer; }
-
-    /* Footer */
-    footer {
-      padding: 28px 0;
-      color: #cde2ec;
-      background: #061f34;
-      font-size: 13px;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) { .program-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    @media (max-width: 700px) {
-      .menu-button { display: block; }
-
-      nav {
-        display: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 76px;
-        padding: 20px 4%;
-        flex-direction: column;
-        align-items: flex-start;
-        background: white;
-        box-shadow: 0 10px 16px rgba(0,0,0,0.08);
-      }
-
-      nav.open { display: flex; }
-      .about-grid, .contact-grid, .features { grid-template-columns: 1fr; }
-      .program-grid { grid-template-columns: 1fr; }
-      section { padding: 65px 0; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIEUDONNÉ CARE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
 
-<body>
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <span class="text-2xl font-black tracking-wider text-green-500" data-i18n="appName">DIEUDONNÉ CARE</span>
+            
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <button onclick="switchTab('home')" id="tab-home" class="py-2 text-green-500 font-bold" data-i18n="nav_home">Accueil</button>
+                <button onclick="switchTab('children')" id="tab-children" class="py-2 hover:text-green-400" data-i18n="nav_children">Enfants</button>
+                <button onclick="switchTab('widows')" id="tab-widows" class="py-2 hover:text-green-400" data-i18n="nav_widows">Veuves</button>
+                <button onclick="switchTab('admin')" id="tab-admin" class="py-2 text-amber-400 hidden" data-i18n="nav_admin">Administration</button>
+            </nav>
 
-  <header>
-    <div class="container navbar">
-      <a href="#home" class="brand">
-        <div class="brand-mark">ISIG</div>
-        <div>
-          ISIG GOMA
-          <small>Higher Institute of Management Computing</small>
+            <div class="flex items-center space-x-3 text-sm">
+                <select onchange="setLanguage(this.value)" class="bg-slate-800 text-slate-200 border border-slate-700 text-xs rounded-lg p-1.5 focus:outline-none">
+                    <option value="fr">🇫🇷 FR</option>
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="sw">🇨🇩 SW</option>
+                </select>
+
+                <span id="user-display" class="hidden md:inline text-xs text-slate-300 bg-slate-800 px-2 py-1 rounded"></span>
+                <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition" data-i18n="btn_login">
+                    Connexion
+                </button>
+            </div>
         </div>
-      </a>
+    </header>
 
-      <button class="menu-button" id="menuButton">☰</button>
-
-      <nav id="navMenu">
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#programs">Programs</a>
-        <a href="#admissions">Admissions</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <div class="bg-green-700 text-white text-center text-xs md:text-sm font-medium py-2 px-4 shadow-inner" data-i18n="slogan">
+        Ensemble pour une Afrique où chaque enfant peut grandir dans la dignité.
     </div>
-  </header>
 
-  <main>
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
 
-    <section class="hero" id="home">
-      <div class="container hero-content">
-        <span class="tag">Excellence • Innovation • Professionalism</span>
+        <!-- ACCUEIL -->
+        <section id="sec-home" class="space-y-6">
+            <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-green-950 text-white rounded-2xl p-6 md:p-10 shadow-xl">
+                <span class="bg-green-500/20 text-green-300 text-xs px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">
+                    📍 Centre de départ : CENTRE DIEUDONNÉ — Bukavu, RDC
+                </span>
+                <h1 class="text-3xl md:text-5xl font-extrabold mt-3 leading-tight">Protéger, Éduquer & Autonomiser</h1>
+                <p class="text-slate-300 text-sm md:text-base mt-2 max-w-xl">
+                    Plateforme complète d'accompagnement humanitaire, de parrainage sécurisé et d'autonomisation économique.
+                </p>
+                <div class="flex gap-3 mt-4">
+                    <button onclick="switchTab('children')" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-xl font-bold text-xs shadow-md">
+                        ❤️ Parrainer un enfant
+                    </button>
+                    <button onclick="switchTab('widows')" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2.5 rounded-xl font-bold text-xs">
+                        🤝 Soutenir une veuve
+                    </button>
+                </div>
+            </div>
 
-        <h1>Build your future with <span>ISIG Goma</span></h1>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-500 uppercase font-semibold" data-i18n="stat_children">Enfants pris en charge</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">10</p>
+                    <p class="text-xs text-green-600 mt-1">✓ Bukavu, RDC</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-500 uppercase font-semibold" data-i18n="stat_widows">Veuves accompagnées</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">5</p>
+                    <p class="text-xs text-green-600 mt-1">✓ Projets d'autonomie</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-500 uppercase font-semibold" data-i18n="stat_centers">Centres actifs</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">1</p>
+                    <p class="text-xs text-slate-500 mt-1">CENTRE DIEUDONNÉ</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-500 uppercase font-semibold" data-i18n="stat_countries">Pays couverts</p>
+                    <p class="text-3xl font-black text-slate-900 mt-1">1</p>
+                    <p class="text-xs text-slate-500 mt-1">RDC</p>
+                </div>
+            </div>
+        </section>
 
-        <p>
-          The Higher Institute of Management Computing is a professional higher
-          education institution preparing students for careers in computer science,
-          management, law, accounting, and finance.
-        </p>
+        <!-- ESPACE ENFANTS -->
+        <section id="sec-children" class="hidden space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900">Espace Enfants Bénéficiaires</h2>
+            <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </section>
 
-        <div class="buttons">
-          <a href="#programs" class="button primary">View Programs</a>
-          <a href="#contact" class="button outline">Contact Us</a>
+        <!-- ESPACE VEUVES -->
+        <section id="sec-widows" class="hidden space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900">Projets d'Autonomisation des Veuves</h2>
+            <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+
+        <!-- PANNEAU ADMIN -->
+        <section id="sec-admin" class="hidden space-y-6">
+            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold">Panneau Administrateur Executif</h2>
+                <p class="text-xs text-slate-400 mt-1">Gestion globale du réseau DIEUDONNÉ CARE</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl border"><p class="text-xs text-slate-500">Centres</p><p id="admin-stat-centers" class="text-2xl font-bold">0</p></div>
+                <div class="bg-white p-4 rounded-xl border"><p class="text-xs text-slate-500">Enfants</p><p id="admin-stat-children" class="text-2xl font-bold">0</p></div>
+                <div class="bg-white p-4 rounded-xl border"><p class="text-xs text-slate-500">Veuves</p><p id="admin-stat-widows" class="text-2xl font-bold">0</p></div>
+                <div class="bg-white p-4 rounded-xl border"><p class="text-xs text-slate-500">Total Dons</p><p id="admin-stat-donations" class="text-2xl font-bold text-green-600">$0</p></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODALE AUTHENTIFICATION -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900">Connexion / Inscription</h3>
+                <button onclick="closeAuthModal()" class="text-slate-400 font-bold">✕</button>
+            </div>
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
+                <input type="text" id="auth-name" placeholder="Nom complet" class="w-full p-2.5 border rounded-xl text-sm">
+                <input type="email" id="auth-email" placeholder="E-mail" required class="w-full p-2.5 border rounded-xl text-sm">
+                <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-2.5 border rounded-xl text-sm">
+                <select id="auth-role" class="w-full p-2.5 border rounded-xl text-sm bg-white">
+                    <option value="DONOR">Donateur / Parrain</option>
+                    <option value="CENTER">Gestionnaire de Centre</option>
+                    <option value="PARTNER">Partenaire</option>
+                    <option value="ADMIN">Administrateur</option>
+                </select>
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-2.5 rounded-xl text-sm">Valider</button>
+            </form>
         </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container about-grid">
-        <div class="about-image">
-          <!-- Photo 2 : Main building aerial view -->
-          <img src="https://via.placeholder.com/800x600?text=ISIG+Goma+Campus" alt="Main ISIG Goma building" />
-        </div>
-
-        <div class="about-text">
-          <h2>Learn today. Lead tomorrow.</h2>
-
-          <p>
-            At ISIG Goma, we develop knowledgeable, creative, and responsible
-            professionals through practical education and career-focused training.
-          </p>
-
-          <p>
-            Our programs combine theory, technology, professional skills, and
-            real-world problem solving to prepare students for a changing world.
-          </p>
-
-          <div class="features">
-            <div class="feature">Professional Training</div>
-            <div class="feature">Modern Technology</div>
-            <div class="feature">Career Preparation</div>
-            <div class="feature">Qualified Graduates</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHOTO GALLERY SECTION -->
-    <section id="gallery" class="gallery">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Our Campus</div>
-          <h2>Photo Gallery</h2>
-          <p>Discover our modern facilities and our learning environment.</p>
-        </div>
-        
-        <div class="gallery-grid">
-          <!-- Photo 2 : Aerial view -->
-          <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x300?text=Campus+Aerial" alt="Aerial view of the campus" />
-          </div>
-          <!-- Photo 3 : Computer room -->
-          <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x300?text=Computer+Room" alt="Modern Computer Room" />
-          </div>
-          <!-- Photo 4 : Students in class -->
-          <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x300?text=Students+Learning" alt="Students in a classroom" />
-          </div>
-          <!-- Photo 5 : Logo -->
-          <div class="gallery-item">
-            <img src="https://via.placeholder.com/400x300?text=ISIG+Goma+Logo" alt="Official ISIG-Goma Logo" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="programs" id="programs">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Our areas of study</div>
-          <h2>Choose your path</h2>
-          <p>
-            Discover professional fields designed to develop practical and
-            future-ready skills.
-          </p>
-        </div>
-
-        <div class="program-tabs">
-          <button class="tab active" data-category="law">Law</button>
-          <button class="tab" data-category="it">Computer Science & IT</button>
-          <button class="tab" data-category="finance">Accounting & Finance</button>
-        </div>
-
-        <div class="program-grid" id="programGrid"></div>
-      </div>
-    </section>
-
-    <section class="cta" id="admissions">
-      <div class="container">
-        <h2>Your future starts here</h2>
-        <p>
-          Join ISIG Goma and gain the knowledge, skills, and professional
-          confidence needed to make a positive impact.
-        </p>
-        <a href="#contact" class="button primary">Start Your Application</a>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container contact-grid">
-        <div class="contact-info">
-          <h2>Contact ISIG Goma</h2>
-          <p>
-            Questions about our programs or admissions? Send us a message or
-            reach us directly via WhatsApp or Email.
-          </p>
-
-          <div class="contact-item">
-            <span>📍</span>
-            <span>Goma, precisely at ISIG, Democratic Republic of Congo</span>
-          </div>
-
-          <div class="contact-item">
-            <span>✉️</span>
-            <span>mushagalusag49@gmail.com</span>
-          </div>
-
-          <div class="contact-item">
-            <span>📱</span>
-            <span>+256 792994716 (WhatsApp)</span>
-          </div>
-
-          <div class="contact-buttons">
-            <a href="https://wa.me/256792994716" target="_blank" class="whatsapp">
-              💬 WhatsApp
-            </a>
-            <a href="mailto:mushagalusag49@gmail.com" class="email">
-              📧 Email
-            </a>
-          </div>
-        </div>
-
-        <form id="contactForm">
-          <label for="name">Full Name</label>
-          <input id="name" type="text" placeholder="Your full name" required />
-
-          <label for="email">Email Address</label>
-          <input id="email" type="email" placeholder="you@example.com" required />
-
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="How can we help you?" required></textarea>
-
-          <button type="submit" class="button primary">Send Message</button>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container footer-content">
-      <div>
-        © <span id="year"></span> ISIG Goma. All rights reserved.
-      </div>
-      <div>
-        Higher Institute of Management Computing
-      </div>
     </div>
-  </footer>
 
-  <script>
-    const programs = {
-      law: [
-        "Civil Law", "Criminal Law", "Business Law",
-        "Labor Law", "Real Estate Law", "Tax Law",
-        "Family Law", "Administrative Law", "Constitutional Law",
-        "International Law", "Environmental Law", "Digital Law",
-        "Intellectual Property", "Medical Law"
-      ],
+    <!-- MODALE DON -->
+    <div id="donate-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900" id="donate-title">Soutenir un projet</h3>
+                <button onclick="closeDonateModal()" class="text-slate-400 font-bold">✕</button>
+            </div>
+            <form onsubmit="handleDonateSubmit(event)" class="space-y-3">
+                <input type="hidden" id="donate-target-type">
+                <input type="hidden" id="donate-target-id">
+                
+                <label class="block text-xs font-semibold text-slate-600">Montant en USD ($)</label>
+                <input type="number" id="donate-amount" required min="1" placeholder="Ex: 50" class="w-full p-2.5 border rounded-xl text-sm">
+                
+                <label class="block text-xs font-semibold text-slate-600">Devise de paiement locale</label>
+                <select id="donate-currency" class="w-full p-2.5 border rounded-xl text-sm bg-white">
+                    <option value="USD">USD - Dollar Américain</option>
+                    <option value="CDF">CDF - Franc Congolais (RDC)</option>
+                    <option value="UGX">UGX - Shilling Ougandais</option>
+                    <option value="KES">KES - Shilling Kényan</option>
+                    <option value="RWF">RWF - Franc Rwandais</option>
+                </select>
 
-      it: [
-        "Web Development", "Mobile Development", "Cybersecurity",
-        "Computer Networks", "System Administration", "Databases",
-        "Artificial Intelligence", "Data Science", "Cloud Computing",
-        "DevOps", "IT Maintenance", "UI/UX Design",
-        "Technical Support", "Programming"
-      ],
+                <label class="block text-xs font-semibold text-slate-600">Méthode de paiement</label>
+                <select id="donate-method" class="w-full p-2.5 border rounded-xl text-sm bg-white">
+                    <option value="MOBILE_MONEY">Mobile Money (M-Pesa, Orange, Airtel)</option>
+                    <option value="CARD">Carte Bancaire (Visa / Mastercard)</option>
+                    <option value="BANK_TRANSFER">Virement Bancaire</option>
+                </select>
 
-      finance: [
-        "General Accounting", "Cost Accounting", "Financial Accounting",
-        "Management Accounting", "Public Accounting", "Bank Accounting",
-        "Insurance Accounting", "Tax Accounting", "International Accounting",
-        "Corporate Accounting", "NGO Accounting", "Financial Audit",
-        "Accounting Audit", "Management Control", "Taxation",
-        "Budget Management", "Treasury Management", "Financial Management",
-        "Financial Analysis", "CPA / Chartered Accountancy", "Financial Control",
-        "Fixed Asset Accounting", "Inventory Management", "Payroll Management"
-      ]
-    };
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-2.5 rounded-xl text-sm">Confirmer le don</button>
+            </form>
+        </div>
+    </div>
 
-    const icons = {
-      law: "⚖️",
-      it: "💻",
-      finance: "📊"
-    };
+    <script src="i18n.js"></script>
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // CONFIGURATION FIREBASE (À remplacer par vos clés réelles)
+        const firebaseConfig = {
+            apiKey: "VOTRE_API_KEY",
+            authDomain: "dieudonne-care.firebaseapp.com",
+            projectId: "dieudonne-care",
+            storageBucket: "dieudonne-care.appspot.com",
+            messagingSenderId: "VOTRE_SENDER_ID",
+            appId: "VOTRE_APP_ID"
+        };
 
-    const programGrid = document.getElementById("programGrid");
-    const tabs = document.querySelectorAll(".tab");
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-    function displayPrograms(category) {
-      programGrid.innerHTML = programs[category].map(program => `
-        <article class="program-card">
-          <div class="icon">${icons[category]}</div>
-          <h3>${program}</h3>
-          <p>Develop practical knowledge and professional skills in this field.</p>
-        </article>
-      `).join("");
-    }
+        function switchTab(tab) {
+            ['home', 'children', 'widows', 'admin'].forEach(t => {
+                const el = document.getElementById(`sec-${t}`);
+                if (el) el.classList.add('hidden');
+            });
+            document.getElementById(`sec-${tab}`).classList.remove('hidden');
 
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        tabs.forEach(item => item.classList.remove("active"));
-        tab.classList.add("active");
-        displayPrograms(tab.dataset.category);
-      });
-    });
+            if (tab === 'children') fetchChildrenList();
+            if (tab === 'widows') fetchWidowsList();
+            if (tab === 'admin') loadAdminDashboardData();
+        }
 
-    document.getElementById("menuButton").addEventListener("click", () => {
-      document.getElementById("navMenu").classList.toggle("open");
-    });
+        function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
-    document.getElementById("contactForm").addEventListener("submit", event => {
-      event.preventDefault();
-      alert("Thank you for contacting ISIG Goma. We will get back to you soon.");
-      event.target.reset();
-    });
+        function openDonateModal(type, id, title) {
+            document.getElementById('donate-title').innerText = title;
+            document.getElementById('donate-target-type').value = type;
+            document.getElementById('donate-target-id').value = id;
+            document.getElementById('donate-modal').classList.replace('hidden', 'flex');
+        }
+        function closeDonateModal() { document.getElementById('donate-modal').classList.replace('flex', 'hidden'); }
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+        async function handleAuthSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            const fullName = document.getElementById('auth-name').value;
+            const role = document.getElementById('auth-role').value;
 
-    displayPrograms("law");
-  </script>
+            if (fullName) {
+                const res = await registerUser(email, password, fullName, role, 'RDC', 'Bukavu');
+                if (res.success) closeAuthModal(); else alert(res.error);
+            } else {
+                const res = await loginUser(email, password);
+                if (res.success) closeAuthModal(); else alert(res.error);
+            }
+        }
 
+        async function handleDonateSubmit(e) {
+            e.preventDefault();
+            await recordDonation({
+                targetType: document.getElementById('donate-target-type').value,
+                targetId: document.getElementById('donate-target-id').value,
+                amountUSD: document.getElementById('donate-amount').value,
+                currency: document.getElementById('donate-currency').value,
+                paymentMethod: document.getElementById('donate-method').value
+            });
+            closeDonateModal();
+        }
+
+        window.onload = async () => {
+            initAuthListener();
+            await seedInitialDataIfEmpty();
+        };
+    </script>
 </body>
 </html>
