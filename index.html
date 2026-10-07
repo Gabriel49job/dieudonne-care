@@ -3,588 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIEUDONNÉ CARE — Système Panafricain</title>
-    
+    <title>DIEUDONNÉ CARE - PANAFRICAIN</title>
+    <!-- Tailwind CSS pour un design moderne et responsive -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-24">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
-    <!-- BARRE SUPÉRIEURE PROFESSIONNELLE -->
-    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-30 border-b border-slate-800">
+    <!-- En-tête / Header -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <button onclick="toggleSidebar()" class="p-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 transition focus:outline-none">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+                <button id="menu-btn" class="text-white focus:outline-none text-xl p-1">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
-                <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('home')">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-sm text-white shadow-md">DC</div>
-                    <div>
-                        <span class="text-sm font-black tracking-wider text-white block leading-tight">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
-                        <span class="text-[9px] text-slate-400 tracking-widest uppercase block">Panafricain</span>
-                    </div>
+                <div class="bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg text-sm tracking-wider shadow">
+                    DC
+                </div>
+                <div>
+                    <h1 class="font-bold text-base leading-tight tracking-wide">DIEUDONNÉ</h1>
+                    <p class="text-xs text-emerald-400 font-medium tracking-widest">CARE PANAFRICAIN</p>
                 </div>
             </div>
-
+            
             <div class="flex items-center space-x-3">
-                <select id="lang-selector" onchange="changeLanguage(this.value)" class="bg-slate-800 text-green-400 font-bold text-xs px-2.5 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
-                    <option value="fr">🇫🇷 FR</option>
-                    <option value="en">🇬🇧 EN</option>
-                    <option value="sw">🇹🇿 SW</option>
-                </select>
-
-                <div id="user-info-badge" class="hidden items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
-                    <span id="user-display" class="text-xs font-mono text-green-400 font-bold"></span>
+                <div class="hidden sm:flex items-center space-x-1 bg-slate-800 px-2.5 py-1 rounded-full text-xs border border-slate-700">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-slate-300">FR</span>
                 </div>
-                <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md cursor-pointer">
-                    <i data-lucide="log-in" class="w-4 h-4"></i> <span data-i18n="login">Connexion</span>
+                <button onclick="ouvrirConnexion()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow">
+                    Connexion
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MENU LATÉRAL -->
-    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden transition-opacity"></div>
-    <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-4">
-            <span class="font-black text-white text-base tracking-wider" data-i18n="menu_title">MENU PRINCIPAL</span>
-            <button onclick="toggleSidebar()" class="text-slate-400 p-1.5 font-bold text-lg hover:text-white rounded-lg bg-slate-800">✕</button>
+    <!-- Corps de la page / Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
+
+        <!-- Statistiques Rapides -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Agents</p>
+                    <h3 id="stat-agents" class="text-2xl font-bold text-slate-900 mt-0.5">0</h3>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                <div>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Pays</p>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-0.5">54</h3>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-globe-africa"></i>
+                </div>
+            </div>
         </div>
-        
-        <div class="space-y-1.5 text-xs font-medium">
-            <button onclick="switchTab('home')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 transition"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> <span data-i18n="nav_home">Accueil & Missions</span></button>
-            <button onclick="switchTab('search-id')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 transition"><i data-lucide="search" class="w-4 h-4"></i> <span data-i18n="nav_search">Recherche ID / Scan</span></button>
-            <button onclick="switchTab('children')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_children">Dossiers Enfants</span></button>
-            <button onclick="switchTab('widows')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_widows">Dossiers Veuves</span></button>
-            <button onclick="switchTab('team')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> <span data-i18n="nav_team">Équipe & Branches</span></button>
-            <button onclick="switchTab('notifications')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> <span data-i18n="nav_notifications">Notifications</span></button>
-            <button onclick="switchTab('countries')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_countries">Pays & Centres</span></button>
-            <button onclick="switchTab('reports')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_reports">Statistiques</span></button>
+
+        <!-- Section détaillée des Branches et Activités -->
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 space-y-5">
+            <div>
+                <span class="text-xs font-bold text-emerald-600 tracking-wider uppercase bg-emerald-50 px-2.5 py-1 rounded-md">Organisation Opérationnelle</span>
+                <h2 class="text-lg font-bold text-slate-900 mt-2">Branches & Activités Détaillées du Terrain</h2>
+                <p class="text-xs text-slate-500 mt-1">Les pôles opérationnels gérés par les agents et dotés du matériel complet de l'orphelinat.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- BRANCHE 1 : Éducation -->
+                <div class="p-4 rounded-xl border border-indigo-100 bg-indigo-50/30 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded tracking-wider uppercase">BRANCHE 1</span>
+                        <i class="fa-solid fa-graduation-cap text-indigo-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-sm">📚 Éducation & Scolarité</h3>
+                    <div class="text-xs text-slate-600 space-y-1 pt-1">
+                        <p><strong class="text-slate-700">Types d'actions :</strong> Frais scolaires et frais d'inscription aux écoles, soutien au tutorat et alphabétisation, distribution de kits complets (cahiers, bics, manuels).</p>
+                        <p><strong class="text-slate-700">Équipements :</strong> Manuels scolaires, uniformes, et ordinateurs pour la bibliothèque numérique.</p>
+                    </div>
+                </div>
+
+                <!-- BRANCHE 2 : Soins & Santé -->
+                <div class="p-4 rounded-xl border border-emerald-100 bg-emerald-50/30 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded tracking-wider uppercase">BRANCHE 2</span>
+                        <i class="fa-solid fa-kit-medical text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-sm">🏥 Soins & Santé (Nutrition & Bien-être)</h3>
+                    <div class="text-xs text-slate-600 space-y-1 pt-1">
+                        <p><strong class="text-slate-700">Types d'actions :</strong> Suivi médical régulier, infirmerie d'urgence, distribution de repas équilibrés (nutrition et soutien alimentaire), et fourniture d'habits de première nécessité (habillement).</p>
+                        <p><strong class="text-slate-700">Équipements :</strong> Pharmacie d'urgence, thermomètres, balances, kits de nutrition thérapeutique, et lits d'observation.</p>
+                    </div>
+                </div>
+
+                <!-- BRANCHE 3 : Autonomisation -->
+                <div class="p-4 rounded-xl border border-amber-100 bg-amber-50/30 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded tracking-wider uppercase">BRANCHE 3</span>
+                        <i class="fa-solid fa-briefcase text-amber-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-sm">💼 Autonomisation & AGR (pour les veuves)</h3>
+                    <div class="text-xs text-slate-600 space-y-1 pt-1">
+                        <p><strong class="text-slate-700">Types d'actions :</strong> Formations professionnelles (coupe-couture, artisanat, petits commerces), gestion de micro-crédits et accompagnement à l'indépendance financière.</p>
+                        <p><strong class="text-slate-700">Équipements :</strong> Machines à coudre, kits de cuisine/boulangerie, et matériel de formation pour les veuves.</p>
+                    </div>
+                </div>
+
+                <!-- BRANCHE 4 : Administration -->
+                <div class="p-4 rounded-xl border border-sky-100 bg-sky-50/30 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded tracking-wider uppercase">BRANCHE 4</span>
+                        <i class="fa-solid fa-shield-halved text-sky-600"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-sm">🛡️ Administration, Social & Sécurité</h3>
+                    <div class="text-xs text-slate-600 space-y-1 pt-1">
+                        <p><strong class="text-slate-700">Types d'actions :</strong> Enregistrement numérique sécurisé des bénéficiaires (`BKDD-E`, `BKDD-V`, `BKDD-A`), écoute sociale, assistance juridique, et coordination des 54 pays.</p>
+                        <p><strong class="text-slate-700">Équipements :</strong> PC, imprimantes de badges, registres numériques, et outils de communication (talkies-walkies / liaisons).</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="space-y-1.5 text-xs pt-4 border-t border-slate-800">
-            <button onclick="switchTab('profile')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> <span data-i18n="nav_profile">Mon Profil Agent</span></button>
-            <button onclick="switchTab('admin')" class="w-full text-left px-3.5 py-3 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2 border border-green-900/50 transition"><i data-lucide="shield" class="w-4 h-4"></i> <span data-i18n="nav_admin">Administration Centrale</span></button>
-        </div>
-    </aside>
-
-    <!-- NAVIGATION INFÉRIEURE MOBILE -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-2.5 px-3 shadow-2xl">
-        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition"><i data-lucide="home" class="w-5 h-5 text-green-400"></i> <span data-i18n="nav_home">Accueil</span></button>
-        <button onclick="switchTab('search-id')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-amber-400 transition"><i data-lucide="search" class="w-5 h-5 text-amber-400"></i> <span data-i18n="nav_search">Recherche</span></button>
-        <button onclick="switchTab('team')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-purple-400 transition"><i data-lucide="user-check" class="w-5 h-5 text-purple-400"></i> <span data-i18n="nav_team">Agents</span></button>
-        <button onclick="goBack()" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-blue-400 transition"><i data-lucide="arrow-left" class="w-5 h-5 text-blue-400"></i> <span data-i18n="back">Retour</span></button>
-    </nav>
-
-    <!-- CONTENU PRINCIPAL -->
-    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
-
-        <!-- ACCUEIL & MISSIONS -->
-        <section id="sec-home" class="space-y-6">
-            <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-10 shadow-xl space-y-6 border border-slate-800 relative overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="space-y-2 relative z-10">
-                    <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest" data-i18n="center_badge">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
-                    <h1 class="text-2xl md:text-4xl font-black mt-2 leading-tight" data-i18n="main_title">Plateforme Panafricaine de Suivi Social</h1>
-                    <p class="text-xs md:text-sm text-slate-300 max-w-2xl leading-relaxed pt-1">
-                        Système intégré de gestion des orphelins, des veuves, des agents spécialisés et des équipements complets de l'orphelinat.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
-                    <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_child">+ Dossier Enfant (BKDD-E)</span>
-                    </button>
-                    <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_widow">+ Dossier Veuve (BKDD-V)</span>
-                    </button>
-                    <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="shield-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_agent">+ Dossier Agent (BKDD-A)</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- COMPTEURS -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_children">Enfants</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="baby" class="w-5 h-5"></i></div>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_widows">Veuves</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i data-lucide="users" class="w-5 h-5"></i></div>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_agents">Agents</p><p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center"><i data-lucide="user-check" class="w-5 h-5"></i></div>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_countries">Pays</p><p class="text-3xl font-black text-green-600 mt-1">54</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i data-lucide="globe" class="w-5 h-5"></i></div>
-                </div>
-            </div>
-
-            <!-- BRANCHES & ÉQUIPEMENTS DE L'ORPHELINAT -->
-            <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
-                <div class="border-b pb-4">
-                    <h2 class="text-xl font-black text-slate-900">Organisation par Branches & Équipements Complets</h2>
-                    <p class="text-xs text-slate-500 mt-1">Les pôles opérationnels gérés par les agents et dotés du matériel complet de l'orphelinat.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-                    <div class="bg-slate-50 p-4 rounded-2xl border space-y-2">
-                        <span class="font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded text-[10px]">BRANCHE 1</span>
-                        <h3 class="font-bold text-slate-900">📚 Éducation & Scolarité</h3>
-                        <p class="text-slate-600">Manuels, uniformes, cahiers, ordinateurs pour bibliothèque.</p>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-2xl border space-y-2">
-                        <span class="font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded text-[10px]">BRANCHE 2</span>
-                        <h3 class="font-bold text-slate-900">🏥 Soins & Santé</h3>
-                        <p class="text-slate-600">Pharmacie d'urgence, thermomètres, balances, kits de nutrition.</p>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-2xl border space-y-2">
-                        <span class="font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded text-[10px]">BRANCHE 3</span>
-                        <h3 class="font-bold text-slate-900">💼 Autonomisation (AGR)</h3>
-                        <p class="text-slate-600">Machines à coudre, kits de cuisine, matériel de formation veuves.</p>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-2xl border space-y-2">
-                        <span class="font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded text-[10px]">BRANCHE 4</span>
-                        <h3 class="font-bold text-slate-900">🛡️ Administration & Sécurité</h3>
-                        <p class="text-slate-600">PC, imprimantes de badges, registres numériques, talkies-walkies.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- RECHERCHE PAR ID -->
-        <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
-            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
-                <h2 class="text-xl font-bold" data-i18n="search_title">Recherche par Matricule Unique</h2>
-                <div class="flex gap-2 pt-2">
-                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
-                    <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer">Chercher</button>
-                </div>
-            </div>
-            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
-        </section>
-
-        <section id="sec-notifications" class="hidden space-y-6 max-w-3xl mx-auto">
-            <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
-                <h2 class="text-2xl font-black text-slate-900">Notifications & Alertes</h2>
-                <div class="p-4 bg-pink-50 border border-pink-200 rounded-xl text-xs">
-                    <p class="font-bold text-pink-900">🔔 Système Panafricain actif</p>
-                    <p class="text-pink-700 mt-1">Aucun nouveau signalement urgent dans les centres pour le moment.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="sec-children" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl">+ Ajouter</button></div><div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-widows" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Veuves</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl">+ Ajouter</button></div><div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></section>
-        <section id="sec-team" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents & Branches</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl">+ Ajouter Agent</button></div><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs">Couverture complète de tous les pays membres de l'Union Africaine.</p></div></section>
-        <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Statistiques</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl">Imprimer le rapport</button></div></section>
-        <section id="sec-profile" class="hidden space-y-6"><h2 class="text-2xl font-black">Mon Profil</h2><div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm"></div></section>
-
-        <!-- ADMINISTRATION -->
-        <section id="sec-admin" class="hidden space-y-6">
-            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
-                <div><h2 class="text-xl font-black text-green-400">Administration Centrale</h2><p class="text-xs text-slate-400">Gestion et suppression des dossiers.</p></div>
-            </div>
-            <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-3">
-                <h3 class="font-bold text-slate-900 text-sm">Base de Données Firestore</h3>
-                <div id="admin-master-list" class="space-y-2 text-xs"></div>
-            </div>
-        </section>
 
     </main>
 
-    <!-- FORMULAIRE ENFANT -->
-    <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold">✕</button></div>
-            <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-green-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-green-800">📷 Photo Enfant</label><input type="file" id="c-photo" accept="image/*" class="w-full text-[10px]"></div>
-                    <div class="bg-emerald-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-emerald-800">🏠 Photo Famille</label><input type="file" id="c-family-photo" accept="image/*" class="w-full text-[10px]"></div>
-                </div>
-                <div class="grid grid-cols-3 gap-3">
-                    <div><label class="font-bold">Prénom *</label><input type="text" id="c-firstname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Nom *</label><input type="text" id="c-lastname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Post-nom</label><input type="text" id="c-postname" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Sexe *</label><select id="c-gender" class="w-full p-2 border rounded bg-white"><option value="M">Masculin</option><option value="F">Féminin</option></select></div>
-                    <div><label class="font-bold">Âge *</label><input type="number" id="c-age" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">ID Famille</label><input type="text" id="c-famid" value="FAM0001" required class="w-full p-2 border rounded font-mono bg-white"></div>
-                    <div><label class="font-bold">Pays *</label><select id="c-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
-                    <div><label class="font-bold">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded bg-white"></div>
-                </div>
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow">Enregistrer</button>
-            </form>
+    <!-- Barre de Navigation Inférieure (Mobile Friendly) -->
+    <nav class="bg-slate-900 text-slate-400 py-2.5 px-4 sticky bottom-0 z-50 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex justify-around items-center text-xs">
+            <a href="#" class="flex flex-col items-center text-emerald-400">
+                <i class="fa-solid fa-house text-sm mb-1"></i>
+                <span>Accueil</span>
+            </a>
+            <a href="#" class="flex flex-col items-center hover:text-white transition">
+                <i class="fa-solid fa-magnifying-glass text-sm mb-1"></i>
+                <span>Recherche</span>
+            </a>
+            <a href="#" class="flex flex-col items-center hover:text-white transition">
+                <i class="fa-solid fa-user-group text-sm mb-1"></i>
+                <span>Agents</span>
+            </a>
+            <a href="#" class="flex flex-col items-center hover:text-white transition">
+                <i class="fa-solid fa-arrow-left text-sm mb-1"></i>
+                <span>Retour</span>
+            </a>
         </div>
-    </div>
-
-    <!-- FORMULAIRE VEUVE -->
-    <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Veuve (BKDD-V)</h3><button onclick="closeForm('widow')" class="p-2 font-bold">✕</button></div>
-            <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-emerald-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-emerald-800">📷 Photo Veuve</label><input type="file" id="w-photo" accept="image/*" class="w-full text-[10px]"></div>
-                    <div class="bg-teal-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-teal-800">🏠 Photo Foyer</label><input type="file" id="w-family-photo" accept="image/*" class="w-full text-[10px]"></div>
-                </div>
-                <div class="grid grid-cols-3 gap-3">
-                    <div><label class="font-bold">Prénom *</label><input type="text" id="w-firstname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Nom *</label><input type="text" id="w-lastname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Post-nom</label><input type="text" id="w-postname" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Âge</label><input type="number" id="w-age" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">ID Famille</label><input type="text" id="w-famid" value="FAM0001" required class="w-full p-2 border rounded font-mono bg-white"></div>
-                    <div><label class="font-bold">Téléphone</label><input type="text" id="w-phone" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Pays *</label><select id="w-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
-                    <div><label class="font-bold">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
-                </div>
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow">Enregistrer</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- FORMULAIRE AGENT (AVEC BRANCHE & ÉQUIPEMENTS) -->
-    <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Branche (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold">✕</button></div>
-            <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-purple-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-purple-800">📷 Photo Agent</label><input type="file" id="a-photo" accept="image/*" class="w-full text-[10px]"></div>
-                    <div class="bg-indigo-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-indigo-800">🏢 Photo Bureau</label><input type="file" id="a-family-photo" accept="image/*" class="w-full text-[10px]"></div>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Branche / Pôle *</label>
-                        <select id="a-branch" class="w-full p-2 border rounded bg-white font-bold text-purple-700">
-                            <option value="Éducation & Scolarité">📚 1. Éducation & Scolarité</option>
-                            <option value="Soins & Santé">🏥 2. Soins & Santé</option>
-                            <option value="Autonomisation & AGR">💼 3. Autonomisation & AGR</option>
-                            <option value="Administration & Sécurité">🛡️ 4. Administration & Sécurité</option>
-                        </select>
-                    </div>
-                    <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Équipements sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Ex: Manuels, Pharmacie..." class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Téléphone</label><input type="text" id="a-phone" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
-                    <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
-                </div>
-                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl shadow">Enregistrer l'Agent</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- AUTH MODAL -->
-    <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Connexion Agent</h3><button onclick="closeAuthModal()" class="p-2 font-bold">✕</button></div>
-            <form onsubmit="handleAuthSubmit(event)" class="space-y-3 text-xs">
-                <input type="email" id="auth-email" placeholder="E-mail Agent" required class="w-full p-3 border rounded-xl text-sm bg-white">
-                <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-3 border rounded-xl text-sm bg-white">
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl text-sm shadow">Se Connecter</button>
-            </form>
-        </div>
-    </div>
+    </nav>
 
     <script>
-        const africanCountries = [
-            "République Démocratique du Congo (RDC)", "Afrique du Sud", "Algérie", "Angola", "Bénin", 
-            "Botswana", "Burkina Faso", "Burundi", "Cameroun", "Cap-Vert", "République Centrafricaine", 
-            "Comores", "Congo-Brazzaville", "Côte d'Ivoire", "Djibouti", "Égypte", "Érythrée", "Eswatini", 
-            "Éthiopie", "Gabon", "Gambie", "Ghana", "Guinée", "Guinée-Bissau", "Guinée équatoriale", "Kenya", 
-            "Lesotho", "Liberia", "Libye", "Madagascar", "Malawi", "Mali", "Maroc", "Maurice", "Mauritanie", 
-            "Mozambique", "Namibie", "Niger", "Nigeria", "Ouganda", "Rwanda", "São Tomé-et-Príncipe", "Sénégal", 
-            "Seychelles", "Sierra Leone", "Somalie", "Soudan", "Soudan du Sud", "Tanzanie", "Tchad", "Togo", 
-            "Tunisie", "Zambie", "Zimbabwe"
-        ];
-
-        function populateAfricanCountries() {
-            document.querySelectorAll('.african-countries-select').forEach(sel => {
-                sel.innerHTML = '';
-                africanCountries.forEach(country => {
-                    const opt = document.createElement('option');
-                    opt.value = country;
-                    opt.textContent = country;
-                    if (country.includes("RDC")) opt.selected = true;
-                    sel.appendChild(opt);
-                });
-            });
+        function ouvrirConnexion() {
+            alert("Module de connexion administrateur sécurisé.");
         }
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyATlu2mUJmPlmkJkVow1ap35RSl6zt30nY",
-            authDomain: "dieudonne-f074d.firebaseapp.com",
-            projectId: "dieudonne-f074d",
-            storageBucket: "dieudonne-f074d.firebasestorage.app",
-            messagingSenderId: "674305544855",
-            appId: "1:674305544855:web:a305811cac2f99b293cfd2",
-            measurementId: "G-9WMXZTYWE8"
-        };
-
-        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-        let currentUser = null;
-        let historyStack = ['home'];
-
-        function initAuthListener() {
-            auth.onAuthStateChanged(user => {
-                if (user) {
-                    currentUser = user;
-                    document.getElementById('user-display').innerText = user.email;
-                    document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
-                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion`;
-                    document.getElementById('auth-btn').onclick = () => auth.signOut();
-                    updateProfileCard(user);
-                } else {
-                    currentUser = null;
-                    document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
-                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i> Connexion`;
-                    document.getElementById('auth-btn').onclick = openAuthModal;
-                }
-            });
-        }
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.toggle('hidden');
-        }
-
-        function switchTab(tab, pushHistory = true) {
-            ['home', 'search-id', 'notifications', 'children', 'widows', 'team', 'countries', 'reports', 'profile', 'admin'].forEach(t => document.getElementById(`sec-${t}`)?.classList.add('hidden'));
-            document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.add('hidden');
-
-            if (pushHistory && historyStack[historyStack.length - 1] !== tab) historyStack.push(tab);
-
-            if (tab === 'children') loadCollection('children', 'children-grid-container');
-            if (tab === 'widows') loadCollection('widows', 'widows-grid-container');
-            if (tab === 'team') loadCollection('agents', 'team-grid-container');
-            if (tab === 'admin') loadAdminMasterList();
-
-            window.scrollTo(0, 0);
-            if (window.lucide) lucide.createIcons();
-        }
-
-        function goBack() {
-            if (historyStack.length > 1) {
-                historyStack.pop();
-                switchTab(historyStack[historyStack.length - 1], false);
-            } else {
-                switchTab('home', false);
-            }
-        }
-
-        function openForm(type) {
-            if (!currentUser) { alert("Sécurité : Veuillez d'abord vous connecter."); openAuthModal(); return; }
-            document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex');
-        }
-
-        function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
-        function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
-
-        async function handleAuthSubmit(e) {
-            e.preventDefault();
-            try {
-                await auth.signInWithEmailAndPassword(document.getElementById('auth-email').value, document.getElementById('auth-password').value);
-                closeAuthModal();
-                alert("Connexion réussie !");
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        function compressImage(file) {
-            return new Promise((resolve) => {
-                if (!file) { resolve(''); return; }
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.src = event.target.result;
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 500;
-                        const scaleSize = MAX_WIDTH / img.width;
-                        canvas.width = MAX_WIDTH;
-                        canvas.height = img.height * scaleSize;
-                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.7));
-                    };
-                };
-            });
-        }
-
-        async function generateNextMatricule(col, prefix) {
-            const snap = await db.collection(col).get();
-            const count = snap.size + 1;
-            return `BKDD-${prefix}${count < 10 ? '0' + count : count}`;
-        }
-
-        async function saveChildForm(e) {
-            e.preventDefault();
-            if (!currentUser) return;
-            const photo = await compressImage(document.getElementById('c-photo').files[0]);
-            const familyPhoto = await compressImage(document.getElementById('c-family-photo').files[0]);
-            const matricule = await generateNextMatricule('children', 'E');
-            await db.collection("children").add({
-                matricule, photo, familyPhoto,
-                famId: document.getElementById('c-famid').value,
-                firstName: document.getElementById('c-firstname').value,
-                lastName: document.getElementById('c-lastname').value,
-                postName: document.getElementById('c-postname').value,
-                gender: document.getElementById('c-gender').value,
-                age: parseInt(document.getElementById('c-age').value) || 0,
-                country: document.getElementById('c-country').value,
-                city: document.getElementById('c-city').value,
-                center: document.getElementById('c-center').value,
-                agentEmail: currentUser.email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            alert(`Enfant enregistré ! ID : ${matricule}`);
-            closeForm('child'); refreshCounters(); e.target.reset();
-        }
-
-        async function saveWidowForm(e) {
-            e.preventDefault();
-            if (!currentUser) return;
-            const photo = await compressImage(document.getElementById('w-photo').files[0]);
-            const familyPhoto = await compressImage(document.getElementById('w-family-photo').files[0]);
-            const matricule = await generateNextMatricule('widows', 'V');
-            await db.collection("widows").add({
-                matricule, photo, familyPhoto,
-                famId: document.getElementById('w-famid').value,
-                firstName: document.getElementById('w-firstname').value,
-                lastName: document.getElementById('w-lastname').value,
-                postName: document.getElementById('w-postname').value,
-                age: parseInt(document.getElementById('w-age').value) || 0,
-                phone: document.getElementById('w-phone').value,
-                country: document.getElementById('w-country').value,
-                city: document.getElementById('w-city').value,
-                agentEmail: currentUser.email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            alert(`Veuve enregistrée ! ID : ${matricule}`);
-            closeForm('widow'); refreshCounters(); e.target.reset();
-        }
-
-        async function saveAgentForm(e) {
-            e.preventDefault();
-            if (!currentUser) return;
-            const photo = await compressImage(document.getElementById('a-photo').files[0]);
-            const familyPhoto = await compressImage(document.getElementById('a-family-photo').files[0]);
-            const matricule = await generateNextMatricule('agents', 'A');
-            await db.collection("agents").add({
-                matricule, photo, familyPhoto,
-                fullName: document.getElementById('a-fullname').value,
-                branch: document.getElementById('a-branch').value,
-                role: document.getElementById('a-role').value,
-                equipments: document.getElementById('a-equipments').value,
-                phone: document.getElementById('a-phone').value,
-                country: document.getElementById('a-country').value,
-                city: document.getElementById('a-city').value,
-                agentEmail: currentUser.email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            alert(`Agent enregistré avec sa branche ! ID : ${matricule}`);
-            closeForm('agent'); refreshCounters(); e.target.reset();
-        }
-
-        async function deleteDocument(col, id) {
-            if (confirm("Supprimer ce dossier ?")) {
-                await db.collection(col).doc(id).delete();
-                loadAdminMasterList(); refreshCounters();
-            }
-        }
-
-        async function executeIdSearch() {
-            const val = document.getElementById('input-search-id').value.trim().toUpperCase();
-            const card = document.getElementById('search-result-card');
-            if (!val) return;
-            card.classList.remove('hidden'); card.innerHTML = "Recherche...";
-            let found = null, type = '';
-            for (let col of ['children', 'widows', 'agents']) {
-                const snap = await db.collection(col).where('matricule', '==', val).get();
-                if (!snap.empty) { found = snap.docs[0].data(); type = col; break; }
-            }
-            if (found) {
-                let name = found.firstName ? `${found.firstName} ${found.lastName}` : (found.fullName || '');
-                card.innerHTML = `
-                    <div class="flex items-center gap-3 border-b pb-3">
-                        <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
-                        <div><span class="font-mono bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2 text-xs pt-2">
-                        <div><strong>Branche :</strong> ${found.branch || 'N/C'}</div>
-                        <div><strong>Équipements :</strong> ${found.equipments || 'N/C'}</div>
-                        <div><strong>Pays :</strong> ${found.country || ''}</div>
-                        <div><strong>Ville :</strong> ${found.city || ''}</div>
-                    </div>
-                `;
-            } else {
-                card.innerHTML = `<p class="text-xs text-red-600 font-bold">Introuvable.</p>`;
-            }
-        }
-
-        async function refreshCounters() {
-            try {
-                const c = await db.collection("children").get();
-                const w = await db.collection("widows").get();
-                const a = await db.collection("agents").get();
-                document.getElementById('stat-children-count').innerText = c.size;
-                document.getElementById('stat-widows-count').innerText = w.size;
-                document.getElementById('stat-agents-count').innerText = a.size;
-            } catch (e) { console.error(e); }
-        }
-
-        async function loadCollection(col, containerId) {
-            const container = document.getElementById(containerId);
-            const snap = await db.collection(col).get();
-            container.innerHTML = '';
-            snap.forEach(doc => {
-                const d = doc.data();
-                container.innerHTML += `
-                    <div class="bg-white p-3.5 rounded-2xl border shadow-sm text-xs space-y-1">
-                        <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
-                        <p class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || ''}</p>
-                        ${d.branch ? `<p class="text-[10px] text-purple-700 font-bold">Pôle : ${d.branch}</p>` : ''}
-                        ${d.equipments ? `<p class="text-[10px] text-slate-500">Matériel : ${d.equipments}</p>` : ''}
-                    </div>
-                `;
-            });
-        }
-
-        async function loadAdminMasterList() {
-            const container = document.getElementById('admin-master-list');
-            container.innerHTML = 'Chargement...';
-            let html = '';
-            for (let col of ['children', 'widows', 'agents']) {
-                const snap = await db.collection(col).get();
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    html += `<div class="p-2 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">${d.matricule}</strong> - ${d.firstName || d.fullName || ''}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px]">Supprimer</button></div>`;
-                });
-            }
-            container.innerHTML = html || 'Vide';
-        }
-
-        function updateProfileCard(user) {
-            document.getElementById('profile-card').innerHTML = `<p class="text-xs font-mono bg-slate-50 p-3 rounded-xl border">Connecté : ${user.email}</p>`;
-        }
-
-        window.onload = () => {
-            populateAfricanCountries();
-            initAuthListener();
-            refreshCounters();
-            if (window.lucide) lucide.createIcons();
-        };
     </script>
 </body>
 </html>
