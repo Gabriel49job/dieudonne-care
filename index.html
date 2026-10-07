@@ -129,62 +129,62 @@
                 </div>
             </div>
 
-            <!-- BRANCHES & ACTIVITÉS DÉTAILLÉES DE L'ORPHELINAT -->
+            <!-- BRANCHES & ACTIVITÉS CLÉMENTES (CLIQUABLES POUR CONTACTER L'AGENT) -->
             <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="border-b pb-4">
-                    <h2 class="text-xl font-black text-slate-900">Organisation par Branches & Activités Détaillées du Terrain</h2>
-                    <p class="text-xs text-slate-500 mt-1">Les pôles opérationnels gérés par les agents et dotés du matériel complet de l'orphelinat.</p>
+                    <h2 class="text-xl font-black text-slate-900">Organisation par Branches & Contacts des Agents</h2>
+                    <p class="text-xs text-slate-500 mt-1">Cliquez sur une branche pour afficher instantanément l'agent responsable et son numéro de téléphone.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                     <!-- BRANCHE 1 -->
-                    <div class="bg-indigo-50/40 p-5 rounded-2xl border border-indigo-100 space-y-3">
+                    <div onclick="showBranchAgents('Éducation & Scolarité')" class="bg-indigo-50/40 p-5 rounded-2xl border border-indigo-200 space-y-3 cursor-pointer hover:bg-indigo-100/60 transition shadow-sm">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 1</span>
+                            <span class="font-bold text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 1 (Cliquer)</span>
                             <i data-lucide="graduation-cap" class="w-5 h-5 text-indigo-600"></i>
                         </div>
                         <h3 class="font-bold text-slate-900 text-sm">📚 Éducation & Scolarité</h3>
                         <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Types d'actions :</strong> Frais scolaires et inscription aux écoles, soutien au tutorat et alphabétisation, distribution de kits complets (cahiers, bics).</p>
+                            <p><strong>Types d'actions :</strong> Frais scolaires et inscription aux écoles, soutien au tutorat et alphabétisation, distribution de kits (cahiers, bics).</p>
                             <p><strong>Équipements :</strong> Manuels scolaires, uniformes, et ordinateurs pour la bibliothèque numérique.</p>
                         </div>
                     </div>
 
                     <!-- BRANCHE 2 -->
-                    <div class="bg-emerald-50/40 p-5 rounded-2xl border border-emerald-100 space-y-3">
+                    <div onclick="showBranchAgents('Soins & Santé')" class="bg-emerald-50/40 p-5 rounded-2xl border border-emerald-200 space-y-3 cursor-pointer hover:bg-emerald-100/60 transition shadow-sm">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 2</span>
+                            <span class="font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 2 (Cliquer)</span>
                             <i data-lucide="heart-pulse" class="w-5 h-5 text-emerald-600"></i>
                         </div>
                         <h3 class="font-bold text-slate-900 text-sm">🏥 Soins & Santé (Nutrition & Bien-être)</h3>
                         <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Types d'actions :</strong> Suivi médical régulier, infirmerie d'urgence, distribution de repas équilibrés (nutrition et soutien alimentaire), et fourniture d'habits (habillement).</p>
+                            <p><strong>Types d'actions :</strong> Suivi médical régulier, infirmerie d'urgence, distribution de repas équilibrés, et fourniture d'habits (habillement).</p>
                             <p><strong>Équipements :</strong> Pharmacie d'urgence, thermomètres, balances, kits de nutrition thérapeutique, lits d'observation.</p>
                         </div>
                     </div>
 
                     <!-- BRANCHE 3 -->
-                    <div class="bg-amber-50/40 p-5 rounded-2xl border border-amber-100 space-y-3">
+                    <div onclick="showBranchAgents('Autonomisation & AGR')" class="bg-amber-50/40 p-5 rounded-2xl border border-amber-200 space-y-3 cursor-pointer hover:bg-amber-100/60 transition shadow-sm">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 3</span>
+                            <span class="font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 3 (Cliquer)</span>
                             <i data-lucide="briefcase" class="w-5 h-5 text-amber-600"></i>
                         </div>
                         <h3 class="font-bold text-slate-900 text-sm">💼 Autonomisation & AGR (pour les veuves)</h3>
                         <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Types d'actions :</strong> Formations professionnelles (coupe-couture, artisanat, petits commerce), gestion de micro-crédits et accompagnement à l'indépendance financière.</p>
+                            <p><strong>Types d'actions :</strong> Formations professionnelles (coupe-couture, artisanat, petits commerce), gestion de micro-crédits et accompagnement.</p>
                             <p><strong>Équipements :</strong> Machines à coudre, kits de cuisine/boulangerie, matériel de formation pour les veuves.</p>
                         </div>
                     </div>
 
                     <!-- BRANCHE 4 -->
-                    <div class="bg-sky-50/40 p-5 rounded-2xl border border-sky-100 space-y-3">
+                    <div onclick="showBranchAgents('Administration & Sécurité')" class="bg-sky-50/40 p-5 rounded-2xl border border-sky-200 space-y-3 cursor-pointer hover:bg-sky-100/60 transition shadow-sm">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 4</span>
+                            <span class="font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 4 (Cliquer)</span>
                             <i data-lucide="shield-check" class="w-5 h-5 text-sky-600"></i>
                         </div>
                         <h3 class="font-bold text-slate-900 text-sm">🛡️ Administration, Social & Sécurité</h3>
                         <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Types d'actions :</strong> Enregistrement numérique sécurisé des bénéficiaires (`BKDD-E`, `BKDD-V`, `BKDD-A`), écoute sociale, assistance juridique, coordination des 54 pays.</p>
+                            <p><strong>Types d'actions :</strong> Enregistrement numérique sécurisé (`BKDD-E`, `BKDD-V`, `BKDD-A`), écoute sociale, assistance juridique, coordination.</p>
                             <p><strong>Équipements :</strong> PC, imprimantes de badges, registres numériques, outils de communication (talkies-walkies).</p>
                         </div>
                     </div>
@@ -192,10 +192,23 @@
             </div>
         </section>
 
+        <!-- MODAL D'AFFICHAGE DES AGENTS PAR BRANCHE -->
+        <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+            <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative max-h-[80vh] flex flex-col">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-sm">Agents de la Branche</h3>
+                    <button onclick="closeBranchModal()" class="p-2 font-bold text-lg">✕</button>
+                </div>
+                <div id="modal-branch-list" class="space-y-3 overflow-y-auto flex-grow text-xs pr-1">
+                    <!-- Les agents s'afficheront ici dynamiquement -->
+                </div>
+            </div>
+        </div>
+
         <!-- RECHERCHE PAR ID -->
         <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
-                <h2 class="text-xl font-bold" data-i18n="search_title">Recherche par Matricule Unique</h2>
+                <h2 class="text-xl font-bold">Recherche par Matricule Unique</h2>
                 <div class="flex gap-2 pt-2">
                     <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
                     <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer">Chercher</button>
@@ -283,7 +296,7 @@
         </div>
     </div>
 
-    <!-- FORMULAIRE AGENT (AVEC BRANCHE & ÉQUIPEMENTS) -->
+    <!-- FORMULAIRE AGENT -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Branche (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold">✕</button></div>
@@ -304,7 +317,7 @@
                     </div>
                     <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Équipements sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Ex: Manuels, Pharmacie..." class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Téléphone</label><input type="text" id="a-phone" class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                 </div>
@@ -326,90 +339,6 @@
     </div>
 
     <script>
-        const translations = {
-            fr: {
-                login: "Connexion",
-                menu_title: "MENU PRINCIPAL",
-                nav_home: "Accueil & Missions",
-                nav_search: "Recherche ID",
-                nav_children: "Enfants",
-                nav_widows: "Veuves",
-                nav_team: "Agents",
-                nav_notifications: "Alertes",
-                nav_countries: "Pays & Centres",
-                nav_reports: "Statistiques",
-                nav_profile: "Profil",
-                nav_admin: "Administration",
-                back: "Retour",
-                center_badge: "CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS",
-                main_title: "Plateforme Panafricaine de Suivi Social",
-                btn_add_child: "+ Dossier Enfant",
-                btn_add_widow: "+ Dossier Veuve",
-                btn_add_agent: "+ Dossier Agent",
-                stat_children: "Enfants",
-                stat_widows: "Veuves",
-                stat_agents: "Agents",
-                stat_countries: "Pays"
-            },
-            en: {
-                login: "Login",
-                menu_title: "MAIN MENU",
-                nav_home: "Home & Missions",
-                nav_search: "ID Search",
-                nav_children: "Children",
-                nav_widows: "Widows",
-                nav_team: "Agents",
-                nav_notifications: "Alerts",
-                nav_countries: "Countries",
-                nav_reports: "Statistics",
-                nav_profile: "Profile",
-                nav_admin: "Administration",
-                back: "Back",
-                center_badge: "DIEUDONNÉ CENTER BUKAVU (DRC) — 54 COUNTRIES",
-                main_title: "Pan-African Social Monitoring Platform",
-                btn_add_child: "+ Child Record",
-                btn_add_widow: "+ Widow Record",
-                btn_add_agent: "+ Agent Record",
-                stat_children: "Children",
-                stat_widows: "Widows",
-                stat_agents: "Agents",
-                stat_countries: "Countries"
-            },
-            sw: {
-                login: "Ingia",
-                menu_title: "MENU KUU",
-                nav_home: "Nyumbani",
-                nav_search: "Tafuta ID",
-                nav_children: "Watoto",
-                nav_widows: "Wajane",
-                nav_team: "Wafanyakazi",
-                nav_notifications: "Taarifa",
-                nav_countries: "Nchi",
-                nav_reports: "Takwimu",
-                nav_profile: "Wasifu",
-                nav_admin: "Utawala",
-                back: "Rudi",
-                center_badge: "KITUO CHA DIEUDONNÉ BUKAVU (DRC) — NCHI 54",
-                main_title: "Jukwaa la Kiafrika la Ufuatiliaji wa Jamii",
-                btn_add_child: "+ Rekodi ya Mtoto",
-                btn_add_widow: "+ Rekodi ya Mjane",
-                btn_add_agent: "+ Rekodi ya Mfanyakazi",
-                stat_children: "Watoto",
-                stat_widows: "Wajane",
-                stat_agents: "Wafanyakazi",
-                stat_countries: "Nchi"
-            }
-        };
-
-        function changeLanguage(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerText = translations[lang][key];
-                }
-            });
-        }
-
         const africanCountries = [
             "République Démocratique du Congo (RDC)", "Afrique du Sud", "Algérie", "Angola", "Bénin", 
             "Botswana", "Burkina Faso", "Burundi", "Cameroun", "Cap-Vert", "République Centrafricaine", 
@@ -515,6 +444,54 @@
                 closeAuthModal();
                 alert("Connexion réussie !");
             } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        // Fonction pour afficher les agents responsables lorsqu'on clique sur une branche
+        async function showBranchAgents(branchName) {
+            const modal = document.getElementById('modal-branch-agents');
+            const title = document.getElementById('modal-branch-title');
+            const listContainer = document.getElementById('modal-branch-list');
+
+            title.innerText = `Responsables : ${branchName}`;
+            listContainer.innerHTML = "Recherche des agents...";
+            modal.classList.replace('hidden', 'flex');
+
+            try {
+                const snap = await db.collection("agents").where("branch", "==", branchName).get();
+                listContainer.innerHTML = '';
+
+                if (snap.empty) {
+                    listContainer.innerHTML = `<p class="text-slate-500 text-center py-4">Aucun agent enregistré pour le moment dans cette branche.</p>`;
+                    return;
+                }
+
+                snap.forEach(doc => {
+                    const agent = doc.data();
+                    const photoHtml = agent.photo ? `<img src="${agent.photo}" class="w-full h-full object-cover">` : `👤`;
+                    
+                    listContainer.innerHTML += `
+                        <div class="bg-slate-50 p-3 rounded-2xl border flex items-center gap-3 shadow-sm">
+                            <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
+                            <div class="flex-grow">
+                                <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
+                                <h4 class="font-bold text-slate-900 text-xs mt-0.5">${agent.fullName}</h4>
+                                <p class="text-[10px] text-slate-500">Rôle : ${agent.role}</p>
+                                <p class="text-[10px] text-slate-500">Matériel : ${agent.equipments || 'N/C'}</p>
+                            </div>
+                            <a href="tel:${agent.phone || ''}" class="bg-emerald-600 text-white p-2.5 rounded-xl flex items-center justify-center shadow hover:bg-emerald-500 transition shrink-0" title="Appeler">
+                                <i data-lucide="phone" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    `;
+                });
+                if (window.lucide) lucide.createIcons();
+            } catch (err) {
+                listContainer.innerHTML = `<p class="text-red-500 text-center">Erreur de chargement : ${err.message}</p>`;
+            }
+        }
+
+        function closeBranchModal() {
+            document.getElementById('modal-branch-agents').classList.replace('flex', 'hidden');
         }
 
         function compressImage(file) {
@@ -640,8 +617,8 @@
                     <div class="grid grid-cols-2 gap-2 text-xs pt-2">
                         <div><strong>Branche :</strong> ${found.branch || 'N/C'}</div>
                         <div><strong>Équipements :</strong> ${found.equipments || 'N/C'}</div>
+                        <div><strong>Téléphone :</strong> ${found.phone || 'N/C'}</div>
                         <div><strong>Pays :</strong> ${found.country || ''}</div>
-                        <div><strong>Ville :</strong> ${found.city || ''}</div>
                     </div>
                 `;
             } else {
@@ -671,7 +648,7 @@
                         <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
                         <p class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || ''}</p>
                         ${d.branch ? `<p class="text-[10px] text-purple-700 font-bold">Pôle : ${d.branch}</p>` : ''}
-                        ${d.equipments ? `<p class="text-[10px] text-slate-500">Matériel : ${d.equipments}</p>` : ''}
+                        ${d.phone ? `<p class="text-[10px] text-emerald-600 font-bold">Tél : ${d.phone}</p>` : ''}
                     </div>
                 `;
             });
