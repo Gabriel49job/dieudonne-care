@@ -3,26 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIEUDONNÉ CARE — Système Panafricain de Gestion Humanitaire</title>
+    <title>DIEUDONNÉ CARE — Plateforme Panafricaine</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Firebase SDKs (v9 Compat) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    
-    <!-- QRCode.js & HTML5-QRCode -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode"></script>
-
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- BARRE SUPÉRIEURE FIXE -->
+    <!-- BARRE SUPÉRIEURE -->
     <header class="bg-slate-900 text-white shadow-md sticky top-0 z-40 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -46,7 +39,7 @@
         </div>
     </header>
 
-    <!-- MENU LATÉRAL COMPLET AVEC TOUS LES BOUTONS -->
+    <!-- MENU LATÉRAL COMPLET RESTAURÉ -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
     <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-4">
@@ -54,193 +47,158 @@
             <button onclick="toggleSidebar()" class="text-slate-400 p-1 font-bold text-xl hover:text-white">✕</button>
         </div>
         
-        <!-- SECTION 1 : NAVIGATION PRINCIPALE -->
         <div class="space-y-1 text-xs">
             <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Navigation Principale</p>
-            <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 font-semibold"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> 🏠 Accueil</button>
-            <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 font-semibold"><i data-lucide="search" class="w-4 h-4"></i> 🔎 Recherche ID / Scan</button>
-            <button onclick="switchTab('children')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> 👦 Enfants</button>
-            <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> 👩 Veuves</button>
-            <button onclick="switchTab('partners')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="handshake" class="w-4 h-4 text-amber-400"></i> 🤝 Partenaires</button>
-            <button onclick="switchTab('team')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> 👥 Équipe / Agents</button>
+            <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 font-semibold"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil</button>
+            <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 font-semibold"><i data-lucide="search" class="w-4 h-4"></i> Recherche ID / Scan</button>
+            <button onclick="switchTab('children')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Enfants & Parrainage</button>
+            <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Veuves & Autonomie</button>
+            <button onclick="switchTab('sponsorship')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-pink-400 flex items-center gap-3 font-semibold"><i data-lucide="heart" class="w-4 h-4"></i> Gestion du Parrainage</button>
+            <button onclick="switchTab('partners')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="handshake" class="w-4 h-4 text-amber-400"></i> Partenaires</button>
+            <button onclick="switchTab('team')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> Équipe / Agents (BKDD-A)</button>
         </div>
 
-        <!-- SECTION 2 : PROGRAMMES & PROJETS -->
         <div class="space-y-1 text-xs">
-            <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Programmes & Activités</p>
-            <button onclick="switchTab('programs')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="heart" class="w-4 h-4 text-red-400"></i> ❤️ Programmes</button>
-            <button onclick="switchTab('projects')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="folder-kanban" class="w-4 h-4 text-cyan-400"></i> 📁 Projets</button>
-            <button onclick="switchTab('activities')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="calendar" class="w-4 h-4 text-yellow-400"></i> 📅 Activités</button>
-            <button onclick="switchTab('donations')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="coins" class="w-4 h-4 text-green-400"></i> 💰 Donations</button>
-            <button onclick="switchTab('aids')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="gift" class="w-4 h-4 text-pink-400"></i> 💝 Aides Distribuées</button>
+            <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Programmes & Projets</p>
+            <button onclick="switchTab('programs')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="heart-handshake" class="w-4 h-4 text-red-400"></i> Programmes</button>
+            <button onclick="switchTab('projects')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="folder-kanban" class="w-4 h-4 text-cyan-400"></i> Projets</button>
+            <button onclick="switchTab('activities')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="calendar" class="w-4 h-4 text-yellow-400"></i> Activités</button>
+            <button onclick="switchTab('donations')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="coins" class="w-4 h-4 text-green-400"></i> Donations</button>
+            <button onclick="switchTab('aids')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="gift" class="w-4 h-4 text-pink-400"></i> Aides Distribuées</button>
         </div>
 
-        <!-- SECTION 3 : GESTION & RAPPORTS -->
         <div class="space-y-1 text-xs">
-            <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Gestion & Suivi</p>
-            <button onclick="switchTab('documents')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i> 📄 Documents</button>
-            <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> 📊 Rapports</button>
-            <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> 🌍 Pays & Centres</button>
-            <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="bell" class="w-4 h-4 text-amber-400"></i> 🔔 Notifications</button>
+            <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Gestion & Rapports</p>
+            <button onclick="switchTab('documents')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i> Documents</button>
+            <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> Rapports</button>
+            <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres</button>
+            <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="bell" class="w-4 h-4 text-amber-400"></i> Notifications</button>
         </div>
 
-        <!-- SECTION 4 : COMPTE & ADMINISTRATION -->
         <div class="space-y-1 text-xs pt-4 border-t border-slate-800">
-            <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> 👤 Mon Profil</button>
-            <button onclick="switchTab('settings')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="settings" class="w-4 h-4 text-slate-300"></i> ⚙️ Paramètres</button>
-            <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2"><i data-lucide="shield" class="w-4 h-4"></i> 🔐 Administration Centralisée</button>
+            <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> Mon Profil</button>
+            <button onclick="switchTab('settings')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="settings" class="w-4 h-4 text-slate-300"></i> Paramètres</button>
+            <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2"><i data-lucide="shield" class="w-4 h-4"></i> Administration Centralisée</button>
         </div>
     </aside>
 
     <!-- CONTENU PRINCIPAL -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
 
-        <!-- ACCUEIL AVEC BOUTONS D'ACCÈS RAPIDE -->
+        <!-- ACCUEIL AVEC BOUTONS PRIORITAIRES ET PARRAINAGE VISIBLE -->
         <section id="sec-home" class="space-y-6">
             <div class="bg-slate-900 text-white rounded-3xl p-5 md:p-8 shadow-xl space-y-4 border border-slate-800">
                 <div class="flex items-center justify-between">
                     <div>
                         <span class="text-[10px] font-bold bg-green-500/20 text-green-300 px-2.5 py-1 rounded-full border border-green-500/30 uppercase">CENTRE DIEUDONNÉ BUKAVU</span>
-                        <h1 class="text-2xl md:text-3xl font-black mt-2">Actions Rapides d'Enregistrement</h1>
+                        <h1 class="text-2xl md:text-3xl font-black mt-2">Actions Rapides & Parrainage</h1>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
                     <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="user-plus" class="w-6 h-6"></i> + NOUVEAU DOSSIER ENFANT
+                        <i data-lucide="user-plus" class="w-6 h-6"></i> + Enfant (BKDD-E)
                     </button>
                     <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="user-plus" class="w-6 h-6"></i> + NOUVEAU DOSSIER VEUVE
+                        <i data-lucide="user-plus" class="w-6 h-6"></i> + Veuve (BKDD-V)
                     </button>
                     <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="shield-plus" class="w-6 h-6"></i> + ENREGISTRER UN AGENT
+                        <i data-lucide="shield-plus" class="w-6 h-6"></i> + Agent (BKDD-A)
                     </button>
-                    <button onclick="switchTab('search-id')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
-                        <i data-lucide="search" class="w-6 h-6"></i> RECHERCHE PAR MATRICULE
+                    <button onclick="switchTab('sponsorship')" class="bg-pink-600 hover:bg-pink-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
+                        <i data-lucide="heart" class="w-6 h-6"></i> Gérer Parrainage
                     </button>
                 </div>
             </div>
 
-            <!-- STATISTIQUES ACCUEIL -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p class="text-xs font-bold text-slate-500 uppercase">Enfants Enregistrés</p>
-                    <p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p>
-                    <p class="text-[10px] text-green-600 font-bold">Matricule ex: BKDD-E01</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p class="text-xs font-bold text-slate-500 uppercase">Veuves Enregistrées</p>
-                    <p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p>
-                    <p class="text-[10px] text-emerald-600 font-bold">Matricule ex: BKDD-V01</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p class="text-xs font-bold text-slate-500 uppercase">Agents Actifs</p>
-                    <p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p>
-                    <p class="text-[10px] text-purple-600 font-bold">Matricule ex: BKDD-A01</p>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p class="text-xs font-bold text-slate-500 uppercase">Centre Général</p>
-                    <p class="text-2xl font-black text-slate-900 mt-1">BUKAVU</p>
-                    <p class="text-[10px] text-slate-400 font-bold">RDC / Panafricain</p>
-                </div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Enfants</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Veuves</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Agents</p><p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Parrainages Actifs</p><p id="stat-sponsorship-count" class="text-3xl font-black text-pink-600 mt-1">0</p></div>
             </div>
         </section>
 
-        <!-- SECTIONS MODULES DE NAVIGATION -->
-        <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
-            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl space-y-4">
-                <h2 class="text-xl font-bold">Recherche par Matricule (ex: BKDD-E01, BKDD-A01)</h2>
-                <div class="flex gap-2">
-                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3 rounded-xl border border-slate-700 font-mono uppercase">
-                    <button onclick="executeIdSearch()" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Chercher</button>
+        <!-- SECTION PARRAINAGE -->
+        <section id="sec-sponsorship" class="hidden space-y-6">
+            <div class="bg-pink-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
+                <div>
+                    <h2 class="text-2xl font-black">Module de Parrainage</h2>
+                    <p class="text-xs text-pink-200">Liez un parrain/donateur à un enfant ou à un projet de veuve.</p>
                 </div>
+                <button onclick="openForm('sponsorship')" class="bg-white text-pink-900 font-bold px-4 py-2 rounded-xl text-xs">Associer un Parrain</button>
             </div>
-            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg"></div>
+            <div id="sponsorship-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
-        <section id="sec-children" class="hidden space-y-6">
-            <h2 class="text-2xl font-black">Registre Général des Enfants</h2>
-            <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-        </section>
-
-        <section id="sec-widows" class="hidden space-y-6">
-            <h2 class="text-2xl font-black">Registre des Veuves</h2>
-            <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-        </section>
-
-        <section id="sec-partners" class="hidden space-y-6"><h2 class="text-2xl font-black">Partenaires Institutionnels</h2><div id="partners-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-team" class="hidden space-y-6"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-programs" class="hidden space-y-6"><h2 class="text-2xl font-black">Programmes DIEUDONNÉ CARE</h2></section>
-        <section id="sec-projects" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestion des Projets</h2></section>
-        <section id="sec-activities" class="hidden space-y-6"><h2 class="text-2xl font-black">Calendrier d'Activités</h2></section>
-        <section id="sec-donations" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestion des Donations</h2></section>
-        <section id="sec-aids" class="hidden space-y-6"><h2 class="text-2xl font-black">Aides Distribuées</h2></section>
-        <section id="sec-documents" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestionnaire de Documents</h2></section>
-        <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Rapports & Analytics</h2></section>
-        <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau des Pays & Centres</h2></section>
-        <section id="sec-notifications" class="hidden space-y-6"><h2 class="text-2xl font-black">Notifications System</h2></section>
-        <section id="sec-profile" class="hidden space-y-6"><h2 class="text-2xl font-black">Mon Profil Agent</h2></section>
-        <section id="sec-settings" class="hidden space-y-6"><h2 class="text-2xl font-black">Paramètres Général</h2></section>
-
-        <section id="sec-admin" class="hidden space-y-6">
-            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl">
-                <h2 class="text-2xl font-black text-green-400">Panneau d'Administration Centralisée</h2>
-                <p class="text-xs text-slate-400">Registre général de l'ensemble des bénéficiaires et agents.</p>
-            </div>
-            <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-900">Base des Données Enregistrées</h3>
-                <div id="admin-master-list" class="space-y-2 text-xs"></div>
-            </div>
-        </section>
+        <!-- AUTRES SECTIONS -->
+        <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto"><h2 class="text-xl font-bold">Recherche par Matricule</h2><input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3 rounded-xl"><button onclick="executeIdSearch()" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Chercher</button><div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border"></div></section>
+        <section id="sec-children" class="hidden space-y-6"><h2 class="text-2xl font-black">Liste des Enfants</h2><div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
+        <section id="sec-widows" class="hidden space-y-6"><h2 class="text-2xl font-black">Liste des Veuves</h2><div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></section>
+        <section id="sec-team" class="hidden space-y-6"><h2 class="text-2xl font-black">Registre des Agents</h2><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
+        <section id="sec-admin" class="hidden space-y-6"><h2 class="text-2xl font-black text-green-400">Administration Centrale</h2><div id="admin-master-list" class="space-y-2 text-xs bg-white p-4 rounded-2xl border"></div></section>
+        <section id="sec-partners" class="hidden"><h2 class="text-2xl font-black">Partenaires</h2></section>
+        <section id="sec-programs" class="hidden"><h2 class="text-2xl font-black">Programmes</h2></section>
+        <section id="sec-projects" class="hidden"><h2 class="text-2xl font-black">Projets</h2></section>
+        <section id="sec-activities" class="hidden"><h2 class="text-2xl font-black">Activités</h2></section>
+        <section id="sec-donations" class="hidden"><h2 class="text-2xl font-black">Donations</h2></section>
+        <section id="sec-aids" class="hidden"><h2 class="text-2xl font-black">Aides</h2></section>
+        <section id="sec-documents" class="hidden"><h2 class="text-2xl font-black">Documents</h2></section>
+        <section id="sec-reports" class="hidden"><h2 class="text-2xl font-black">Rapports</h2></section>
+        <section id="sec-countries" class="hidden"><h2 class="text-2xl font-black">Pays</h2></section>
+        <section id="sec-notifications" class="hidden"><h2 class="text-2xl font-black">Notifications</h2></section>
+        <section id="sec-profile" class="hidden"><h2 class="text-2xl font-black">Profil</h2></section>
+        <section id="sec-settings" class="hidden"><h2 class="text-2xl font-black">Paramètres</h2></section>
 
     </main>
 
-    <!-- FORMULAIRES DE CRÉATION -->
+    <!-- FORMULAIRES MODAUX -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-slate-900">Enregistrer un Enfant</h3>
-                <button onclick="closeForm('child')" class="text-slate-400 font-bold">✕</button>
-            </div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold">Nouvel Enfant</h3><button onclick="closeForm('child')">✕</button></div>
             <form onsubmit="saveChildForm(event)" class="space-y-3 text-xs">
-                <div><label class="font-bold">Prénom</label><input type="text" id="c-firstname" required class="w-full p-2.5 border rounded-xl"></div>
-                <div><label class="font-bold">Nom</label><input type="text" id="c-lastname" required class="w-full p-2.5 border rounded-xl"></div>
-                <div><label class="font-bold">Âge</label><input type="number" id="c-age" required class="w-full p-2.5 border rounded-xl"></div>
-                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl text-sm">Générer le Matricule (BKDD-E)</button>
+                <input type="text" id="c-firstname" placeholder="Prénom" required class="w-full p-2.5 border rounded-xl">
+                <input type="text" id="c-lastname" placeholder="Nom" required class="w-full p-2.5 border rounded-xl">
+                <input type="number" id="c-age" placeholder="Âge" required class="w-full p-2.5 border rounded-xl">
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl">Enregistrer (BKDD-E)</button>
             </form>
         </div>
     </div>
 
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-slate-900">Enregistrer une Veuve</h3>
-                <button onclick="closeForm('widow')" class="text-slate-400 font-bold">✕</button>
-            </div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold">Nouvelle Veuve</h3><button onclick="closeForm('widow')">✕</button></div>
             <form onsubmit="saveWidowForm(event)" class="space-y-3 text-xs">
-                <div><label class="font-bold">Prénom</label><input type="text" id="w-firstname" required class="w-full p-2.5 border rounded-xl"></div>
-                <div><label class="font-bold">Nom</label><input type="text" id="w-lastname" required class="w-full p-2.5 border rounded-xl"></div>
-                <div><label class="font-bold">Projet d'autonomie</label><input type="text" id="w-project" required class="w-full p-2.5 border rounded-xl"></div>
-                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm">Générer le Matricule (BKDD-V)</button>
+                <input type="text" id="w-firstname" placeholder="Prénom" required class="w-full p-2.5 border rounded-xl">
+                <input type="text" id="w-lastname" placeholder="Nom" required class="w-full p-2.5 border rounded-xl">
+                <input type="text" id="w-project" placeholder="Projet d'autonomie" required class="w-full p-2.5 border rounded-xl">
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl">Enregistrer (BKDD-V)</button>
             </form>
         </div>
     </div>
 
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-slate-900">Enregistrer un Agent</h3>
-                <button onclick="closeForm('agent')" class="text-slate-400 font-bold">✕</button>
-            </div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold">Nouvel Agent</h3><button onclick="closeForm('agent')">✕</button></div>
             <form onsubmit="saveAgentForm(event)" class="space-y-3 text-xs">
-                <div><label class="font-bold">Nom de l'Agent</label><input type="text" id="a-fullname" required class="w-full p-2.5 border rounded-xl"></div>
-                <div><label class="font-bold">Fonction</label><input type="text" id="a-role" required class="w-full p-2.5 border rounded-xl"></div>
-                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl text-sm">Générer le Matricule Agent (BKDD-A)</button>
+                <input type="text" id="a-fullname" placeholder="Nom complet" required class="w-full p-2.5 border rounded-xl">
+                <input type="text" id="a-role" placeholder="Fonction / Rôle" required class="w-full p-2.5 border rounded-xl">
+                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl">Enregistrer (BKDD-A)</button>
             </form>
         </div>
     </div>
 
-    <!-- LOGIQUE JAVASCRIPT ET FIREBASE -->
+    <div id="modal-form-sponsorship" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold">Nouveau Parrainage</h3><button onclick="closeForm('sponsorship')">✕</button></div>
+            <form onsubmit="saveSponsorshipForm(event)" class="space-y-3 text-xs">
+                <input type="text" id="s-sponsor" placeholder="Nom du Parrain / Donateur" required class="w-full p-2.5 border rounded-xl">
+                <input type="text" id="s-beneficiary" placeholder="Matricule ou Nom du Bénéficiaire (ex: BKDD-E01)" required class="w-full p-2.5 border rounded-xl">
+                <button type="submit" class="w-full bg-pink-600 text-white font-bold py-3 rounded-xl">Valider le Parrainage</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyATlu2mUJmPlmkJkVow1ap35RSl6zt30nY",
@@ -258,30 +216,21 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
-            if (sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-            } else {
-                sidebar.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-            }
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
         }
 
         function switchTab(tab) {
-            const tabs = ['home', 'search-id', 'children', 'widows', 'partners', 'team', 'programs', 'projects', 'activities', 'donations', 'aids', 'documents', 'reports', 'countries', 'notifications', 'profile', 'settings', 'admin'];
-            tabs.forEach(t => {
-                const el = document.getElementById(`sec-${t}`);
-                if (el) el.classList.add('hidden');
-            });
+            const tabs = ['home', 'search-id', 'children', 'widows', 'sponsorship', 'partners', 'team', 'programs', 'projects', 'activities', 'donations', 'aids', 'documents', 'reports', 'countries', 'notifications', 'profile', 'settings', 'admin'];
+            tabs.forEach(t => document.getElementById(`sec-${t}`)?.classList.add('hidden'));
             document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
-            
-            // Fermeture automatique du tiroir
             document.getElementById('sidebar').classList.add('-translate-x-full');
             document.getElementById('sidebar-overlay').classList.add('hidden');
 
             if (tab === 'children') loadCollection('children', 'children-grid-container');
             if (tab === 'widows') loadCollection('widows', 'widows-grid-container');
             if (tab === 'team') loadCollection('agents', 'team-grid-container');
+            if (tab === 'sponsorship') loadCollection('sponsorships', 'sponsorship-grid-container');
             if (tab === 'admin') loadAdminMasterList();
 
             if (window.lucide) lucide.createIcons();
@@ -290,99 +239,65 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
 
-        async function generateNextMatricule(collectionName, prefix) {
-            const snapshot = await db.collection(collectionName).get();
-            const count = snapshot.size + 1;
-            const formattedNumber = count < 10 ? `0${count}` : `${count}`;
-            return `BKDD-${prefix}${formattedNumber}`;
+        async function generateNextMatricule(col, prefix) {
+            const snap = await db.collection(col).get();
+            const count = snap.size + 1;
+            return `BKDD-${prefix}${count < 10 ? '0' + count : count}`;
         }
 
         async function saveChildForm(e) {
             e.preventDefault();
             const matricule = await generateNextMatricule('children', 'E');
-            try {
-                await db.collection("children").add({
-                    matricule: matricule,
-                    firstName: document.getElementById('c-firstname').value,
-                    lastName: document.getElementById('c-lastname').value,
-                    age: parseInt(document.getElementById('c-age').value),
-                    center: "Bukavu",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Dossier Enfant enregistré !\nMatricule : ${matricule}`);
-                closeForm('child');
-                refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
+            await db.collection("children").add({
+                matricule, firstName: document.getElementById('c-firstname').value, lastName: document.getElementById('c-lastname').value, age: parseInt(document.getElementById('c-age').value), center: "Bukavu", createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            alert(`Enfant enregistré ! Matricule : ${matricule}`);
+            closeForm('child');
+            refreshCounters();
         }
 
         async function saveWidowForm(e) {
             e.preventDefault();
             const matricule = await generateNextMatricule('widows', 'V');
-            try {
-                await db.collection("widows").add({
-                    matricule: matricule,
-                    firstName: document.getElementById('w-firstname').value,
-                    lastName: document.getElementById('w-lastname').value,
-                    projectType: document.getElementById('w-project').value,
-                    center: "Bukavu",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Dossier Veuve enregistré !\nMatricule : ${matricule}`);
-                closeForm('widow');
-                refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
+            await db.collection("widows").add({
+                matricule, firstName: document.getElementById('w-firstname').value, lastName: document.getElementById('w-lastname').value, projectType: document.getElementById('w-project').value, center: "Bukavu", createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            alert(`Veuve enregistrée ! Matricule : ${matricule}`);
+            closeForm('widow');
+            refreshCounters();
         }
 
         async function saveAgentForm(e) {
             e.preventDefault();
             const matricule = await generateNextMatricule('agents', 'A');
-            try {
-                await db.collection("agents").add({
-                    matricule: matricule,
-                    fullName: document.getElementById('a-fullname').value,
-                    role: document.getElementById('a-role').value,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Agent Enregistré !\nMatricule : ${matricule}`);
-                closeForm('agent');
-                refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
+            await db.collection("agents").add({
+                matricule, fullName: document.getElementById('a-fullname').value, role: document.getElementById('a-role').value, createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            alert(`Agent enregistré ! Matricule : ${matricule}`);
+            closeForm('agent');
+            refreshCounters();
+        }
+
+        async function saveSponsorshipForm(e) {
+            e.preventDefault();
+            await db.collection("sponsorships").add({
+                sponsor: document.getElementById('s-sponsor').value, beneficiary: document.getElementById('s-beneficiary').value, createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            alert("Parrainage enregistré avec succès !");
+            closeForm('sponsorship');
+            refreshCounters();
         }
 
         async function refreshCounters() {
-            const cSnap = await db.collection("children").get();
-            const wSnap = await db.collection("widows").get();
-            const aSnap = await db.collection("agents").get();
+            const c = await db.collection("children").get();
+            const w = await db.collection("widows").get();
+            const a = await db.collection("agents").get();
+            const s = await db.collection("sponsorships").get();
 
-            document.getElementById('stat-children-count').innerText = cSnap.size;
-            document.getElementById('stat-widows-count').innerText = wSnap.size;
-            document.getElementById('stat-agents-count').innerText = aSnap.size;
-        }
-
-        async function loadAdminMasterList() {
-            const container = document.getElementById('admin-master-list');
-            container.innerHTML = '<p class="text-slate-400">Chargement de la base...</p>';
-            let html = '';
-
-            const cSnap = await db.collection("children").get();
-            cSnap.forEach(doc => {
-                const d = doc.data();
-                html += `<div class="p-3 bg-slate-50 border rounded-xl flex justify-between"><span>👧 <strong>${d.matricule || doc.id}</strong> — ${d.firstName} ${d.lastName}</span><span class="text-green-600 font-bold">ENFANT</span></div>`;
-            });
-
-            const wSnap = await db.collection("widows").get();
-            wSnap.forEach(doc => {
-                const d = doc.data();
-                html += `<div class="p-3 bg-emerald-50 border rounded-xl flex justify-between"><span>👩 <strong>${d.matricule || doc.id}</strong> — ${d.firstName} ${d.lastName}</span><span class="text-emerald-600 font-bold">VEUVE</span></div>`;
-            });
-
-            const aSnap = await db.collection("agents").get();
-            aSnap.forEach(doc => {
-                const d = doc.data();
-                html += `<div class="p-3 bg-purple-50 border rounded-xl flex justify-between"><span>🛡️ <strong>${d.matricule || doc.id}</strong> — ${d.fullName} (${d.role})</span><span class="text-purple-600 font-bold">AGENT</span></div>`;
-            });
-
-            container.innerHTML = html || '<p class="text-slate-500">Aucun dossier dans Firestore.</p>';
+            document.getElementById('stat-children-count').innerText = c.size;
+            document.getElementById('stat-widows-count').innerText = w.size;
+            document.getElementById('stat-agents-count').innerText = a.size;
+            document.getElementById('stat-sponsorship-count').innerText = s.size;
         }
 
         async function loadCollection(col, containerId) {
@@ -392,11 +307,27 @@
             snap.forEach(doc => {
                 const d = doc.data();
                 container.innerHTML += `
-                    <div class="bg-white p-4 rounded-2xl border shadow-sm space-y-2">
-                        <span class="font-mono font-bold bg-slate-900 text-green-400 text-xs px-2 py-1 rounded">${d.matricule || doc.id}</span>
-                        <h3 class="font-bold text-slate-900">${d.firstName || d.fullName || ''} ${d.lastName || ''}</h3>
+                    <div class="bg-white p-4 rounded-2xl border shadow-sm space-y-1 text-xs">
+                        <span class="font-mono font-bold bg-slate-900 text-green-400 px-2 py-0.5 rounded">${d.matricule || 'PARRAINAGE'}</span>
+                        <h3 class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || d.sponsor}</h3>
+                        <p class="text-slate-500">${d.role || d.projectType || ('Parraine : ' + d.beneficiary)}</p>
                     </div>`;
             });
+        }
+
+        async function loadAdminMasterList() {
+            const container = document.getElementById('admin-master-list');
+            container.innerHTML = 'Chargement...';
+            let html = '';
+            const cols = ['children', 'widows', 'agents', 'sponsorships'];
+            for (let col of cols) {
+                const snap = await db.collection(col).get();
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    html += `<div class="p-2 border rounded flex justify-between"><span><strong>${d.matricule || 'SPONSOR'}</strong> — ${d.firstName || d.fullName || d.sponsor}</span><span class="uppercase text-[10px] font-bold">${col}</span></div>`;
+                });
+            }
+            container.innerHTML = html || 'Aucune donnée.';
         }
 
         window.onload = () => {
