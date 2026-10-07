@@ -156,11 +156,15 @@
 
     </main>
 
-    <!-- 1. FORMULAIRE ENFANT TRÈS COMPLET -->
+    <!-- 1. FORMULAIRE ENFANT (AVEC PHOTO) -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Dossier Complet Enfant (BKDD-E)</h3><button onclick="closeForm('child')">✕</button></div>
             <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs">
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-green-700 uppercase">0. Photo de l'Enfant</h4>
+                    <input type="file" id="c-photo" accept="image/*" class="w-full p-2 border rounded-lg bg-white">
+                </div>
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-green-700 uppercase">1. Identification</h4>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -198,11 +202,15 @@
         </div>
     </div>
 
-    <!-- 2. FORMULAIRE VEUVE TRÈS COMPLET -->
+    <!-- 2. FORMULAIRE VEUVE (AVEC PHOTO) -->
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Dossier Complet Veuve (BKDD-V)</h3><button onclick="closeForm('widow')">✕</button></div>
             <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs">
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-emerald-700 uppercase">0. Photo de la Veuve / Famille</h4>
+                    <input type="file" id="w-photo" accept="image/*" class="w-full p-2 border rounded-lg bg-white">
+                </div>
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-emerald-700 uppercase">1. Identification Personnelle</h4>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -230,11 +238,15 @@
         </div>
     </div>
 
-    <!-- 3. FORMULAIRE AGENT TRÈS COMPLET -->
+    <!-- 3. FORMULAIRE AGENT (AVEC PHOTO) -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Enregistrer Agent (BKDD-A)</h3><button onclick="closeForm('agent')">✕</button></div>
             <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs">
+                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
+                    <h4 class="font-bold text-purple-700 uppercase">0. Photo de l'Agent</h4>
+                    <input type="file" id="a-photo" accept="image/*" class="w-full p-2 border rounded-lg bg-white">
+                </div>
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-purple-700 uppercase">1. Identification Professionnelle</h4>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -351,7 +363,7 @@
 
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
 
         async function handleAuthSubmit(e) {
             e.preventDefault();
@@ -365,6 +377,17 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
+        // Convertit l'image sélectionnée en Base64 pour le stockage direct dans Firestore
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                if (!file) { resolve(''); return; }
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
         async function generateNextMatricule(col, prefix) {
             const snap = await db.collection(col).get();
             const count = snap.size + 1;
@@ -374,9 +397,13 @@
         async function saveChildForm(e) {
             e.preventDefault();
             if (!currentUser) { alert("Non autorisé."); return; }
+            const photoFile = document.getElementById('c-photo').files[0];
+            const photoBase64 = await getBase64(photoFile);
             const matricule = await generateNextMatricule('children', 'E');
+            
             await db.collection("children").add({
                 matricule,
+                photo: photoBase64,
                 famId: document.getElementById('c-famid').value,
                 firstName: document.getElementById('c-firstname').value,
                 lastName: document.getElementById('c-lastname').value,
@@ -405,9 +432,13 @@
         async function saveWidowForm(e) {
             e.preventDefault();
             if (!currentUser) { alert("Non autorisé."); return; }
+            const photoFile = document.getElementById('w-photo').files[0];
+            const photoBase64 = await getBase64(photoFile);
             const matricule = await generateNextMatricule('widows', 'V');
+            
             await db.collection("widows").add({
                 matricule,
+                photo: photoBase64,
                 famId: document.getElementById('w-famid').value,
                 firstName: document.getElementById('w-firstname').value,
                 lastName: document.getElementById('w-lastname').value,
@@ -431,9 +462,13 @@
         async function saveAgentForm(e) {
             e.preventDefault();
             if (!currentUser) { alert("Non autorisé."); return; }
+            const photoFile = document.getElementById('a-photo').files[0];
+            const photoBase64 = await getBase64(photoFile);
             const matricule = await generateNextMatricule('agents', 'A');
+            
             await db.collection("agents").add({
                 matricule,
+                photo: photoBase64,
                 fullName: document.getElementById('a-fullname').value,
                 role: document.getElementById('a-role').value,
                 department: document.getElementById('a-dept').value,
@@ -468,7 +503,7 @@
             }
         }
 
-        // --- RECHERCHE PAR ID AVEC TOUTES LES INFORMATIONS ET PHOTO ---
+        // --- RECHERCHE PAR ID AVEC AFFICHAGE DE LA PHOTO ET TOUTES LES INFOS ---
         async function executeIdSearch() {
             const queryVal = document.getElementById('input-search-id').value.trim().toUpperCase();
             const resultCard = document.getElementById('search-result-card');
@@ -485,10 +520,14 @@
                 }
                 if (foundData) {
                     let name = foundData.firstName ? `${foundData.firstName} ${foundData.postName || ''} ${foundData.lastName || ''}` : (foundData.fullName || 'Inconnu');
+                    let photoHtml = foundData.photo 
+                        ? `<img src="${foundData.photo}" class="w-full h-full object-cover">` 
+                        : `<span class="text-2xl">👤</span>`;
+
                     resultCard.innerHTML = `
                         <div class="flex items-start gap-4 border-b pb-4">
-                            <div class="w-20 h-20 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400 font-bold overflow-hidden border">
-                                <span class="text-2xl">👤</span>
+                            <div class="w-20 h-20 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400 font-bold overflow-hidden border shadow-inner flex-shrink-0">
+                                ${photoHtml}
                             </div>
                             <div class="space-y-1">
                                 <span class="font-mono font-bold bg-slate-900 text-green-400 px-2.5 py-1 rounded-md text-xs">${foundData.matricule}</span>
