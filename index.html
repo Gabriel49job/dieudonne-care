@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIEUDONNÉ CARE — Système Panafricain de Gestion Humanitaire</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Firebase SDKs (v9 Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <!-- QRCode.js & HTML5-QRCode -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- BARRE SUPÉRIEURE FIXE -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-40 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleSidebar()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-lg text-white shadow-md">DC</div>
+                    <span class="text-lg font-black tracking-wider text-white">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <div id="user-info-badge" class="hidden items-center gap-2 bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">
+                    <span id="user-display" class="text-xs font-mono text-green-400 font-bold">BKDD-A01</span>
+                </div>
+                <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                    Connexion Agent
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU LATÉRAL COMPLET AVEC TOUS LES BOUTONS -->
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+            <span class="font-black text-white text-lg tracking-wider">MENU PRINCIPAL</span>
+            <button onclick="toggleSidebar()" class="text-slate-400 p-1 font-bold text-xl hover:text-white">✕</button>
+        </div>
+        
+        <!-- SECTION 1 : NAVIGATION PRINCIPALE -->
+        <div class="space-y-1 text-xs">
+            <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Navigation Principale</p>
+            <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 font-semibold"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> 🏠 Accueil</button>
+            <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 font-semibold"><i data-lucide="search" class="w-4 h-4"></i> 🔎 Recherche ID / Scan</button>
+            <button onclick="switchTab('children')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> 👦 Enfants</button>
+            <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> 👩 Veuves</button>
+            <button onclick="switchTab('partners')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="handshake" class="w-4 h-4 text-amber-400"></i> 🤝 Partenaires</button>
+            <button onclick="switchTab('team')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> 👥 Équipe / Agents</button>
+        </div>
+
+        <!-- SECTION 2 : PROGRAMMES & PROJETS -->
+        <div class="space-y-1 text-xs">
+            <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Programmes & Activités</p>
+            <button onclick="switchTab('programs')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="heart" class="w-4 h-4 text-red-400"></i> ❤️ Programmes</button>
+            <button onclick="switchTab('projects')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="folder-kanban" class="w-4 h-4 text-cyan-400"></i> 📁 Projets</button>
+            <button onclick="switchTab('activities')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="calendar" class="w-4 h-4 text-yellow-400"></i> 📅 Activités</button>
+            <button onclick="switchTab('donations')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="coins" class="w-4 h-4 text-green-400"></i> 💰 Donations</button>
+            <button onclick="switchTab('aids')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="gift" class="w-4 h-4 text-pink-400"></i> 💝 Aides Distribuées</button>
+        </div>
+
+        <!-- SECTION 3 : GESTION & RAPPORTS -->
+        <div class="space-y-1 text-xs">
+            <p class="text-[10px] uppercase font-bold text-slate-500 px-3 mb-2 tracking-widest">Gestion & Suivi</p>
+            <button onclick="switchTab('documents')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i> 📄 Documents</button>
+            <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> 📊 Rapports</button>
+            <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> 🌍 Pays & Centres</button>
+            <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="bell" class="w-4 h-4 text-amber-400"></i> 🔔 Notifications</button>
+        </div>
+
+        <!-- SECTION 4 : COMPTE & ADMINISTRATION -->
+        <div class="space-y-1 text-xs pt-4 border-t border-slate-800">
+            <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> 👤 Mon Profil</button>
+            <button onclick="switchTab('settings')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="settings" class="w-4 h-4 text-slate-300"></i> ⚙️ Paramètres</button>
+            <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2"><i data-lucide="shield" class="w-4 h-4"></i> 🔐 Administration Centralisée</button>
+        </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+        <!-- ACCUEIL AVEC BOUTONS D'ACCÈS RAPIDE -->
+        <section id="sec-home" class="space-y-6">
+            <div class="bg-slate-900 text-white rounded-3xl p-5 md:p-8 shadow-xl space-y-4 border border-slate-800">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold bg-green-500/20 text-green-300 px-2.5 py-1 rounded-full border border-green-500/30 uppercase">CENTRE DIEUDONNÉ BUKAVU</span>
+                        <h1 class="text-2xl md:text-3xl font-black mt-2">Actions Rapides d'Enregistrement</h1>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
+                    <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
+                        <i data-lucide="user-plus" class="w-6 h-6"></i> + NOUVEAU DOSSIER ENFANT
+                    </button>
+                    <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
+                        <i data-lucide="user-plus" class="w-6 h-6"></i> + NOUVEAU DOSSIER VEUVE
+                    </button>
+                    <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
+                        <i data-lucide="shield-plus" class="w-6 h-6"></i> + ENREGISTRER UN AGENT
+                    </button>
+                    <button onclick="switchTab('search-id')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex flex-col items-center justify-center gap-2 shadow-lg transition">
+                        <i data-lucide="search" class="w-6 h-6"></i> RECHERCHE PAR MATRICULE
+                    </button>
+                </div>
+            </div>
+
+            <!-- STATISTIQUES ACCUEIL -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Enfants Enregistrés</p>
+                    <p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p>
+                    <p class="text-[10px] text-green-600 font-bold">Matricule ex: BKDD-E01</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Veuves Enregistrées</p>
+                    <p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p>
+                    <p class="text-[10px] text-emerald-600 font-bold">Matricule ex: BKDD-V01</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Agents Actifs</p>
+                    <p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p>
+                    <p class="text-[10px] text-purple-600 font-bold">Matricule ex: BKDD-A01</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Centre Général</p>
+                    <p class="text-2xl font-black text-slate-900 mt-1">BUKAVU</p>
+                    <p class="text-[10px] text-slate-400 font-bold">RDC / Panafricain</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTIONS MODULES DE NAVIGATION -->
+        <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
+            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl space-y-4">
+                <h2 class="text-xl font-bold">Recherche par Matricule (ex: BKDD-E01, BKDD-A01)</h2>
+                <div class="flex gap-2">
+                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3 rounded-xl border border-slate-700 font-mono uppercase">
+                    <button onclick="executeIdSearch()" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Chercher</button>
+                </div>
+            </div>
+            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg"></div>
+        </section>
+
+        <section id="sec-children" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Registre Général des Enfants</h2>
+            <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </section>
+
+        <section id="sec-widows" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Registre des Veuves</h2>
+            <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+
+        <section id="sec-partners" class="hidden space-y-6"><h2 class="text-2xl font-black">Partenaires Institutionnels</h2><div id="partners-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
+        <section id="sec-team" class="hidden space-y-6"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
+        <section id="sec-programs" class="hidden space-y-6"><h2 class="text-2xl font-black">Programmes DIEUDONNÉ CARE</h2></section>
+        <section id="sec-projects" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestion des Projets</h2></section>
+        <section id="sec-activities" class="hidden space-y-6"><h2 class="text-2xl font-black">Calendrier d'Activités</h2></section>
+        <section id="sec-donations" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestion des Donations</h2></section>
+        <section id="sec-aids" class="hidden space-y-6"><h2 class="text-2xl font-black">Aides Distribuées</h2></section>
+        <section id="sec-documents" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestionnaire de Documents</h2></section>
+        <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Rapports & Analytics</h2></section>
+        <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau des Pays & Centres</h2></section>
+        <section id="sec-notifications" class="hidden space-y-6"><h2 class="text-2xl font-black">Notifications System</h2></section>
+        <section id="sec-profile" class="hidden space-y-6"><h2 class="text-2xl font-black">Mon Profil Agent</h2></section>
+        <section id="sec-settings" class="hidden space-y-6"><h2 class="text-2xl font-black">Paramètres Général</h2></section>
+
+        <section id="sec-admin" class="hidden space-y-6">
+            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl">
+                <h2 class="text-2xl font-black text-green-400">Panneau d'Administration Centralisée</h2>
+                <p class="text-xs text-slate-400">Registre général de l'ensemble des bénéficiaires et agents.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900">Base des Données Enregistrées</h3>
+                <div id="admin-master-list" class="space-y-2 text-xs"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FORMULAIRES DE CRÉATION -->
+    <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900">Enregistrer un Enfant</h3>
+                <button onclick="closeForm('child')" class="text-slate-400 font-bold">✕</button>
+            </div>
+            <form onsubmit="saveChildForm(event)" class="space-y-3 text-xs">
+                <div><label class="font-bold">Prénom</label><input type="text" id="c-firstname" required class="w-full p-2.5 border rounded-xl"></div>
+                <div><label class="font-bold">Nom</label><input type="text" id="c-lastname" required class="w-full p-2.5 border rounded-xl"></div>
+                <div><label class="font-bold">Âge</label><input type="number" id="c-age" required class="w-full p-2.5 border rounded-xl"></div>
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl text-sm">Générer le Matricule (BKDD-E)</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900">Enregistrer une Veuve</h3>
+                <button onclick="closeForm('widow')" class="text-slate-400 font-bold">✕</button>
+            </div>
+            <form onsubmit="saveWidowForm(event)" class="space-y-3 text-xs">
+                <div><label class="font-bold">Prénom</label><input type="text" id="w-firstname" required class="w-full p-2.5 border rounded-xl"></div>
+                <div><label class="font-bold">Nom</label><input type="text" id="w-lastname" required class="w-full p-2.5 border rounded-xl"></div>
+                <div><label class="font-bold">Projet d'autonomie</label><input type="text" id="w-project" required class="w-full p-2.5 border rounded-xl"></div>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl text-sm">Générer le Matricule (BKDD-V)</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-slate-900">Enregistrer un Agent</h3>
+                <button onclick="closeForm('agent')" class="text-slate-400 font-bold">✕</button>
+            </div>
+            <form onsubmit="saveAgentForm(event)" class="space-y-3 text-xs">
+                <div><label class="font-bold">Nom de l'Agent</label><input type="text" id="a-fullname" required class="w-full p-2.5 border rounded-xl"></div>
+                <div><label class="font-bold">Fonction</label><input type="text" id="a-role" required class="w-full p-2.5 border rounded-xl"></div>
+                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl text-sm">Générer le Matricule Agent (BKDD-A)</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- LOGIQUE JAVASCRIPT ET FIREBASE -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyATlu2mUJmPlmkJkVow1ap35RSl6zt30nY",
+            authDomain: "dieudonne-f074d.firebaseapp.com",
+            projectId: "dieudonne-f074d",
+            storageBucket: "dieudonne-f074d.firebasestorage.app",
+            messagingSenderId: "674305544855",
+            appId: "1:674305544855:web:a305811cac2f99b293cfd2",
+            measurementId: "G-9WMXZTYWE8"
+        };
+
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function switchTab(tab) {
+            const tabs = ['home', 'search-id', 'children', 'widows', 'partners', 'team', 'programs', 'projects', 'activities', 'donations', 'aids', 'documents', 'reports', 'countries', 'notifications', 'profile', 'settings', 'admin'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`sec-${t}`);
+                if (el) el.classList.add('hidden');
+            });
+            document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
+            
+            // Fermeture automatique du tiroir
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.add('hidden');
+
+            if (tab === 'children') loadCollection('children', 'children-grid-container');
+            if (tab === 'widows') loadCollection('widows', 'widows-grid-container');
+            if (tab === 'team') loadCollection('agents', 'team-grid-container');
+            if (tab === 'admin') loadAdminMasterList();
+
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
+        function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
+
+        async function generateNextMatricule(collectionName, prefix) {
+            const snapshot = await db.collection(collectionName).get();
+            const count = snapshot.size + 1;
+            const formattedNumber = count < 10 ? `0${count}` : `${count}`;
+            return `BKDD-${prefix}${formattedNumber}`;
+        }
+
+        async function saveChildForm(e) {
+            e.preventDefault();
+            const matricule = await generateNextMatricule('children', 'E');
+            try {
+                await db.collection("children").add({
+                    matricule: matricule,
+                    firstName: document.getElementById('c-firstname').value,
+                    lastName: document.getElementById('c-lastname').value,
+                    age: parseInt(document.getElementById('c-age').value),
+                    center: "Bukavu",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert(`Dossier Enfant enregistré !\nMatricule : ${matricule}`);
+                closeForm('child');
+                refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        async function saveWidowForm(e) {
+            e.preventDefault();
+            const matricule = await generateNextMatricule('widows', 'V');
+            try {
+                await db.collection("widows").add({
+                    matricule: matricule,
+                    firstName: document.getElementById('w-firstname').value,
+                    lastName: document.getElementById('w-lastname').value,
+                    projectType: document.getElementById('w-project').value,
+                    center: "Bukavu",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert(`Dossier Veuve enregistré !\nMatricule : ${matricule}`);
+                closeForm('widow');
+                refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        async function saveAgentForm(e) {
+            e.preventDefault();
+            const matricule = await generateNextMatricule('agents', 'A');
+            try {
+                await db.collection("agents").add({
+                    matricule: matricule,
+                    fullName: document.getElementById('a-fullname').value,
+                    role: document.getElementById('a-role').value,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert(`Agent Enregistré !\nMatricule : ${matricule}`);
+                closeForm('agent');
+                refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        async function refreshCounters() {
+            const cSnap = await db.collection("children").get();
+            const wSnap = await db.collection("widows").get();
+            const aSnap = await db.collection("agents").get();
+
+            document.getElementById('stat-children-count').innerText = cSnap.size;
+            document.getElementById('stat-widows-count').innerText = wSnap.size;
+            document.getElementById('stat-agents-count').innerText = aSnap.size;
+        }
+
+        async function loadAdminMasterList() {
+            const container = document.getElementById('admin-master-list');
+            container.innerHTML = '<p class="text-slate-400">Chargement de la base...</p>';
+            let html = '';
+
+            const cSnap = await db.collection("children").get();
+            cSnap.forEach(doc => {
+                const d = doc.data();
+                html += `<div class="p-3 bg-slate-50 border rounded-xl flex justify-between"><span>👧 <strong>${d.matricule || doc.id}</strong> — ${d.firstName} ${d.lastName}</span><span class="text-green-600 font-bold">ENFANT</span></div>`;
+            });
+
+            const wSnap = await db.collection("widows").get();
+            wSnap.forEach(doc => {
+                const d = doc.data();
+                html += `<div class="p-3 bg-emerald-50 border rounded-xl flex justify-between"><span>👩 <strong>${d.matricule || doc.id}</strong> — ${d.firstName} ${d.lastName}</span><span class="text-emerald-600 font-bold">VEUVE</span></div>`;
+            });
+
+            const aSnap = await db.collection("agents").get();
+            aSnap.forEach(doc => {
+                const d = doc.data();
+                html += `<div class="p-3 bg-purple-50 border rounded-xl flex justify-between"><span>🛡️ <strong>${d.matricule || doc.id}</strong> — ${d.fullName} (${d.role})</span><span class="text-purple-600 font-bold">AGENT</span></div>`;
+            });
+
+            container.innerHTML = html || '<p class="text-slate-500">Aucun dossier dans Firestore.</p>';
+        }
+
+        async function loadCollection(col, containerId) {
+            const container = document.getElementById(containerId);
+            const snap = await db.collection(col).get();
+            container.innerHTML = '';
+            snap.forEach(doc => {
+                const d = doc.data();
+                container.innerHTML += `
+                    <div class="bg-white p-4 rounded-2xl border shadow-sm space-y-2">
+                        <span class="font-mono font-bold bg-slate-900 text-green-400 text-xs px-2 py-1 rounded">${d.matricule || doc.id}</span>
+                        <h3 class="font-bold text-slate-900">${d.firstName || d.fullName || ''} ${d.lastName || ''}</h3>
+                    </div>`;
+            });
+        }
+
+        window.onload = () => {
+            refreshCounters();
+            if (window.lucide) lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
