@@ -484,7 +484,7 @@
             currentLang = lang;
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
+                if (translations[lang] && translations[lang][key]) {
                     el.innerText = translations[lang][key];
                 }
             });
@@ -537,13 +537,13 @@
                     currentUser = user;
                     document.getElementById('user-display').innerText = user.email;
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
-                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-3.5 h-3.5"></i> ${currentLang === 'en' ? 'Logout' : (currentLang === 'sw' ? 'Toka' : 'Déconnexion')}`;
+                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-3.5 h-3.5"></i> Déconnexion`;
                     document.getElementById('auth-btn').onclick = () => auth.signOut();
                     updateProfileCard(user);
                 } else {
                     currentUser = null;
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
-                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-3.5 h-3.5"></i> ${currentLang === 'en' ? 'Login' : (currentLang === 'sw' ? 'Ingia' : 'Connexion')}`;
+                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-3.5 h-3.5"></i> Connexion`;
                     document.getElementById('auth-btn').onclick = openAuthModal;
                 }
             });
@@ -586,7 +586,7 @@
 
         function openForm(type) {
             if (!currentUser) {
-                alert(currentLang === 'en' ? "Security: Connected agent required." : (currentLang === 'sw' ? "Usalama: Wakala anayehitajika." : "Sécurité : Seul un agent connecté peut enregistrer un dossier."));
+                alert("Sécurité : Veuillez d'abord vous connecter via le bouton 'Connexion' en haut.");
                 openAuthModal();
                 return;
             }
@@ -605,17 +605,30 @@
                     document.getElementById('auth-password').value
                 );
                 closeAuthModal();
-                alert("OK !");
+                alert("Connexion réussie !");
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        function getBase64(file) {
-            return new Promise((resolve, reject) => {
+        // Fonction de compression des images pour éviter les blocages de mémoire et de Firestore
+        function compressImage(file) {
+            return new Promise((resolve) => {
                 if (!file) { resolve(''); return; }
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 500;
+                        const scaleSize = MAX_WIDTH / img.width;
+                        canvas.width = MAX_WIDTH;
+                        canvas.height = img.height * scaleSize;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.7));
+                    };
+                };
             });
         }
 
@@ -627,87 +640,141 @@
 
         async function saveChildForm(e) {
             e.preventDefault();
-            if (!currentUser) return;
-            const photoBase64 = await getBase64(document.getElementById('c-photo').files[0]);
-            const familyPhotoBase64 = await getBase64(document.getElementById('c-family-photo').files[0]);
-            const matricule = await generateNextMatricule('children', 'E');
-            
-            await db.collection("children").add({
-                matricule,
-                photo: photoBase64,
-                familyPhoto: familyPhotoBase64,
-                famId: document.getElementById('c-famid').value,
-                firstName: document.getElementById('c-firstname').value,
-                lastName: document.getElementById('c-lastname').value,
-                postName: document.getElementById('c-postname').value,
-                gender: document.getElementById('c-gender').value,
-                age: parseInt(document.getElementById('c-age').value),
-                country: document.getElementById('c-country').value,
-                city: document.getElementById('c-city').value,
-                center: document.getElementById('c-center').value,
-                agentEmail: currentUser.email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            alert(`OK ! ID : ${matricule}`);
-            closeForm('child');
-            refreshCounters();
+            if (!currentUser) { alert("Session expirée, veuillez vous reconnecter."); return; }
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Enregistrement...";
+            submitBtn.disabled = true;
+
+            try {
+                const photoFile = document.getElementById('c-photo').files[0];
+                const familyPhotoFile = document.getElementById('c-family-photo').files[0];
+                
+                const photoBase64 = await compressImage(photoFile);
+                const familyPhotoBase64 = await compressImage(familyPhotoFile);
+                const matricule = await generateNextMatricule('children', 'E');
+                
+                await db.collection("children").add({
+                    matricule,
+                    photo: photoBase64,
+                    familyPhoto: familyPhotoBase64,
+                    famId: document.getElementById('c-famid').value,
+                    firstName: document.getElementById('c-firstname').value,
+                    lastName: document.getElementById('c-lastname').value,
+                    postName: document.getElementById('c-postname').value,
+                    gender: document.getElementById('c-gender').value,
+                    age: parseInt(document.getElementById('c-age').value) || 0,
+                    country: document.getElementById('c-country').value,
+                    city: document.getElementById('c-city').value,
+                    center: document.getElementById('c-center').value,
+                    agentEmail: currentUser.email,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert(`Dossier enregistré avec succès ! ID : ${matricule}`);
+                closeForm('child');
+                refreshCounters();
+                e.target.reset();
+            } catch (err) {
+                alert("Erreur lors de l'enregistrement : " + err.message);
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
         }
 
         async function saveWidowForm(e) {
             e.preventDefault();
-            if (!currentUser) return;
-            const photoBase64 = await getBase64(document.getElementById('w-photo').files[0]);
-            const familyPhotoBase64 = await getBase64(document.getElementById('w-family-photo').files[0]);
-            const matricule = await generateNextMatricule('widows', 'V');
-            
-            await db.collection("widows").add({
-                matricule,
-                photo: photoBase64,
-                familyPhoto: familyPhotoBase64,
-                famId: document.getElementById('w-famid').value,
-                firstName: document.getElementById('w-firstname').value,
-                lastName: document.getElementById('w-lastname').value,
-                postName: document.getElementById('w-postname').value,
-                age: parseInt(document.getElementById('w-age').value) || 0,
-                phone: document.getElementById('w-phone').value,
-                country: document.getElementById('w-country').value,
-                city: document.getElementById('w-city').value,
-                agentEmail: currentUser.email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            alert(`OK ! ID : ${matricule}`);
-            closeForm('widow');
-            refreshCounters();
+            if (!currentUser) { alert("Session expirée, veuillez vous reconnecter."); return; }
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Enregistrement...";
+            submitBtn.disabled = true;
+
+            try {
+                const photoFile = document.getElementById('w-photo').files[0];
+                const familyPhotoFile = document.getElementById('w-family-photo').files[0];
+
+                const photoBase64 = await compressImage(photoFile);
+                const familyPhotoBase64 = await compressImage(familyPhotoFile);
+                const matricule = await generateNextMatricule('widows', 'V');
+                
+                await db.collection("widows").add({
+                    matricule,
+                    photo: photoBase64,
+                    familyPhoto: familyPhotoBase64,
+                    famId: document.getElementById('w-famid').value,
+                    firstName: document.getElementById('w-firstname').value,
+                    lastName: document.getElementById('w-lastname').value,
+                    postName: document.getElementById('w-postname').value,
+                    age: parseInt(document.getElementById('w-age').value) || 0,
+                    phone: document.getElementById('w-phone').value,
+                    country: document.getElementById('w-country').value,
+                    city: document.getElementById('w-city').value,
+                    agentEmail: currentUser.email,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert(`Dossier enregistré avec succès ! ID : ${matricule}`);
+                closeForm('widow');
+                refreshCounters();
+                e.target.reset();
+            } catch (err) {
+                alert("Erreur lors de l'enregistrement : " + err.message);
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
         }
 
         async function saveAgentForm(e) {
             e.preventDefault();
-            if (!currentUser) return;
-            const photoBase64 = await getBase64(document.getElementById('a-photo').files[0]);
-            const familyPhotoBase64 = await getBase64(document.getElementById('a-family-photo').files[0]);
-            const matricule = await generateNextMatricule('agents', 'A');
-            
-            await db.collection("agents").add({
-                matricule,
-                photo: photoBase64,
-                familyPhoto: familyPhotoBase64,
-                fullName: document.getElementById('a-fullname').value,
-                role: document.getElementById('a-role').value,
-                department: document.getElementById('a-dept').value,
-                phone: document.getElementById('a-phone').value,
-                country: document.getElementById('a-country').value,
-                city: document.getElementById('a-city').value,
-                agentEmail: currentUser.email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            alert(`OK ! ID : ${matricule}`);
-            closeForm('agent');
-            refreshCounters();
+            if (!currentUser) { alert("Session expirée, veuillez vous reconnecter."); return; }
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Enregistrement...";
+            submitBtn.disabled = true;
+
+            try {
+                const photoFile = document.getElementById('a-photo').files[0];
+                const familyPhotoFile = document.getElementById('a-family-photo').files[0];
+
+                const photoBase64 = await compressImage(photoFile);
+                const familyPhotoBase64 = await compressImage(familyPhotoFile);
+                const matricule = await generateNextMatricule('agents', 'A');
+                
+                await db.collection("agents").add({
+                    matricule,
+                    photo: photoBase64,
+                    familyPhoto: familyPhotoBase64,
+                    fullName: document.getElementById('a-fullname').value,
+                    role: document.getElementById('a-role').value,
+                    department: document.getElementById('a-dept').value,
+                    phone: document.getElementById('a-phone').value,
+                    country: document.getElementById('a-country').value,
+                    city: document.getElementById('a-city').value,
+                    agentEmail: currentUser.email,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert(`Dossier enregistré avec succès ! ID : ${matricule}`);
+                closeForm('agent');
+                refreshCounters();
+                e.target.reset();
+            } catch (err) {
+                alert("Erreur lors de l'enregistrement : " + err.message);
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
         }
 
         async function deleteDocument(collectionName, docId) {
             if (!currentUser) return;
-            if (confirm("Supprimer ?")) {
+            if (confirm("Voulez-vous supprimer ce dossier ?")) {
                 await db.collection(collectionName).doc(docId).delete();
                 loadAdminMasterList();
                 refreshCounters();
@@ -719,7 +786,7 @@
             const resultCard = document.getElementById('search-result-card');
             if (!queryVal) return;
             resultCard.classList.remove('hidden');
-            resultCard.innerHTML = "...";
+            resultCard.innerHTML = "Recherche...";
 
             const collections = ['children', 'widows', 'agents'];
             let foundData = null, foundType = '';
@@ -750,17 +817,21 @@
                     </div>
                 `;
             } else {
-                resultCard.innerHTML = `<p class="text-xs text-red-600 font-bold">Not found / Introuvable</p>`;
+                resultCard.innerHTML = `<p class="text-xs text-red-600 font-bold">Introuvable / Not found</p>`;
             }
         }
 
         async function refreshCounters() {
-            const c = await db.collection("children").get();
-            const w = await db.collection("widows").get();
-            const a = await db.collection("agents").get();
-            document.getElementById('stat-children-count').innerText = c.size;
-            document.getElementById('stat-widows-count').innerText = w.size;
-            document.getElementById('stat-agents-count').innerText = a.size;
+            try {
+                const c = await db.collection("children").get();
+                const w = await db.collection("widows").get();
+                const a = await db.collection("agents").get();
+                document.getElementById('stat-children-count').innerText = c.size;
+                document.getElementById('stat-widows-count').innerText = w.size;
+                document.getElementById('stat-agents-count').innerText = a.size;
+            } catch (e) {
+                console.error("Erreur compteurs:", e);
+            }
         }
 
         async function loadCollection(col, containerId) {
@@ -775,7 +846,7 @@
 
         async function loadAdminMasterList() {
             const container = document.getElementById('admin-master-list');
-            container.innerHTML = '...';
+            container.innerHTML = 'Chargement...';
             let html = '';
             for (let col of ['children', 'widows', 'agents']) {
                 const snap = await db.collection(col).get();
@@ -788,7 +859,7 @@
         }
 
         function updateProfileCard(user) {
-            document.getElementById('profile-card').innerHTML = `<p class="text-xs font-mono">${user.email}</p>`;
+            document.getElementById('profile-card').innerHTML = `<p class="text-xs font-mono">Connecté : ${user.email}</p>`;
         }
 
         window.onload = () => {
