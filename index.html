@@ -12,76 +12,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-24">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-24">
 
-    <!-- BARRE SUPÉRIEURE -->
-    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30 border-b border-slate-800">
+    <!-- BARRE SUPÉRIEURE PROFESSIONNELLE -->
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-30 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <button onclick="toggleSidebar()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 focus:outline-none">
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleSidebar()" class="p-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 transition focus:outline-none">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
-                <div class="flex items-center space-x-1.5 cursor-pointer" onclick="switchTab('home')">
-                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-sm text-white shadow-md">DC</div>
-                    <span class="text-sm font-black tracking-wider text-white">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-sm text-white shadow-md">DC</div>
+                    <div>
+                        <span class="text-sm font-black tracking-wider text-white block leading-tight">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
+                        <span class="text-[9px] text-slate-400 tracking-widest uppercase block">Panafricain</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-3">
                 <!-- SÉLECTEUR DE LANGUE -->
-                <select id="lang-selector" onchange="changeLanguage(this.value)" class="bg-slate-800 text-green-400 font-bold text-xs px-2 py-1.5 rounded-lg border border-slate-700 focus:outline-none">
+                <select id="lang-selector" onchange="changeLanguage(this.value)" class="bg-slate-800 text-green-400 font-bold text-xs px-2.5 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
                     <option value="fr">🇫🇷 FR</option>
                     <option value="en">🇬🇧 EN</option>
                     <option value="sw">🇹🇿 SW</option>
                 </select>
 
-                <div id="user-info-badge" class="hidden items-center gap-2 bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">
+                <div id="user-info-badge" class="hidden items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
                     <span id="user-display" class="text-xs font-mono text-green-400 font-bold"></span>
                 </div>
-                <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1">
-                    <i data-lucide="log-in" class="w-3.5 h-3.5"></i> <span data-i18n="login">Connexion</span>
+                <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md cursor-pointer">
+                    <i data-lucide="log-in" class="w-4 h-4"></i> <span data-i18n="login">Connexion</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MENU LATÉRAL -->
+    <!-- MENU LATÉRAL (SIDEBAR) -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden transition-opacity"></div>
     <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-4">
-            <span class="font-black text-white text-lg tracking-wider" data-i18n="menu_title">MENU PRINCIPAL</span>
-            <button onclick="toggleSidebar()" class="text-slate-400 p-1 font-bold text-xl hover:text-white">✕</button>
+            <span class="font-black text-white text-base tracking-wider" data-i18n="menu_title">MENU PRINCIPAL</span>
+            <button onclick="toggleSidebar()" class="text-slate-400 p-1.5 font-bold text-lg hover:text-white rounded-lg bg-slate-800">✕</button>
         </div>
         
-        <div class="space-y-1 text-xs">
-            <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 font-semibold"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> <span data-i18n="nav_home">Accueil</span></button>
-            <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 font-semibold"><i data-lucide="search" class="w-4 h-4"></i> <span data-i18n="nav_search">Recherche ID / Scan</span></button>
-            <button onclick="switchTab('children')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_children">Dossiers Enfants</span></button>
-            <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_widows">Dossiers Veuves</span></button>
-            <button onclick="switchTab('team')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> <span data-i18n="nav_team">Équipe / Agents</span></button>
-            <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3 font-semibold"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> <span data-i18n="nav_notifications">Notifications</span></button>
-            <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_countries">Pays & Centres</span></button>
-            <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_reports">Statistiques</span></button>
+        <div class="space-y-1.5 text-xs font-medium">
+            <button onclick="switchTab('home')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 transition"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> <span data-i18n="nav_home">Accueil & Missions</span></button>
+            <button onclick="switchTab('search-id')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 transition"><i data-lucide="search" class="w-4 h-4"></i> <span data-i18n="nav_search">Recherche ID / Scan</span></button>
+            <button onclick="switchTab('children')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_children">Dossiers Enfants</span></button>
+            <button onclick="switchTab('widows')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_widows">Dossiers Veuves</span></button>
+            <button onclick="switchTab('team')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> <span data-i18n="nav_team">Équipe / Agents</span></button>
+            <button onclick="switchTab('notifications')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> <span data-i18n="nav_notifications">Notifications</span></button>
+            <button onclick="switchTab('countries')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_countries">Pays & Centres</span></button>
+            <button onclick="switchTab('reports')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_reports">Statistiques</span></button>
         </div>
 
-        <div class="space-y-1 text-xs pt-4 border-t border-slate-800">
-            <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 flex items-center gap-3"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> <span data-i18n="nav_profile">Mon Profil Agent</span></button>
-            <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2"><i data-lucide="shield" class="w-4 h-4"></i> <span data-i18n="nav_admin">Administration Centrale</span></button>
+        <div class="space-y-1.5 text-xs pt-4 border-t border-slate-800">
+            <button onclick="switchTab('profile')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> <span data-i18n="nav_profile">Mon Profil Agent</span></button>
+            <button onclick="switchTab('admin')" class="w-full text-left px-3.5 py-3 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2 border border-green-900/50 transition"><i data-lucide="shield" class="w-4 h-4"></i> <span data-i18n="nav_admin">Administration Centrale</span></button>
         </div>
     </aside>
 
-    <!-- BARRE DE NAVIGATION INFÉRIEURE -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-2 px-3 shadow-2xl">
-        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400">
+    <!-- BARRE DE NAVIGATION INFÉRIEURE MOBILE -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-2.5 px-3 shadow-2xl">
+        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition">
             <i data-lucide="home" class="w-5 h-5 text-green-400"></i> <span data-i18n="nav_home">Accueil</span>
         </button>
-        <button onclick="switchTab('search-id')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-amber-400">
+        <button onclick="switchTab('search-id')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-amber-400 transition">
             <i data-lucide="search" class="w-5 h-5 text-amber-400"></i> <span data-i18n="nav_search">Recherche</span>
         </button>
-        <button onclick="switchTab('notifications')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-pink-400">
+        <button onclick="switchTab('notifications')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-pink-400 transition">
             <i data-lucide="bell" class="w-5 h-5 text-pink-400"></i> <span data-i18n="nav_notifications">Alertes</span>
         </button>
-        <button onclick="goBack()" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-blue-400">
+        <button onclick="goBack()" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-blue-400 transition">
             <i data-lucide="arrow-left" class="w-5 h-5 text-blue-400"></i> <span data-i18n="back">Retour</span>
         </button>
     </nav>
@@ -89,42 +92,103 @@
     <!-- CONTENU PRINCIPAL -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
 
-        <!-- ACCUEIL -->
+        <!-- ACCUEIL & PRÉSENTATION PUBLIQUE (VISIBLE PAR TOUT LE MONDE) -->
         <section id="sec-home" class="space-y-6">
-            <div class="bg-slate-900 text-white rounded-3xl p-5 md:p-8 shadow-xl space-y-4 border border-slate-800">
-                <div>
-                    <span class="text-[10px] font-bold bg-green-500/20 text-green-300 px-2.5 py-1 rounded-full border border-green-500/30 uppercase" data-i18n="center_badge">CENTRE DIEUDONNÉ BUKAVU (RDC)</span>
-                    <h1 class="text-2xl md:text-3xl font-black mt-2" data-i18n="main_title">Plateforme Panafricaine de Suivi Social</h1>
+            <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-10 shadow-xl space-y-6 border border-slate-800 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="space-y-2 relative z-10">
+                    <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest" data-i18n="center_badge">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
+                    <h1 class="text-2xl md:text-4xl font-black mt-2 leading-tight" data-i18n="main_title">Plateforme Panafricaine de Suivi Social</h1>
+                    <p class="text-xs md:text-sm text-slate-300 max-w-2xl leading-relaxed pt-1">
+                        Système intégré de protection, d'assistance et de gestion transparente pour les orphelins, les veuves et le personnel humanitaire engagé à travers l'Afrique.
+                    </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
-                    <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
+                    <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="user-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_child">+ Dossier Enfant (BKDD-E)</span>
                     </button>
-                    <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition">
+                    <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="user-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_widow">+ Dossier Veuve (BKDD-V)</span>
                     </button>
-                    <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition">
+                    <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="shield-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_agent">+ Dossier Agent (BKDD-A)</span>
                     </button>
                 </div>
             </div>
 
+            <!-- COMPTEURS STATISTIQUES PUBLICS -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase" data-i18n="stat_children">Enfants</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
-                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase" data-i18n="stat_widows">Veuves</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
-                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase" data-i18n="stat_agents">Agents</p><p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
-                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase" data-i18n="stat_countries">Pays</p><p class="text-3xl font-black text-green-600 mt-1">54</p></div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_children">Enfants</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="baby" class="w-5 h-5"></i></div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_widows">Veuves</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i data-lucide="users" class="w-5 h-5"></i></div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_agents">Agents</p><p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center"><i data-lucide="user-check" class="w-5 h-5"></i></div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_countries">Pays</p><p class="text-3xl font-black text-green-600 mt-1">54</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i data-lucide="globe" class="w-5 h-5"></i></div>
+                </div>
+            </div>
+
+            <!-- SECTION PUBLIQUE : MISSIONS ET ACTIVITÉS ESSENTIELLES -->
+            <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="border-b pb-4">
+                    <h2 class="text-xl font-black text-slate-900" data-i18n="public_missions_title">Nos Domaines d'Intervention & Activités Clés</h2>
+                    <p class="text-xs text-slate-500 mt-1" data-i18n="public_missions_desc">Ce que notre organisation prend en charge au quotidien pour garantir un avenir digne.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                    <!-- Carte 1 : Enfants -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold"><i data-lucide="heart" class="w-5 h-5"></i></div>
+                        <h3 class="font-bold text-slate-900 text-sm" data-i18n="card_child_title">1. Orphelins & Enfants Vulnérables</h3>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_child_1">Hébergement sécurisé et nutrition équilibrée.</span></li>
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_child_2">Accès à l'éducation, scolarité et suivi pédagogique.</span></li>
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_child_3">Suivi médical régulier et soutien psychologique.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Carte 2 : Veuves -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold"><i data-lucide="shield" class="w-5 h-5"></i></div>
+                        <h3 class="font-bold text-slate-900 text-sm" data-i18n="card_widow_title">2. Veuves & Mères de Famille</h3>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_widow_1">Programmes d'autonomisation et AGR (petits commerce).</span></li>
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_widow_2">Assistance juridique pour la protection des droits et biens.</span></li>
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_widow_3">Groupes d'écoute et soutien communautaire.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Carte 3 : Agents -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 space-y-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold"><i data-lucide="users" class="w-5 h-5"></i></div>
+                        <h3 class="font-bold text-slate-900 text-sm" data-i18n="card_agent_title">3. Agents & Travailleurs Sociaux</h3>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_agent_1">Immatriculation professionnelle officielle (BKDD-A).</span></li>
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_agent_2">Formations continues en protection sociale.</span></li>
+                            <li class="flex items-start gap-1.5">✓ <span data-i18n="card_agent_3">Outils numériques de terrain et traçabilité.</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- RECHERCHE -->
+        <!-- RECHERCHE PAR ID -->
         <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
-            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl space-y-4">
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
                 <h2 class="text-xl font-bold" data-i18n="search_title">Recherche par Matricule Unique</h2>
-                <div class="flex gap-2">
-                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3 rounded-xl uppercase font-mono">
-                    <button onclick="executeIdSearch()" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl" data-i18n="search_btn">Chercher</button>
+                <p class="text-xs text-slate-400">Vérifiez l'existence et l'authenticité d'un dossier (Enfant, Veuve ou Agent) à l'aide de son identifiant officiel.</p>
+                <div class="flex gap-2 pt-2">
+                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
+                    <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer" data-i18n="search_btn">Chercher</button>
                 </div>
             </div>
             <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
@@ -140,11 +204,11 @@
             </div>
         </section>
 
-        <section id="sec-children" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black" data-i18n="reg_children">Registre des Enfants</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-xl" data-i18n="add">+ Ajouter</button></div><div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-widows" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black" data-i18n="reg_widows">Registre des Veuves</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-xl" data-i18n="add">+ Ajouter</button></div><div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></section>
-        <section id="sec-team" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black" data-i18n="reg_agents">Registre des Agents</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2 rounded-xl" data-i18n="add">+ Ajouter</button></div><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
+        <section id="sec-children" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black" data-i18n="reg_children">Registre des Enfants</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl" data-i18n="add">+ Ajouter</button></div><div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
+        <section id="sec-widows" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black" data-i18n="reg_widows">Registre des Veuves</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl" data-i18n="add">+ Ajouter</button></div><div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></section>
+        <section id="sec-team" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black" data-i18n="reg_agents">Registre des Agents</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl" data-i18n="add">+ Ajouter</button></div><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
         <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs leading-relaxed" data-i18n="countries_desc">Couverture complète de tous les pays membres de l'Union Africaine.</p></div></section>
-        <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black" data-i18n="stat_title">Statistiques</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-xl" data-i18n="print_report">Imprimer le rapport</button></div></section>
+        <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black" data-i18n="stat_title">Statistiques</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl" data-i18n="print_report">Imprimer le rapport</button></div></section>
         <section id="sec-profile" class="hidden space-y-6"><h2 class="text-2xl font-black" data-i18n="nav_profile">Mon Profil</h2><div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm"></div></section>
 
         <!-- ADMINISTRATION CENTRALE -->
@@ -165,8 +229,8 @@
 
     <!-- 1. FORMULAIRE ENFANT -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900">Dossier Complet Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold text-lg">✕</button></div>
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900 text-sm uppercase">Dossier Complet Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold text-lg">✕</button></div>
             <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pr-1 pb-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="bg-green-50 p-3 rounded-xl space-y-2 border border-green-200">
@@ -181,19 +245,19 @@
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-green-700 uppercase" data-i18n="sec_identification">1. Identification</h4>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        <div><label class="font-bold" data-i18n="lbl_firstname">Prénom *</label><input type="text" id="c-firstname" required class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_lastname">Nom *</label><input type="text" id="c-lastname" required class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_postname">Post-nom</label><input type="text" id="c-postname" class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_gender">Sexe *</label><select id="c-gender" class="w-full p-2 border rounded-lg bg-white"><option value="M" data-i18n="opt_male">Masculin</option><option value="F" data-i18n="opt_female">Féminin</option></select></div>
-                        <div><label class="font-bold" data-i18n="lbl_age">Âge *</label><input type="number" id="c-age" required class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_famid">ID Famille</label><input type="text" id="c-famid" value="FAM0001" required class="w-full p-2 border rounded-lg font-mono bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_country">Pays *</label><select id="c-country" class="african-countries-select w-full p-2 border rounded-lg bg-white"></select></div>
-                        <div><label class="font-bold" data-i18n="lbl_city">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_center">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_firstname">Prénom *</label><input type="text" id="c-firstname" required class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_lastname">Nom *</label><input type="text" id="c-lastname" required class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_postname">Post-nom</label><input type="text" id="c-postname" class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_gender">Sexe *</label><select id="c-gender" class="w-full p-2.5 border rounded-lg bg-white"><option value="M" data-i18n="opt_male">Masculin</option><option value="F" data-i18n="opt_female">Féminin</option></select></div>
+                        <div><label class="font-bold" data-i18n="lbl_age">Âge *</label><input type="number" id="c-age" required class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_famid">ID Famille</label><input type="text" id="c-famid" value="FAM0001" required class="w-full p-2.5 border rounded-lg font-mono bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_country">Pays *</label><select id="c-country" class="african-countries-select w-full p-2.5 border rounded-lg bg-white"></select></div>
+                        <div><label class="font-bold" data-i18n="lbl_city">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_center">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2.5 border rounded-lg bg-white"></div>
                     </div>
                 </div>
                 <div class="pt-2">
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer" data-i18n="save_child">Enregistrer le Dossier Enfant (BKDD-E)</button>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer transition" data-i18n="save_child">Enregistrer le Dossier Enfant (BKDD-E)</button>
                 </div>
             </form>
         </div>
@@ -201,8 +265,8 @@
 
     <!-- 2. FORMULAIRE VEUVE -->
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900">Dossier Complet Veuve (BKDD-V)</h3><button onclick="closeForm('widow')" class="p-2 font-bold text-lg">✕</button></div>
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900 text-sm uppercase">Dossier Complet Veuve (BKDD-V)</h3><button onclick="closeForm('widow')" class="p-2 font-bold text-lg">✕</button></div>
             <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pr-1 pb-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="bg-emerald-50 p-3 rounded-xl space-y-2 border border-emerald-200">
@@ -217,18 +281,18 @@
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-emerald-700 uppercase" data-i18n="sec_identification">1. Identification Personnelle</h4>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        <div><label class="font-bold" data-i18n="lbl_firstname">Prénom *</label><input type="text" id="w-firstname" required class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_lastname">Nom *</label><input type="text" id="w-lastname" required class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_postname">Post-nom</label><input type="text" id="w-postname" class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_age">Âge</label><input type="number" id="w-age" class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_famid">ID Famille</label><input type="text" id="w-famid" value="FAM0001" required class="w-full p-2 border rounded-lg font-mono bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_phone">Téléphone</label><input type="text" id="w-phone" class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_country">Pays *</label><select id="w-country" class="african-countries-select w-full p-2 border rounded-lg bg-white"></select></div>
-                        <div><label class="font-bold" data-i18n="lbl_city">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_firstname">Prénom *</label><input type="text" id="w-firstname" required class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_lastname">Nom *</label><input type="text" id="w-lastname" required class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_postname">Post-nom</label><input type="text" id="w-postname" class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_age">Âge</label><input type="number" id="w-age" class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_famid">ID Famille</label><input type="text" id="w-famid" value="FAM0001" required class="w-full p-2.5 border rounded-lg font-mono bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_phone">Téléphone</label><input type="text" id="w-phone" class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_country">Pays *</label><select id="w-country" class="african-countries-select w-full p-2.5 border rounded-lg bg-white"></select></div>
+                        <div><label class="font-bold" data-i18n="lbl_city">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2.5 border rounded-lg bg-white"></div>
                     </div>
                 </div>
                 <div class="pt-2">
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer" data-i18n="save_widow">Enregistrer le Dossier Veuve (BKDD-V)</button>
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer transition" data-i18n="save_widow">Enregistrer le Dossier Veuve (BKDD-V)</button>
                 </div>
             </form>
         </div>
@@ -236,8 +300,8 @@
 
     <!-- 3. FORMULAIRE AGENT -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-4 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900">Enregistrer Agent (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold text-lg">✕</button></div>
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 md:p-6 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3 bg-white z-10"><h3 class="font-bold text-slate-900 text-sm uppercase">Enregistrer Agent (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold text-lg">✕</button></div>
             <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pr-1 pb-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="bg-purple-50 p-3 rounded-xl space-y-2 border border-purple-200">
@@ -252,16 +316,16 @@
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-purple-700 uppercase" data-i18n="sec_pro">1. Identification Professionnelle</h4>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        <div><label class="font-bold" data-i18n="lbl_fullname">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_role">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_dept">Département</label><input type="text" id="a-dept" placeholder="Service..." class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_phone">Téléphone</label><input type="text" id="a-phone" class="w-full p-2 border rounded-lg bg-white"></div>
-                        <div><label class="font-bold" data-i18n="lbl_country">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded-lg bg-white"></select></div>
-                        <div><label class="font-bold" data-i18n="lbl_city">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_fullname">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_role">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_dept">Département</label><input type="text" id="a-dept" placeholder="Service..." class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_phone">Téléphone</label><input type="text" id="a-phone" class="w-full p-2.5 border rounded-lg bg-white"></div>
+                        <div><label class="font-bold" data-i18n="lbl_country">Pays *</label><select id="a-country" class="african-countries-select w-full p-2.5 border rounded-lg bg-white"></select></div>
+                        <div><label class="font-bold" data-i18n="lbl_city">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2.5 border rounded-lg bg-white"></div>
                     </div>
                 </div>
                 <div class="pt-2">
-                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer" data-i18n="save_agent">Enregistrer l'Agent (BKDD-A)</button>
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 rounded-xl shadow-lg text-sm cursor-pointer transition" data-i18n="save_agent">Enregistrer l'Agent (BKDD-A)</button>
                 </div>
             </form>
         </div>
@@ -272,9 +336,9 @@
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900" data-i18n="login_title">Connexion Agent</h3><button onclick="closeAuthModal()" class="p-2 font-bold text-lg">✕</button></div>
             <form onsubmit="handleAuthSubmit(event)" class="space-y-3 text-xs">
-                <input type="email" id="auth-email" placeholder="E-mail Agent" required class="w-full p-2.5 border rounded-xl text-sm bg-white">
-                <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-2.5 border rounded-xl text-sm bg-white">
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl text-sm cursor-pointer" data-i18n="login_btn">Se Connecter</button>
+                <input type="email" id="auth-email" placeholder="E-mail Agent" required class="w-full p-3 border rounded-xl text-sm bg-white">
+                <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-3 border rounded-xl text-sm bg-white">
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl text-sm cursor-pointer transition" data-i18n="login_btn">Se Connecter</button>
             </form>
         </div>
     </div>
@@ -284,7 +348,7 @@
             fr: {
                 login: "Connexion",
                 menu_title: "MENU PRINCIPAL",
-                nav_home: "Accueil",
+                nav_home: "Accueil & Missions",
                 nav_search: "Recherche ID",
                 nav_children: "Enfants",
                 nav_widows: "Veuves",
@@ -295,7 +359,7 @@
                 nav_profile: "Profil",
                 nav_admin: "Administration",
                 back: "Retour",
-                center_badge: "CENTRE DIEUDONNÉ BUKAVU (RDC)",
+                center_badge: "CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS",
                 main_title: "Plateforme Panafricaine de Suivi Social",
                 btn_add_child: "+ Dossier Enfant",
                 btn_add_widow: "+ Dossier Veuve",
@@ -317,6 +381,20 @@
                 admin_desc: "Gestion et suppression des dossiers enregistrés.",
                 db_title: "Base de Données Firestore",
                 add: "+ Ajouter",
+                public_missions_title: "Nos Domaines d'Intervention & Activités Clés",
+                public_missions_desc: "Ce que notre organisation prend en charge au quotidien pour garantir un avenir digne.",
+                card_child_title: "1. Orphelins & Enfants Vulnérables",
+                card_child_1: "Hébergement sécurisé et nutrition équilibrée.",
+                card_child_2: "Accès à l'éducation, scolarité et suivi pédagogique.",
+                card_child_3: "Suivi médical régulier et soutien psychologique.",
+                card_widow_title: "2. Veuves & Mères de Famille",
+                card_widow_1: "Programmes d'autonomisation et AGR (petits commerce).",
+                card_widow_2: "Assistance juridique pour la protection des droits et biens.",
+                card_widow_3: "Groupes d'écoute et soutien communautaire.",
+                card_agent_title: "3. Agents & Travailleurs Sociaux",
+                card_agent_1: "Immatriculation professionnelle officielle (BKDD-A).",
+                card_agent_2: "Formations continues en protection sociale.",
+                card_agent_3: "Outils numériques de terrain et traçabilité.",
                 lbl_photo_child: "📷 Photo de l'Enfant",
                 lbl_photo_family: "🏠 Photo de la Famille",
                 lbl_photo_widow: "📷 Photo de la Veuve",
@@ -349,7 +427,7 @@
             en: {
                 login: "Login",
                 menu_title: "MAIN MENU",
-                nav_home: "Home",
+                nav_home: "Home & Missions",
                 nav_search: "ID Search",
                 nav_children: "Children",
                 nav_widows: "Widows",
@@ -360,7 +438,7 @@
                 nav_profile: "Profile",
                 nav_admin: "Administration",
                 back: "Back",
-                center_badge: "DIEUDONNÉ CENTER BUKAVU (DRC)",
+                center_badge: "DIEUDONNÉ CENTER BUKAVU (DRC) — 54 COUNTRIES",
                 main_title: "Pan-African Social Monitoring Platform",
                 btn_add_child: "+ Child Record",
                 btn_add_widow: "+ Widow Record",
@@ -382,6 +460,20 @@
                 admin_desc: "Management and deletion of registered files.",
                 db_title: "Firestore Database",
                 add: "+ Add",
+                public_missions_title: "Our Areas of Intervention & Key Activities",
+                public_missions_desc: "What our organization supports daily to ensure a dignified future.",
+                card_child_title: "1. Orphans & Vulnerable Children",
+                card_child_1: "Secure housing and balanced nutrition.",
+                card_child_2: "Access to education, schooling and tutoring.",
+                card_child_3: "Regular medical check-ups and psychological support.",
+                card_widow_title: "2. Widows & Mothers",
+                card_widow_1: "Empowerment programs and income-generating activities.",
+                card_widow_2: "Legal assistance for rights and property protection.",
+                card_widow_3: "Listening circles and community support.",
+                card_agent_title: "3. Agents & Social Workers",
+                card_agent_1: "Official professional registration (BKDD-A).",
+                card_agent_2: "Continuous training in social protection.",
+                card_agent_3: "Digital field tools and traceability.",
                 lbl_photo_child: "📷 Child Photo",
                 lbl_photo_family: "🏠 Family Photo",
                 lbl_photo_widow: "📷 Widow Photo",
@@ -425,7 +517,7 @@
                 nav_profile: "Wasifu",
                 nav_admin: "Utawala",
                 back: "Rudi",
-                center_badge: "KITUO CHA DIEUDONNÉ BUKAVU (DRC)",
+                center_badge: "KITUO CHA DIEUDONNÉ BUKAVU (DRC) — NCHI 54",
                 main_title: "Jukwaa la Kiafrika la Ufuatiliaji wa Jamii",
                 btn_add_child: "+ Rekodi ya Mtoto",
                 btn_add_widow: "+ Rekodi ya Mjane",
@@ -447,6 +539,20 @@
                 admin_desc: "Usimamizi na ufutaji wa kumbukumbu zilizosajiliwa.",
                 db_title: "Hifadhidata ya Firestore",
                 add: "+ Ongeza",
+                public_missions_title: "Maeneo Yetu ya Kazi & Shughuli Muhimu",
+                public_missions_desc: "Mambo ambayo shirika linayashughulikia kila siku kuhakikisha maisha bora.",
+                card_child_title: "1. Watoto Yatima na Waliotengwa",
+                card_child_1: "Malazi salama na lishe bora.",
+                card_child_2: "Elimu na msaada wa masomo.",
+                card_child_3: "Huduma za afya na msaada wa kisaikolojia.",
+                card_widow_title: "2. Wajane na Mama wa Familia",
+                card_widow_1: "Programu za kujiwezesha kiuchumi (biashara ndogo ndogo).",
+                card_widow_2: "Msaada wa kisheria kulinda haki na mali.",
+                card_widow_3: "Vikundi vya ushauri na usaidizi wa kijamii.",
+                card_agent_title: "3. Wafanyakazi na Wasaidizi wa Jamii",
+                card_agent_1: "Usajili rasmi wa kitaalamu (BKDD-A).",
+                card_agent_2: "Mafunzo endelevu ya ulinzi wa jamii.",
+                card_agent_3: "Zana za kidijitali za kufuatilia mashambani.",
                 lbl_photo_child: "📷 Picha ya Mtoto",
                 lbl_photo_family: "🏠 Picha ya Familia",
                 lbl_photo_widow: "📷 Picha ya Mjane",
@@ -537,13 +643,13 @@
                     currentUser = user;
                     document.getElementById('user-display').innerText = user.email;
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
-                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-3.5 h-3.5"></i> Déconnexion`;
+                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion`;
                     document.getElementById('auth-btn').onclick = () => auth.signOut();
                     updateProfileCard(user);
                 } else {
                     currentUser = null;
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
-                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-3.5 h-3.5"></i> Connexion`;
+                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i> Connexion`;
                     document.getElementById('auth-btn').onclick = openAuthModal;
                 }
             });
@@ -644,7 +750,7 @@
 
             const submitBtn = e.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
-            submitBtn.innerText = "Enregistrement...";
+            submitBtn.innerText = "Enregistrement en cours...";
             submitBtn.disabled = true;
 
             try {
@@ -672,7 +778,7 @@
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
-                alert(`Dossier enregistré avec succès ! ID : ${matricule}`);
+                alert(`Dossier Enfant enregistré avec succès ! ID : ${matricule}`);
                 closeForm('child');
                 refreshCounters();
                 e.target.reset();
@@ -690,7 +796,7 @@
 
             const submitBtn = e.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
-            submitBtn.innerText = "Enregistrement...";
+            submitBtn.innerText = "Enregistrement en cours...";
             submitBtn.disabled = true;
 
             try {
@@ -717,7 +823,7 @@
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
-                alert(`Dossier enregistré avec succès ! ID : ${matricule}`);
+                alert(`Dossier Veuve enregistré avec succès ! ID : ${matricule}`);
                 closeForm('widow');
                 refreshCounters();
                 e.target.reset();
@@ -735,7 +841,7 @@
 
             const submitBtn = e.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
-            submitBtn.innerText = "Enregistrement...";
+            submitBtn.innerText = "Enregistrement en cours...";
             submitBtn.disabled = true;
 
             try {
@@ -760,7 +866,7 @@
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
-                alert(`Dossier enregistré avec succès ! ID : ${matricule}`);
+                alert(`Dossier Agent enregistré avec succès ! ID : ${matricule}`);
                 closeForm('agent');
                 refreshCounters();
                 e.target.reset();
@@ -786,7 +892,7 @@
             const resultCard = document.getElementById('search-result-card');
             if (!queryVal) return;
             resultCard.classList.remove('hidden');
-            resultCard.innerHTML = "Recherche...";
+            resultCard.innerHTML = "Recherche en cours...";
 
             const collections = ['children', 'widows', 'agents'];
             let foundData = null, foundType = '';
@@ -800,24 +906,24 @@
                 let familyPhotoHtml = foundData.familyPhoto ? `<img src="${foundData.familyPhoto}" class="w-full h-full object-cover">` : `🏠`;
 
                 resultCard.innerHTML = `
-                    <div class="flex items-center gap-3 border-b pb-4">
-                        <div class="w-16 h-16 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden border">${photoHtml}</div>
-                        <div class="w-16 h-16 bg-slate-200 rounded-xl flex items-center justify-center overflow-hidden border">${familyPhotoHtml}</div>
+                    <div class="flex items-center gap-4 border-b pb-4">
+                        <div class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center overflow-hidden border shadow-sm">${photoHtml}</div>
+                        <div class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center overflow-hidden border shadow-sm">${familyPhotoHtml}</div>
                         <div>
-                            <span class="font-mono font-bold bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${foundData.matricule}</span>
-                            <h3 class="font-black text-slate-900 text-base mt-1">${name}</h3>
-                            <p class="text-[10px] text-slate-500 uppercase font-bold">${foundType}</p>
+                            <span class="font-mono font-bold bg-slate-900 text-green-400 px-2.5 py-1 rounded-lg text-xs">${foundData.matricule}</span>
+                            <h3 class="font-black text-slate-900 text-base mt-1.5">${name}</h3>
+                            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">${foundType}</p>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-2 text-xs pt-2">
-                        <div><strong>Age:</strong> ${foundData.age || 'N/C'}</div>
-                        <div><strong>ID Fam:</strong> ${foundData.famId || 'N/C'}</div>
-                        <div><strong>Country:</strong> ${foundData.country || 'CD'}</div>
-                        <div><strong>City:</strong> ${foundData.city || 'Bukavu'}</div>
+                    <div class="grid grid-cols-2 gap-3 text-xs pt-2">
+                        <div><strong>Age :</strong> ${foundData.age || 'N/C'}</div>
+                        <div><strong>ID Famille :</strong> ${foundData.famId || 'N/C'}</div>
+                        <div><strong>Pays :</strong> ${foundData.country || 'CD'}</div>
+                        <div><strong>Ville :</strong> ${foundData.city || 'Bukavu'}</div>
                     </div>
                 `;
             } else {
-                resultCard.innerHTML = `<p class="text-xs text-red-600 font-bold">Introuvable / Not found</p>`;
+                resultCard.innerHTML = `<p class="text-xs text-red-600 font-bold p-2">Introuvable / Not found. Vérifiez le matricule.</p>`;
             }
         }
 
@@ -840,7 +946,7 @@
             container.innerHTML = '';
             snap.forEach(doc => {
                 const d = doc.data();
-                container.innerHTML += `<div class="bg-white p-3 rounded-xl border shadow-sm text-xs"><span class="font-mono font-bold text-green-700">${d.matricule}</span><p class="font-bold">${d.firstName || d.fullName || ''}</p></div>`;
+                container.innerHTML += `<div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm text-xs space-y-1"><span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span><p class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || ''}</p><p class="text-[10px] text-slate-500">${d.country || ''}</p></div>`;
             });
         }
 
@@ -852,14 +958,14 @@
                 const snap = await db.collection(col).get();
                 snap.forEach(doc => {
                     const d = doc.data();
-                    html += `<div class="p-2 border rounded flex justify-between items-center bg-slate-50"><span>${d.matricule} - ${d.firstName || d.fullName || ''}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px]">X</button></div>`;
+                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">${d.matricule}</strong> - ${d.firstName || d.fullName || ''}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 hover:bg-red-500 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold">Supprimer</button></div>`;
                 });
             }
-            container.innerHTML = html || 'Vide';
+            container.innerHTML = html || 'Aucun dossier enregistré.';
         }
 
         function updateProfileCard(user) {
-            document.getElementById('profile-card').innerHTML = `<p class="text-xs font-mono">Connecté : ${user.email}</p>`;
+            document.getElementById('profile-card').innerHTML = `<p class="text-xs font-mono bg-slate-50 p-3 rounded-xl border">Connecté en tant que : <strong>${user.email}</strong></p>`;
         }
 
         window.onload = () => {
