@@ -156,14 +156,20 @@
 
     </main>
 
-    <!-- 1. FORMULAIRE ENFANT (AVEC PHOTO) -->
+    <!-- 1. FORMULAIRE ENFANT (2 PHOTOS: CONCERNÉ + FAMILLE) -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Dossier Complet Enfant (BKDD-E)</h3><button onclick="closeForm('child')">✕</button></div>
             <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs">
-                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-green-700 uppercase">0. Photo de l'Enfant</h4>
-                    <input type="file" id="c-photo" accept="image/*" class="w-full p-2 border rounded-lg bg-white">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-green-50 p-4 rounded-xl space-y-2 border border-green-200">
+                        <label class="font-bold text-green-800 uppercase flex items-center gap-1">📷 Photo du Concerné</label>
+                        <input type="file" id="c-photo" accept="image/*" capture="environment" class="w-full p-2 border rounded-lg bg-white text-slate-800 font-medium">
+                    </div>
+                    <div class="bg-emerald-50 p-4 rounded-xl space-y-2 border border-emerald-200">
+                        <label class="font-bold text-emerald-800 uppercase flex items-center gap-1">🏠 Photo de la Famille / Foyer</label>
+                        <input type="file" id="c-family-photo" accept="image/*" capture="environment" class="w-full p-2 border rounded-lg bg-white text-slate-800 font-medium">
+                    </div>
                 </div>
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-green-700 uppercase">1. Identification</h4>
@@ -202,14 +208,20 @@
         </div>
     </div>
 
-    <!-- 2. FORMULAIRE VEUVE (AVEC PHOTO) -->
+    <!-- 2. FORMULAIRE VEUVE (2 PHOTOS: CONCERNÉ + FAMILLE) -->
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Dossier Complet Veuve (BKDD-V)</h3><button onclick="closeForm('widow')">✕</button></div>
             <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs">
-                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-emerald-700 uppercase">0. Photo de la Veuve / Famille</h4>
-                    <input type="file" id="w-photo" accept="image/*" class="w-full p-2 border rounded-lg bg-white">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-emerald-50 p-4 rounded-xl space-y-2 border border-emerald-200">
+                        <label class="font-bold text-emerald-800 uppercase flex items-center gap-1">📷 Photo de la Veuve</label>
+                        <input type="file" id="w-photo" accept="image/*" capture="environment" class="w-full p-2 border rounded-lg bg-white text-slate-800 font-medium">
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-xl space-y-2 border border-teal-200">
+                        <label class="font-bold text-teal-800 uppercase flex items-center gap-1">🏠 Photo du Foyer / Enfants</label>
+                        <input type="file" id="w-family-photo" accept="image/*" capture="environment" class="w-full p-2 border rounded-lg bg-white text-slate-800 font-medium">
+                    </div>
                 </div>
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-emerald-700 uppercase">1. Identification Personnelle</h4>
@@ -238,14 +250,20 @@
         </div>
     </div>
 
-    <!-- 3. FORMULAIRE AGENT (AVEC PHOTO) -->
+    <!-- 3. FORMULAIRE AGENT (2 PHOTOS: AGENT + BUREAU/TERRAIN) -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-6 space-y-4 shadow-2xl my-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Enregistrer Agent (BKDD-A)</h3><button onclick="closeForm('agent')">✕</button></div>
             <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs">
-                <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
-                    <h4 class="font-bold text-purple-700 uppercase">0. Photo de l'Agent</h4>
-                    <input type="file" id="a-photo" accept="image/*" class="w-full p-2 border rounded-lg bg-white">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-purple-50 p-4 rounded-xl space-y-2 border border-purple-200">
+                        <label class="font-bold text-purple-800 uppercase flex items-center gap-1">📷 Photo de l'Agent</label>
+                        <input type="file" id="a-photo" accept="image/*" capture="environment" class="w-full p-2 border rounded-lg bg-white text-slate-800 font-medium">
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl space-y-2 border border-indigo-200">
+                        <label class="font-bold text-indigo-800 uppercase flex items-center gap-1">🏢 Photo Bureau / Centre / Équipe</label>
+                        <input type="file" id="a-family-photo" accept="image/*" capture="environment" class="w-full p-2 border rounded-lg bg-white text-slate-800 font-medium">
+                    </div>
                 </div>
                 <div class="bg-slate-50 p-4 rounded-xl space-y-3 border">
                     <h4 class="font-bold text-purple-700 uppercase">1. Identification Professionnelle</h4>
@@ -363,7 +381,7 @@
 
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit(e) {
             e.preventDefault();
@@ -377,7 +395,6 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // Convertit l'image sélectionnée en Base64 pour le stockage direct dans Firestore
         function getBase64(file) {
             return new Promise((resolve, reject) => {
                 if (!file) { resolve(''); return; }
@@ -397,13 +414,14 @@
         async function saveChildForm(e) {
             e.preventDefault();
             if (!currentUser) { alert("Non autorisé."); return; }
-            const photoFile = document.getElementById('c-photo').files[0];
-            const photoBase64 = await getBase64(photoFile);
+            const photoBase64 = await getBase64(document.getElementById('c-photo').files[0]);
+            const familyPhotoBase64 = await getBase64(document.getElementById('c-family-photo').files[0]);
             const matricule = await generateNextMatricule('children', 'E');
             
             await db.collection("children").add({
                 matricule,
                 photo: photoBase64,
+                familyPhoto: familyPhotoBase64,
                 famId: document.getElementById('c-famid').value,
                 firstName: document.getElementById('c-firstname').value,
                 lastName: document.getElementById('c-lastname').value,
@@ -432,13 +450,14 @@
         async function saveWidowForm(e) {
             e.preventDefault();
             if (!currentUser) { alert("Non autorisé."); return; }
-            const photoFile = document.getElementById('w-photo').files[0];
-            const photoBase64 = await getBase64(photoFile);
+            const photoBase64 = await getBase64(document.getElementById('w-photo').files[0]);
+            const familyPhotoBase64 = await getBase64(document.getElementById('w-family-photo').files[0]);
             const matricule = await generateNextMatricule('widows', 'V');
             
             await db.collection("widows").add({
                 matricule,
                 photo: photoBase64,
+                familyPhoto: familyPhotoBase64,
                 famId: document.getElementById('w-famid').value,
                 firstName: document.getElementById('w-firstname').value,
                 lastName: document.getElementById('w-lastname').value,
@@ -462,13 +481,14 @@
         async function saveAgentForm(e) {
             e.preventDefault();
             if (!currentUser) { alert("Non autorisé."); return; }
-            const photoFile = document.getElementById('a-photo').files[0];
-            const photoBase64 = await getBase64(photoFile);
+            const photoBase64 = await getBase64(document.getElementById('a-photo').files[0]);
+            const familyPhotoBase64 = await getBase64(document.getElementById('a-family-photo').files[0]);
             const matricule = await generateNextMatricule('agents', 'A');
             
             await db.collection("agents").add({
                 matricule,
                 photo: photoBase64,
+                familyPhoto: familyPhotoBase64,
                 fullName: document.getElementById('a-fullname').value,
                 role: document.getElementById('a-role').value,
                 department: document.getElementById('a-dept').value,
@@ -503,7 +523,7 @@
             }
         }
 
-        // --- RECHERCHE PAR ID AVEC AFFICHAGE DE LA PHOTO ET TOUTES LES INFOS ---
+        // --- RECHERCHE PAR ID AVEC AFFICHAGE DES DEUX PHOTOS ET TOUTES LES INFOS ---
         async function executeIdSearch() {
             const queryVal = document.getElementById('input-search-id').value.trim().toUpperCase();
             const resultCard = document.getElementById('search-result-card');
@@ -520,19 +540,27 @@
                 }
                 if (foundData) {
                     let name = foundData.firstName ? `${foundData.firstName} ${foundData.postName || ''} ${foundData.lastName || ''}` : (foundData.fullName || 'Inconnu');
+                    
                     let photoHtml = foundData.photo 
                         ? `<img src="${foundData.photo}" class="w-full h-full object-cover">` 
-                        : `<span class="text-2xl">👤</span>`;
+                        : `<span class="text-xl">👤</span>`;
+
+                    let familyPhotoHtml = foundData.familyPhoto 
+                        ? `<img src="${foundData.familyPhoto}" class="w-full h-full object-cover">` 
+                        : `<span class="text-xl">🏠</span>`;
 
                     resultCard.innerHTML = `
-                        <div class="flex items-start gap-4 border-b pb-4">
-                            <div class="w-20 h-20 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400 font-bold overflow-hidden border shadow-inner flex-shrink-0">
+                        <div class="flex items-center gap-3 border-b pb-4">
+                            <div class="w-16 h-16 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400 font-bold overflow-hidden border shadow-inner flex-shrink-0" title="Concerné">
                                 ${photoHtml}
+                            </div>
+                            <div class="w-16 h-16 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400 font-bold overflow-hidden border shadow-inner flex-shrink-0" title="Famille / Foyer">
+                                ${familyPhotoHtml}
                             </div>
                             <div class="space-y-1">
                                 <span class="font-mono font-bold bg-slate-900 text-green-400 px-2.5 py-1 rounded-md text-xs">${foundData.matricule}</span>
-                                <h3 class="font-black text-slate-900 text-lg mt-1">${name}</h3>
-                                <p class="text-xs text-slate-500 uppercase font-bold">Catégorie : ${foundType}</p>
+                                <h3 class="font-black text-slate-900 text-base mt-1">${name}</h3>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Catégorie : ${foundType}</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3 text-xs pt-2">
