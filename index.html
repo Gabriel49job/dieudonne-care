@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIEUDONNÉ CARE — Plateforme Panafricaine</title>
+    <title>DIEUDONNÉ CARE — Système Panafricain</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -39,7 +39,7 @@
         </div>
     </header>
 
-    <!-- MENU LATÉRAL COMPLET RESTAURÉ -->
+    <!-- MENU LATÉRAL -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
     <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-4">
@@ -85,7 +85,7 @@
     <!-- CONTENU PRINCIPAL -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
 
-        <!-- ACCUEIL AVEC BOUTONS PRIORITAIRES ET PARRAINAGE VISIBLE -->
+        <!-- ACCUEIL -->
         <section id="sec-home" class="space-y-6">
             <div class="bg-slate-900 text-white rounded-3xl p-5 md:p-8 shadow-xl space-y-4 border border-slate-800">
                 <div class="flex items-center justify-between">
@@ -115,40 +115,99 @@
                 <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Enfants</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
                 <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Veuves</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
                 <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Agents</p><p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
-                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Parrainages Actifs</p><p id="stat-sponsorship-count" class="text-3xl font-black text-pink-600 mt-1">0</p></div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-slate-500 uppercase">Parrainages</p><p id="stat-sponsorship-count" class="text-3xl font-black text-pink-600 mt-1">0</p></div>
             </div>
         </section>
 
-        <!-- SECTION PARRAINAGE -->
+        <!-- SECTIONS AVEC CONTENU INTERACTIF -->
+        <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
+            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl space-y-4">
+                <h2 class="text-xl font-bold">Recherche par Matricule</h2>
+                <div class="flex gap-2"><input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3 rounded-xl uppercase font-mono"><button onclick="executeIdSearch()" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Chercher</button></div>
+            </div>
+            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg"></div>
+        </section>
+
+        <section id="sec-children" class="hidden space-y-6">
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter</button></div>
+            <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </section>
+
+        <section id="sec-widows" class="hidden space-y-6">
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Veuves</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Ajouter</button></div>
+            <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+
         <section id="sec-sponsorship" class="hidden space-y-6">
             <div class="bg-pink-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-black">Module de Parrainage</h2>
-                    <p class="text-xs text-pink-200">Liez un parrain/donateur à un enfant ou à un projet de veuve.</p>
-                </div>
-                <button onclick="openForm('sponsorship')" class="bg-white text-pink-900 font-bold px-4 py-2 rounded-xl text-xs">Associer un Parrain</button>
+                <div><h2 class="text-2xl font-black">Module de Parrainage</h2><p class="text-xs text-pink-200">Association donateur / enfant ou veuve.</p></div>
+                <button onclick="openForm('sponsorship')" class="bg-white text-pink-900 font-bold px-4 py-2 rounded-xl text-xs">+ Associer</button>
             </div>
             <div id="sponsorship-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
-        <!-- AUTRES SECTIONS -->
-        <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto"><h2 class="text-xl font-bold">Recherche par Matricule</h2><input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3 rounded-xl"><button onclick="executeIdSearch()" class="bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Chercher</button><div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border"></div></section>
-        <section id="sec-children" class="hidden space-y-6"><h2 class="text-2xl font-black">Liste des Enfants</h2><div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-widows" class="hidden space-y-6"><h2 class="text-2xl font-black">Liste des Veuves</h2><div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></section>
-        <section id="sec-team" class="hidden space-y-6"><h2 class="text-2xl font-black">Registre des Agents</h2><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-admin" class="hidden space-y-6"><h2 class="text-2xl font-black text-green-400">Administration Centrale</h2><div id="admin-master-list" class="space-y-2 text-xs bg-white p-4 rounded-2xl border"></div></section>
-        <section id="sec-partners" class="hidden"><h2 class="text-2xl font-black">Partenaires</h2></section>
-        <section id="sec-programs" class="hidden"><h2 class="text-2xl font-black">Programmes</h2></section>
-        <section id="sec-projects" class="hidden"><h2 class="text-2xl font-black">Projets</h2></section>
-        <section id="sec-activities" class="hidden"><h2 class="text-2xl font-black">Activités</h2></section>
-        <section id="sec-donations" class="hidden"><h2 class="text-2xl font-black">Donations</h2></section>
-        <section id="sec-aids" class="hidden"><h2 class="text-2xl font-black">Aides</h2></section>
-        <section id="sec-documents" class="hidden"><h2 class="text-2xl font-black">Documents</h2></section>
-        <section id="sec-reports" class="hidden"><h2 class="text-2xl font-black">Rapports</h2></section>
-        <section id="sec-countries" class="hidden"><h2 class="text-2xl font-black">Pays</h2></section>
-        <section id="sec-notifications" class="hidden"><h2 class="text-2xl font-black">Notifications</h2></section>
-        <section id="sec-profile" class="hidden"><h2 class="text-2xl font-black">Profil</h2></section>
-        <section id="sec-settings" class="hidden"><h2 class="text-2xl font-black">Paramètres</h2></section>
+        <section id="sec-partners" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Partenaires Institutionnels</h2>
+            <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-3">
+                <p class="text-xs text-slate-500">Liste des ONG et structures partenaires de DIEUDONNÉ CARE.</p>
+                <div class="p-4 bg-slate-50 border rounded-xl flex justify-between items-center"><div><strong class="text-sm">Fondation Panafricaine Solidarité</strong><p class="text-xs text-slate-500">Soutien Éducation & Santé (RDC / Ouganda)</p></div><span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded">Actif</span></div>
+            </div>
+        </section>
+
+        <section id="sec-team" class="hidden space-y-6">
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Agent</button></div>
+            <div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </section>
+
+        <section id="sec-programs" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Programmes DIEUDONNÉ CARE</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-red-600">🛡️ Protection des Enfants</h3><p class="text-xs text-slate-500 mt-1">Identification, suivi psychosocial et sécurité juridique.</p></div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-blue-600">🎓 Éducation & Scolarité</h3><p class="text-xs text-slate-500 mt-1">Frais scolaires, uniformes et fournitures.</p></div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-emerald-600">🏥 Santé & Nutrition</h3><p class="text-xs text-slate-500 mt-1">Soins médicaux d'urgence et kits nutritionnels.</p></div>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><h3 class="font-bold text-amber-600">👩 Autonomisation des Veuves</h3><p class="text-xs text-slate-500 mt-1">Micro-crédits, commerce et formation professionnelle.</p></div>
+            </div>
+        </section>
+
+        <section id="sec-projects" class="hidden space-y-6"><h2 class="text-2xl font-black">Projets en Cours</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs font-bold text-cyan-600">PROJET #1 : Centre d'Autonomisation Bukavu</p><p class="text-xs text-slate-500 mt-1">Statut : En cours • Budget : 15 000 $</p></div></section>
+        <section id="sec-activities" class="hidden space-y-6"><h2 class="text-2xl font-black">Calendrier des Activités</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs text-slate-600">📅 Visite de suivi social prévue ce vendredi au Centre Dieudonné.</p></div></section>
+        <section id="sec-donations" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestion des Donations</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs text-slate-600">💰 Enregistrement des dons financiers et en nature (vivres, matériel).</p></div></section>
+        <section id="sec-aids" class="hidden space-y-6"><h2 class="text-2xl font-black">Aides Distribuées</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs text-slate-600">🎁 Suivi des distributions de kits scolaires et alimentaires aux veuves.</p></div></section>
+        <section id="sec-documents" class="hidden space-y-6"><h2 class="text-2xl font-black">Gestionnaire de Documents</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs text-slate-600">📄 Stockage sécurisé des certificats, actes de décès et pièces d'identité.</p></div></section>
+        
+        <section id="sec-reports" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Rapports & Analytics</h2>
+            <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
+                <p class="text-xs text-slate-500">Générez et exportez les rapports d'activités humanitaires.</p>
+                <button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl">Imprimer / Exporter le Rapport PDF</button>
+            </div>
+        </section>
+
+        <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau Panafricain (Pays & Centres)</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs font-slate-600">🇨🇩 RDC (Bukavu) • 🇺🇬 Ouganda • 🇰🇪 Kenya • 🇷🇼 Rwanda • 🇹🇿 Tanzanie</p></div></section>
+        <section id="sec-notifications" class="hidden space-y-6"><h2 class="text-2xl font-black">Notifications & Alertes</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs text-slate-600">🔔 Aucun nouveau dossier en attente de validation.</p></div></section>
+        
+        <section id="sec-profile" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Mon Profil Agent</h2>
+            <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-2">
+                <p class="text-xs text-slate-400 font-mono">Matricule : BKDD-A01</p>
+                <h3 class="font-bold text-lg">Mushagalusa Migabo Gabriel</h3>
+                <p class="text-xs text-slate-600">Fonction : Administrateur / Développeur Panafricain</p>
+                <p class="text-xs text-slate-600">Centre : Bukavu, RDC</p>
+            </div>
+        </section>
+
+        <section id="sec-settings" class="hidden space-y-6"><h2 class="text-2xl font-black">Paramètres du Système</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs text-slate-600">⚙️ Langue par défaut : Français (FR) • Mode Sécurisé actif.</p></div></section>
+
+        <section id="sec-admin" class="hidden space-y-6">
+            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl">
+                <h2 class="text-2xl font-black text-green-400">Administration Centralisée</h2>
+                <p class="text-xs text-slate-400">Registre complet de tous les enregistrements Firestore.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900">Base des Données Enregistrées</h3>
+                <div id="admin-master-list" class="space-y-2 text-xs"></div>
+            </div>
+        </section>
 
     </main>
 
@@ -182,7 +241,7 @@
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold">Nouvel Agent</h3><button onclick="closeForm('agent')">✕</button></div>
             <form onsubmit="saveAgentForm(event)" class="space-y-3 text-xs">
                 <input type="text" id="a-fullname" placeholder="Nom complet" required class="w-full p-2.5 border rounded-xl">
-                <input type="text" id="a-role" placeholder="Fonction / Rôle" required class="w-full p-2.5 border rounded-xl">
+                <input type="text" id="a-role" placeholder="Fonction" required class="w-full p-2.5 border rounded-xl">
                 <button type="submit" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl">Enregistrer (BKDD-A)</button>
             </form>
         </div>
@@ -193,12 +252,13 @@
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold">Nouveau Parrainage</h3><button onclick="closeForm('sponsorship')">✕</button></div>
             <form onsubmit="saveSponsorshipForm(event)" class="space-y-3 text-xs">
                 <input type="text" id="s-sponsor" placeholder="Nom du Parrain / Donateur" required class="w-full p-2.5 border rounded-xl">
-                <input type="text" id="s-beneficiary" placeholder="Matricule ou Nom du Bénéficiaire (ex: BKDD-E01)" required class="w-full p-2.5 border rounded-xl">
+                <input type="text" id="s-beneficiary" placeholder="Matricule (ex: BKDD-E01)" required class="w-full p-2.5 border rounded-xl">
                 <button type="submit" class="w-full bg-pink-600 text-white font-bold py-3 rounded-xl">Valider le Parrainage</button>
             </form>
         </div>
     </div>
 
+    <!-- SCRIPT LOGIQUE ET FIREBASE -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyATlu2mUJmPlmkJkVow1ap35RSl6zt30nY",
