@@ -12,13 +12,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-24">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-32">
 
     <!-- BARRE SUPÉRIEURE PROFESSIONNELLE -->
     <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-30 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <button onclick="toggleSidebar()" class="p-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 transition focus:outline-none cursor-pointer">
+                <button onclick="toggleSidebar()" class="p-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 transition cursor-pointer">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
                 <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('home')">
@@ -216,7 +216,7 @@
                     <div><label class="font-bold">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded bg-white"></div>
                 </div>
-                <button type="button" onclick="saveChildForm()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow cursor-pointer">Enregistrer</button>
+                <button type="button" onclick="saveChildForm()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow text-sm cursor-pointer mt-4">Enregistrer</button>
             </div>
         </div>
     </div>
@@ -239,7 +239,7 @@
                     <div><label class="font-bold">Pays *</label><select id="w-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                 </div>
-                <button type="button" onclick="saveWidowForm()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow cursor-pointer">Enregistrer</button>
+                <button type="button" onclick="saveWidowForm()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow text-sm cursor-pointer mt-4">Enregistrer</button>
             </div>
         </div>
     </div>
@@ -248,7 +248,7 @@
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Tâche (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold cursor-pointer">✕</button></div>
-            <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
+            <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-24">
                 <div class="grid grid-cols-2 gap-3">
                     <div class="bg-purple-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-purple-800">📷 Photo Agent</label><input type="file" id="a-photo" accept="image/*" class="w-full text-[10px]"></div>
                     <div class="bg-indigo-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-indigo-800">🏢 Photo Bureau</label><input type="file" id="a-family-photo" accept="image/*" class="w-full text-[10px]"></div>
@@ -273,7 +273,8 @@
                     <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                 </div>
-                <button type="button" onclick="saveAgentForm()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl shadow cursor-pointer">Enregistrer l'Agent</button>
+                <!-- Bouton surélevé et bien visible au-dessus du clavier mobile -->
+                <button type="button" onclick="saveAgentForm()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl shadow-xl text-sm cursor-pointer mt-6">Enregistrer l'Agent</button>
             </div>
         </div>
     </div>
@@ -508,7 +509,6 @@
         }
 
         function openForm(type) {
-            if (!currentUser) { alert("Sécurité : Veuillez d'abord vous connecter."); openAuthModal(); return; }
             document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex');
         }
 
@@ -663,61 +663,9 @@
             return `BKDD-${prefix}${count < 10 ? '0' + count : count}`;
         }
 
-        async function saveChildForm() {
-            if (!currentUser) { alert("Veuillez vous connecter."); return; }
-            try {
-                alert("Enregistrement en cours...");
-                const photo = await compressImage(document.getElementById('c-photo').files[0]);
-                const familyPhoto = await compressImage(document.getElementById('c-family-photo').files[0]);
-                const matricule = await generateNextMatricule('children', 'E');
-                await db.collection("children").add({
-                    matricule, photo, familyPhoto,
-                    famId: document.getElementById('c-famid').value,
-                    firstName: document.getElementById('c-firstname').value,
-                    lastName: document.getElementById('c-lastname').value,
-                    postName: document.getElementById('c-postname').value,
-                    gender: document.getElementById('c-gender').value,
-                    age: parseInt(document.getElementById('c-age').value) || 0,
-                    country: document.getElementById('c-country').value,
-                    city: document.getElementById('c-city').value,
-                    center: document.getElementById('c-center').value,
-                    agentEmail: currentUser.email,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Enfant enregistré avec succès ! ID : ${matricule}`);
-                closeForm('child'); refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function saveWidowForm() {
-            if (!currentUser) { alert("Veuillez vous connecter."); return; }
-            try {
-                alert("Enregistrement en cours...");
-                const photo = await compressImage(document.getElementById('w-photo').files[0]);
-                const familyPhoto = await compressImage(document.getElementById('w-family-photo').files[0]);
-                const matricule = await generateNextMatricule('widows', 'V');
-                await db.collection("widows").add({
-                    matricule, photo, familyPhoto,
-                    famId: document.getElementById('w-famid').value,
-                    firstName: document.getElementById('w-firstname').value,
-                    lastName: document.getElementById('w-lastname').value,
-                    postName: document.getElementById('w-postname').value,
-                    age: parseInt(document.getElementById('w-age').value) || 0,
-                    phone: document.getElementById('w-phone').value,
-                    country: document.getElementById('w-country').value,
-                    city: document.getElementById('w-city').value,
-                    agentEmail: currentUser.email,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Veuve enregistrée avec succès ! ID : ${matricule}`);
-                closeForm('widow'); refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
         async function saveAgentForm() {
-            if (!currentUser) { alert("Veuillez vous connecter avant d'enregistrer."); return; }
+            alert("Bouton cliqué ! Traitement en cours...");
             try {
-                alert("Enregistrement de l'agent en cours...");
                 const photo = await compressImage(document.getElementById('a-photo').files[0]);
                 const familyPhoto = await compressImage(document.getElementById('a-family-photo').files[0]);
                 const matricule = await generateNextMatricule('agents', 'A');
@@ -732,7 +680,7 @@
                     phone: document.getElementById('a-phone').value,
                     country: document.getElementById('a-country').value,
                     city: document.getElementById('a-city').value,
-                    agentEmail: currentUser.email,
+                    agentEmail: currentUser ? currentUser.email : "Anonyme",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
@@ -740,8 +688,57 @@
                 closeForm('agent'); 
                 refreshCounters();
             } catch (err) { 
-                alert("Erreur lors de l'enregistrement : " + err.message); 
+                alert("Erreur technique : " + err.message); 
             }
+        }
+
+        async function saveChildForm() {
+            alert("Enregistrement de l'enfant en cours...");
+            try {
+                const photo = await compressImage(document.getElementById('c-photo').files[0]);
+                const familyPhoto = await compressImage(document.getElementById('c-family-photo').files[0]);
+                const matricule = await generateNextMatricule('children', 'E');
+                await db.collection("children").add({
+                    matricule, photo, familyPhoto,
+                    famId: document.getElementById('c-famid').value,
+                    firstName: document.getElementById('c-firstname').value,
+                    lastName: document.getElementById('c-lastname').value,
+                    postName: document.getElementById('c-postname').value,
+                    gender: document.getElementById('c-gender').value,
+                    age: parseInt(document.getElementById('c-age').value) || 0,
+                    country: document.getElementById('c-country').value,
+                    city: document.getElementById('c-city').value,
+                    center: document.getElementById('c-center').value,
+                    agentEmail: currentUser ? currentUser.email : "Anonyme",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert(`Enfant enregistré ! ID : ${matricule}`);
+                closeForm('child'); refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        async function saveWidowForm() {
+            alert("Enregistrement de la veuve en cours...");
+            try {
+                const photo = await compressImage(document.getElementById('w-photo').files[0]);
+                const familyPhoto = await compressImage(document.getElementById('w-family-photo').files[0]);
+                const matricule = await generateNextMatricule('widows', 'V');
+                await db.collection("widows").add({
+                    matricule, photo, familyPhoto,
+                    famId: document.getElementById('w-famid').value,
+                    firstName: document.getElementById('w-firstname').value,
+                    lastName: document.getElementById('w-lastname').value,
+                    postName: document.getElementById('w-postname').value,
+                    age: parseInt(document.getElementById('w-age').value) || 0,
+                    phone: document.getElementById('w-phone').value,
+                    country: document.getElementById('w-country').value,
+                    city: document.getElementById('w-city').value,
+                    agentEmail: currentUser ? currentUser.email : "Anonyme",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert(`Veuve enregistrée ! ID : ${matricule}`);
+                closeForm('widow'); refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
         }
 
         async function deleteDocument(col, id) {
