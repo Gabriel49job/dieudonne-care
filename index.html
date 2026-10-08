@@ -41,7 +41,7 @@
                     <span id="user-display" class="text-xs font-mono text-green-400 font-bold"></span>
                 </div>
                 <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md cursor-pointer">
-                    <i data-lucide="log-in" class="w-4 h-4"></i> <span data-i18n="login">Connexion</span>
+                    <i data-lucide="log-in" class="w-4 h-4"></i> Connexion
                 </button>
             </div>
         </div>
@@ -51,33 +51,33 @@
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden transition-opacity"></div>
     <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-4">
-            <span class="font-black text-white text-base tracking-wider" data-i18n="menu_title">MENU PRINCIPAL</span>
+            <span class="font-black text-white text-base tracking-wider">MENU PRINCIPAL</span>
             <button onclick="toggleSidebar()" class="text-slate-400 p-1.5 font-bold text-lg hover:text-white rounded-lg bg-slate-800">✕</button>
         </div>
         
         <div class="space-y-1.5 text-xs font-medium">
-            <button onclick="switchTab('home')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 transition"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> <span data-i18n="nav_home">Accueil & Missions</span></button>
-            <button onclick="switchTab('search-id')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 transition"><i data-lucide="search" class="w-4 h-4"></i> <span data-i18n="nav_search">Recherche ID / Scan</span></button>
-            <button onclick="switchTab('children')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_children">Dossiers Enfants</span></button>
-            <button onclick="switchTab('widows')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_widows">Dossiers Veuves</span></button>
-            <button onclick="switchTab('team')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> <span data-i18n="nav_team">Équipe & Branches</span></button>
-            <button onclick="switchTab('notifications')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> <span data-i18n="nav_notifications">Notifications</span></button>
-            <button onclick="switchTab('countries')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> <span data-i18n="nav_countries">Pays & Centres</span></button>
-            <button onclick="switchTab('reports')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="nav_reports">Statistiques</span></button>
+            <button onclick="switchTab('home')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 transition"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
+            <button onclick="switchTab('search-id')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 transition"><i data-lucide="search" class="w-4 h-4"></i> Recherche ID / Scan</button>
+            <button onclick="switchTab('children')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants</button>
+            <button onclick="switchTab('widows')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves</button>
+            <button onclick="switchTab('team')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> Équipe & Branches</button>
+            <button onclick="switchTab('notifications')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications</button>
+            <button onclick="switchTab('countries')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres</button>
+            <button onclick="switchTab('reports')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-400"></i> Statistiques</button>
         </div>
 
         <div class="space-y-1.5 text-xs pt-4 border-t border-slate-800">
-            <button onclick="switchTab('profile')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> <span data-i18n="nav_profile">Mon Profil Agent</span></button>
-            <button onclick="switchTab('admin')" class="w-full text-left px-3.5 py-3 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2 border border-green-900/50 transition"><i data-lucide="shield" class="w-4 h-4"></i> <span data-i18n="nav_admin">Administration Centrale</span></button>
+            <button onclick="switchTab('profile')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> Mon Profil Agent</button>
+            <button onclick="switchTab('admin')" class="w-full text-left px-3.5 py-3 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2 border border-green-900/50 transition"><i data-lucide="shield" class="w-4 h-4"></i> Administration Centrale</button>
         </div>
     </aside>
 
     <!-- NAVIGATION INFÉRIEURE MOBILE -->
     <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-2.5 px-3 shadow-2xl">
-        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition"><i data-lucide="home" class="w-5 h-5 text-green-400"></i> <span data-i18n="nav_home">Accueil</span></button>
-        <button onclick="switchTab('search-id')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-amber-400 transition"><i data-lucide="search" class="w-5 h-5 text-amber-400"></i> <span data-i18n="nav_search">Recherche</span></button>
-        <button onclick="switchTab('team')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-purple-400 transition"><i data-lucide="user-check" class="w-5 h-5 text-purple-400"></i> <span data-i18n="nav_team">Agents</span></button>
-        <button onclick="goBack()" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-blue-400 transition"><i data-lucide="arrow-left" class="w-5 h-5 text-blue-400"></i> <span data-i18n="back">Retour</span></button>
+        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition"><i data-lucide="home" class="w-5 h-5 text-green-400"></i> Accueil</button>
+        <button onclick="switchTab('search-id')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-amber-400 transition"><i data-lucide="search" class="w-5 h-5 text-amber-400"></i> Recherche</button>
+        <button onclick="switchTab('team')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-purple-400 transition"><i data-lucide="user-check" class="w-5 h-5 text-purple-400"></i> Agents</button>
+        <button onclick="goBack()" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-blue-400 transition"><i data-lucide="arrow-left" class="w-5 h-5 text-blue-400"></i> Retour</button>
     </nav>
 
     <!-- CONTENU PRINCIPAL -->
@@ -128,78 +128,94 @@
                 </div>
             </div>
 
-            <!-- BRANCHES & ACTIVITÉS CLIQUABLES -->
+            <!-- BRANCHES & SOUS-BOUTONS INDividuellement CLIQUABLES -->
             <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="border-b pb-4">
-                    <h2 class="text-xl font-black text-slate-900">Organisation par Branches & Contacts des Agents</h2>
-                    <p class="text-xs text-slate-500 mt-1">Cliquez sur une branche ou une activité spécifique pour afficher l'agent responsable, son matériel et ses contacts.</p>
+                    <h2 class="text-xl font-black text-slate-900">Branches & Activités Interactives</h2>
+                    <p class="text-xs text-slate-500 mt-1">Cliquez directement sur une activité ou un équipement pour joindre l'agent responsable.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                    <!-- BRANCHE 1 : Éducation -->
-                    <div onclick="showBranchAgents('Éducation & Scolarité')" class="bg-indigo-50/40 p-5 rounded-2xl border border-indigo-200 space-y-3 cursor-pointer hover:bg-indigo-100/60 transition shadow-sm">
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 1</span>
-                            <i data-lucide="graduation-cap" class="w-5 h-5 text-indigo-600"></i>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    
+                    <!-- BRANCHE 1 : ÉDUCATION -->
+                    <div class="bg-indigo-50/40 p-5 rounded-2xl border border-indigo-200 space-y-3 shadow-sm">
+                        <div class="flex items-center justify-between border-b border-indigo-100 pb-2">
+                            <span class="font-bold text-indigo-800 bg-indigo-100 px-2.5 py-0.5 rounded text-[10px] uppercase">📚 1. Éducation & Scolarité</span>
                         </div>
-                        <h3 class="font-bold text-slate-900 text-sm">📚 Éducation & Scolarité</h3>
-                        <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Activités :</strong> Frais scolaires, inscription aux écoles, soutien au tutorat et alphabétisation, distribution de kits.</p>
-                            <p><strong>Équipements :</strong> Manuels scolaires, uniformes, ordinateurs bibliothèque.</p>
-                        </div>
-                    </div>
-
-                    <!-- BRANCHE 2 : Soins & Santé -->
-                    <div onclick="showBranchAgents('Soins & Santé')" class="bg-emerald-50/40 p-5 rounded-2xl border border-emerald-200 space-y-3 cursor-pointer hover:bg-emerald-100/60 transition shadow-sm">
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 2</span>
-                            <i data-lucide="heart-pulse" class="w-5 h-5 text-emerald-600"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-sm">🏥 Soins & Santé (Nutrition & Habillement)</h3>
-                        <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Activités :</strong> Suivi médical, infirmerie d'urgence, distribution de repas équilibrés (nourriture), fourniture d'habits (habillement).</p>
-                            <p><strong>Équipements :</strong> Pharmacie, thermomètres, balances, kits de nutrition.</p>
+                        <div class="grid grid-cols-1 gap-2 pt-1">
+                            <button onclick="showSubBranchDetails('Éducation & Scolarité', 'Frais scolaires & Inscription')" class="w-full text-left bg-white hover:bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">🏫 Écoles & Frais Scolaires</span> <span class="text-[10px] text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
+                            <button onclick="showSubBranchDetails('Éducation & Scolarité', 'Soutien au Tutorat')" class="w-full text-left bg-white hover:bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">📖 Soutien au Tutorat</span> <span class="text-[10px] text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
+                            <button onclick="showSubBranchDetails('Éducation & Scolarité', 'Distribution Kits & Manuels')" class="w-full text-left bg-white hover:bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">🎒 Manuels & Kits Scolaires</span> <span class="text-[10px] text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- BRANCHE 3 : Autonomisation & AGR (Couture, etc.) -->
-                    <div onclick="showBranchAgents('Autonomisation & AGR')" class="bg-amber-50/40 p-5 rounded-2xl border border-amber-200 space-y-3 cursor-pointer hover:bg-amber-100/60 transition shadow-sm">
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded text-[10px] uppercase">🧵 Pôle Couture & AGR</span>
-                            <i data-lucide="briefcase" class="w-5 h-5 text-amber-600"></i>
+                    <!-- BRANCHE 2 : SOINS & SANTÉ -->
+                    <div class="bg-emerald-50/40 p-5 rounded-2xl border border-emerald-200 space-y-3 shadow-sm">
+                        <div class="flex items-center justify-between border-b border-emerald-100 pb-2">
+                            <span class="font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded text-[10px] uppercase">🏥 2. Soins & Santé</span>
                         </div>
-                        <h3 class="font-bold text-slate-900 text-sm">💼 Autonomisation, Couture & Petits Commerce</h3>
-                        <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Activités :</strong> Formations professionnelles (coupe-couture, artisanat), gestion de micro-crédits et accompagnement veuves.</p>
-                            <p><strong>Équipements :</strong> Machines à coudre, kits de cuisine, matériel de formation.</p>
+                        <div class="grid grid-cols-1 gap-2 pt-1">
+                            <button onclick="showSubBranchDetails('Soins & Santé', 'Suivi Médical & Infirmerie')" class="w-full text-left bg-white hover:bg-emerald-50 p-2.5 rounded-xl border border-emerald-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">🩺 Suivi Médical & Infirmerie</span> <span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
+                            <button onclick="showSubBranchDetails('Soins & Santé', 'Distribution Repas & Nutrition')" class="w-full text-left bg-white hover:bg-emerald-50 p-2.5 rounded-xl border border-emerald-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">🍲 Nourriture & Repas Équilibrés</span> <span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
+                            <button onclick="showSubBranchDetails('Soins & Santé', 'Fourniture d Habits')" class="w-full text-left bg-white hover:bg-emerald-50 p-2.5 rounded-xl border border-emerald-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">👕 Habillement & Vêtements</span> <span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- BRANCHE 4 : Administration & Sécurité -->
-                    <div onclick="showBranchAgents('Administration & Sécurité')" class="bg-sky-50/40 p-5 rounded-2xl border border-sky-200 space-y-3 cursor-pointer hover:bg-sky-100/60 transition shadow-sm">
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 4</span>
-                            <i data-lucide="shield-check" class="w-5 h-5 text-sky-600"></i>
+                    <!-- BRANCHE 3 : AUTONOMISATION & COUTURE -->
+                    <div class="bg-amber-50/40 p-5 rounded-2xl border border-amber-200 space-y-3 shadow-sm">
+                        <div class="flex items-center justify-between border-b border-amber-100 pb-2">
+                            <span class="font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded text-[10px] uppercase">🧵 3. Autonomisation & Couture</span>
                         </div>
-                        <h3 class="font-bold text-slate-900 text-sm">🛡️ Administration, Social & Sécurité</h3>
-                        <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Activités :</strong> Enregistrement numérique (`BKDD-E`, `BKDD-V`, `BKDD-A`), écoute sociale, assistance juridique.</p>
-                            <p><strong>Équipements :</strong> PC, imprimantes de badges, registres numériques, talkies-walkies.</p>
+                        <div class="grid grid-cols-1 gap-2 pt-1">
+                            <button onclick="showSubBranchDetails('Autonomisation & AGR', 'Atelier Coupe-Couture')" class="w-full text-left bg-white hover:bg-amber-50 p-2.5 rounded-xl border border-amber-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">🧵 Coupe-Couture (Machines)</span> <span class="text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
+                            <button onclick="showSubBranchDetails('Autonomisation & AGR', 'Formation Petits Commerces')" class="w-full text-left bg-white hover:bg-amber-50 p-2.5 rounded-xl border border-amber-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">💼 Petits Commerces & AGR</span> <span class="text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
                         </div>
                     </div>
+
+                    <!-- BRANCHE 4 : ADMINISTRATION & SÉCURITÉ -->
+                    <div class="bg-sky-50/40 p-5 rounded-2xl border border-sky-200 space-y-3 shadow-sm">
+                        <div class="flex items-center justify-between border-b border-sky-100 pb-2">
+                            <span class="font-bold text-sky-800 bg-sky-100 px-2.5 py-0.5 rounded text-[10px] uppercase">🛡️ 4. Administration & Sécurité</span>
+                        </div>
+                        <div class="grid grid-cols-1 gap-2 pt-1">
+                            <button onclick="showSubBranchDetails('Administration & Sécurité', 'Enregistrement & Badges')" class="w-full text-left bg-white hover:bg-sky-50 p-2.5 rounded-xl border border-sky-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">📋 Enregistrement & Badges (PC)</span> <span class="text-[10px] text-sky-600 bg-sky-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
+                            <button onclick="showSubBranchDetails('Administration & Sécurité', 'Sécurité & Talkies-Walkies')" class="w-full text-left bg-white hover:bg-sky-50 p-2.5 rounded-xl border border-sky-100 flex justify-between items-center transition shadow-xs">
+                                <span class="font-bold text-slate-700">🚨 Sécurité & Talkies-Walkies</span> <span class="text-[10px] text-sky-600 bg-sky-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- MODAL D'AFFICHAGE DÉTAILLÉ DES AGENTS RESPONSABLES (AVEC LES 8 SECTIONS) -->
+        <!-- MODAL DÉTAILLÉ AVEC LES 8 SECTIONS & CONTACTS -->
         <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-sm uppercase">Détails & Responsables</h3>
+                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Détails & Responsables</h3>
                     <button onclick="closeBranchModal()" class="p-2 font-bold text-lg">✕</button>
                 </div>
                 <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1">
-                    <!-- Contenu dynamique enrichi avec les 8 sections et boutons de contact -->
+                    <!-- Contenu dynamique -->
                 </div>
             </div>
         </div>
@@ -310,7 +326,7 @@
                         <select id="a-branch" class="w-full p-2 border rounded bg-white font-bold text-purple-700">
                             <option value="Éducation & Scolarité">📚 1. Éducation & Scolarité</option>
                             <option value="Soins & Santé">🏥 2. Soins & Santé</option>
-                            <option value="Autonomisation & AGR">💼 3. Autonomisation & AGR (Couture)</option>
+                            <option value="Autonomisation & AGR">🧵 3. Autonomisation & Couture</option>
                             <option value="Administration & Sécurité">🛡️ 4. Administration & Sécurité</option>
                         </select>
                     </div>
@@ -434,7 +450,7 @@
 
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit(e) {
             e.preventDefault();
@@ -445,14 +461,14 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // Fonction pour afficher les agents responsables avec les 8 sections détaillées
-        async function showBranchAgents(branchName) {
+        // Fonction pour afficher les détails du sous-élément cliqué avec les 8 sections et les agents
+        async function showSubBranchDetails(branchName, subActivityName) {
             const modal = document.getElementById('modal-branch-agents');
             const title = document.getElementById('modal-branch-title');
             const listContainer = document.getElementById('modal-branch-list');
 
-            title.innerText = `Pôle : ${branchName}`;
-            listContainer.innerHTML = "Chargement des détails et des agents...";
+            title.innerText = `${branchName} — ${subActivityName}`;
+            listContainer.innerHTML = "Chargement des informations...";
             modal.classList.replace('hidden', 'flex');
 
             try {
@@ -460,7 +476,7 @@
                 let agentsHtml = '';
 
                 if (snap.empty) {
-                    agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré dans cette branche pour le moment.</p>`;
+                    agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré dans cette branche.</p>`;
                 } else {
                     snap.forEach(doc => {
                         const agent = doc.data();
@@ -475,6 +491,7 @@
                                         <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
                                         <h4 class="font-bold text-slate-900 text-xs mt-0.5">Nom : ${agent.fullName}</h4>
                                         <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
+                                        <p class="text-[10px] text-slate-500">Matériel : ${agent.equipments || 'N/C'}</p>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2 pt-1">
@@ -490,7 +507,6 @@
                     });
                 }
 
-                // Intégration complète des 8 sections demandées
                 listContainer.innerHTML = `
                     <div class="space-y-3 text-slate-700">
                         <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl flex justify-between items-center">
@@ -500,61 +516,53 @@
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Assurer une prise en charge professionnelle, structurée et continue pour garantir l'autonomie et le bien-être des bénéficiaires.</p>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Exécuter avec excellence l'activité de "${subActivityName}" pour garantir le bien-être et le suivi des bénéficiaires.</p>
                         </div>
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📝 DESCRIPTION</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Gestion rigoureuse des activités de terrain, suivi individualisé et coordination des ressources humaines et matérielles.</p>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Prise en charge dédiée, coordination sur le terrain et rapportage rigoureux par l'agent responsable.</p>
                         </div>
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📋 PROGRAMMES</h4>
                             <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
-                                <li>Programme 1 : Évaluation initiale et immatriculation</li>
-                                <li>Programme 2 : Suivi technique et encadrement régulier</li>
-                                <li>Programme 3 : Distribution et maintenance des équipements</li>
-                                <li>Programme 4 : Évaluation d'impact et rapports périodiques</li>
+                                <li>Programme 1 : Enregistrement et ciblage des bénéficiaires</li>
+                                <li>Programme 2 : Déploiement des actions de terrain</li>
+                                <li>Programme 3 : Distribution et suivi des ressources</li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">✅ TÂCHES</h4>
                             <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
-                                <li>Accueil, orientation et enregistrement des dossiers</li>
-                                <li>Visites de terrain et contrôle des équipements</li>
-                                <li>Organisation des sessions de formation ou de soins</li>
-                                <li>Centralisation des données pour l'administration</li>
+                                <li>Supervision quotidienne de l'activité "${subActivityName}"</li>
+                                <li>Assistance directe et écoute active</li>
+                                <li>Mise à jour des registres numériques</li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">👥 BÉNÉFICIAIRES</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Orphelins, veuves mères de famille et agents sociaux de la zone d'intervention.</p>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Orphelins, veuves et familles ciblées par le programme panafricain.</p>
                         </div>
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🧰 MATÉRIEL NÉCESSAIRE</h4>
                             <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
-                                <li>Kits et outils professionnels de la branche</li>
-                                <li>Registres de suivi et tablettes de terrain</li>
-                                <li>Matériel de protection et de première nécessité</li>
+                                <li>Équipements spécifiques affectés à cette tâche</li>
+                                <li>Outils de communication et registres</li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📅 PLANNING</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Permanence active du Lundi au Samedi (08h00 - 16h00).</p>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Intervention programmée et suivie en continu.</p>
                         </div>
 
                         <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">💰 BUDGET</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Géré et audité de manière transparente par l'Administration Centrale.</p>
-                        </div>
-
-                        <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📊 RÉSULTATS</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Taux de réussite élevé et traçabilité complète de chaque dossier enregistré.</p>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">💰 BUDGET & RÉSULTATS</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Gestion centralisée et transparente. Objectifs atteints à 100%.</p>
                         </div>
 
                         <div class="pt-2 border-t space-y-2">
@@ -566,10 +574,10 @@
 
                         <div class="pt-2 border-t grid grid-cols-2 gap-2">
                             <a href="mailto:contact@dieudonnecare.org" class="bg-slate-900 hover:bg-slate-800 text-white p-2.5 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                ✉️ Envoyer un Email
+                                ✉️ Email
                             </a>
                             <button onclick="switchTab('reports')" class="bg-blue-600 hover:bg-blue-500 text-white p-2.5 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                📄 Voir Rapports
+                                📄 Rapports
                             </button>
                         </div>
                     </div>
