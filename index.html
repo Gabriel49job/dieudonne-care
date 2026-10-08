@@ -31,7 +31,7 @@
             </div>
 
             <div class="flex items-center space-x-3">
-                <select id="lang-selector" onchange="changeLanguage(this.value)" class="bg-slate-800 text-green-400 font-bold text-xs px-2.5 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
+                <select id="lang-selector" class="bg-slate-800 text-green-400 font-bold text-xs px-2.5 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
                     <option value="fr">🇫🇷 FR</option>
                     <option value="en">🇬🇧 EN</option>
                     <option value="sw">🇹🇿 SW</option>
@@ -146,7 +146,7 @@
             <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
                     <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Détails & Responsables</h3>
-                    <button onclick="closeBranchModal()" class="p-2 font-bold text-lg">✕</button>
+                    <button onclick="closeBranchModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
                 </div>
                 <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1">
                     <!-- Contenu dynamique -->
@@ -199,7 +199,7 @@
     <!-- FORMULAIRES -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold">✕</button></div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold cursor-pointer">✕</button></div>
             <form onsubmit="saveChildForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
                 <div class="grid grid-cols-2 gap-3">
                     <div class="bg-green-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-green-800">📷 Photo Enfant</label><input type="file" id="c-photo" accept="image/*" class="w-full text-[10px]"></div>
@@ -216,14 +216,14 @@
                     <div><label class="font-bold">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded bg-white"></div>
                 </div>
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow">Enregistrer</button>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow cursor-pointer">Enregistrer</button>
             </form>
         </div>
     </div>
 
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Veuve (BKDD-V)</h3><button onclick="closeForm('widow')" class="p-2 font-bold">✕</button></div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Veuve (BKDD-V)</h3><button onclick="closeForm('widow')" class="p-2 font-bold cursor-pointer">✕</button></div>
             <form onsubmit="saveWidowForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
                 <div class="grid grid-cols-2 gap-3">
                     <div class="bg-emerald-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-emerald-800">📷 Photo Veuve</label><input type="file" id="w-photo" accept="image/*" class="w-full text-[10px]"></div>
@@ -239,7 +239,7 @@
                     <div><label class="font-bold">Pays *</label><select id="w-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                 </div>
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow">Enregistrer</button>
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow cursor-pointer">Enregistrer</button>
             </form>
         </div>
     </div>
@@ -247,7 +247,7 @@
     <!-- FORMULAIRE AGENT AVEC SÉLECTION DYNAMIQUE DES SOUS-BOUTONS -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Tâche (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold">✕</button></div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Tâche (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold cursor-pointer">✕</button></div>
             <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
                 <div class="grid grid-cols-2 gap-3">
                     <div class="bg-purple-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-purple-800">📷 Photo Agent</label><input type="file" id="a-photo" accept="image/*" class="w-full text-[10px]"></div>
@@ -258,13 +258,13 @@
                     <div>
                         <label class="font-bold">Branche / Pôle *</label>
                         <select id="a-branch" onchange="updateSubactivityOptions()" class="w-full p-2 border rounded bg-white font-bold text-purple-700">
-                            <!-- Généré par JS -->
+                            <!-- Rempli dynamiquement -->
                         </select>
                     </div>
                     <div>
                         <label class="font-bold text-green-700">Sous-bouton / Tâche précis *</label>
                         <select id="a-subactivity" class="w-full p-2 border rounded bg-white font-bold text-slate-900">
-                            <!-- Mis à jour dynamiquement -->
+                            <!-- Rempli dynamiquement selon la branche -->
                         </select>
                     </div>
                     <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
@@ -281,11 +281,11 @@
     <!-- AUTH MODAL -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Connexion Agent</h3><button onclick="closeAuthModal()" class="p-2 font-bold">✕</button></div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Connexion Agent</h3><button onclick="closeAuthModal()" class="p-2 font-bold cursor-pointer">✕</button></div>
             <form onsubmit="handleAuthSubmit(event)" class="space-y-3 text-xs">
                 <input type="email" id="auth-email" placeholder="E-mail Agent" required class="w-full p-3 border rounded-xl text-sm bg-white">
                 <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-3 border rounded-xl text-sm bg-white">
-                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl text-sm shadow">Se Connecter</button>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl text-sm shadow cursor-pointer">Se Connecter</button>
             </form>
         </div>
     </div>
@@ -373,11 +373,13 @@
         function renderStructureAccordion() {
             const container = document.getElementById('branches-accordion-container');
             const agentBranchSelect = document.getElementById('a-branch');
+            
+            if (!container || !agentBranchSelect) return;
+
             container.innerHTML = '';
             agentBranchSelect.innerHTML = '';
 
             structureData.forEach((branch) => {
-                // Remplir le select des branches pour l'agent
                 const opt = document.createElement('option');
                 opt.value = branch.title;
                 opt.textContent = branch.title;
@@ -386,7 +388,7 @@
                 let subHtml = '';
                 branch.items.forEach(sub => {
                     subHtml += `
-                        <button onclick="showSubBranchDetails('${branch.title}', '${sub}')" class="w-full text-left bg-white hover:bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center transition shadow-xs group">
+                        <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="w-full text-left bg-white hover:bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center transition shadow-xs group cursor-pointer">
                             <span class="font-bold text-slate-700 group-hover:text-green-600">${sub}</span> 
                             <span class="text-[10px] text-green-600 bg-green-50 px-2.5 py-1 rounded-lg font-bold">Détails & Contact →</span>
                         </button>
@@ -408,10 +410,12 @@
             updateSubactivityOptions();
         }
 
-        // Mettre à jour automatiquement les sous-boutons selon la branche choisie
         function updateSubactivityOptions() {
-            const branchVal = document.getElementById('a-branch').value;
+            const branchSelect = document.getElementById('a-branch');
             const subSelect = document.getElementById('a-subactivity');
+            if (!branchSelect || !subSelect) return;
+
+            const branchVal = branchSelect.value;
             subSelect.innerHTML = '';
 
             const foundBranch = structureData.find(b => b.title === branchVal);
@@ -510,7 +514,7 @@
 
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit(e) {
             e.preventDefault();
@@ -801,7 +805,7 @@
                 const snap = await db.collection(col).get();
                 snap.forEach(doc => {
                     const d = doc.data();
-                    html += `<div class="p-2 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">${d.matricule}</strong> - ${d.firstName || d.fullName || ''}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px]">Supprimer</button></div>`;
+                    html += `<div class="p-2 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">${d.matricule}</strong> - ${d.firstName || d.fullName || ''}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
                 });
             }
             container.innerHTML = html || 'Vide';
@@ -811,13 +815,13 @@
             document.getElementById('profile-card').innerHTML = `<p class="text-xs font-mono bg-slate-50 p-3 rounded-xl border">Connecté : ${user.email}</p>`;
         }
 
-        window.onload = () => {
+        window.addEventListener('DOMContentLoaded', () => {
             renderStructureAccordion();
             populateAfricanCountries();
             initAuthListener();
             refreshCounters();
             if (window.lucide) lucide.createIcons();
-        };
+        });
     </script>
 </body>
 </html>
