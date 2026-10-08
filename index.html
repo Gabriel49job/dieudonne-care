@@ -244,9 +244,10 @@
         </div>
     </div>
 
+    <!-- FORMULAIRE AGENT MIS À JOUR AVEC PRÉCISION DU SOUS-DOMAINE -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Branche (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold">✕</button></div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Spécificité (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold">✕</button></div>
             <form onsubmit="saveAgentForm(event)" class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
                 <div class="grid grid-cols-2 gap-3">
                     <div class="bg-purple-50 p-3 rounded-xl space-y-1 border"><label class="font-bold text-purple-800">📷 Photo Agent</label><input type="file" id="a-photo" accept="image/*" class="w-full text-[10px]"></div>
@@ -256,18 +257,22 @@
                     <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Branche / Pôle *</label>
                         <select id="a-branch" class="w-full p-2 border rounded bg-white font-bold text-purple-700">
-                            <option value="Éducation & Scolarité">1. Éducation & Scolarité</option>
-                            <option value="Soins, Santé & Nutrition">2. Soins, Santé & Nutrition</option>
-                            <option value="Autonomisation & AGR">3. Autonomisation & AGR</option>
-                            <option value="Administration, Social & Protection">4. Administration, Social & Protection</option>
-                            <option value="Logistique, Infrastructure & Environnement">5. Logistique, Infrastructure & Environnement</option>
-                            <option value="Alimentation & Agriculture">6. Alimentation & Agriculture</option>
-                            <option value="Finances, Dons & Partenariats">7. Finances, Dons & Partenariats</option>
-                            <option value="Administration Générale & Suivi">8. Administration Générale & Suivi</option>
+                            <option value="1. 🎓 ÉDUCATION & SCOLARITÉ">1. 🎓 Éducation & Scolarité</option>
+                            <option value="2. 🏥 SOINS, SANTÉ & NUTRITION">2. 🏥 Soins, Santé & Nutrition</option>
+                            <option value="3. 👩‍🏭 AUTONOMISATION & AGR">3. 👩‍🏭 Autonomisation & AGR</option>
+                            <option value="4. 🛡️ ADMINISTRATION, SOCIAL & PROTECTION">4. 🛡️ Administration & Protection</option>
+                            <option value="5. 🏗️ LOGISTIQUE, INFRASTRUCTURE & ENVIRONNEMENT">5. 🏗️ Logistique & Infrastructure</option>
+                            <option value="6. 🌾 ALIMENTATION & AGRICULTURE">6. 🌾 Alimentation & Agriculture</option>
+                            <option value="7. 💰 FINANCES, DONS & PARTENARIATS">7. 💰 Finances & Partenariats</option>
+                            <option value="8. 📊 ADMINISTRATION GÉNÉRALE & SUIVI">8. 📊 Administration Générale</option>
                         </select>
                     </div>
-                    <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Équipements sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Matériel..." class="w-full p-2 border rounded bg-white"></div>
+                    <div>
+                        <label class="font-bold text-green-700">Tâche / Sous-bouton précis *</label>
+                        <input type="text" id="a-subactivity" placeholder="Ex: Coupe-Couture & Machines..." required class="w-full p-2 border rounded bg-white font-bold">
+                    </div>
+                    <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Responsable Atelier..." required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Matériel sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Machines à coudre..." class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
@@ -301,7 +306,6 @@
             "Tunisie", "Zambie", "Zimbabwe"
         ];
 
-        // Définition exacte des 8 grands boutons et leurs 76 sous-boutons
         const structureData = [
             {
                 title: "1. 🎓 ÉDUCATION & SCOLARITÉ",
@@ -373,7 +377,7 @@
         function renderStructureAccordion() {
             const container = document.getElementById('branches-accordion-container');
             container.innerHTML = '';
-            structureData.forEach((branch, idx) => {
+            structureData.forEach((branch) => {
                 let subHtml = '';
                 branch.items.forEach(sub => {
                     subHtml += `
@@ -494,53 +498,54 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // Affichage des informations complètes du sous-bouton cliqué
+        // Recherche ciblée de l'agent selon sa sous-tâche exacte ou sa branche
         async function showSubBranchDetails(branchTitle, subActivityName) {
             const modal = document.getElementById('modal-branch-agents');
             const title = document.getElementById('modal-branch-title');
             const listContainer = document.getElementById('modal-branch-list');
 
             title.innerText = `${branchTitle} — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement des détails...";
+            listContainer.innerHTML = "Chargement des détails et des agents...";
             modal.classList.replace('hidden', 'flex');
 
-            // Extraction du nom court de la branche pour correspondre à Firestore
-            const cleanBranchName = branchTitle.replace(/^[0-9]+\.\s+/, '').trim();
-
             try {
-                const snap = await db.collection("agents").where("branch", ">=", cleanBranchName.split(" ")[0]).get();
+                // Recherche des agents inscrits spécifiquement sur cette sous-tâche ou branche
+                const snap = await db.collection("agents").get();
                 let agentsHtml = '';
 
                 snap.forEach(doc => {
                     const agent = doc.data();
-                    const photoHtml = agent.photo ? `<img src="${agent.photo}" class="w-full h-full object-cover">` : `👤`;
-                    const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
+                    // On vérifie si l'agent correspond à la sous-tâche ou à la branche
+                    if (agent.subactivity === subActivityName || agent.branch === branchTitle) {
+                        const photoHtml = agent.photo ? `<img src="${agent.photo}" class="w-full h-full object-cover">` : `👤`;
+                        const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
 
-                    agentsHtml += `
-                        <div class="bg-slate-50 p-3 rounded-2xl border space-y-2 shadow-sm">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
-                                <div class="flex-grow">
-                                    <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
-                                    <h4 class="font-bold text-slate-900 text-xs mt-0.5">Nom : ${agent.fullName}</h4>
-                                    <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
-                                    <p class="text-[10px] text-slate-500">Matériel : ${agent.equipments || 'N/C'}</p>
+                        agentsHtml += `
+                            <div class="bg-slate-50 p-3 rounded-2xl border space-y-2 shadow-sm">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
+                                    <div class="flex-grow">
+                                        <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
+                                        <h4 class="font-bold text-slate-900 text-xs mt-0.5">Nom : ${agent.fullName}</h4>
+                                        <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
+                                        <p class="text-[10px] text-green-700 font-bold">Spécificité : ${agent.subactivity || agent.branch}</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 pt-1">
+                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
+                                        📞 Appeler
+                                    </a>
+                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
+                                        💬 WhatsApp
+                                    </a>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2 pt-1">
-                                <a href="tel:${cleanPhone}" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                    📞 Appeler
-                                </a>
-                                <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                    💬 WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    `;
+                        `;
+                    }
                 });
 
                 if (!agentsHtml) {
-                    agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent spécifique assigné pour le moment.</p>`;
+                    agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré spécifiquement sur "${subActivityName}" pour le moment.</p>`;
                 }
 
                 listContainer.innerHTML = `
@@ -690,6 +695,7 @@
                 matricule, photo, familyPhoto,
                 fullName: document.getElementById('a-fullname').value,
                 branch: document.getElementById('a-branch').value,
+                subactivity: document.getElementById('a-subactivity').value,
                 role: document.getElementById('a-role').value,
                 equipments: document.getElementById('a-equipments').value,
                 phone: document.getElementById('a-phone').value,
@@ -698,7 +704,7 @@
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
-            alert(`Agent enregistré ! ID : ${matricule}`);
+            alert(`Agent enregistré avec sa spécificité ! ID : ${matricule}`);
             closeForm('agent'); refreshCounters(); e.target.reset();
         }
 
@@ -760,6 +766,7 @@
                         <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
                         <p class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || ''}</p>
                         ${d.branch ? `<p class="text-[10px] text-purple-700 font-bold">Pôle : ${d.branch}</p>` : ''}
+                        ${d.subactivity ? `<p class="text-[10px] text-green-600 font-bold">Tâche : ${d.subactivity}</p>` : ''}
                         ${d.phone ? `<p class="text-[10px] text-emerald-600 font-bold">Tél : ${d.phone}</p>` : ''}
                     </div>
                 `;
