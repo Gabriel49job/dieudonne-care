@@ -31,7 +31,6 @@
             </div>
 
             <div class="flex items-center space-x-3">
-                <!-- SÉLECTEUR DE LANGUE -->
                 <select id="lang-selector" onchange="changeLanguage(this.value)" class="bg-slate-800 text-green-400 font-bold text-xs px-2.5 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
                     <option value="fr">🇫🇷 FR</option>
                     <option value="en">🇬🇧 EN</option>
@@ -89,8 +88,8 @@
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-10 shadow-xl space-y-6 border border-slate-800 relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="space-y-2 relative z-10">
-                    <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest" data-i18n="center_badge">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
-                    <h1 class="text-2xl md:text-4xl font-black mt-2 leading-tight" data-i18n="main_title">Plateforme Panafricaine de Suivi Social</h1>
+                    <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
+                    <h1 class="text-2xl md:text-4xl font-black mt-2 leading-tight">Plateforme Panafricaine de Suivi Social</h1>
                     <p class="text-xs md:text-sm text-slate-300 max-w-2xl leading-relaxed pt-1">
                         Système intégré de gestion des orphelins, des veuves, des agents spécialisés et des équipements complets de l'orphelinat.
                     </p>
@@ -98,13 +97,13 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
                     <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_child">+ Dossier Enfant (BKDD-E)</span>
+                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span>+ Dossier Enfant (BKDD-E)</span>
                     </button>
                     <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_widow">+ Dossier Veuve (BKDD-V)</span>
+                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span>+ Dossier Veuve (BKDD-V)</span>
                     </button>
                     <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="shield-plus" class="w-5 h-5"></i> <span data-i18n="btn_add_agent">+ Dossier Agent (BKDD-A)</span>
+                        <i data-lucide="shield-plus" class="w-5 h-5"></i> <span>+ Dossier Agent (BKDD-A)</span>
                     </button>
                 </div>
             </div>
@@ -112,95 +111,95 @@
             <!-- COMPTEURS -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_children">Enfants</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Enfants</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
                     <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="baby" class="w-5 h-5"></i></div>
                 </div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_widows">Veuves</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Veuves</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
                     <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i data-lucide="users" class="w-5 h-5"></i></div>
                 </div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_agents">Agents</p><p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Agents</p><p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
                     <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center"><i data-lucide="user-check" class="w-5 h-5"></i></div>
                 </div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider" data-i18n="stat_countries">Pays</p><p class="text-3xl font-black text-green-600 mt-1">54</p></div>
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Pays</p><p class="text-3xl font-black text-green-600 mt-1">54</p></div>
                     <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i data-lucide="globe" class="w-5 h-5"></i></div>
                 </div>
             </div>
 
-            <!-- BRANCHES & ACTIVITÉS CLÉMENTES (CLIQUABLES POUR CONTACTER L'AGENT) -->
+            <!-- BRANCHES & ACTIVITÉS CLIQUABLES -->
             <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="border-b pb-4">
                     <h2 class="text-xl font-black text-slate-900">Organisation par Branches & Contacts des Agents</h2>
-                    <p class="text-xs text-slate-500 mt-1">Cliquez sur une branche pour afficher instantanément l'agent responsable et son numéro de téléphone.</p>
+                    <p class="text-xs text-slate-500 mt-1">Cliquez sur une branche ou une activité spécifique pour afficher l'agent responsable, son matériel et ses contacts.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                    <!-- BRANCHE 1 -->
+                    <!-- BRANCHE 1 : Éducation -->
                     <div onclick="showBranchAgents('Éducation & Scolarité')" class="bg-indigo-50/40 p-5 rounded-2xl border border-indigo-200 space-y-3 cursor-pointer hover:bg-indigo-100/60 transition shadow-sm">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 1 (Cliquer)</span>
+                            <span class="font-bold text-indigo-700 bg-indigo-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 1</span>
                             <i data-lucide="graduation-cap" class="w-5 h-5 text-indigo-600"></i>
                         </div>
                         <h3 class="font-bold text-slate-900 text-sm">📚 Éducation & Scolarité</h3>
                         <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Types d'actions :</strong> Frais scolaires et inscription aux écoles, soutien au tutorat et alphabétisation, distribution de kits (cahiers, bics).</p>
-                            <p><strong>Équipements :</strong> Manuels scolaires, uniformes, et ordinateurs pour la bibliothèque numérique.</p>
+                            <p><strong>Activités :</strong> Frais scolaires, inscription aux écoles, soutien au tutorat et alphabétisation, distribution de kits.</p>
+                            <p><strong>Équipements :</strong> Manuels scolaires, uniformes, ordinateurs bibliothèque.</p>
                         </div>
                     </div>
 
-                    <!-- BRANCHE 2 -->
+                    <!-- BRANCHE 2 : Soins & Santé -->
                     <div onclick="showBranchAgents('Soins & Santé')" class="bg-emerald-50/40 p-5 rounded-2xl border border-emerald-200 space-y-3 cursor-pointer hover:bg-emerald-100/60 transition shadow-sm">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 2 (Cliquer)</span>
+                            <span class="font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 2</span>
                             <i data-lucide="heart-pulse" class="w-5 h-5 text-emerald-600"></i>
                         </div>
-                        <h3 class="font-bold text-slate-900 text-sm">🏥 Soins & Santé (Nutrition & Bien-être)</h3>
+                        <h3 class="font-bold text-slate-900 text-sm">🏥 Soins & Santé (Nutrition & Habillement)</h3>
                         <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Types d'actions :</strong> Suivi médical régulier, infirmerie d'urgence, distribution de repas équilibrés, et fourniture d'habits (habillement).</p>
-                            <p><strong>Équipements :</strong> Pharmacie d'urgence, thermomètres, balances, kits de nutrition thérapeutique, lits d'observation.</p>
+                            <p><strong>Activités :</strong> Suivi médical, infirmerie d'urgence, distribution de repas équilibrés (nourriture), fourniture d'habits (habillement).</p>
+                            <p><strong>Équipements :</strong> Pharmacie, thermomètres, balances, kits de nutrition.</p>
                         </div>
                     </div>
 
-                    <!-- BRANCHE 3 -->
+                    <!-- BRANCHE 3 : Autonomisation & AGR (Couture, etc.) -->
                     <div onclick="showBranchAgents('Autonomisation & AGR')" class="bg-amber-50/40 p-5 rounded-2xl border border-amber-200 space-y-3 cursor-pointer hover:bg-amber-100/60 transition shadow-sm">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 3 (Cliquer)</span>
+                            <span class="font-bold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded text-[10px] uppercase">🧵 Pôle Couture & AGR</span>
                             <i data-lucide="briefcase" class="w-5 h-5 text-amber-600"></i>
                         </div>
-                        <h3 class="font-bold text-slate-900 text-sm">💼 Autonomisation & AGR (pour les veuves)</h3>
+                        <h3 class="font-bold text-slate-900 text-sm">💼 Autonomisation, Couture & Petits Commerce</h3>
                         <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Types d'actions :</strong> Formations professionnelles (coupe-couture, artisanat, petits commerce), gestion de micro-crédits et accompagnement.</p>
-                            <p><strong>Équipements :</strong> Machines à coudre, kits de cuisine/boulangerie, matériel de formation pour les veuves.</p>
+                            <p><strong>Activités :</strong> Formations professionnelles (coupe-couture, artisanat), gestion de micro-crédits et accompagnement veuves.</p>
+                            <p><strong>Équipements :</strong> Machines à coudre, kits de cuisine, matériel de formation.</p>
                         </div>
                     </div>
 
-                    <!-- BRANCHE 4 -->
+                    <!-- BRANCHE 4 : Administration & Sécurité -->
                     <div onclick="showBranchAgents('Administration & Sécurité')" class="bg-sky-50/40 p-5 rounded-2xl border border-sky-200 space-y-3 cursor-pointer hover:bg-sky-100/60 transition shadow-sm">
                         <div class="flex items-center justify-between">
-                            <span class="font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 4 (Cliquer)</span>
+                            <span class="font-bold text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded text-[10px] uppercase">Branche 4</span>
                             <i data-lucide="shield-check" class="w-5 h-5 text-sky-600"></i>
                         </div>
                         <h3 class="font-bold text-slate-900 text-sm">🛡️ Administration, Social & Sécurité</h3>
                         <div class="text-slate-600 space-y-1.5 pt-1">
-                            <p><strong>Types d'actions :</strong> Enregistrement numérique sécurisé (`BKDD-E`, `BKDD-V`, `BKDD-A`), écoute sociale, assistance juridique, coordination.</p>
-                            <p><strong>Équipements :</strong> PC, imprimantes de badges, registres numériques, outils de communication (talkies-walkies).</p>
+                            <p><strong>Activités :</strong> Enregistrement numérique (`BKDD-E`, `BKDD-V`, `BKDD-A`), écoute sociale, assistance juridique.</p>
+                            <p><strong>Équipements :</strong> PC, imprimantes de badges, registres numériques, talkies-walkies.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- MODAL D'AFFICHAGE DES AGENTS PAR BRANCHE -->
-        <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
-            <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative max-h-[80vh] flex flex-col">
+        <!-- MODAL D'AFFICHAGE DÉTAILLÉ DES AGENTS RESPONSABLES (AVEC LES 8 SECTIONS) -->
+        <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+            <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-sm">Agents de la Branche</h3>
+                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-sm uppercase">Détails & Responsables</h3>
                     <button onclick="closeBranchModal()" class="p-2 font-bold text-lg">✕</button>
                 </div>
-                <div id="modal-branch-list" class="space-y-3 overflow-y-auto flex-grow text-xs pr-1">
-                    <!-- Les agents s'afficheront ici dynamiquement -->
+                <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1">
+                    <!-- Contenu dynamique enrichi avec les 8 sections et boutons de contact -->
                 </div>
             </div>
         </div>
@@ -311,12 +310,12 @@
                         <select id="a-branch" class="w-full p-2 border rounded bg-white font-bold text-purple-700">
                             <option value="Éducation & Scolarité">📚 1. Éducation & Scolarité</option>
                             <option value="Soins & Santé">🏥 2. Soins & Santé</option>
-                            <option value="Autonomisation & AGR">💼 3. Autonomisation & AGR</option>
+                            <option value="Autonomisation & AGR">💼 3. Autonomisation & AGR (Couture)</option>
                             <option value="Administration & Sécurité">🛡️ 4. Administration & Sécurité</option>
                         </select>
                     </div>
                     <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Équipements sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Ex: Manuels, Pharmacie..." class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Équipements sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Ex: Machines à coudre, manuels..." class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
@@ -435,7 +434,7 @@
 
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
 
         async function handleAuthSubmit(e) {
             e.preventDefault();
@@ -446,47 +445,138 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // Fonction pour afficher les agents responsables lorsqu'on clique sur une branche
+        // Fonction pour afficher les agents responsables avec les 8 sections détaillées
         async function showBranchAgents(branchName) {
             const modal = document.getElementById('modal-branch-agents');
             const title = document.getElementById('modal-branch-title');
             const listContainer = document.getElementById('modal-branch-list');
 
-            title.innerText = `Responsables : ${branchName}`;
-            listContainer.innerHTML = "Recherche des agents...";
+            title.innerText = `Pôle : ${branchName}`;
+            listContainer.innerHTML = "Chargement des détails et des agents...";
             modal.classList.replace('hidden', 'flex');
 
             try {
                 const snap = await db.collection("agents").where("branch", "==", branchName).get();
-                listContainer.innerHTML = '';
+                let agentsHtml = '';
 
                 if (snap.empty) {
-                    listContainer.innerHTML = `<p class="text-slate-500 text-center py-4">Aucun agent enregistré pour le moment dans cette branche.</p>`;
-                    return;
+                    agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré dans cette branche pour le moment.</p>`;
+                } else {
+                    snap.forEach(doc => {
+                        const agent = doc.data();
+                        const photoHtml = agent.photo ? `<img src="${agent.photo}" class="w-full h-full object-cover">` : `👤`;
+                        const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
+
+                        agentsHtml += `
+                            <div class="bg-slate-50 p-3 rounded-2xl border space-y-2 shadow-sm">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
+                                    <div class="flex-grow">
+                                        <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
+                                        <h4 class="font-bold text-slate-900 text-xs mt-0.5">Nom : ${agent.fullName}</h4>
+                                        <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 pt-1">
+                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
+                                        📞 Appeler
+                                    </a>
+                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
+                                        💬 WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    });
                 }
 
-                snap.forEach(doc => {
-                    const agent = doc.data();
-                    const photoHtml = agent.photo ? `<img src="${agent.photo}" class="w-full h-full object-cover">` : `👤`;
-                    
-                    listContainer.innerHTML += `
-                        <div class="bg-slate-50 p-3 rounded-2xl border flex items-center gap-3 shadow-sm">
-                            <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
-                            <div class="flex-grow">
-                                <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
-                                <h4 class="font-bold text-slate-900 text-xs mt-0.5">${agent.fullName}</h4>
-                                <p class="text-[10px] text-slate-500">Rôle : ${agent.role}</p>
-                                <p class="text-[10px] text-slate-500">Matériel : ${agent.equipments || 'N/C'}</p>
-                            </div>
-                            <a href="tel:${agent.phone || ''}" class="bg-emerald-600 text-white p-2.5 rounded-xl flex items-center justify-center shadow hover:bg-emerald-500 transition shrink-0" title="Appeler">
-                                <i data-lucide="phone" class="w-4 h-4"></i>
-                            </a>
+                // Intégration complète des 8 sections demandées
+                listContainer.innerHTML = `
+                    <div class="space-y-3 text-slate-700">
+                        <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl flex justify-between items-center">
+                            <span class="font-bold text-emerald-800">🟢 STATUT : ACTIF</span>
+                            <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Panafricain</span>
                         </div>
-                    `;
-                });
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Assurer une prise en charge professionnelle, structurée et continue pour garantir l'autonomie et le bien-être des bénéficiaires.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📝 DESCRIPTION</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Gestion rigoureuse des activités de terrain, suivi individualisé et coordination des ressources humaines et matérielles.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📋 PROGRAMMES</h4>
+                            <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
+                                <li>Programme 1 : Évaluation initiale et immatriculation</li>
+                                <li>Programme 2 : Suivi technique et encadrement régulier</li>
+                                <li>Programme 3 : Distribution et maintenance des équipements</li>
+                                <li>Programme 4 : Évaluation d'impact et rapports périodiques</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">✅ TÂCHES</h4>
+                            <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
+                                <li>Accueil, orientation et enregistrement des dossiers</li>
+                                <li>Visites de terrain et contrôle des équipements</li>
+                                <li>Organisation des sessions de formation ou de soins</li>
+                                <li>Centralisation des données pour l'administration</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">👥 BÉNÉFICIAIRES</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Orphelins, veuves mères de famille et agents sociaux de la zone d'intervention.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🧰 MATÉRIEL NÉCESSAIRE</h4>
+                            <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
+                                <li>Kits et outils professionnels de la branche</li>
+                                <li>Registres de suivi et tablettes de terrain</li>
+                                <li>Matériel de protection et de première nécessité</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📅 PLANNING</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Permanence active du Lundi au Samedi (08h00 - 16h00).</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">💰 BUDGET</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Géré et audité de manière transparente par l'Administration Centrale.</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📊 RÉSULTATS</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Taux de réussite élevé et traçabilité complète de chaque dossier enregistré.</p>
+                        </div>
+
+                        <div class="pt-2 border-t space-y-2">
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES</h4>
+                            <div class="space-y-2">
+                                ${agentsHtml}
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t grid grid-cols-2 gap-2">
+                            <a href="mailto:contact@dieudonnecare.org" class="bg-slate-900 hover:bg-slate-800 text-white p-2.5 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
+                                ✉️ Envoyer un Email
+                            </a>
+                            <button onclick="switchTab('reports')" class="bg-blue-600 hover:bg-blue-500 text-white p-2.5 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
+                                📄 Voir Rapports
+                            </button>
+                        </div>
+                    </div>
+                `;
                 if (window.lucide) lucide.createIcons();
             } catch (err) {
-                listContainer.innerHTML = `<p class="text-red-500 text-center">Erreur de chargement : ${err.message}</p>`;
+                listContainer.innerHTML = `<p class="text-red-500 text-center">Erreur : ${err.message}</p>`;
             }
         }
 
