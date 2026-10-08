@@ -91,7 +91,7 @@
                     <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
                     <h1 class="text-2xl md:text-4xl font-black mt-2 leading-tight">Plateforme Panafricaine de Suivi Social</h1>
                     <p class="text-xs md:text-sm text-slate-300 max-w-2xl leading-relaxed pt-1">
-                        Système intégré de gestion des orphelins, des veuves, des agents spécialisés et des équipements complets de l'orphelinat.
+                        Système intégré de gestion des 8 branches et 76 sous-programmes panafricains.
                     </p>
                 </div>
 
@@ -128,86 +128,20 @@
                 </div>
             </div>
 
-            <!-- BRANCHES & SOUS-BOUTONS INDividuellement CLIQUABLES -->
+            <!-- LES 8 GRANDS BOUTONS ET LEURS SOUS-BOUTONS INTERACTIFS -->
             <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="border-b pb-4">
-                    <h2 class="text-xl font-black text-slate-900">Branches & Activités Interactives</h2>
-                    <p class="text-xs text-slate-500 mt-1">Cliquez directement sur une activité ou un équipement pour joindre l'agent responsable.</p>
+                    <h2 class="text-xl font-black text-slate-900">Structure Panafricaine (8 Boutons & 76 Sous-Boutons)</h2>
+                    <p class="text-xs text-slate-500 mt-1">Cliquez sur n'importe quel sous-bouton pour afficher tous ses détails, programmes, tâches et agents responsables.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
-                    
-                    <!-- BRANCHE 1 : ÉDUCATION -->
-                    <div class="bg-indigo-50/40 p-5 rounded-2xl border border-indigo-200 space-y-3 shadow-sm">
-                        <div class="flex items-center justify-between border-b border-indigo-100 pb-2">
-                            <span class="font-bold text-indigo-800 bg-indigo-100 px-2.5 py-0.5 rounded text-[10px] uppercase">📚 1. Éducation & Scolarité</span>
-                        </div>
-                        <div class="grid grid-cols-1 gap-2 pt-1">
-                            <button onclick="showSubBranchDetails('Éducation & Scolarité', 'Frais scolaires & Inscription')" class="w-full text-left bg-white hover:bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">🏫 Écoles & Frais Scolaires</span> <span class="text-[10px] text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                            <button onclick="showSubBranchDetails('Éducation & Scolarité', 'Soutien au Tutorat')" class="w-full text-left bg-white hover:bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">📖 Soutien au Tutorat</span> <span class="text-[10px] text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                            <button onclick="showSubBranchDetails('Éducation & Scolarité', 'Distribution Kits & Manuels')" class="w-full text-left bg-white hover:bg-indigo-50 p-2.5 rounded-xl border border-indigo-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">🎒 Manuels & Kits Scolaires</span> <span class="text-[10px] text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- BRANCHE 2 : SOINS & SANTÉ -->
-                    <div class="bg-emerald-50/40 p-5 rounded-2xl border border-emerald-200 space-y-3 shadow-sm">
-                        <div class="flex items-center justify-between border-b border-emerald-100 pb-2">
-                            <span class="font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded text-[10px] uppercase">🏥 2. Soins & Santé</span>
-                        </div>
-                        <div class="grid grid-cols-1 gap-2 pt-1">
-                            <button onclick="showSubBranchDetails('Soins & Santé', 'Suivi Médical & Infirmerie')" class="w-full text-left bg-white hover:bg-emerald-50 p-2.5 rounded-xl border border-emerald-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">🩺 Suivi Médical & Infirmerie</span> <span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                            <button onclick="showSubBranchDetails('Soins & Santé', 'Distribution Repas & Nutrition')" class="w-full text-left bg-white hover:bg-emerald-50 p-2.5 rounded-xl border border-emerald-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">🍲 Nourriture & Repas Équilibrés</span> <span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                            <button onclick="showSubBranchDetails('Soins & Santé', 'Fourniture d Habits')" class="w-full text-left bg-white hover:bg-emerald-50 p-2.5 rounded-xl border border-emerald-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">👕 Habillement & Vêtements</span> <span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- BRANCHE 3 : AUTONOMISATION & COUTURE -->
-                    <div class="bg-amber-50/40 p-5 rounded-2xl border border-amber-200 space-y-3 shadow-sm">
-                        <div class="flex items-center justify-between border-b border-amber-100 pb-2">
-                            <span class="font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded text-[10px] uppercase">🧵 3. Autonomisation & Couture</span>
-                        </div>
-                        <div class="grid grid-cols-1 gap-2 pt-1">
-                            <button onclick="showSubBranchDetails('Autonomisation & AGR', 'Atelier Coupe-Couture')" class="w-full text-left bg-white hover:bg-amber-50 p-2.5 rounded-xl border border-amber-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">🧵 Coupe-Couture (Machines)</span> <span class="text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                            <button onclick="showSubBranchDetails('Autonomisation & AGR', 'Formation Petits Commerces')" class="w-full text-left bg-white hover:bg-amber-50 p-2.5 rounded-xl border border-amber-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">💼 Petits Commerces & AGR</span> <span class="text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- BRANCHE 4 : ADMINISTRATION & SÉCURITÉ -->
-                    <div class="bg-sky-50/40 p-5 rounded-2xl border border-sky-200 space-y-3 shadow-sm">
-                        <div class="flex items-center justify-between border-b border-sky-100 pb-2">
-                            <span class="font-bold text-sky-800 bg-sky-100 px-2.5 py-0.5 rounded text-[10px] uppercase">🛡️ 4. Administration & Sécurité</span>
-                        </div>
-                        <div class="grid grid-cols-1 gap-2 pt-1">
-                            <button onclick="showSubBranchDetails('Administration & Sécurité', 'Enregistrement & Badges')" class="w-full text-left bg-white hover:bg-sky-50 p-2.5 rounded-xl border border-sky-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">📋 Enregistrement & Badges (PC)</span> <span class="text-[10px] text-sky-600 bg-sky-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                            <button onclick="showSubBranchDetails('Administration & Sécurité', 'Sécurité & Talkies-Walkies')" class="w-full text-left bg-white hover:bg-sky-50 p-2.5 rounded-xl border border-sky-100 flex justify-between items-center transition shadow-xs">
-                                <span class="font-bold text-slate-700">🚨 Sécurité & Talkies-Walkies</span> <span class="text-[10px] text-sky-600 bg-sky-50 px-2 py-0.5 rounded font-bold">Contacter →</span>
-                            </button>
-                        </div>
-                    </div>
-
+                <div id="branches-accordion-container" class="space-y-4 text-xs">
+                    <!-- Généré dynamiquement par JavaScript -->
                 </div>
             </div>
         </section>
 
-        <!-- MODAL DÉTAILLÉ AVEC LES 8 SECTIONS & CONTACTS -->
+        <!-- MODAL DÉTAILLÉ AVEC TOUTES LES INFORMATIONS -->
         <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
@@ -262,7 +196,7 @@
 
     </main>
 
-    <!-- FORMULAIRE ENFANT -->
+    <!-- FORMULAIRES -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold">✕</button></div>
@@ -287,7 +221,6 @@
         </div>
     </div>
 
-    <!-- FORMULAIRE VEUVE -->
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Veuve (BKDD-V)</h3><button onclick="closeForm('widow')" class="p-2 font-bold">✕</button></div>
@@ -311,7 +244,6 @@
         </div>
     </div>
 
-    <!-- FORMULAIRE AGENT -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Branche (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold">✕</button></div>
@@ -324,14 +256,18 @@
                     <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Branche / Pôle *</label>
                         <select id="a-branch" class="w-full p-2 border rounded bg-white font-bold text-purple-700">
-                            <option value="Éducation & Scolarité">📚 1. Éducation & Scolarité</option>
-                            <option value="Soins & Santé">🏥 2. Soins & Santé</option>
-                            <option value="Autonomisation & AGR">🧵 3. Autonomisation & Couture</option>
-                            <option value="Administration & Sécurité">🛡️ 4. Administration & Sécurité</option>
+                            <option value="Éducation & Scolarité">1. Éducation & Scolarité</option>
+                            <option value="Soins, Santé & Nutrition">2. Soins, Santé & Nutrition</option>
+                            <option value="Autonomisation & AGR">3. Autonomisation & AGR</option>
+                            <option value="Administration, Social & Protection">4. Administration, Social & Protection</option>
+                            <option value="Logistique, Infrastructure & Environnement">5. Logistique, Infrastructure & Environnement</option>
+                            <option value="Alimentation & Agriculture">6. Alimentation & Agriculture</option>
+                            <option value="Finances, Dons & Partenariats">7. Finances, Dons & Partenariats</option>
+                            <option value="Administration Générale & Suivi">8. Administration Générale & Suivi</option>
                         </select>
                     </div>
                     <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Équipements sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Ex: Machines à coudre, manuels..." class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Équipements sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Matériel..." class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
@@ -364,6 +300,103 @@
             "Seychelles", "Sierra Leone", "Somalie", "Soudan", "Soudan du Sud", "Tanzanie", "Tchad", "Togo", 
             "Tunisie", "Zambie", "Zimbabwe"
         ];
+
+        // Définition exacte des 8 grands boutons et leurs 76 sous-boutons
+        const structureData = [
+            {
+                title: "1. 🎓 ÉDUCATION & SCOLARITÉ",
+                items: [
+                    "Frais scolaires & Inscriptions", "Manuels & Kits scolaires", "Fournitures scolaires", 
+                    "Tutorat & Accompagnement scolaire", "Informatique & Bibliothèque numérique", 
+                    "Équipement des écoles", "Alphabétisation & Éducation de base", "Orientation scolaire & Formation professionnelle"
+                ]
+            },
+            {
+                title: "2. 🏥 SOINS, SANTÉ & NUTRITION",
+                items: [
+                    "Suivi médical & Infirmerie", "Pharmacie & Médicaments", "Urgences médicales", 
+                    "Nutrition & Repas équilibrés", "Nutrition des enfants", "Habits & Vêtements", 
+                    "Hygiène & Soins corporels", "Santé dentaire", "Santé visuelle", "Matériel médical & Lits d’observation"
+                ]
+            },
+            {
+                title: "3. 👩‍🏭 AUTONOMISATION & AGR",
+                items: [
+                    "Coupe-Couture & Machines", "Cuisine & Boulangerie", "Artisanat & Métiers manuels", 
+                    "Petits commerces & AGR", "Agriculture & Jardinage", "Élevage & Aviculture", 
+                    "Microcrédits & Épargne", "Gestion de petites entreprises", "Formation professionnelle des veuves", "Accompagnement & Suivi économique"
+                ]
+            },
+            {
+                title: "4. 🛡️ ADMINISTRATION, SOCIAL & PROTECTION",
+                items: [
+                    "Enregistrement & Badges", "Identification & Dossiers des bénéficiaires", "Sécurité & Talkies-Walkies", 
+                    "Suivi des familles", "Assistance juridique", "Écoute & Accompagnement social", 
+                    "Protection des enfants", "Gestion des dossiers sociaux", "Confidentialité & Protection des données", "Communication & Coordination sociale"
+                ]
+            },
+            {
+                title: "5. 🏗️ LOGISTIQUE, INFRASTRUCTURE & ENVIRONNEMENT",
+                items: [
+                    "Logement & Dortoirs", "Lits & Mobilier", "Eau & Installations sanitaires", 
+                    "Électricité & Énergie", "Maintenance & Réparations", "Transport & Véhicules", 
+                    "Environnement & Propreté", "Construction & Agrandissement"
+                ]
+            },
+            {
+                title: "6. 🌾 ALIMENTATION & AGRICULTURE",
+                items: [
+                    "Production agricole", "Jardin potager", "Élevage de poulets", 
+                    "Élevage de chèvres", "Élevage de bétail", "Pisciculture", 
+                    "Stockage & Conservation des aliments", "Cuisine & Préparation des repas", 
+                    "Approvisionnement alimentaire", "Transformation & Valorisation des produits agricoles"
+                ]
+            },
+            {
+                title: "7. 💰 FINANCES, DONS & PARTENARIATS",
+                items: [
+                    "Gestion du budget", "Dons financiers", "Dons matériels", 
+                    "Partenariats & Sponsors", "Relations avec les entreprises", "Relations avec les ONG", 
+                    "Partenariats avec les églises", "Donateurs internationaux", "Comptabilité & Rapports financiers", "Audit & Transparence"
+                ]
+            },
+            {
+                title: "8. 📊 ADMINISTRATION GÉNÉRALE & SUIVI",
+                items: [
+                    "Gestion des enfants", "Gestion des veuves", "Système d’identification BKDD", 
+                    "Dossiers & Archives", "Suivi des programmes", "Gestion des agents", 
+                    "Planning & Calendrier", "Statistiques & Rapports", "Notifications & Alertes", "Évaluation & Contrôle des activités"
+                ]
+            }
+        ];
+
+        function renderStructureAccordion() {
+            const container = document.getElementById('branches-accordion-container');
+            container.innerHTML = '';
+            structureData.forEach((branch, idx) => {
+                let subHtml = '';
+                branch.items.forEach(sub => {
+                    subHtml += `
+                        <button onclick="showSubBranchDetails('${branch.title}', '${sub}')" class="w-full text-left bg-white hover:bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center transition shadow-xs group">
+                            <span class="font-bold text-slate-700 group-hover:text-green-600">${sub}</span> 
+                            <span class="text-[10px] text-green-600 bg-green-50 px-2.5 py-1 rounded-lg font-bold">Détails & Contact →</span>
+                        </button>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="border rounded-2xl p-4 bg-slate-50/60 space-y-3">
+                        <h3 class="font-black text-slate-900 text-sm flex items-center justify-between">
+                            <span>${branch.title}</span>
+                            <span class="text-[10px] font-mono bg-slate-200 px-2 py-0.5 rounded text-slate-700">${branch.items.length} Sous-boutons</span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+                            ${subHtml}
+                        </div>
+                    </div>
+                `;
+            });
+        }
 
         function populateAfricanCountries() {
             document.querySelectorAll('.african-countries-select').forEach(sel => {
@@ -461,50 +494,53 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // Fonction pour afficher les détails du sous-élément cliqué avec les 8 sections et les agents
-        async function showSubBranchDetails(branchName, subActivityName) {
+        // Affichage des informations complètes du sous-bouton cliqué
+        async function showSubBranchDetails(branchTitle, subActivityName) {
             const modal = document.getElementById('modal-branch-agents');
             const title = document.getElementById('modal-branch-title');
             const listContainer = document.getElementById('modal-branch-list');
 
-            title.innerText = `${branchName} — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement des informations...";
+            title.innerText = `${branchTitle} — ${subActivityName}`;
+            listContainer.innerHTML = "Chargement des détails...";
             modal.classList.replace('hidden', 'flex');
 
+            // Extraction du nom court de la branche pour correspondre à Firestore
+            const cleanBranchName = branchTitle.replace(/^[0-9]+\.\s+/, '').trim();
+
             try {
-                const snap = await db.collection("agents").where("branch", "==", branchName).get();
+                const snap = await db.collection("agents").where("branch", ">=", cleanBranchName.split(" ")[0]).get();
                 let agentsHtml = '';
 
-                if (snap.empty) {
-                    agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré dans cette branche.</p>`;
-                } else {
-                    snap.forEach(doc => {
-                        const agent = doc.data();
-                        const photoHtml = agent.photo ? `<img src="${agent.photo}" class="w-full h-full object-cover">` : `👤`;
-                        const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
+                snap.forEach(doc => {
+                    const agent = doc.data();
+                    const photoHtml = agent.photo ? `<img src="${agent.photo}" class="w-full h-full object-cover">` : `👤`;
+                    const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
 
-                        agentsHtml += `
-                            <div class="bg-slate-50 p-3 rounded-2xl border space-y-2 shadow-sm">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
-                                    <div class="flex-grow">
-                                        <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
-                                        <h4 class="font-bold text-slate-900 text-xs mt-0.5">Nom : ${agent.fullName}</h4>
-                                        <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
-                                        <p class="text-[10px] text-slate-500">Matériel : ${agent.equipments || 'N/C'}</p>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2 gap-2 pt-1">
-                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                        📞 Appeler
-                                    </a>
-                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                        💬 WhatsApp
-                                    </a>
+                    agentsHtml += `
+                        <div class="bg-slate-50 p-3 rounded-2xl border space-y-2 shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
+                                <div class="flex-grow">
+                                    <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
+                                    <h4 class="font-bold text-slate-900 text-xs mt-0.5">Nom : ${agent.fullName}</h4>
+                                    <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
+                                    <p class="text-[10px] text-slate-500">Matériel : ${agent.equipments || 'N/C'}</p>
                                 </div>
                             </div>
-                        `;
-                    });
+                            <div class="grid grid-cols-2 gap-2 pt-1">
+                                <a href="tel:${cleanPhone}" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
+                                    📞 Appeler
+                                </a>
+                                <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
+                                    💬 WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                if (!agentsHtml) {
+                    agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent spécifique assigné pour le moment.</p>`;
                 }
 
                 listContainer.innerHTML = `
@@ -516,53 +552,31 @@
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Exécuter avec excellence l'activité de "${subActivityName}" pour garantir le bien-être et le suivi des bénéficiaires.</p>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Mettre en œuvre avec excellence le programme "${subActivityName}" pour garantir le développement et le soutien de la communauté.</p>
                         </div>
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📝 DESCRIPTION</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Prise en charge dédiée, coordination sur le terrain et rapportage rigoureux par l'agent responsable.</p>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Activité officielle du système panafricain Dieudonné Care, supervisée et documentée en temps réel.</p>
                         </div>
 
                         <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📋 PROGRAMMES</h4>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📋 PROGRAMMES & TÂCHES</h4>
                             <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
-                                <li>Programme 1 : Enregistrement et ciblage des bénéficiaires</li>
-                                <li>Programme 2 : Déploiement des actions de terrain</li>
-                                <li>Programme 3 : Distribution et suivi des ressources</li>
+                                <li>Planification et ciblage des bénéficiaires</li>
+                                <li>Exécution des opérations sur le terrain</li>
+                                <li>Contrôle qualité et évaluation des résultats</li>
                             </ul>
-                        </div>
-
-                        <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">✅ TÂCHES</h4>
-                            <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
-                                <li>Supervision quotidienne de l'activité "${subActivityName}"</li>
-                                <li>Assistance directe et écoute active</li>
-                                <li>Mise à jour des registres numériques</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">👥 BÉNÉFICIAIRES</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Orphelins, veuves et familles ciblées par le programme panafricain.</p>
                         </div>
 
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🧰 MATÉRIEL NÉCESSAIRE</h4>
-                            <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
-                                <li>Équipements spécifiques affectés à cette tâche</li>
-                                <li>Outils de communication et registres</li>
-                            </ul>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Équipements spécialisés, registres et outils de communication associés à ce sous-programme.</p>
                         </div>
 
                         <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📅 PLANNING</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Intervention programmée et suivie en continu.</p>
-                        </div>
-
-                        <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">💰 BUDGET & RÉSULTATS</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Gestion centralisée et transparente. Objectifs atteints à 100%.</p>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📅 PLANNING & BUDGET</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Suivi continu (Lundi au Samedi). Budget géré par l'Administration Centrale.</p>
                         </div>
 
                         <div class="pt-2 border-t space-y-2">
@@ -574,10 +588,10 @@
 
                         <div class="pt-2 border-t grid grid-cols-2 gap-2">
                             <a href="mailto:contact@dieudonnecare.org" class="bg-slate-900 hover:bg-slate-800 text-white p-2.5 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                ✉️ Email
+                                ✉️ Envoyer un Email
                             </a>
                             <button onclick="switchTab('reports')" class="bg-blue-600 hover:bg-blue-500 text-white p-2.5 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                📄 Rapports
+                                📄 Voir les Rapports
                             </button>
                         </div>
                     </div>
@@ -684,7 +698,7 @@
                 agentEmail: currentUser.email,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             });
-            alert(`Agent enregistré avec sa branche ! ID : ${matricule}`);
+            alert(`Agent enregistré ! ID : ${matricule}`);
             closeForm('agent'); refreshCounters(); e.target.reset();
         }
 
@@ -771,6 +785,7 @@
         }
 
         window.onload = () => {
+            renderStructureAccordion();
             populateAfricanCountries();
             initAuthListener();
             refreshCounters();
