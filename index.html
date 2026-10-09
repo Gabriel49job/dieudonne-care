@@ -115,7 +115,6 @@
                     </p>
                 </div>
 
-                <!-- CARTE SOUTIEN -->
                 <div class="bg-gradient-to-r from-green-900/60 to-emerald-900/60 p-5 rounded-2xl border border-green-500/30 space-y-3 relative z-10">
                     <h3 class="text-sm font-black text-green-300 uppercase">SOUTENEZ UN ENFANT, AIDEZ UNE VEUVE, CHANGEZ UNE VIE</h3>
                     <p class="text-[11px] text-slate-200 leading-relaxed">Avec DIEUDONNÉ CARE PANAFRICAIN, contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables.</p>
@@ -158,7 +157,7 @@
                 </div>
             </div>
 
-            <!-- LES 8 GRANDS BOUTONS & 76 SOUS-BOUTONS -->
+            <!-- STRUCTURE 8 BRANCHES & 76 SOUS-BOUTONS -->
             <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="border-b pb-4">
                     <h2 class="text-xl font-black text-slate-900">Structure Panafricaine (8 Branches & 76 Sous-Boutons)</h2>
@@ -216,7 +215,7 @@
             <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
         </section>
 
-        <!-- AUTRES SECTIONS -->
+        <!-- NOTIFICATIONS -->
         <section id="sec-notifications" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
                 <h2 class="text-2xl font-black text-slate-900">Notifications & Alertes</h2>
@@ -227,14 +226,40 @@
             </div>
         </section>
 
-        <section id="sec-children" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants (BKDD-E)</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div><div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-widows" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Veuves (BKDD-V)</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div><div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></section>
-        <section id="sec-team" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter Agent</button></div><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs">Couverture complète de tous les pays membres de l'Union Africaine.</p></div></section>
-        <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Statistiques & Transparence</h2><div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4"><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">Imprimer le rapport financier</button></div></section>
+        <!-- AUTRES SECTIONS -->
+        <section id="sec-children" class="hidden space-y-6">
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants (BKDD-E)</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
+            <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </section>
+
+        <section id="sec-widows" class="hidden space-y-6">
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Veuves (BKDD-V)</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
+            <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+
+        <section id="sec-team" class="hidden space-y-6">
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter Agent</button></div>
+            <div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        </section>
+
+        <section id="sec-countries" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2>
+            <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-3">
+                <p class="text-xs text-slate-600">Couverture complète de tous les pays membres de l'Union Africaine avec coordination centralisée depuis Bukavu (RDC).</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pt-2" id="countries-list-container"></div>
+            </div>
+        </section>
+
+        <section id="sec-reports" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Statistiques & Transparence</h2>
+            <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
+                <p class="text-xs text-slate-600">Rapports financiers et opérationnels vérifiés par l'administration centrale.</p>
+                <button onclick="window.print()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-3 rounded-xl cursor-pointer">Imprimer le rapport financier</button>
+            </div>
+        </section>
         
         <section id="sec-profile" class="hidden space-y-6 max-w-3xl mx-auto">
-            <h2 class="text-2xl font-black">Espace Personnel & Historique Donateur</h2>
+            <h2 class="text-2xl font-black">Mon Profil & Espace Sponsor</h2>
             <div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm space-y-4"></div>
         </section>
 
@@ -415,7 +440,6 @@
             }
         ];
 
-        // MODULE SPONSORING, DONS & PARTENARIATS
         const sponsoringHubData = [
             {
                 title: "1. 👶 PARRAINER UN ENFANT",
@@ -553,6 +577,15 @@
             });
         }
 
+        function renderCountriesList() {
+            const container = document.getElementById('countries-list-container');
+            if (!container) return;
+            container.innerHTML = '';
+            africanCountries.forEach(c => {
+                container.innerHTML += `<div class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-slate-700 flex items-center gap-2"><span>🌍</span> ${c}</div>`;
+            });
+        }
+
         function handleSponsoringSubClick(branchTitle, subName) {
             const modal = document.getElementById('modal-sponsoring-action');
             const title = document.getElementById('modal-sponsoring-title');
@@ -645,10 +678,7 @@
             const currency = document.getElementById('don-currency').value;
             const method = document.getElementById('don-method').value;
 
-            if (amount <= 0) {
-                alert("Veuillez entrer un montant valide.");
-                return;
-            }
+            if (amount <= 0) { alert("Veuillez entrer un montant valide."); return; }
 
             try {
                 const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
@@ -657,12 +687,9 @@
                     status: "En attente de vérification",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-
-                alert(`Contribution enregistrée avec succès !\nRéférence : ${refId}\nLe statut sera validé par l'administration après vérification.`);
+                alert(`Contribution enregistrée avec succès !\nRéférence : ${refId}`);
                 closeSponsoringModal();
-            } catch (err) {
-                alert("Erreur lors de l'enregistrement : " + err.message);
-            }
+            } catch (err) { alert("Erreur : " + err.message); }
         }
 
         async function submitPartnership(program) {
@@ -671,10 +698,7 @@
             const rep = document.getElementById('part-rep').value;
             const desc = document.getElementById('part-desc').value;
 
-            if (!org || !rep) {
-                alert("Veuillez remplir les champs obligatoires.");
-                return;
-            }
+            if (!org || !rep) { alert("Veuillez remplir les champs obligatoires."); return; }
 
             try {
                 await db.collection("partnerships").add({
@@ -682,12 +706,9 @@
                     status: "Proposition soumise",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-
-                alert("Votre proposition a été transmise avec succès à l'administration de Dieudonné Care.");
+                alert("Votre proposition a été transmise avec succès.");
                 closeSponsoringModal();
-            } catch (err) {
-                alert("Erreur : " + err.message);
-            }
+            } catch (err) { alert("Erreur : " + err.message); }
         }
 
         function openDonationModal() {
@@ -756,6 +777,7 @@
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i> Connexion`;
                     document.getElementById('auth-btn').onclick = openAuthModal;
+                    updateProfileCard(null);
                 }
             });
         }
@@ -775,6 +797,7 @@
             if (tab === 'widows') loadCollection('widows', 'widows-grid-container');
             if (tab === 'team') loadCollection('agents', 'team-grid-container');
             if (tab === 'admin') loadAdminMasterList();
+            if (tab === 'countries') renderCountriesList();
 
             window.scrollTo(0, 0);
             if (window.lucide) lucide.createIcons();
@@ -792,7 +815,7 @@
                 await auth.signInWithEmailAndPassword(email, password);
                 closeAuthModal();
                 alert("Connexion réussie !");
-            } catch (err) { alert("Erreur de connexion : " + err.message); }
+            } catch (err) { alert("Erreur : " + err.message); }
         }
 
         async function showSubBranchDetails(branchTitle, subActivityName) {
@@ -801,7 +824,7 @@
             const listContainer = document.getElementById('modal-branch-list');
 
             title.innerText = `${branchTitle} — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement des détails et des agents...";
+            listContainer.innerHTML = "Chargement...";
             modal.classList.replace('hidden', 'flex');
 
             try {
@@ -822,31 +845,28 @@
                                         <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
                                         <h4 class="font-bold text-slate-900 text-xs mt-0.5">Nom : ${agent.fullName}</h4>
                                         <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
-                                        <p class="text-[10px] text-green-700 font-bold">Tâche : ${agent.subactivity || agent.branch}</p>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2 pt-1">
-                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">📞 Appeler</a>
-                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">💬 WhatsApp</a>
+                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1">📞 Appeler</a>
+                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1">💬 WhatsApp</a>
                                 </div>
                             </div>
                         `;
                     }
                 });
 
-                if (!agentsHtml) {
-                    agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré spécifiquement sur "${subActivityName}" pour le moment.</p>`;
-                }
+                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré sur ce sous-programme.</p>`;
 
                 listContainer.innerHTML = `
                     <div class="space-y-3 text-slate-700">
-                        <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex justify-between items-center">
-                            <span class="font-bold text-slate-800">📋 STATUT : INFORMATIONS À CONFIRMER</span>
+                        <div class="bg-slate-50 border p-3 rounded-xl flex justify-between items-center">
+                            <span class="font-bold text-slate-800">📋 STATUT : ACTIF</span>
                             <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Panafricain</span>
                         </div>
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Mettre en œuvre avec excellence le programme "${subActivityName}" pour garantir le soutien de la communauté.</p>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Mettre en œuvre avec excellence le programme "${subActivityName}".</p>
                         </div>
                         <div class="pt-2 border-t space-y-2">
                             <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES</h4>
@@ -854,10 +874,7 @@
                         </div>
                     </div>
                 `;
-                if (window.lucide) lucide.createIcons();
-            } catch (err) {
-                listContainer.innerHTML = `<p class="text-red-500 text-center">Erreur : ${err.message}</p>`;
-            }
+            } catch (err) { listContainer.innerHTML = `<p class="text-red-500 text-center">Erreur : ${err.message}</p>`; }
         }
 
         function closeBranchModal() { document.getElementById('modal-branch-agents').classList.replace('flex', 'hidden'); }
@@ -905,14 +922,11 @@
                     phone: document.getElementById('a-phone').value,
                     country: document.getElementById('a-country').value,
                     city: document.getElementById('a-city').value,
-                    agentEmail: currentUser ? currentUser.email : "Anonyme",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-
-                alert(`Agent enregistré avec succès ! ID unique : ${matricule}`);
-                closeForm('agent'); 
-                refreshCounters();
-            } catch (err) { alert("Erreur technique : " + err.message); }
+                alert(`Agent enregistré ! ID : ${matricule}`);
+                closeForm('agent'); refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
         }
 
         async function saveChildForm() {
@@ -931,7 +945,6 @@
                     country: document.getElementById('c-country').value,
                     city: document.getElementById('c-city').value,
                     center: document.getElementById('c-center').value,
-                    agentEmail: currentUser ? currentUser.email : "Anonyme",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 alert(`Enfant enregistré ! ID : ${matricule}`);
@@ -954,7 +967,6 @@
                     phone: document.getElementById('w-phone').value,
                     country: document.getElementById('w-country').value,
                     city: document.getElementById('w-city').value,
-                    agentEmail: currentUser ? currentUser.email : "Anonyme",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 alert(`Veuve enregistrée ! ID : ${matricule}`);
@@ -988,7 +1000,6 @@
                     </div>
                     <div class="grid grid-cols-2 gap-2 text-xs pt-2">
                         <div><strong>Branche :</strong> ${found.branch || 'N/C'}</div>
-                        <div><strong>Équipements :</strong> ${found.equipments || 'N/C'}</div>
                         <div><strong>Téléphone :</strong> ${found.phone || 'N/C'}</div>
                         <div><strong>Pays :</strong> ${found.country || ''}</div>
                     </div>
@@ -1020,7 +1031,6 @@
                         <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
                         <p class="font-bold text-slate-900 text-sm mt-1">${d.firstName || d.fullName || ''}</p>
                         ${d.branch ? `<p class="text-[10px] text-purple-700 font-bold">Pôle : ${d.branch}</p>` : ''}
-                        ${d.subactivity ? `<p class="text-[10px] text-green-600 font-bold">Tâche : ${d.subactivity}</p>` : ''}
                         ${d.phone ? `<p class="text-[10px] text-emerald-600 font-bold">Tél : ${d.phone}</p>` : ''}
                     </div>
                 `;
@@ -1031,27 +1041,43 @@
             const container = document.getElementById('admin-master-list');
             container.innerHTML = 'Chargement...';
             let html = '';
+            const labels = { children: 'ENFANT', widows: 'VEUVE', agents: 'AGENT', donations: 'DON', partnerships: 'PARTENARIAT' };
             for (let col of ['children', 'widows', 'agents', 'donations', 'partnerships']) {
                 const snap = await db.collection(col).get();
                 snap.forEach(doc => {
                     const d = doc.data();
                     let title = d.matricule || d.refId || d.org || 'Élément';
-                    html += `<div class="p-2 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${col.toUpperCase()}]</strong> ${title}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
+                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
                 });
             }
-            container.innerHTML = html || 'Vide';
+            container.innerHTML = html || 'Aucun enregistrement trouvé.';
         }
 
         function updateProfileCard(user) {
-            document.getElementById('profile-card').innerHTML = `
-                <div class="space-y-3">
-                    <p class="text-xs font-mono bg-slate-50 p-3 rounded-xl border">Compte connecté : <strong>${user.email}</strong></p>
-                    <div class="p-4 bg-green-50 rounded-xl border border-green-200 text-xs space-y-1">
-                        <p class="font-bold text-green-900">👤 Espace Personnel Panafricain</p>
-                        <p class="text-green-700">Vous pouvez consulter vos engagements et vos contributions enregistrées dans le système.</p>
+            const card = document.getElementById('profile-card');
+            if (!card) return;
+            if (user) {
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="p-3 bg-slate-50 rounded-xl border flex items-center justify-between">
+                            <span class="text-xs text-slate-600">Compte connecté :</span>
+                            <strong class="text-xs font-mono text-green-700">${user.email}</strong>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-xl border border-green-200 text-xs space-y-1">
+                            <p class="font-bold text-green-900">👤 Espace Personnel Panafricain</p>
+                            <p class="text-green-700">Vous pouvez consulter vos engagements, suivre vos contributions et gérer vos activités dans les centres.</p>
+                        </div>
+                        <button onclick="auth.signOut()" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl text-xs shadow transition cursor-pointer">Se Déconnecter</button>
                     </div>
-                </div>
-            `;
+                `;
+            } else {
+                card.innerHTML = `
+                    <div class="space-y-3 text-center py-4">
+                        <p class="text-xs text-slate-600">Vous n'êtes pas connecté à un compte agent ou donateur.</p>
+                        <button onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white font-bold px-6 py-3 rounded-xl text-xs shadow transition cursor-pointer">Se Connecter maintenant</button>
+                    </div>
+                `;
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
