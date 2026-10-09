@@ -177,7 +177,7 @@
             </div>
         </section>
 
-        <!-- MODAL DE SOUTIEN AVEC EXPLICATIONS CLAIRES -->
+        <!-- MODAL DE SOUTIEN -->
         <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
@@ -188,11 +188,11 @@
             </div>
         </div>
 
-        <!-- MODAL CONTACTER LES AGENTS DE LA BRANCHE -->
+        <!-- MODAL DÉTAILS & CONTACTS DE LA BRANCHE -->
         <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Contacter les agents</h3>
+                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Détails & Contacts</h3>
                     <button onclick="closeBranchModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
                 </div>
                 <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
@@ -216,7 +216,7 @@
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
                 <span class="text-[10px] font-extrabold bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 uppercase tracking-widest">ESPACE OPÉRATIONNEL</span>
                 <h2 class="text-2xl md:text-3xl font-black">STRUCTURE PANAFRICAINE — 8 BRANCHES ET 76 SOUS-PROGRAMMES</h2>
-                <p class="text-xs text-slate-300 leading-relaxed">Emplacement technique réservé aux 8 branches, aux 76 sous-programmes et aux agents responsables.</p>
+                <p class="text-xs text-slate-300 leading-relaxed">Consultez les détails de chaque sous-programme et accédez directement aux contacts des agents responsables.</p>
             </div>
             <div id="branches-accordion-container" class="space-y-4 text-xs"></div>
         </section>
@@ -432,7 +432,7 @@
                             <span class="font-bold text-slate-800 text-xs">${sub}</span>
                             <div class="flex gap-2 pt-1">
                                 <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">Détails</button>
-                                <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">📞 Contacter</button>
+                                <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">📞 Contacts</button>
                             </div>
                         </div>
                     `;
@@ -636,7 +636,7 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
@@ -653,8 +653,8 @@
             const title = document.getElementById('modal-branch-title');
             const listContainer = document.getElementById('modal-branch-list');
 
-            title.innerText = `Contacter — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement des agents responsables...";
+            title.innerText = `${branchTitle} — ${subActivityName}`;
+            listContainer.innerHTML = "Chargement des détails et des contacts...";
             modal.classList.replace('hidden', 'flex');
 
             try {
@@ -673,7 +673,7 @@
                                     <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
                                     <div class="flex-grow">
                                         <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
-                                        <h4 class="font-bold text-slate-900 text-xs mt-0.5">Nom : ${agent.fullName}</h4>
+                                        <h4 class="font-bold text-slate-900 text-xs mt-0.5">${agent.fullName}</h4>
                                         <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
                                     </div>
                                 </div>
@@ -691,12 +691,16 @@
                 listContainer.innerHTML = `
                     <div class="space-y-3 text-slate-700">
                         <div class="bg-slate-50 border p-3 rounded-xl flex justify-between items-center">
-                            <span class="font-bold text-slate-800">📋 BRANCHE : ${branchTitle}</span>
-                            <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Actif</span>
+                            <span class="font-bold text-slate-800">📋 STATUT : ACTIF</span>
+                            <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Panafricain</span>
                         </div>
                         <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES DE CE SOUS-PROGRAMME</h4>
-                            <div class="space-y-2 pt-2">${agentsHtml}</div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF & DÉTAILS DE LA BRANCHE</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Le sous-programme <strong>${subActivityName}</strong> rattaché à <em>${branchTitle}</em> assure la coordination et l'exécution directe des missions sociales sous la supervision du Centre Dieudonné à Bukavu.</p>
+                        </div>
+                        <div class="pt-2 border-t space-y-2">
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES ET CONTACTS</h4>
+                            <div class="space-y-2">${agentsHtml}</div>
                         </div>
                     </div>
                 `;
