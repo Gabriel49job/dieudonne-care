@@ -594,77 +594,45 @@
             title.innerText = `${branchTitle} — ${subName}`;
             modal.classList.replace('hidden', 'flex');
 
-            if (subName.includes("Don") || subName.includes("Financer") || subName.includes("Soutenir")) {
-                body.innerHTML = `
-                    <div class="space-y-3 text-slate-700">
-                        <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs text-amber-900">
-                            <p class="font-bold">⚠️ Paiement en ligne non encore configuré</p>
-                            <p class="mt-0.5">Le paiement direct en ligne nécessite la configuration d'un compte marchand. Vous pouvez enregistrer votre promesse ou contribution ci-dessous pour validation par l'administration.</p>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="font-bold">Nom complet / Donateur :</label>
-                            <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
-                            
-                            <label class="font-bold">Email de contact :</label>
-                            <input type="email" id="don-email" placeholder="votre@email.com" class="w-full p-2.5 border rounded-xl bg-white">
-                            
-                            <div class="grid grid-cols-2 gap-2">
-                                <div>
-                                    <label class="font-bold">Montant :</label>
-                                    <input type="number" id="don-amount" placeholder="50" class="w-full p-2.5 border rounded-xl bg-white">
-                                </div>
-                                <div>
-                                    <label class="font-bold">Devise :</label>
-                                    <select id="don-currency" class="w-full p-2.5 border rounded-xl bg-white font-bold">
-                                        <option value="USD">USD ($)</option>
-                                        <option value="CDF">CDF (Franc Congolais)</option>
-                                        <option value="UGX">UGX (Shilling Ougandais)</option>
-                                    </select>
-                                </div>
+            // TOUS LES BOUTONS OUVRENT DIRECTEMENT LE FORMULAIRE DE CONTRIBUTION
+            body.innerHTML = `
+                <div class="space-y-3 text-slate-700">
+                    <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs text-amber-900">
+                        <p class="font-bold">⚠️ Paiement en ligne non encore configuré</p>
+                        <p class="mt-0.5">Le paiement direct en ligne nécessite la configuration d'un compte marchand. Vous pouvez enregistrer votre promesse ou contribution pour le programme <strong>${subName}</strong> ci-dessous pour validation par l'administration.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="font-bold">Nom complet / Donateur :</label>
+                        <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
+                        
+                        <label class="font-bold">Email de contact :</label>
+                        <input type="email" id="don-email" placeholder="votre@email.com" class="w-full p-2.5 border rounded-xl bg-white">
+                        
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="font-bold">Montant :</label>
+                                <input type="number" id="don-amount" placeholder="50" class="w-full p-2.5 border rounded-xl bg-white">
                             </div>
+                            <div>
+                                <label class="font-bold">Devise :</label>
+                                <select id="don-currency" class="w-full p-2.5 border rounded-xl bg-white font-bold">
+                                    <option value="USD">USD ($)</option>
+                                    <option value="CDF">CDF (Franc Congolais)</option>
+                                    <option value="UGX">UGX (Shilling Ougandais)</option>
+                                </select>
+                            </div>
+                        </div>
 
-                            <label class="font-bold">Moyen de contribution :</label>
-                            <select id="don-method" class="w-full p-2.5 border rounded-xl bg-white">
-                                <option value="MobileMoney">Mobile Money (M-Pesa / Airtel)</option>
-                                <option value="Bank">Virement Bancaire</option>
-                                <option value="Cash">Espèces / Guichet Centre Bukavu</option>
-                            </select>
-                        </div>
-                        <button type="button" onclick="submitDonation('${subName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer mt-3">Enregistrer la Contribution</button>
+                        <label class="font-bold">Moyen de contribution :</label>
+                        <select id="don-method" class="w-full p-2.5 border rounded-xl bg-white">
+                            <option value="MobileMoney">Mobile Money (M-Pesa / Airtel)</option>
+                            <option value="Bank">Virement Bancaire</option>
+                            <option value="Cash">Espèces / Guichet Centre Bukavu</option>
+                        </select>
                     </div>
-                `;
-            } else if (subName.includes("partenariat") || subName.includes("entreprise") || subName.includes("ONG") || subName.includes("collaboration")) {
-                body.innerHTML = `
-                    <div class="space-y-3 text-slate-700">
-                        <p class="text-xs">Formulaire officiel de proposition pour le programme <strong>${subName}</strong>.</p>
-                        <div class="space-y-2">
-                            <label class="font-bold">Nom de l'Organisation / Entreprise :</label>
-                            <input type="text" id="part-org" class="w-full p-2.5 border rounded-xl bg-white">
-                            
-                            <label class="font-bold">Pays :</label>
-                            <select id="part-country" class="african-countries-select w-full p-2.5 border rounded-xl bg-white"></select>
-                            
-                            <label class="font-bold">Représentant & Email :</label>
-                            <input type="text" id="part-rep" placeholder="Nom et email professionnel" class="w-full p-2.5 border rounded-xl bg-white">
-                            
-                            <label class="font-bold">Description de l'offre :</label>
-                            <textarea id="part-desc" placeholder="Détails..." class="w-full p-2.5 border rounded-xl bg-white h-20"></textarea>
-                        </div>
-                        <button type="button" onclick="submitPartnership('${subName}')" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer mt-3">Soumettre à l'Administration</button>
-                    </div>
-                `;
-                populateAfricanCountries();
-            } else {
-                body.innerHTML = `
-                    <div class="space-y-3 text-slate-700">
-                        <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2">
-                            <h4 class="font-black text-slate-900 text-sm">📋 Informations à confirmer</h4>
-                            <p class="text-xs text-slate-600 leading-relaxed">Le programme <strong>${subName}</strong> est encadré par le Centre Dieudonné Bukavu. Les détails complets et rapports d'impact sont en cours de validation par l'administration centrale.</p>
-                        </div>
-                        <button onclick="openDonationModal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer">Soutenir ce programme</button>
-                    </div>
-                `;
-            }
+                    <button type="button" onclick="submitDonation('${subName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer mt-3">Enregistrer la Contribution</button>
+                </div>
+            `;
         }
 
         function closeSponsoringModal() {
@@ -690,30 +658,6 @@
                 alert(`Contribution enregistrée avec succès !\nRéférence : ${refId}`);
                 closeSponsoringModal();
             } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function submitPartnership(program) {
-            const org = document.getElementById('part-org').value;
-            const country = document.getElementById('part-country').value;
-            const rep = document.getElementById('part-rep').value;
-            const desc = document.getElementById('part-desc').value;
-
-            if (!org || !rep) { alert("Veuillez remplir les champs obligatoires."); return; }
-
-            try {
-                await db.collection("partnerships").add({
-                    org, country, rep, desc, program,
-                    status: "Proposition soumise",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert("Votre proposition a été transmise avec succès.");
-                closeSponsoringModal();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        function openDonationModal() {
-            switchTab('sponsoring-hub');
-            handleSponsoringSubClick("3. 💳 FAIRE UN DON", "Faire un don unique");
         }
 
         function updateSubactivityOptions() {
@@ -806,7 +750,7 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
