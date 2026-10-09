@@ -138,7 +138,7 @@
             </div>
         </section>
 
-        <!-- BOUTON 2 : SOUTENIR (ESPACE DONATEUR ÉPURÉ ET ACCUEILLANT) -->
+        <!-- BOUTON 2 : SOUTENIR (ESPACE DONATEUR) -->
         <section id="sec-sponsoring-hub" class="hidden space-y-6 max-w-4xl mx-auto">
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-800 shadow-xl space-y-4 text-center">
                 <div class="w-14 h-14 mx-auto rounded-2xl bg-green-600/20 border border-green-500/30 flex items-center justify-center text-green-400"><i data-lucide="heart-handshake" class="w-7 h-7"></i></div>
@@ -188,11 +188,11 @@
             </div>
         </div>
 
-        <!-- MODAL DÉTAILS BRANCHE -->
+        <!-- MODAL CONTACTER LES AGENTS DE LA BRANCHE -->
         <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Détails & Responsables</h3>
+                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Contacter les agents</h3>
                     <button onclick="closeBranchModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
                 </div>
                 <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
@@ -432,7 +432,7 @@
                             <span class="font-bold text-slate-800 text-xs">${sub}</span>
                             <div class="flex gap-2 pt-1">
                                 <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">Détails</button>
-                                <button type="button" onclick="openDonationModalFor('${sub.replace(/'/g, "\\'")}')" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">Affectation</button>
+                                <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">📞 Contacter</button>
                             </div>
                         </div>
                     `;
@@ -653,8 +653,8 @@
             const title = document.getElementById('modal-branch-title');
             const listContainer = document.getElementById('modal-branch-list');
 
-            title.innerText = `${branchTitle} — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement...";
+            title.innerText = `Contacter — ${subActivityName}`;
+            listContainer.innerHTML = "Chargement des agents responsables...";
             modal.classList.replace('hidden', 'flex');
 
             try {
@@ -686,21 +686,17 @@
                     }
                 });
 
-                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré sur ce sous-programme.</p>`;
+                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré spécifiquement sur ce sous-programme pour le moment.</p>`;
 
                 listContainer.innerHTML = `
                     <div class="space-y-3 text-slate-700">
                         <div class="bg-slate-50 border p-3 rounded-xl flex justify-between items-center">
-                            <span class="font-bold text-slate-800">📋 STATUT : ACTIF</span>
-                            <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Panafricain</span>
+                            <span class="font-bold text-slate-800">📋 BRANCHE : ${branchTitle}</span>
+                            <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Actif</span>
                         </div>
                         <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF & EXPLICATIONS</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Ce sous-programme vise à assurer l'exécution rigoureuse de "${subActivityName}" sous la supervision des agents du Centre de Bukavu.</p>
-                        </div>
-                        <div class="pt-2 border-t space-y-2">
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES</h4>
-                            <div class="space-y-2">${agentsHtml}</div>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES DE CE SOUS-PROGRAMME</h4>
+                            <div class="space-y-2 pt-2">${agentsHtml}</div>
                         </div>
                     </div>
                 `;
