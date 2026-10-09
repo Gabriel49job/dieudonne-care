@@ -14,7 +14,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-40">
 
-    <!-- 1. EN-TÊTE PROFESSIONNEL -->
+    <!-- EN-TÊTE PROFESSIONNEL -->
     <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -47,41 +47,33 @@
         </div>
     </header>
 
-    <!-- 8. MENU LATÉRAL STRUCTURÉ -->
+    <!-- MENU LATÉRAL CACHÉ (14 ENTRÉES) -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden transition-opacity"></div>
-    <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-5 overflow-y-auto shadow-2xl">
+    <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-4 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
             <span class="font-black text-white text-sm tracking-wider uppercase">Menu Panafricain</span>
             <button onclick="toggleSidebar()" class="text-slate-400 p-1.5 font-bold text-lg hover:text-white rounded-lg bg-slate-800 cursor-pointer">✕</button>
         </div>
         
-        <div class="space-y-4 text-xs">
-            <div class="space-y-1">
-                <p class="text-[10px] font-extrabold text-green-400 uppercase tracking-widest px-2">A. Navigation & Accès Rapides</p>
-                <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
-                <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-green-400"></i> Sponsoring, Dons & Partenariats</button>
-                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / Scan</button>
-            </div>
-
-            <div class="space-y-1">
-                <p class="text-[10px] font-extrabold text-blue-400 uppercase tracking-widest px-2">B. Gestion des Dossiers & Réseau</p>
-                <button onclick="switchTab('children')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (BKDD-E)</button>
-                <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (BKDD-V)</button>
-                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> Équipe & Branches (BKDD-A)</button>
-            </div>
-
-            <div class="space-y-1">
-                <p class="text-[10px] font-extrabold text-purple-400 uppercase tracking-widest px-2">C. Suivi & Administration</p>
-                <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</button>
-                <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 Pays)</button>
-                <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Transparence</button>
-                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> Mon Profil & Espace Sponsor</button>
-                <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
-            </div>
+        <div class="space-y-1.5 text-xs">
+            <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
+            <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-green-400"></i> Sponsoring, Dons & Partenariats</button>
+            <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / Scan</button>
+            <button onclick="switchTab('children')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (BKDD-E)</button>
+            <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (BKDD-V)</button>
+            <button onclick="switchTab('team')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user-check" class="w-4 h-4 text-purple-400"></i> Équipe & Branches (BKDD-A)</button>
+            <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</button>
+            <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 Pays)</button>
+            <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Rapports</button>
+            <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> Mon Profil & Espace Sponsor</button>
+            <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
+            <button onclick="alert('Centre Dieudonné Bukavu (RDC) — Support Panafricain. Contact : support@dieudonnecare.org')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-300 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="help-circle" class="w-4 h-4 text-cyan-400"></i> Aide & Contact</button>
+            <button onclick="alert('Protection stricte des données personnelles des enfants et des familles selon les standards panafricains.')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-300 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i> Confidentialité & Sécurité</button>
+            <button onclick="auth.signOut(); toggleSidebar();" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-red-900/50 text-red-400 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion</button>
         </div>
     </aside>
 
-    <!-- 7. CINQ BOUTONS FIXES EN BAS -->
+    <!-- BARRE DE NAVIGATION INFÉRIEURE : EXACTEMENT 5 BOUTONS -->
     <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-3 px-2 shadow-2xl">
         <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition cursor-pointer">
             <i data-lucide="home" class="w-5 h-5 text-green-400"></i> Accueil
@@ -103,7 +95,7 @@
     <!-- CONTENU PRINCIPAL -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
 
-        <!-- 2. SECTION PRINCIPALE (ACCUEIL) -->
+        <!-- BOUTON 1 : ACCUEIL -->
         <section id="sec-home" class="space-y-6">
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-12 shadow-2xl space-y-6 border border-slate-800 relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -111,11 +103,11 @@
                     <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1.5 rounded-full border border-green-500/30 uppercase tracking-widest">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
                     <h1 class="text-2xl md:text-5xl font-black mt-2 leading-tight">SOUTENEZ UN ENFANT, AIDEZ UNE VEUVE, CHANGEZ UNE VIE</h1>
                     <p class="text-xs md:text-sm text-slate-300 max-w-3xl leading-relaxed pt-2">
-                        Avec DIEUDONNÉ CARE PANAFRICAIN, contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables. Chaque contribution peut répondre à un besoin réel.
+                        Avec DIEUDONNÉ CARE PANAFRICAIN, contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables à travers le continent.
                     </p>
                 </div>
 
-                <!-- Trois grands boutons de soutien rapide -->
+                <!-- 3 Boutons d'appel à l'action -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
                     <button onclick="openDonationModalFor('Parrainer un enfant')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="baby" class="w-5 h-5"></i> <span>Parrainer un enfant</span>
@@ -128,15 +120,12 @@
                     </button>
                 </div>
 
-                <!-- Accès rapides administration / dossiers -->
                 <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800 text-xs">
-                    <button onclick="openForm('child')" class="bg-slate-800 hover:bg-slate-700 text-green-400 px-3 py-2 rounded-xl font-bold flex items-center gap-1 cursor-pointer"><i data-lucide="plus" class="w-4 h-4"></i> + Dossier Enfant</button>
-                    <button onclick="openForm('widow')" class="bg-slate-800 hover:bg-slate-700 text-emerald-400 px-3 py-2 rounded-xl font-bold flex items-center gap-1 cursor-pointer"><i data-lucide="plus" class="w-4 h-4"></i> + Dossier Veuve</button>
-                    <button onclick="openForm('agent')" class="bg-slate-800 hover:bg-slate-700 text-purple-400 px-3 py-2 rounded-xl font-bold flex items-center gap-1 cursor-pointer"><i data-lucide="plus" class="w-4 h-4"></i> + Dossier Agent</button>
+                    <button onclick="switchTab('team')" class="text-green-400 font-bold hover:underline cursor-pointer flex items-center gap-1">Voir tous les programmes (8 Branches & 76 Sous-boutons) →</button>
                 </div>
             </div>
 
-            <!-- 5. STATISTIQUES RÉELLES ET TRANSPARENCE -->
+            <!-- Statistiques réelles -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                     <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Enfants Suivis</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
@@ -156,18 +145,18 @@
                 </div>
             </div>
 
-            <!-- 3. SECTION DES PROGRAMMES PRINCIPAUX -->
+            <!-- 4 Programmes Prioritaires (sur l'accueil) -->
             <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="border-b pb-4">
-                    <h2 class="text-xl font-black text-slate-900">Programmes Panafricains Prioritaires</h2>
-                    <p class="text-xs text-slate-500 mt-1">Découvrez nos grands axes d'intervention et participez directement à leur financement.</p>
+                    <h2 class="text-xl font-black text-slate-900">Programmes Prioritaires</h2>
+                    <p class="text-xs text-slate-500 mt-1">Axes majeurs nécessitant un soutien immédiat.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
                     <div class="p-4 rounded-2xl border bg-slate-50 space-y-3 flex flex-col justify-between">
                         <div class="space-y-1.5">
                             <span class="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded text-[10px]">ÉDUCATION</span>
                             <h3 class="font-black text-slate-900 text-sm">Frais scolaires & Inscriptions</h3>
-                            <p class="text-slate-600 text-[11px]">Garantir la scolarisation et l'accès aux examens pour les orphelins démunis.</p>
+                            <p class="text-slate-600 text-[11px]">Scolarisation des orphelins dans les centres.</p>
                         </div>
                         <button onclick="openDonationModalFor('Frais scolaires & Inscriptions')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-xl font-bold cursor-pointer transition">Soutenir</button>
                     </div>
@@ -175,7 +164,7 @@
                         <div class="space-y-1.5">
                             <span class="font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded text-[10px]">NUTRITION</span>
                             <h3 class="font-black text-slate-900 text-sm">Alimentation & Repas</h3>
-                            <p class="text-slate-600 text-[11px]">Fournir des repas équilibrés quotidiens dans nos centres d'accueil.</p>
+                            <p class="text-slate-600 text-[11px]">Repas équilibrés quotidiens pour les enfants.</p>
                         </div>
                         <button onclick="openDonationModalFor('Alimentation & Repas')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-xl font-bold cursor-pointer transition">Soutenir</button>
                     </div>
@@ -183,7 +172,7 @@
                         <div class="space-y-1.5">
                             <span class="font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded text-[10px]">AUTONOMISATION</span>
                             <h3 class="font-black text-slate-900 text-sm">Soutien aux Veuves & AGR</h3>
-                            <p class="text-slate-600 text-[11px]">Financer des kits de couture et microcrédits pour l'autonomie des veuves.</p>
+                            <p class="text-slate-600 text-[11px]">Kits de couture et microcrédits pour les mères.</p>
                         </div>
                         <button onclick="openDonationModalFor('Soutien aux Veuves & AGR')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-xl font-bold cursor-pointer transition">Soutenir</button>
                     </div>
@@ -191,39 +180,41 @@
                         <div class="space-y-1.5">
                             <span class="font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded text-[10px]">SANTÉ</span>
                             <h3 class="font-black text-slate-900 text-sm">Soins & Infirmerie</h3>
-                            <p class="text-slate-600 text-[11px]">Couvrir les urgences médicales, les médicaments et le suivi sanitaire.</p>
+                            <p class="text-slate-600 text-[11px]">Urgences médicales et médicaments essentiels.</p>
                         </div>
                         <button onclick="openDonationModalFor('Soins & Infirmerie')" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-xl font-bold cursor-pointer transition">Soutenir</button>
                     </div>
                 </div>
             </div>
-
-            <!-- STRUCTURE 8 BRANCHES & 76 SOUS-BOUTONS -->
-            <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
-                <div class="border-b pb-4">
-                    <h2 class="text-xl font-black text-slate-900">Structure Panafricaine (8 Branches & 76 Sous-Boutons)</h2>
-                    <p class="text-xs text-slate-500 mt-1">Cliquez sur n'importe quel sous-bouton pour afficher tous ses détails, programmes, tâches et agents responsables.</p>
-                </div>
-                <div id="branches-accordion-container" class="space-y-4 text-xs"></div>
-            </div>
         </section>
 
-        <!-- MODULE SPONSORING, DONS & PARTENARIATS -->
+        <!-- BOUTON 2 : SOUTENIR (SPONSORING HUB) -->
         <section id="sec-sponsoring-hub" class="hidden space-y-6">
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-800 shadow-xl space-y-4">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 rounded-2xl bg-green-600/20 border border-green-500/30 flex items-center justify-center text-green-400"><i data-lucide="heart-handshake" class="w-6 h-6"></i></div>
                     <div>
-                        <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">ESPACE DONATEUR & SPONSOR</span>
+                        <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">ESPACE DONATEUR</span>
                         <h2 class="text-xl md:text-3xl font-black mt-1">Sponsoring, Dons & Partenariats</h2>
                     </div>
                 </div>
-                <p class="text-xs text-slate-300 leading-relaxed">Système panafricain sécurisé pour soutenir les enfants orphelins, les veuves et les familles vulnérables à travers 54 pays.</p>
+                <p class="text-xs text-slate-300 leading-relaxed">Choisissez un programme, parrainez ou effectuez un don sécurisé avec traçabilité vérifiée.</p>
             </div>
             <div id="sponsoring-accordion-container" class="space-y-4 text-xs"></div>
         </section>
 
-        <!-- MODALS -->
+        <!-- MODAL D'ACTION DE DON / PAIEMENT -->
+        <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+            <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-green-700">Action de Don</h3>
+                    <button onclick="closeSponsoringModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
+                </div>
+                <div id="modal-sponsoring-body" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
+            </div>
+        </div>
+
+        <!-- MODAL DE DÉTAILS DE BRANCHE / SOUS-PROGRAMME -->
         <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
@@ -234,20 +225,11 @@
             </div>
         </div>
 
-        <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
-            <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
-                <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-green-700">Action Sponsoring</h3>
-                    <button onclick="closeSponsoringModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
-                </div>
-                <div id="modal-sponsoring-body" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
-            </div>
-        </div>
-
-        <!-- RECHERCHE PAR ID -->
+        <!-- BOUTON 3 : RECHERCHE -->
         <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
                 <h2 class="text-xl font-bold">Recherche par Matricule Unique</h2>
+                <p class="text-xs text-slate-400">Entrez un matricule officiel (ex: BKDD-E01 pour un enfant, BKDD-V01 pour une veuve, BKDD-A01 pour un agent).</p>
                 <div class="flex gap-2 pt-2">
                     <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
                     <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer">Chercher</button>
@@ -256,7 +238,23 @@
             <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
         </section>
 
-        <!-- NOTIFICATIONS -->
+        <!-- BOUTON 4 : AGENTS (STRUCTURE PANAFRICAINE — 8 BRANCHES & 76 SOUS-PROGRAMMES) -->
+        <section id="sec-team" class="hidden space-y-6">
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
+                <span class="text-[10px] font-extrabold bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 uppercase tracking-widest">ESPACE OPÉRATIONNEL</span>
+                <h2 class="text-2xl md:text-3xl font-black">STRUCTURE PANAFRICAINE — 8 BRANCHES ET 76 SOUS-PROGRAMMES</h2>
+                <p class="text-xs text-slate-300 leading-relaxed">Emplacement central des 8 branches, des 76 sous-programmes, des tâches, des agents responsables et des rapports opérationnels.</p>
+            </div>
+            <div id="branches-accordion-container" class="space-y-4 text-xs"></div>
+        </section>
+
+        <!-- BOUTON 5 : MON PROFIL -->
+        <section id="sec-profile" class="hidden space-y-6 max-w-3xl mx-auto">
+            <h2 class="text-2xl font-black">Mon Profil & Espace Sponsor</h2>
+            <div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm space-y-4"></div>
+        </section>
+
+        <!-- AUTRES SECTIONS ACCESSIBLES PAR LE MENU LATÉRAL -->
         <section id="sec-notifications" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
                 <h2 class="text-2xl font-black text-slate-900">Notifications & Alertes</h2>
@@ -267,12 +265,11 @@
             </div>
         </section>
 
-        <!-- 4. SECTION DES BÉNÉFICIAIRES (PROTÉGÉE ET PUBLIQUE) -->
         <section id="sec-children" class="hidden space-y-6">
             <div class="flex justify-between items-center">
                 <div>
                     <h2 class="text-2xl font-black">Registre Public des Enfants (BKDD-E)</h2>
-                    <p class="text-xs text-slate-500 mt-0.5">Informations publiques et sécurisées — Identités et documents sensibles protégés.</p>
+                    <p class="text-xs text-slate-500 mt-0.5">Informations publiques sécurisées (anonymat partiel respecté).</p>
                 </div>
                 <button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button>
             </div>
@@ -290,26 +287,20 @@
             <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
-        <section id="sec-team" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter Agent</button></div>
-            <div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
-        </section>
-
         <section id="sec-countries" class="hidden space-y-6">
             <h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2>
             <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-3">
-                <p class="text-xs text-slate-600">Couverture complète de tous les pays membres de l'Union Africaine avec coordination centralisée depuis Bukavu (RDC).</p>
+                <p class="text-xs text-slate-600">Couverture complète de tous les pays membres avec coordination centralisée depuis Bukavu (RDC).</p>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pt-2" id="countries-list-container"></div>
             </div>
         </section>
 
-        <!-- 5. SECTION TRANSPARENCE ET RAPPORTS -->
         <section id="sec-reports" class="hidden space-y-6 max-w-4xl mx-auto">
             <div class="bg-white p-6 md:p-8 rounded-3xl border shadow-sm space-y-6">
                 <div>
                     <span class="text-[10px] font-extrabold bg-amber-100 text-amber-800 px-3 py-1 rounded-full uppercase tracking-widest">GOUVERNANCE & ÉTHIQUE</span>
                     <h2 class="text-2xl font-black text-slate-900 mt-2">Rapports & Transparence Financière</h2>
-                    <p class="text-xs text-slate-600 mt-1">Chez DIEUDONNÉ CARE PANAFRICAIN, chaque don fait l'objet d'un suivi rigoureux et d'une traçabilité totale validée par l'administration centrale à Bukavu.</p>
+                    <p class="text-xs text-slate-600 mt-1">Traçabilité totale des fonds validée par l'administration centrale à Bukavu.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                     <div class="p-4 bg-slate-50 border rounded-2xl space-y-2">
@@ -330,16 +321,11 @@
                 </div>
             </div>
         </section>
-        
-        <section id="sec-profile" class="hidden space-y-6 max-w-3xl mx-auto">
-            <h2 class="text-2xl font-black">Mon Profil & Espace Sponsor</h2>
-            <div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm space-y-4"></div>
-        </section>
 
         <!-- ADMINISTRATION CENTRALE (PROTÉGÉE) -->
         <section id="sec-admin" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
-                <div><h2 class="text-xl font-black text-green-400">Administration Centrale</h2><p class="text-xs text-slate-400">Gestion sécurisée des dons, partenariats et dossiers.</p></div>
+                <div><h2 class="text-xl font-black text-green-400">Administration Centrale</h2><p class="text-xs text-slate-400">Gestion sécurisée des dossiers, agents et confirmations de paiement.</p></div>
             </div>
             <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-3">
                 <h3 class="font-bold text-slate-900 text-sm">Gestion des Dossiers & Enregistrements</h3>
@@ -598,20 +584,23 @@
                 let subHtml = '';
                 branch.items.forEach(sub => {
                     subHtml += `
-                        <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="w-full text-left bg-white hover:bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center transition shadow-xs group cursor-pointer">
-                            <span class="font-bold text-slate-700 group-hover:text-green-600">${sub}</span> 
-                            <span class="text-[10px] text-green-600 bg-green-50 px-2.5 py-1 rounded-lg font-bold">Détails & Contact →</span>
-                        </button>
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex flex-col justify-between space-y-2 shadow-xs">
+                            <span class="font-bold text-slate-800 text-xs">${sub}</span>
+                            <div class="flex gap-2 pt-1">
+                                <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">Détails</button>
+                                <button type="button" onclick="openDonationModalFor('${sub.replace(/'/g, "\\'")}')" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">Soutenir</button>
+                            </div>
+                        </div>
                     `;
                 });
 
                 container.innerHTML += `
-                    <div class="border rounded-2xl p-4 bg-slate-50/60 space-y-3">
-                        <h3 class="font-black text-slate-900 text-sm flex items-center justify-between">
-                            <span>${branch.title}</span>
-                            <span class="text-[10px] font-mono bg-slate-200 px-2 py-0.5 rounded text-slate-700">${branch.items.length} Sous-boutons</span>
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+                    <div class="border rounded-2xl p-4 bg-slate-50/80 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-black text-slate-900 text-sm">${branch.title}</h3>
+                            <span class="text-[10px] font-mono bg-purple-100 text-purple-800 px-2.5 py-1 rounded-full font-bold">${branch.items.length} Sous-programmes</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
                             ${subHtml}
                         </div>
                     </div>
@@ -640,7 +629,7 @@
                     <div class="border border-green-200/60 rounded-2xl p-4 bg-white space-y-3 shadow-sm">
                         <h3 class="font-black text-green-900 text-sm flex items-center justify-between">
                             <span>${branch.title}</span>
-                            <span class="text-[10px] font-mono bg-green-100 px-2 py-0.5 rounded text-green-800">${branch.items.length} Sous-boutons</span>
+                            <span class="text-[10px] font-mono bg-green-100 px-2 py-0.5 rounded text-green-800">${branch.items.length} Options</span>
                         </h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
                             ${subHtml}
@@ -812,7 +801,7 @@
 
             if (tab === 'children') loadCollection('children', 'children-grid-container', true);
             if (tab === 'widows') loadCollection('widows', 'widows-grid-container', false);
-            if (tab === 'team') loadCollection('agents', 'team-grid-container', false);
+            if (tab === 'team') renderStructureAccordion();
             if (tab === 'admin') loadAdminMasterList();
             if (tab === 'countries') renderCountriesList();
             if (tab === 'reports') updateFinancialReports();
@@ -824,7 +813,7 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
@@ -883,8 +872,8 @@
                             <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Panafricain</span>
                         </div>
                         <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Mettre en œuvre avec excellence le programme "${subActivityName}".</p>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF & ACTIVITÉS</h4>
+                            <p class="text-[11px] text-slate-600 mt-0.5">Exécution rigoureuse du sous-programme "${subActivityName}" sous la coordination du Centre de Bukavu.</p>
                         </div>
                         <div class="pt-2 border-t space-y-2">
                             <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES</h4>
@@ -956,7 +945,7 @@
                     matricule, photo, familyPhoto,
                     famId: document.getElementById('c-famid').value,
                     firstName: document.getElementById('c-firstname').value,
-                    lastName: document.getElementById('c-lastname').value, // Protégé au public
+                    lastName: document.getElementById('c-lastname').value,
                     postName: document.getElementById('c-postname').value,
                     gender: document.getElementById('c-gender').value,
                     age: parseInt(document.getElementById('c-age').value) || 0,
@@ -1010,7 +999,6 @@
                 if (!snap.empty) { found = snap.docs[0].data(); type = col; break; }
             }
             if (found) {
-                // PROTECTION DES DONNÉES ENFANTS (Nom masqué)
                 let name = found.firstName ? `${found.firstName} ${type === 'children' ? '***' : found.lastName}` : (found.fullName || '');
                 card.innerHTML = `
                     <div class="flex items-center gap-3 border-b pb-3">
@@ -1046,7 +1034,6 @@
             container.innerHTML = '';
             snap.forEach(doc => {
                 const d = doc.data();
-                // PROTECTION DE LA VIE PRIVÉE DES ENFANTS
                 let displayName = d.firstName || d.fullName || '';
                 if (protectNames && d.lastName) {
                     displayName = `${d.firstName} ${d.lastName.charAt(0)}.`;
@@ -1080,9 +1067,7 @@
                 });
                 document.getElementById('report-promis-val').innerText = `${totalPromis} USD`;
                 document.getElementById('report-confirmed-val').innerText = `${totalConfirmed} USD`;
-            } catch (e) {
-                console.error(e);
-            }
+            } catch (e) { console.error(e); }
         }
 
         async function loadAdminMasterList() {
