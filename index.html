@@ -57,6 +57,7 @@
         
         <div class="space-y-1.5 text-xs font-medium">
             <button onclick="switchTab('home')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-white flex items-center gap-3 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
+            <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3.5 py-3 rounded-xl bg-green-900/40 text-green-300 border border-green-700/50 flex items-center gap-3 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-green-400"></i> Sponsoring, Dons & Partenariats</button>
             <button onclick="switchTab('search-id')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 text-amber-400 flex items-center gap-3 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4"></i> Recherche ID / Scan</button>
             <button onclick="switchTab('children')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants</button>
             <button onclick="switchTab('widows')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves</button>
@@ -67,7 +68,7 @@
         </div>
 
         <div class="space-y-1.5 text-xs pt-4 border-t border-slate-800">
-            <button onclick="switchTab('profile')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> Mon Profil Agent</button>
+            <button onclick="switchTab('profile')" class="w-full text-left px-3.5 py-3 rounded-xl hover:bg-slate-800 flex items-center gap-3 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> Mon Profil & Espace Sponsor</button>
             <button onclick="switchTab('admin')" class="w-full text-left px-3.5 py-3 rounded-xl bg-green-950/80 text-green-400 flex items-center gap-3 font-bold mt-2 border border-green-900/50 transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4"></i> Administration Centrale</button>
         </div>
     </aside>
@@ -75,6 +76,7 @@
     <!-- NAVIGATION INFÉRIEURE MOBILE -->
     <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-2.5 px-3 shadow-2xl">
         <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition cursor-pointer"><i data-lucide="home" class="w-5 h-5 text-green-400"></i> Accueil</button>
+        <button onclick="switchTab('sponsoring-hub')" class="flex flex-col items-center gap-1 text-[10px] text-green-400 font-bold transition cursor-pointer"><i data-lucide="heart-handshake" class="w-5 h-5 text-green-400"></i> Sponsoring</button>
         <button onclick="switchTab('search-id')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-amber-400 transition cursor-pointer"><i data-lucide="search" class="w-5 h-5 text-amber-400"></i> Recherche</button>
         <button onclick="switchTab('team')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-purple-400 transition cursor-pointer"><i data-lucide="user-check" class="w-5 h-5 text-purple-400"></i> Agents</button>
         <button onclick="goBack()" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-blue-400 transition cursor-pointer"><i data-lucide="arrow-left" class="w-5 h-5 text-blue-400"></i> Retour</button>
@@ -91,19 +93,29 @@
                     <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
                     <h1 class="text-2xl md:text-4xl font-black mt-2 leading-tight">Plateforme Panafricaine de Suivi Social</h1>
                     <p class="text-xs md:text-sm text-slate-300 max-w-2xl leading-relaxed pt-1">
-                        Système intégré de gestion des 8 branches et 76 sous-programmes panafricains.
+                        Système intégré de gestion des 8 branches et 76 sous-programmes panafricains[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span).
                     </p>
+                </div>
+
+                <!-- CARTE PROFESSIONNELLE SPONSORING SUR ACCUEIL -->
+                <div class="bg-gradient-to-r from-green-900/60 to-emerald-900/60 p-5 rounded-2xl border border-green-500/30 space-y-3 relative z-10">
+                    <h3 class="text-sm font-black text-green-300 uppercase">SOUTENEZ UN ENFANT, AIDEZ UNE VEUVE, CHANGEZ UNE VIE</h3>
+                    <p class="text-[11px] text-slate-200 leading-relaxed">Avec DIEUDONNÉ CARE PANAFRICAIN, contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables.</p>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-xl font-bold text-xs shadow transition cursor-pointer">Accéder au Sponsoring & Dons</button>
+                        <button onclick="openDonationModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl font-bold text-xs shadow transition cursor-pointer">Faire un Don Direct</button>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
                     <button onclick="openForm('child')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span>+ Dossier Enfant (BKDD-E)</span>
+                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span>+ Dossier Enfant (BKDD-E)</span>[span_4](start_span)[span_4](end_span)
                     </button>
                     <button onclick="openForm('widow')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span>+ Dossier Veuve (BKDD-V)</span>
+                        <i data-lucide="user-plus" class="w-5 h-5"></i> <span>+ Dossier Veuve (BKDD-V)</span>[span_5](start_span)[span_5](end_span)
                     </button>
                     <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="shield-plus" class="w-5 h-5"></i> <span>+ Dossier Agent (BKDD-A)</span>
+                        <i data-lucide="shield-plus" class="w-5 h-5"></i> <span>+ Dossier Agent (BKDD-A)</span>[span_6](start_span)[span_6](end_span)
                     </button>
                 </div>
             </div>
@@ -128,28 +140,55 @@
                 </div>
             </div>
 
-            <!-- LES 8 GRANDS BOUTONS ET LEURS SOUS-BOUTONS INTERACTIFS -->
+            <!-- LES 8 GRANDS BOUTONS ORIGINAUX (CONSERVÉS À L'IDENTIQUE) -->
             <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="border-b pb-4">
-                    <h2 class="text-xl font-black text-slate-900">Structure Panafricaine (8 Boutons & 76 Sous-Boutons)</h2>
-                    <p class="text-xs text-slate-500 mt-1">Cliquez sur n'importe quel sous-bouton pour afficher tous ses détails, programmes, tâches et agents responsables.</p>
+                    <h2 class="text-xl font-black text-slate-900">Structure Panafricaine (8 Boutons & 76 Sous-Boutons)</h2>[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)
+                    <p class="text-xs text-slate-500 mt-1">Cliquez sur n'importe quel sous-bouton pour afficher tous ses détails, programmes, tâches et agents responsables[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span).</p>
                 </div>
 
-                <div id="branches-accordion-container" class="space-y-4 text-xs">
-                    <!-- Généré dynamiquement par JavaScript -->
-                </div>
+                <div id="branches-accordion-container" class="space-y-4 text-xs"></div>
             </div>
         </section>
 
-        <!-- MODAL DÉTAILLÉ AVEC TOUTES LES INFORMATIONS -->
+        <!-- NOUVEAU MODULE COMPLET : SPONSORING, DONS & PARTENARIATS (8 GRANDS BOUTONS & 64 SOUS-BOUTONS) -->
+        <section id="sec-sponsoring-hub" class="hidden space-y-6">
+            <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-800 shadow-xl space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-green-600/20 border border-green-500/30 flex items-center justify-center text-green-400"><i data-lucide="heart-handshake" class="w-6 h-6"></i></div>
+                    <div>
+                        <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">MODULE OFFICIEL</span>
+                        <h2 class="text-xl md:text-3xl font-black mt-1">Sponsoring, Dons & Partenariats</h2>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">Système panafricain sécurisé pour soutenir les enfants orphelins, les veuves et les familles vulnérables à travers 54 pays.</p>
+            </div>
+
+            <div id="sponsoring-accordion-container" class="space-y-4 text-xs">
+                <!-- Généré dynamiquement par JavaScript -->
+            </div>
+        </section>
+
+        <!-- MODAL DÉTAILLÉ POUR LES SOUS-BOUTONS ORIGINAUX -->
         <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
                     <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Détails & Responsables</h3>
                     <button onclick="closeBranchModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
                 </div>
-                <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1">
-                    <!-- Contenu dynamique -->
+                <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
+            </div>
+        </div>
+
+        <!-- MODAL DÉTAILLÉ POUR LES SOUS-BOUTONS DU SPONSORING (INTERACTIF & FORMULAIRES) -->
+        <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+            <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-green-700">Action Sponsoring</h3>
+                    <button onclick="closeSponsoringModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
+                </div>
+                <div id="modal-sponsoring-body" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1">
+                    <!-- Formulaires dynamiques de don / partenariat -->
                 </div>
             </div>
         </div>
@@ -176,27 +215,31 @@
             </div>
         </section>
 
-        <section id="sec-children" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div><div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
-        <section id="sec-widows" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Veuves</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div><div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></section>
-        <section id="sec-team" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents & Branches</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter Agent</button></div><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
+        <section id="sec-children" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Enfants (BKDD-E)</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div><div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
+        <section id="sec-widows" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Veuves (BKDD-V)</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div><div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></section>
+        <section id="sec-team" class="hidden space-y-6"><div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre des Agents (BKDD-A)</h2><button onclick="openForm('agent')" class="bg-purple-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter Agent</button></div><div id="team-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div></section>
         <section id="sec-countries" class="hidden space-y-6"><h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><p class="text-xs">Couverture complète de tous les pays membres de l'Union Africaine.</p></div></section>
-        <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Statistiques</h2><div class="bg-white p-6 rounded-2xl border shadow-sm"><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">Imprimer le rapport</button></div></section>
-        <section id="sec-profile" class="hidden space-y-6"><h2 class="text-2xl font-black">Mon Profil</h2><div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm"></div></section>
+        <section id="sec-reports" class="hidden space-y-6"><h2 class="text-2xl font-black">Statistiques & Transparence</h2><div class="bg-white p-6 rounded-2xl border shadow-sm space-y-4"><button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">Imprimer le rapport financier</button></div></section>
+        
+        <section id="sec-profile" class="hidden space-y-6 max-w-3xl mx-auto">
+            <h2 class="text-2xl font-black">Espace Personnel & Historique Donateur</h2>
+            <div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm space-y-4"></div>
+        </section>
 
-        <!-- ADMINISTRATION -->
+        <!-- ADMINISTRATION CENTRALE -->
         <section id="sec-admin" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
-                <div><h2 class="text-xl font-black text-green-400">Administration Centrale</h2><p class="text-xs text-slate-400">Gestion et suppression des dossiers.</p></div>
+                <div><h2 class="text-xl font-black text-green-400">Administration Centrale</h2><p class="text-xs text-slate-400">Gestion sécurisée des dons, partenariats et dossiers.</p></div>
             </div>
             <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-3">
-                <h3 class="font-bold text-slate-900 text-sm">Base de Données Firestore</h3>
+                <h3 class="font-bold text-slate-900 text-sm">Gestion des Dossiers & Enregistrements</h3>
                 <div id="admin-master-list" class="space-y-2 text-xs"></div>
             </div>
         </section>
 
     </main>
 
-    <!-- FORMULAIRES -->
+    <!-- FORMULAIRES DE GESTION -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant (BKDD-E)</h3><button onclick="closeForm('child')" class="p-2 font-bold cursor-pointer">✕</button></div>
@@ -244,7 +287,6 @@
         </div>
     </div>
 
-    <!-- FORMULAIRE AGENT AVEC SÉLECTION DYNAMIQUE DES SOUS-BOUTONS -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent & Tâche (BKDD-A)</h3><button onclick="closeForm('agent')" class="p-2 font-bold cursor-pointer">✕</button></div>
@@ -255,25 +297,14 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                     <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div>
-                        <label class="font-bold">Branche / Pôle *</label>
-                        <select id="a-branch" onchange="updateSubactivityOptions()" class="w-full p-2 border rounded bg-white font-bold text-purple-700">
-                            <!-- Rempli dynamiquement -->
-                        </select>
-                    </div>
-                    <div>
-                        <label class="font-bold text-green-700">Sous-bouton / Tâche précis *</label>
-                        <select id="a-subactivity" class="w-full p-2 border rounded bg-white font-bold text-slate-900">
-                            <!-- Rempli dynamiquement selon la branche -->
-                        </select>
-                    </div>
+                    <div><label class="font-bold">Branche / Pôle *</label><select id="a-branch" onchange="updateSubactivityOptions()" class="w-full p-2 border rounded bg-white font-bold text-purple-700"></select></div>
+                    <div><label class="font-bold text-green-700">Sous-bouton / Tâche précis *</label><select id="a-subactivity" class="w-full p-2 border rounded bg-white font-bold text-slate-900"></select></div>
                     <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Matériel sous sa responsabilité</label><input type="text" id="a-equipments" placeholder="Matériel..." class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                 </div>
-                <!-- Bouton surélevé et bien visible au-dessus du clavier mobile -->
                 <button type="button" onclick="saveAgentForm()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl shadow-xl text-sm cursor-pointer mt-6">Enregistrer l'Agent</button>
             </div>
         </div>
@@ -282,9 +313,9 @@
     <!-- AUTH MODAL -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Connexion Agent</h3><button onclick="closeAuthModal()" class="p-2 font-bold cursor-pointer">✕</button></div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Connexion Agent & Sponsor</h3><button onclick="closeAuthModal()" class="p-2 font-bold cursor-pointer">✕</button></div>
             <div class="space-y-3 text-xs">
-                <input type="email" id="auth-email" placeholder="E-mail Agent" required class="w-full p-3 border rounded-xl text-sm bg-white">
+                <input type="email" id="auth-email" placeholder="E-mail" required class="w-full p-3 border rounded-xl text-sm bg-white">
                 <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-3 border rounded-xl text-sm bg-white">
                 <button type="button" onclick="handleAuthSubmit()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl text-sm shadow cursor-pointer">Se Connecter</button>
             </div>
@@ -303,6 +334,7 @@
             "Tunisie", "Zambie", "Zimbabwe"
         ];
 
+        // 8 GRANDS BOUTONS ORIGINAUX & 76 SOUS-BOUTONS[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)
         const structureData = [
             {
                 title: "1. 🎓 ÉDUCATION & SCOLARITÉ",
@@ -371,6 +403,74 @@
             }
         ];
 
+        // NOUVEAU MODULE : SPONSORING, DONS & PARTENARIATS (8 GRANDS BOUTONS & 64 SOUS-BOUTONS)
+        const sponsoringHubData = [
+            {
+                title: "1. 👶 PARRAINER UN ENFANT",
+                items: [
+                    "Découvrir le programme de parrainage", "Parrainer un enfant", "Soutenir les frais scolaires", 
+                    "Offrir des uniformes et des fournitures", "Soutenir l'alimentation", "Contribuer aux soins essentiels", 
+                    "Suivre le programme de parrainage", "Consulter les rapports du programme"
+                ]
+            },
+            {
+                title: "2. 👩‍👧 SOUTENIR UNE VEUVE",
+                items: [
+                    "Découvrir le programme d'aide aux veuves", "Soutenir l'alimentation", "Contribuer au logement", 
+                    "Participer aux soins essentiels", "Soutenir la scolarité des enfants à charge", "Financer une activité génératrice de revenus", 
+                    "Suivre un programme de soutien", "Consulter les rapports du programme"
+                ]
+            },
+            {
+                title: "3. 💳 FAIRE UN DON",
+                items: [
+                    "Faire un don unique", "Proposer un don mensuel", "Faire un don libre", 
+                    "Financer l'éducation", "Financer l'alimentation", "Financer les soins essentiels", 
+                    "Offrir du matériel ou des biens", "Consulter l'historique des dons"
+                ]
+            },
+            {
+                title: "4. 🏢 ENTREPRISES ET SPONSORS",
+                items: [
+                    "Devenir entreprise partenaire", "Parrainer un programme", "Financer un projet éducatif", 
+                    "Financer un projet social", "Offrir des équipements", "Proposer un partenariat financier", 
+                    "Consulter les formules de partenariat", "Suivi les résultats du partenariat"
+                ]
+            },
+            {
+                title: "5. 🌐 ONG, FONDATIONS & PARTENAIRES INTERNATIONAUX",
+                items: [
+                    "Présentation institutionnelle", "Soumettre une demande de partenariat", "Consulter les projets prioritaires", 
+                    "Télécharger le dossier de présentation", "Consulter le budget des projets", "Proposer un financement institutionnel", 
+                    "Suivre un projet financé", "Consulter les rapports d'impact"
+                ]
+            },
+            {
+                title: "6. 🔄 SPONSORING MENSUEL",
+                items: [
+                    "Choisir une formule mensuelle", "Soutenir un enfant chaque mois", "Soutenir une veuve chaque mois", 
+                    "Contribuer à l'éducation", "Contribuer à un programme social", "Choisir un montant personnalisé", 
+                    "Gérer ou annuler son engagement", "Consulter l'historique des contributions"
+                ]
+            },
+            {
+                title: "7. 🤝 COLLABORATIONS & DONS EN NATURE",
+                items: [
+                    "Devenir bénévole", "Proposer une formation", "Offrir du matériel scolaire", 
+                    "Offrir des vêtements et des biens essentiels", "Proposer des services médicaux", "Proposer un service professionnel", 
+                    "Participer à une activité communautaire", "Soumettre une proposition de collaboration"
+                ]
+            },
+            {
+                title: "8. 📊 TRANSPARENCE, RAPPORTS ET IMPACT",
+                items: [
+                    "Consulter les dons confirmés", "Consulter les dépenses justifiées", "Consulter les projets financés", 
+                    "Consulter les réalisations", "Consulter les rapports mensuels", "Consulter les rapports annuels", 
+                    "Télécharger les rapports publics", "Signaler une anomalie ou poser une question"
+                ]
+            }
+        ];
+
         function renderStructureAccordion() {
             const container = document.getElementById('branches-accordion-container');
             const agentBranchSelect = document.getElementById('a-branch');
@@ -409,6 +509,179 @@
                 `;
             });
             updateSubactivityOptions();
+        }
+
+        function renderSponsoringHubAccordion() {
+            const container = document.getElementById('sponsoring-accordion-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            sponsoringHubData.forEach((branch) => {
+                let subHtml = '';
+                branch.items.forEach(sub => {
+                    subHtml += `
+                        <button type="button" onclick="handleSponsoringSubClick('${branch.title.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')" class="w-full text-left bg-white hover:bg-green-50/50 p-3 rounded-xl border border-slate-200 flex justify-between items-center transition shadow-xs group cursor-pointer">
+                            <span class="font-bold text-slate-700 group-hover:text-green-700">${sub}</span> 
+                            <span class="text-[10px] text-green-600 bg-green-50 px-2.5 py-1 rounded-lg font-bold">Ouvrir →</span>
+                        </button>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="border border-green-200/60 rounded-2xl p-4 bg-white space-y-3 shadow-sm">
+                        <h3 class="font-black text-green-900 text-sm flex items-center justify-between">
+                            <span>${branch.title}</span>
+                            <span class="text-[10px] font-mono bg-green-100 px-2 py-0.5 rounded text-green-800">${branch.items.length} Sous-boutons</span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+                            ${subHtml}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function handleSponsoringSubClick(branchTitle, subName) {
+            const modal = document.getElementById('modal-sponsoring-action');
+            const title = document.getElementById('modal-sponsoring-title');
+            const body = document.getElementById('modal-sponsoring-body');
+
+            title.innerText = `${branchTitle} — ${subName}`;
+            modal.classList.replace('hidden', 'flex');
+
+            if (subName.includes("Don") || subName.includes("Financer") || subName.includes("Soutenir")) {
+                body.innerHTML = `
+                    <div class="space-y-3 text-slate-700">
+                        <p class="text-xs">Remplissez le formulaire ci-dessous pour enregistrer votre contribution au programme <strong>${subName}</strong>.</p>
+                        <div class="space-y-2">
+                            <label class="font-bold">Nom complet / Donateur :</label>
+                            <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
+                            
+                            <label class="font-bold">Email de contact :</label>
+                            <input type="email" id="don-email" placeholder="votre@email.com" class="w-full p-2.5 border rounded-xl bg-white">
+                            
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="font-bold">Montant :</label>
+                                    <input type="number" id="don-amount" placeholder="50" class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                                <div>
+                                    <label class="font-bold">Devise :</label>
+                                    <select id="don-currency" class="w-full p-2.5 border rounded-xl bg-white font-bold">
+                                        <option value="USD">USD ($)</option>
+                                        <option value="CDF">CDF (Franc Congolais)</option>
+                                        <option value="UGX">UGX (Shilling Ougandais)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <label class="font-bold">Moyen de paiement / Remise :</label>
+                            <select id="don-method" class="w-full p-2.5 border rounded-xl bg-white">
+                                <option value="MobileMoney">Mobile Money (M-Pesa / Airtel)</option>
+                                <option value="Bank">Virement Bancaire</option>
+                                <option value="Cash">Espèces / Guichet Centre Bukavu</option>
+                            </select>
+                        </div>
+                        <button type="button" onclick="submitDonation('${subName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer mt-3">Confirmer et Enregistrer la Contribution</button>
+                    </div>
+                `;
+            } else if (subName.includes("partenariat") || subName.includes("entreprise") || subName.includes("ONG")) {
+                body.innerHTML = `
+                    <div class="space-y-3 text-slate-700">
+                        <p class="text-xs">Formulaire officiel de proposition de partenariat pour le programme <strong>${subName}</strong>.</p>
+                        <div class="space-y-2">
+                            <label class="font-bold">Nom de l'Organisation / Entreprise :</label>
+                            <input type="text" id="part-org" class="w-full p-2.5 border rounded-xl bg-white">
+                            
+                            <label class="font-bold">Pays :</label>
+                            <select id="part-country" class="african-countries-select w-full p-2.5 border rounded-xl bg-white"></select>
+                            
+                            <label class="font-bold">Représentant & Email :</label>
+                            <input type="text" id="part-rep" placeholder="Nom et email professionnel" class="w-full p-2.5 border rounded-xl bg-white">
+                            
+                            <label class="font-bold">Description du soutien :</label>
+                            <textarea id="part-desc" placeholder="Détails du partenariat..." class="w-full p-2.5 border rounded-xl bg-white h-20"></textarea>
+                        </div>
+                        <button type="button" onclick="submitPartnership('${subName}')" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer mt-3">Soumettre la Proposition à l'Administration</button>
+                    </div>
+                `;
+                populateAfricanCountries();
+            } else {
+                body.innerHTML = `
+                    <div class="space-y-3 text-slate-700">
+                        <div class="bg-green-50 border border-green-200 p-4 rounded-xl space-y-2">
+                            <h4 class="font-black text-green-900 text-sm">🟢 Renseignements & Suivi Panafricain</h4>
+                            <p class="text-xs text-green-800 leading-relaxed">Le programme <strong>${subName}</strong> est géré par les équipes du Centre Dieudonné Bukavu à travers le réseau panafricain.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border space-y-1">
+                            <p class="font-bold text-slate-900 text-xs">Statut : Opérationnel et vérifié</p>
+                            <p class="text-[11px] text-slate-600">Vous pouvez contacter l'administration centrale ou soumettre une contribution directe pour appuyer cette action.</p>
+                        </div>
+                        <button onclick="openDonationModal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer">Soutenir ce programme</button>
+                    </div>
+                `;
+            }
+        }
+
+        function closeSponsoringModal() {
+            document.getElementById('modal-sponsoring-action').classList.replace('flex', 'hidden');
+        }
+
+        async function submitDonation(cause) {
+            const name = document.getElementById('don-name').value || "Anonyme";
+            const email = document.getElementById('don-email').value || "Non fourni";
+            const amount = parseFloat(document.getElementById('don-amount').value) || 0;
+            const currency = document.getElementById('don-currency').value;
+            const method = document.getElementById('don-method').value;
+
+            if (amount <= 0) {
+                alert("Veuillez entrer un montant valide.");
+                return;
+            }
+
+            try {
+                const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
+                await db.collection("donations").add({
+                    refId, name, email, amount, currency, method, cause,
+                    status: "En attente de vérification",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert(`Don enregistré avec succès !\nRéférence de reçu : ${refId}\nLe statut sera validé par l'administration après vérification du paiement.`);
+                closeSponsoringModal();
+            } catch (err) {
+                alert("Erreur lors de l'enregistrement : " + err.message);
+            }
+        }
+
+        async function submitPartnership(program) {
+            const org = document.getElementById('part-org').value;
+            const country = document.getElementById('part-country').value;
+            const rep = document.getElementById('part-rep').value;
+            const desc = document.getElementById('part-desc').value;
+
+            if (!org || !rep) {
+                alert("Veuillez remplir les champs obligatoires.");
+                return;
+            }
+
+            try {
+                await db.collection("partnerships").add({
+                    org, country, rep, desc, program,
+                    status: "Proposition soumise",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert("Votre proposition de partenariat a été transmise avec succès à l'administration de Dieudonné Care.");
+                closeSponsoringModal();
+            } catch (err) {
+                alert("Erreur : " + err.message);
+            }
+        }
+
+        function openDonationModal() {
+            switchTab('sponsoring-hub');
+            handleSponsoringSubClick("3. 💳 FAIRE UN DON", "Faire un don unique");
         }
 
         function updateSubactivityOptions() {
@@ -483,7 +756,7 @@
         }
 
         function switchTab(tab, pushHistory = true) {
-            ['home', 'search-id', 'notifications', 'children', 'widows', 'team', 'countries', 'reports', 'profile', 'admin'].forEach(t => document.getElementById(`sec-${t}`)?.classList.add('hidden'));
+            ['home', 'sponsoring-hub', 'search-id', 'notifications', 'children', 'widows', 'team', 'countries', 'reports', 'profile', 'admin'].forEach(t => document.getElementById(`sec-${t}`)?.classList.add('hidden'));
             document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
             document.getElementById('sidebar').classList.add('-translate-x-full');
             document.getElementById('sidebar-overlay').classList.add('hidden');
@@ -508,10 +781,7 @@
             }
         }
 
-        function openForm(type) {
-            document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex');
-        }
-
+        function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
         function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
@@ -557,12 +827,8 @@
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2 pt-1">
-                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                        📞 Appeler
-                                    </a>
-                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                        💬 WhatsApp
-                                    </a>
+                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">📞 Appeler</a>
+                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">💬 WhatsApp</a>
                                 </div>
                             </div>
                         `;
@@ -579,50 +845,13 @@
                             <span class="font-bold text-emerald-800">🟢 STATUT : ACTIF</span>
                             <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Panafricain</span>
                         </div>
-
                         <div>
                             <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF</h4>
                             <p class="text-[11px] text-slate-600 mt-0.5">Mettre en œuvre avec excellence le programme "${subActivityName}" pour garantir le développement et le soutien de la communauté.</p>
                         </div>
-
-                        <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📝 DESCRIPTION</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Activité officielle du système panafricain Dieudonné Care, supervisée et documentée en temps réel.</p>
-                        </div>
-
-                        <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📋 PROGRAMMES & TÂCHES</h4>
-                            <ul class="list-disc pl-4 text-[11px] text-slate-600 space-y-0.5 mt-0.5">
-                                <li>Planification et ciblage des bénéficiaires</li>
-                                <li>Exécution des opérations sur le terrain</li>
-                                <li>Contrôle qualité et évaluation des résultats</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🧰 MATÉRIEL NÉCESSAIRE</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Équipements spécialisés, registres et outils de communication associés à ce sous-programme.</p>
-                        </div>
-
-                        <div>
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">📅 PLANNING & BUDGET</h4>
-                            <p class="text-[11px] text-slate-600 mt-0.5">Suivi continu (Lundi au Samedi). Budget géré par l'Administration Centrale.</p>
-                        </div>
-
                         <div class="pt-2 border-t space-y-2">
                             <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES</h4>
-                            <div class="space-y-2">
-                                ${agentsHtml}
-                            </div>
-                        </div>
-
-                        <div class="pt-2 border-t grid grid-cols-2 gap-2">
-                            <a href="mailto:contact@dieudonnecare.org" class="bg-slate-900 hover:bg-slate-800 text-white p-2.5 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                ✉️ Envoyer un Email
-                            </a>
-                            <button onclick="switchTab('reports')" class="bg-blue-600 hover:bg-blue-500 text-white p-2.5 rounded-xl text-center font-bold flex items-center justify-center gap-1 transition">
-                                📄 Voir les Rapports
-                            </button>
+                            <div class="space-y-2">${agentsHtml}</div>
                         </div>
                     </div>
                 `;
@@ -632,9 +861,7 @@
             }
         }
 
-        function closeBranchModal() {
-            document.getElementById('modal-branch-agents').classList.replace('flex', 'hidden');
-        }
+        function closeBranchModal() { document.getElementById('modal-branch-agents').classList.replace('flex', 'hidden'); }
 
         function compressImage(file) {
             return new Promise((resolve) => {
@@ -664,7 +891,6 @@
         }
 
         async function saveAgentForm() {
-            alert("Bouton cliqué ! Traitement en cours...");
             try {
                 const photo = await compressImage(document.getElementById('a-photo').files[0]);
                 const familyPhoto = await compressImage(document.getElementById('a-family-photo').files[0]);
@@ -687,13 +913,10 @@
                 alert(`Agent enregistré avec succès ! ID unique : ${matricule}`);
                 closeForm('agent'); 
                 refreshCounters();
-            } catch (err) { 
-                alert("Erreur technique : " + err.message); 
-            }
+            } catch (err) { alert("Erreur technique : " + err.message); }
         }
 
         async function saveChildForm() {
-            alert("Enregistrement de l'enfant en cours...");
             try {
                 const photo = await compressImage(document.getElementById('c-photo').files[0]);
                 const familyPhoto = await compressImage(document.getElementById('c-family-photo').files[0]);
@@ -718,7 +941,6 @@
         }
 
         async function saveWidowForm() {
-            alert("Enregistrement de la veuve en cours...");
             try {
                 const photo = await compressImage(document.getElementById('w-photo').files[0]);
                 const familyPhoto = await compressImage(document.getElementById('w-family-photo').files[0]);
@@ -810,11 +1032,12 @@
             const container = document.getElementById('admin-master-list');
             container.innerHTML = 'Chargement...';
             let html = '';
-            for (let col of ['children', 'widows', 'agents']) {
+            for (let col of ['children', 'widows', 'agents', 'donations', 'partnerships']) {
                 const snap = await db.collection(col).get();
                 snap.forEach(doc => {
                     const d = doc.data();
-                    html += `<div class="p-2 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">${d.matricule}</strong> - ${d.firstName || d.fullName || ''}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
+                    let title = d.matricule || d.refId || d.org || 'Élément';
+                    html += `<div class="p-2 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${col.toUpperCase()}]</strong> ${title}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
                 });
             }
             container.innerHTML = html || 'Vide';
@@ -826,6 +1049,7 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             renderStructureAccordion();
+            renderSponsoringHubAccordion();
             populateAfricanCountries();
             initAuthListener();
             refreshCounters();
