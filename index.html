@@ -106,13 +106,13 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
-                    <button onclick="openDonationModalFor('Parrainer un enfant')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                    <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="baby" class="w-5 h-5"></i> <span>Parrainer un enfant</span>
                     </button>
-                    <button onclick="openDonationModalFor('Soutenir une veuve')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                    <button onclick="switchTab('sponsoring-hub')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="users" class="w-5 h-5"></i> <span>Soutenir une veuve</span>
                     </button>
-                    <button onclick="openDonationModalFor('Faire un don direct')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                    <button onclick="openDonationModalFor('Don Direct & Libre')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="heart" class="w-5 h-5"></i> <span>Faire un don direct</span>
                     </button>
                 </div>
@@ -138,46 +138,103 @@
             </div>
         </section>
 
-        <!-- BOUTON 2 : SOUTENIR (ESPACE DONATEUR) -->
-        <section id="sec-sponsoring-hub" class="hidden space-y-6 max-w-4xl mx-auto">
+        <!-- BOUTON 2 : SOUTENIR AVEC SOUS-BESOINS DÉTAILLÉS -->
+        <section id="sec-sponsoring-hub" class="hidden space-y-6 max-w-6xl mx-auto">
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-800 shadow-xl space-y-4 text-center">
                 <div class="w-14 h-14 mx-auto rounded-2xl bg-green-600/20 border border-green-500/30 flex items-center justify-center text-green-400"><i data-lucide="heart-handshake" class="w-7 h-7"></i></div>
-                <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">ESPACE DONATEUR</span>
-                <h2 class="text-2xl md:text-3xl font-black">Faites un don ou parrainez dès maintenant</h2>
-                <p class="text-xs text-slate-300 max-w-xl mx-auto leading-relaxed">Votre générosité change des vies. Choisissez un mode de soutien ci-dessous pour contribuer en toute sécurité.</p>
+                <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">ESPACE DONATEUR & SOUTIEN CIBLÉ</span>
+                <h2 class="text-2xl md:text-3xl font-black">Choisissez précisément le besoin que vous souhaitez financer</h2>
+                <p class="text-xs text-slate-300 max-w-xl mx-auto leading-relaxed">Sélectionnez directement un sous-besoin ci-dessous pour ouvrir le formulaire de contribution sécurisé.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- GRID DES 3 BLOCS PRINCIPAUX ET LEURS SOUS-BOUTONS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- BLOC 1 : PARRAINER UN ENFANT ET SES SOUS-BESOINS -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i data-lucide="baby" class="w-5 h-5"></i></div>
-                        <h3 class="font-black text-slate-900 text-sm">Parrainer un Enfant</h3>
-                        <p class="text-xs text-slate-600">Financez la scolarité, l'uniforme et les repas d'un orphelin pour lui offrir un avenir.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 border-b pb-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"><i data-lucide="baby" class="w-5 h-5"></i></div>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-sm">Parrainer un Enfant</h3>
+                                <p class="text-[10px] text-slate-500">Besoins scolaires & survie</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 font-semibold">Cliquez sur le besoin exact :</p>
+                        
+                        <div class="space-y-2 pt-1">
+                            <button onclick="openDonationModalFor('Frais scolaires - Enfant')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🎓 Frais scolaires</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openDonationModalFor('Inscriptions - Enfant')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>📝 Inscriptions</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openDonationModalFor('Uniforme et fournitures - Enfant')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>👕 Uniformes & Fournitures</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openDonationModalFor('Repas et nutrition - Enfant')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🍲 Repas & Nutrition</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openDonationModalFor('Soins de santé - Enfant')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>💊 Soins & Médicaments</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                        </div>
                     </div>
-                    <button onclick="openDonationModalFor('Parrainer un enfant')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-xs cursor-pointer shadow">Parrainer un enfant</button>
                 </div>
 
+                <!-- BLOC 2 : SOUTENIR UNE VEUVE ET SES SOUS-BESOINS -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i data-lucide="users" class="w-5 h-5"></i></div>
-                        <h3 class="font-black text-slate-900 text-sm">Soutenir une Veuve</h3>
-                        <p class="text-xs text-slate-600">Aidez une mère vulnérable à travers l'autonomisation et les activités génératrices de revenus.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 border-b pb-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0"><i data-lucide="users" class="w-5 h-5"></i></div>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-sm">Soutenir une Veuve</h3>
+                                <p class="text-[10px] text-slate-500">Autonomisation & Subsistance</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 font-semibold">Cliquez sur le besoin exact :</p>
+                        
+                        <div class="space-y-2 pt-1">
+                            <button onclick="openDonationModalFor('A manger / Vivres - Veuve')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🌾 À manger & Vivres</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openDonationModalFor('Formations professionnelles - Veuve')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🧵 Formations (Couture...)</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openDonationModalFor('Petit commerce / AGR - Veuve')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🛒 Petit commerce & AGR</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openDonationModalFor('Logement et soins - Veuve')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🏠 Logement & Soins</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
+                            </button>
+                        </div>
                     </div>
-                    <button onclick="openDonationModalFor('Soutenir une veuve')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-xs cursor-pointer shadow">Soutenir une veuve</button>
                 </div>
 
+                <!-- BLOC 3 : DON DIRECT & LIBRE -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center"><i data-lucide="heart" class="w-5 h-5"></i></div>
-                        <h3 class="font-black text-slate-900 text-sm">Don Direct & Libre</h3>
-                        <p class="text-xs text-slate-600">Participez au budget global des centres d'accueil pour couvrir les urgences et besoins essentiels.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 border-b pb-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0"><i data-lucide="heart" class="w-5 h-5"></i></div>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-sm">Don Direct & Libre</h3>
+                                <p class="text-[10px] text-slate-500">Soutien global aux centres</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600">Participez au budget général pour couvrir les urgences et la gestion panafricaine.</p>
+                        
+                        <div class="space-y-2 pt-1">
+                            <button onclick="openDonationModalFor('Don Direct & Libre')" class="w-full text-left bg-amber-50 hover:bg-amber-100 p-4 rounded-xl border border-amber-200 text-xs font-bold text-amber-900 flex justify-between items-center transition cursor-pointer mt-6">
+                                <span>💛 Faire un don libre</span> <span class="text-amber-700 text-xs">Donner →</span>
+                            </button>
+                        </div>
                     </div>
-                    <button onclick="openDonationModalFor('Faire un don direct')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl text-xs cursor-pointer shadow">Faire un don direct</button>
                 </div>
+
             </div>
         </section>
 
-        <!-- MODAL DE SOUTIEN -->
+        <!-- MODAL DE SOUTIEN AVEC LE MOTIF PRÉCIS CHOISI -->
         <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
@@ -211,7 +268,7 @@
             <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
         </section>
 
-        <!-- BOUTON 4 : AGENTS (STRUCTURE TECHNIQUE : 8 BRANCHES & 76 SOUS-PROGRAMMES) -->
+        <!-- BOUTON 4 : AGENTS -->
         <section id="sec-team" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
                 <span class="text-[10px] font-extrabold bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 uppercase tracking-widest">ESPACE OPÉRATIONNEL</span>
@@ -474,12 +531,11 @@
                 <div class="space-y-4 text-slate-700">
                     <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl space-y-2 text-xs text-emerald-950">
                         <p class="font-black text-emerald-900 text-sm flex items-center gap-1.5">
-                            <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Comment votre aide est utilisée :
+                            <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${programName}</strong>
                         </p>
                         <ul class="list-disc pl-4 space-y-1 text-emerald-900">
-                            <li><strong>Affectation directe :</strong> Votre contribution au programme <em>${programName}</em> est gérée par l'agent responsable sous la supervision du Centre Dieudonné à Bukavu.</li>
+                            <li><strong>Affectation directe :</strong> Votre contribution est strictement affectée à ce besoin spécifique sous la supervision du Centre Dieudonné à Bukavu.</li>
                             <li><strong>Traçabilité :</strong> Un reçu officiel avec numéro de référence unique vous est attribué dès l'enregistrement.</li>
-                            <li><strong>Sécurité :</strong> Aucun montant n'est distribué en espèces aux bénéficiaires ; l'aide est fournie sous forme de biens, de frais scolaires réglés aux écoles ou de services de santé.</li>
                         </ul>
                     </div>
 
@@ -539,7 +595,7 @@
                     status: "En attente de vérification",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-                alert(`Contribution enregistrée avec succès !\nRéférence : ${refId}\nMerci pour votre confiance.`);
+                alert(`Contribution enregistrée avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nMerci pour votre confiance.`);
                 closeSponsoringModal();
                 updateFinancialReports();
             } catch (err) { alert("Erreur : " + err.message); }
@@ -636,7 +692,7 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
