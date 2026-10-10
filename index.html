@@ -34,7 +34,7 @@
                 <select id="lang-selector" class="bg-slate-800 text-green-400 font-bold text-xs px-2.5 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
                     <option value="fr">🇫🇷 FR</option>
                     <option value="en">🇬🇧 EN</option>
-                    <option value="sw">🇹🇿 SW</option>
+                    <option value="sw">🇹ℤ SW</option>
                 </select>
 
                 <div id="user-info-badge" class="hidden items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
@@ -67,7 +67,7 @@
             <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Rapports</button>
             <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> Mon Profil & Espace Sponsor</button>
             <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
-            <button onclick="auth.signOut(); toggleSidebar();" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-red-900/50 text-red-400 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion</button>
+            <button onclick="handleSignOut()" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-red-900/50 text-red-400 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion</button>
         </div>
     </aside>
 
@@ -255,6 +255,37 @@
             </div>
         </div>
 
+        <!-- MODAL MODIFICATION DE PROFIL -->
+        <div id="modal-edit-profile" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+            <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <h3 class="font-black text-slate-900 text-sm uppercase">Modifier Mon Profil</h3>
+                    <button onclick="closeEditProfileModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
+                </div>
+                <form onsubmit="saveProfileChanges(event)" class="space-y-3 text-xs">
+                    <div>
+                        <label class="font-bold block mb-1">Nom complet</label>
+                        <input type="text" id="edit-fullname" required class="w-full p-3 border rounded-xl bg-slate-50">
+                    </div>
+                    <div>
+                        <label class="font-bold block mb-1">Téléphone</label>
+                        <input type="text" id="edit-phone" placeholder="+243..." class="w-full p-3 border rounded-xl bg-slate-50">
+                    </div>
+                    <div>
+                        <label class="font-bold block mb-1">Pays</label>
+                        <select id="edit-country" class="african-countries-select w-full p-3 border rounded-xl bg-slate-50 font-bold"></select>
+                    </div>
+                    <div>
+                        <label class="font-bold block mb-1">Ville</label>
+                        <input type="text" id="edit-city" placeholder="Bukavu" class="w-full p-3 border rounded-xl bg-slate-50">
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs uppercase tracking-wider">
+                        Enregistrer les modifications
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <!-- RECHERCHE PAR ID -->
         <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
@@ -294,7 +325,7 @@
             </div>
         </section>
 
-        <!-- MON PROFIL & ESPACE SPONSOR (MIS À JOUR ET COMPLET) -->
+        <!-- MON PROFIL & ESPACE SPONSOR -->
         <section id="sec-profile" class="hidden space-y-6 max-w-4xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
                 <span class="text-[10px] font-extrabold bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">ESPACE PERSONNEL & TABLEAU DE BORD</span>
@@ -437,9 +468,10 @@
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Connexion</h3><button onclick="closeAuthModal()" class="p-2 font-bold cursor-pointer">✕</button></div>
             <div class="space-y-3 text-xs">
+                <div id="auth-error-box" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 font-bold"></div>
                 <input type="email" id="auth-email" placeholder="E-mail" required class="w-full p-3 border rounded-xl text-sm bg-white">
                 <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-3 border rounded-xl text-sm bg-white">
-                <button type="button" onclick="handleAuthSubmit()" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl text-sm shadow cursor-pointer">Se Connecter</button>
+                <button type="button" onclick="handleAuthSubmit()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl text-sm shadow cursor-pointer">Se Connecter</button>
             </div>
         </div>
     </div>
@@ -452,11 +484,10 @@
             "Éthiopie", "Gabon", "Gambie", "Ghana", "Guinée", "Guinée-Bissau", "Guinée équatoriale", "Kenya", 
             "Lesotho", "Liberia", "Libye", "Madagascar", "Malawi", "Mali", "Maroc", "Maurice", "Mauritanie", 
             "Mozambique", "Namibie", "Niger", "Nigeria", "Ouganda", "Rwanda", "São Tomé-et-Príncipe", "Sénégal", 
-            "Seychelles", "Sierra Leone", "Somalie", "Soudan", "Soudan du Sud", "Tanzanie", "Tchad", "Togo", 
+            "Seychelles", "Sierra Leone", "Somalie", "SOUDAN", "Soudan du Sud", "Tanzanie", "Tchad", "Togo", 
             "Tunisie", "Zambie", "Zimbabwe"
         ];
 
-        // STRUCTURE COMPLÈTE DES 8 GRANDES BRANCHES ET DE LEURS PROGRAMMES
         const structureData = [
             {
                 id: "branch-1",
@@ -542,175 +573,6 @@
             }
         ];
 
-        // FONCTION POUR COPIER LE NUMÉRO DANS LE PRESSE-PAPIER
-        function copyMtnNumber() {
-            const numToCopy = "+256792994716";
-            navigator.clipboard.writeText(numToCopy).then(() => {
-                alert("Numéro MTN copié dans le presse-papier : " + numToCopy);
-            }).catch(err => {
-                alert("Erreur lors de la copie : " + err);
-            });
-        }
-
-        // OUVRE DIRECTEMENT LE FORMULAIRE DE PAIEMENT SÉCURISÉ
-        function openFormForCause(causeName) {
-            const modal = document.getElementById('modal-sponsoring-action');
-            const title = document.getElementById('modal-sponsoring-title');
-            const body = document.getElementById('modal-sponsoring-body');
-
-            title.innerText = `Validation du Paiement`;
-            modal.classList.replace('hidden', 'flex');
-
-            body.innerHTML = `
-                <div class="space-y-4 text-slate-700">
-                    <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-2xl space-y-1 text-xs text-emerald-950">
-                        <p class="font-black text-emerald-900 text-xs flex items-center gap-1.5">
-                            <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${causeName}</strong>
-                        </p>
-                        <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision du Centre Dieudonné.</p>
-                    </div>
-
-                    <!-- GUIDE INSTRUCTIONS CLAIRES -->
-                    <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
-                        <p class="font-extrabold text-amber-950 flex items-center gap-1">📌 Instructions pour effectuer le transfert :</p>
-                        <ol class="list-decimal pl-4 space-y-1 text-[11px]">
-                            <li>Cliquez sur <strong>« Copier le numéro »</strong> pour éviter toute erreur de frappe.</li>
-                            <li>Effectuez votre transfert MTN vers ce numéro (ou composez <strong>*165#</strong>).</li>
-                            <li>Récupérez l'<strong>ID de transaction (Référence)</strong> reçu par SMS de MTN.</li>
-                            <li>Remplissez le formulaire ci-dessous et validez.</li>
-                        </ol>
-                    </div>
-
-                    <!-- BLOC NUMÉRO OFFICIEL -->
-                    <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3">
-                        <div class="border-b border-slate-800 pb-2 flex justify-between items-center">
-                            <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉRO DE TRANSFERT OFFICIEL</span>
-                            <span class="text-[9px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded font-mono font-bold">Actif</span>
-                        </div>
-                        
-                        <div class="space-y-2 text-xs">
-                            <div class="bg-amber-500/10 border border-amber-500/40 p-3.5 rounded-xl space-y-2">
-                                <span class="font-black text-amber-400">💛 MTN Mobile Money (DISPONIBLE)</span>
-                                <p class="text-base font-mono font-black text-white tracking-wider">+256 792994716</p>
-                                <p class="text-[10px] text-amber-200">Nom du compte : <strong>GABRIEL MUSHAGALUSA</strong></p>
-                                
-                                <div class="grid grid-cols-2 gap-2 pt-2">
-                                    <button type="button" onclick="copyMtnNumber()" class="bg-green-600 hover:bg-green-500 text-white font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
-                                        📋 Copier le numéro
-                                    </button>
-                                    <a href="tel:*165#" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
-                                        📲 Menu (*165#)
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FORMULAIRE DE SAISIE DE LA PREUVE -->
-                    <div class="space-y-3 text-xs bg-slate-50 p-4 rounded-2xl border">
-                        <h4 class="font-black text-slate-900 text-xs">Saisir les détails de votre transfert effectué</h4>
-                        <div>
-                            <label class="font-bold block mb-1">Nom complet / Donateur :</label>
-                            <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
-                        </div>
-                        
-                        <div>
-                            <label class="font-bold block mb-1">Email ou Téléphone de contact :</label>
-                            <input type="text" id="don-email" placeholder="votre@email.com ou +243..." class="w-full p-2.5 border rounded-xl bg-white">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="font-bold block mb-1">Montant envoyé :</label>
-                                <input type="number" id="don-amount" placeholder="50" class="w-full p-2.5 border rounded-xl bg-white">
-                            </div>
-                            <div>
-                                <label class="font-bold block mb-1">Devise :</label>
-                                <select id="don-currency" class="w-full p-2.5 border rounded-xl bg-white font-bold">
-                                    <option value="USD">USD ($)</option>
-                                    <option value="UGX">UGX (Shilling Ougandais)</option>
-                                    <option value="CDF">CDF (Franc Congolais)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="font-bold block mb-1 text-green-700">Référence / ID de transaction Mobile Money * :</label>
-                            <input type="text" id="don-transid" placeholder="Ex: 254896321 (ID reçu par SMS)" class="w-full p-2.5 border border-green-500 rounded-xl bg-white font-mono font-bold text-slate-900">
-                            <p class="text-[9px] text-slate-500 mt-0.5">Entrez le code de confirmation reçu par SMS après votre transfert.</p>
-                        </div>
-                    </div>
-
-                    <button type="button" onclick="submitDonation('${causeName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs uppercase tracking-wider">Confirmer mon transfert</button>
-                </div>
-            `;
-            if (window.lucide) lucide.createIcons();
-        }
-
-        function closeSponsoringModal() {
-            document.getElementById('modal-sponsoring-action').classList.replace('flex', 'hidden');
-        }
-
-        async function submitDonation(cause) {
-            const name = document.getElementById('don-name').value || "Anonyme";
-            const email = document.getElementById('don-email').value || "Non fourni";
-            const amount = parseFloat(document.getElementById('don-amount').value) || 0;
-            const currency = document.getElementById('don-currency').value;
-            const transId = document.getElementById('don-transid').value.trim();
-            const currentUser = auth.currentUser;
-
-            if (amount <= 0) { alert("Veuillez entrer un montant valide."); return; }
-            if (!transId) { alert("Veuillez saisir la référence/ID de la transaction reçue par SMS pour nous permettre de valider votre don."); return; }
-
-            try {
-                const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
-                await db.collection("donations").add({
-                    refId, name, email, amount, currency, cause,
-                    transId: transId,
-                    userId: currentUser ? currentUser.uid : 'anonymous',
-                    userEmail: currentUser ? currentUser.email : email,
-                    method: "MTN Mobile Money (+256792994716)",
-                    status: "En attente de vérification",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nMerci pour votre soutien envers le Centre Dieudonné !`);
-                closeSponsoringModal();
-                updateFinancialReports();
-                if (currentUser) updateProfileCard(currentUser);
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        function updateSubactivityOptions() {
-            const branchSelect = document.getElementById('a-branch');
-            const subSelect = document.getElementById('a-subactivity');
-            if (!branchSelect || !subSelect) return;
-
-            const branchVal = branchSelect.value;
-            subSelect.innerHTML = '';
-
-            structureData.forEach(branch => {
-                branch.items.forEach(item => {
-                    const opt = document.createElement('option');
-                    opt.value = item.name;
-                    opt.textContent = `${branch.title} — ${item.name}`;
-                    subSelect.appendChild(opt);
-                });
-            });
-        }
-
-        function populateAfricanCountries() {
-            document.querySelectorAll('.african-countries-select').forEach(sel => {
-                sel.innerHTML = '';
-                africanCountries.forEach(country => {
-                    const opt = document.createElement('option');
-                    opt.value = country;
-                    opt.textContent = country;
-                    if (country.includes("RDC")) opt.selected = true;
-                    sel.appendChild(opt);
-                });
-            });
-        }
-
         const firebaseConfig = {
             apiKey: "AIzaSyATlu2mUJmPlmkJkVow1ap35RSl6zt30nY",
             authDomain: "dieudonne-f074d.firebaseapp.com",
@@ -725,13 +587,14 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
 
+        // GESTIONNAIRE D'AUTHENTIFICATION SÉCURISÉ
         function initAuthListener() {
             auth.onAuthStateChanged(user => {
                 if (user) {
                     document.getElementById('user-display').innerText = user.email;
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion`;
-                    document.getElementById('auth-btn').onclick = () => auth.signOut();
+                    document.getElementById('auth-btn').onclick = handleSignOut;
                     updateProfileCard(user);
                 } else {
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
@@ -742,440 +605,99 @@
             });
         }
 
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.toggle('hidden');
-        }
-
-        function switchTab(tab) {
-            ['home', 'sponsoring-hub', 'search-id', 'notifications', 'children', 'widows', 'team', 'countries', 'reports', 'profile', 'admin'].forEach(t => document.getElementById(`sec-${t}`)?.classList.add('hidden'));
-            document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
-            document.getElementById('sidebar').classList.add('-translate-x-full');
-            document.getElementById('sidebar-overlay').classList.add('hidden');
-
-            if (tab === 'home') loadHomeFeaturedProfiles();
-            if (tab === 'children') loadCollection('children', 'children-grid-container', true);
-            if (tab === 'widows') loadCollection('widows', 'widows-grid-container', false);
-            if (tab === 'team') { backToBranchesGrid(); }
-            if (tab === 'admin') loadAdminMasterList();
-            if (tab === 'countries') renderCountriesList();
-            if (tab === 'reports') updateFinancialReports();
-            if (tab === 'profile') updateProfileCard(auth.currentUser);
-
-            window.scrollTo(0, 0);
-            if (window.lucide) lucide.createIcons();
-        }
-
-        function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
-        function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
-        function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'hidden'); }
-
         async function handleAuthSubmit() {
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
+            const emailInput = document.getElementById('auth-email');
+            const passwordInput = document.getElementById('auth-password');
+            const errBox = document.getElementById('auth-error-box');
+
+            const email = emailInput ? emailInput.value.trim() : '';
+            const password = passwordInput ? passwordInput.value.trim() : '';
+
+            if (!email || !password) {
+                if (errBox) { errBox.innerText = "Veuillez remplir l'adresse e-mail et le mot de passe."; errBox.classList.remove('hidden'); }
+                return;
+            }
+
             try {
+                if (errBox) errBox.classList.add('hidden');
                 await auth.signInWithEmailAndPassword(email, password);
                 closeAuthModal();
-                alert("Connexion réussie !");
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        // RENDU DES 8 CARTES DE BRANCHES DANS LA PAGE ACTIVITÉS
-        function renderBranchesGrid() {
-            const gridContainer = document.getElementById('branches-grid-container');
-            if (!gridContainer) return;
-
-            gridContainer.innerHTML = '';
-            structureData.forEach(branch => {
-                gridContainer.innerHTML += `
-                    <div class="bg-white rounded-3xl border shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                        <div class="relative h-44 bg-slate-100">
-                            <img src="${branch.photo}" alt="${branch.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
-                                <span class="bg-purple-600 text-white font-mono text-[10px] px-2.5 py-1 rounded-full font-bold shadow">${branch.items.length} Programmes</span>
-                            </div>
-                        </div>
-                        <div class="p-5 space-y-3 flex flex-col justify-between flex-grow">
-                            <div class="space-y-2">
-                                <h3 class="font-black text-slate-900 text-sm md:text-base">${branch.title}</h3>
-                                <p class="text-xs text-slate-600 line-clamp-2">${branch.description}</p>
-                            </div>
-                            <button type="button" onclick="openBranchPrograms('${branch.id}')" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer flex items-center justify-center gap-1.5 shadow">
-                                Voir les programmes <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-            updateSubactivityOptions();
-            if (window.lucide) lucide.createIcons();
-        }
-
-        // OUVERTURE DE LA VUE DES PROGRAMMES D'UNE BRANCHE
-        function openBranchPrograms(branchId) {
-            const branch = structureData.find(b => b.id === branchId);
-            if (!branch) return;
-
-            document.getElementById('branches-grid-container').classList.add('hidden');
-            const detailsView = document.getElementById('branch-details-view');
-            const content = document.getElementById('branch-details-content');
-            detailsView.classList.remove('hidden');
-
-            let programsHtml = '';
-            branch.items.forEach(sub => {
-                programsHtml += `
-                    <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-3 flex flex-col justify-between">
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-black text-slate-900 text-sm">${sub.name}</h4>
-                                <span class="text-[10px] bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full font-bold border border-green-200">Actif</span>
-                            </div>
-                            <p class="text-xs text-slate-600"><strong>Objectif :</strong> ${sub.objective}</p>
-                            <p class="text-xs text-slate-500"><strong>Procédure :</strong> ${sub.procedure}</p>
-                        </div>
-                        <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.name.replace(/'/g, "\\'")}')" class="w-full bg-purple-50 hover:bg-purple-600 hover:text-white text-purple-700 border border-purple-200 py-2.5 rounded-xl text-xs font-bold cursor-pointer transition flex items-center justify-center gap-1">
-                            Détails, Tâches & Contacts <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                `;
-            });
-
-            content.innerHTML = `
-                <div class="bg-slate-900 text-white p-6 rounded-3xl space-y-2 shadow-xl">
-                    <span class="text-[10px] uppercase font-bold text-purple-400 tracking-wider">Branche Panafricaine</span>
-                    <h3 class="text-xl font-black">${branch.title}</h3>
-                    <p class="text-xs text-slate-300">${branch.description}</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">${programsHtml}</div>
-            `;
-            if (window.lucide) lucide.createIcons();
-            window.scrollTo(0, 0);
-        }
-
-        function backToBranchesGrid() {
-            document.getElementById('branch-details-view').classList.add('hidden');
-            document.getElementById('branches-grid-container').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        function renderCountriesList() {
-            const container = document.getElementById('countries-list-container');
-            if (!container) return;
-            container.innerHTML = '';
-            africanCountries.forEach(c => {
-                container.innerHTML += `<div class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-slate-700 flex items-center gap-2"><span>🌍</span> ${c}</div>`;
-            });
-        }
-
-        async function showSubBranchDetails(branchTitle, subActivityName) {
-            const modal = document.getElementById('modal-branch-agents');
-            const title = document.getElementById('modal-branch-title');
-            const listContainer = document.getElementById('modal-branch-list');
-
-            title.innerText = `${branchTitle} — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement des données du programme...";
-            modal.classList.replace('hidden', 'flex');
-
-            try {
-                const snap = await db.collection("agents").get();
-                let agentsHtml = '';
-
-                snap.forEach(doc => {
-                    const agent = doc.data();
-                    if (agent.subactivity === subActivityName || agent.branch === branchTitle) {
-                        const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
-                        agentsHtml += `
-                            <div class="bg-slate-50 p-3 rounded-2xl border space-y-2">
-                                <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
-                                <h4 class="font-bold text-slate-900 text-xs">${agent.fullName} (${agent.role})</h4>
-                                <div class="grid grid-cols-2 gap-2 pt-1">
-                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold">📞 Appeler</a>
-                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 text-white p-2 rounded-xl text-center font-bold">💬 WhatsApp</a>
-                                </div>
-                            </div>
-                        `;
-                    }
-                });
-
-                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent affecté pour le moment.</p>`;
-
-                listContainer.innerHTML = `
-                    <div class="space-y-3 text-slate-700 text-xs">
-                        <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
-                            <p class="font-bold text-slate-900">Objectif & Activités :</p>
-                            <p class="text-slate-600">Exécution et suivi opérationnel sur le terrain sous la supervision panafricaine.</p>
-                        </div>
-                        <div class="pt-2 border-t space-y-2">
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 Personnel & Agents affectés</h4>
-                            <div class="space-y-2">${agentsHtml}</div>
-                        </div>
-                        <button onclick="openForm('agent')" class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl cursor-pointer mt-2">+ Assigner un nouvel agent</button>
-                    </div>
-                `;
-            } catch (err) { listContainer.innerHTML = `<p class="text-red-500 text-center">Erreur : ${err.message}</p>`; }
-        }
-
-        function closeBranchModal() { document.getElementById('modal-branch-agents').classList.replace('flex', 'hidden'); }
-
-        function compressImage(file) {
-            return new Promise((resolve) => {
-                if (!file) { resolve(''); return; }
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.src = event.target.result;
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 400;
-                        const scaleSize = MAX_WIDTH / img.width;
-                        canvas.width = MAX_WIDTH;
-                        canvas.height = img.height * scaleSize;
-                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.6));
-                    };
-                };
-            });
-        }
-
-        async function generateNextMatricule(col, prefix) {
-            const snap = await db.collection(col).get();
-            const count = snap.size + 1;
-            return `BKDD-${prefix}${count < 10 ? '0' + count : count}`;
-        }
-
-        async function saveAgentForm() {
-            try {
-                const photo = await compressImage(document.getElementById('a-photo').files[0]);
-                const familyPhoto = await compressImage(document.getElementById('a-family-photo').files[0]);
-                const matricule = await generateNextMatricule('agents', 'A');
-                
-                await db.collection("agents").add({
-                    matricule, photo, familyPhoto,
-                    fullName: document.getElementById('a-fullname').value,
-                    branch: document.getElementById('a-branch').value,
-                    subactivity: document.getElementById('a-subactivity').value,
-                    role: document.getElementById('a-role').value,
-                    equipments: document.getElementById('a-equipments').value,
-                    phone: document.getElementById('a-phone').value,
-                    country: document.getElementById('a-country').value,
-                    city: document.getElementById('a-city').value,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Agent enregistré ! ID : ${matricule}`);
-                closeForm('agent'); refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function saveChildForm() {
-            try {
-                const photo = await compressImage(document.getElementById('c-photo').files[0]);
-                const familyPhoto = await compressImage(document.getElementById('c-family-photo').files[0]);
-                const matricule = await generateNextMatricule('children', 'E');
-                await db.collection("children").add({
-                    matricule, photo, familyPhoto,
-                    famId: document.getElementById('c-famid').value,
-                    firstName: document.getElementById('c-firstname').value,
-                    lastName: document.getElementById('c-lastname').value,
-                    postName: document.getElementById('c-postname').value,
-                    gender: document.getElementById('c-gender').value,
-                    age: parseInt(document.getElementById('c-age').value) || 0,
-                    country: document.getElementById('c-country').value,
-                    city: document.getElementById('c-city').value,
-                    center: document.getElementById('c-center').value,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Enfant enregistré avec succès ! ID Public : ${matricule}`);
-                closeForm('child'); refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function saveWidowForm() {
-            try {
-                const photo = await compressImage(document.getElementById('w-photo').files[0]);
-                const familyPhoto = await compressImage(document.getElementById('w-family-photo').files[0]);
-                const matricule = await generateNextMatricule('widows', 'V');
-                await db.collection("widows").add({
-                    matricule, photo, familyPhoto,
-                    famId: document.getElementById('w-famid').value,
-                    firstName: document.getElementById('w-firstname').value,
-                    lastName: document.getElementById('w-lastname').value,
-                    postName: document.getElementById('w-postname').value,
-                    age: parseInt(document.getElementById('w-age').value) || 0,
-                    phone: document.getElementById('w-phone').value,
-                    country: document.getElementById('w-country').value,
-                    city: document.getElementById('w-city').value,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                alert(`Veuve enregistrée avec succès ! ID : ${matricule}`);
-                closeForm('widow'); refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function deleteDocument(col, id) {
-            if (confirm("Supprimer ce dossier ?")) {
-                await db.collection(col).doc(id).delete();
-                loadAdminMasterList(); refreshCounters();
-            }
-        }
-
-        async function executeIdSearch() {
-            const val = document.getElementById('input-search-id').value.trim().toUpperCase();
-            const card = document.getElementById('search-result-card');
-            if (!val) return;
-            card.classList.remove('hidden'); card.innerHTML = "Recherche...";
-            let found = null, type = '';
-            for (let col of ['children', 'widows', 'agents']) {
-                const snap = await db.collection(col).where('matricule', '==', val).get();
-                if (!snap.empty) { found = snap.docs[0].data(); type = col; break; }
-            }
-            if (found) {
-                let name = found.firstName ? `${found.firstName} ${type === 'children' ? '***' : found.lastName}` : (found.fullName || '');
-                card.innerHTML = `
-                    <div class="flex items-center gap-3 border-b pb-3">
-                        <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
-                        <div><span class="font-mono bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
-                    </div>
-                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil (Choisir un motif)</button>
-                `;
-            } else {
-                card.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier correspondant à ce matricule.</p>`;
-            }
-        }
-
-        async function refreshCounters() {
-            try {
-                const c = await db.collection("children").get();
-                const w = await db.collection("widows").get();
-                const a = await db.collection("agents").get();
-                document.getElementById('stat-children-count').innerText = c.size;
-                document.getElementById('stat-widows-count').innerText = w.size;
-                document.getElementById('stat-agents-count').innerText = a.size;
-            } catch (e) { console.error(e); }
-        }
-
-        async function loadHomeFeaturedProfiles() {
-            const container = document.getElementById('home-featured-grid');
-            if (!container) return;
-            container.innerHTML = '<p class="text-xs text-slate-400 col-span-3 text-center py-4">Chargement des profils...</p>';
-            
-            try {
-                let items = [];
-                const cSnap = await db.collection("children").limit(2).get();
-                cSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Enfant Orphelin', badgeBg: 'bg-blue-50 text-blue-700' }));
-                
-                const wSnap = await db.collection("widows").limit(1).get();
-                wSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Veuve', badgeBg: 'bg-emerald-50 text-emerald-700' }));
-
-                if (items.length === 0) {
-                    container.innerHTML = `<p class="text-xs text-slate-500 col-span-3 text-center py-6">Aucun profil enregistré pour le moment.</p>`;
-                    return;
-                }
-
-                container.innerHTML = '';
-                items.forEach(d => {
-                    let displayName = d.firstName ? `${d.firstName} ${d.lastName ? d.lastName.charAt(0) + '.' : ''}` : (d.fullName || '');
-                    let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
-
-                    container.innerHTML += `
-                        <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
-                            <div class="space-y-2">
-                                <div class="w-full h-36 bg-slate-100 rounded-xl overflow-hidden border relative">
-                                    ${photoHtml}
-                                    <span class="absolute top-2 left-2 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full ${d.badgeBg} shadow">${d.typeLabel}</span>
-                                </div>
-                                <div class="flex justify-between items-center pt-1">
-                                    <span class="font-mono font-bold text-slate-700">${d.matricule}</span>
-                                    <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
-                                </div>
-                                <h4 class="font-black text-slate-900 text-sm">${displayName}</h4>
-                                <p class="text-[11px] text-slate-600">Soutien prioritaire pour la scolarité et les besoins vitaux.</p>
-                            </div>
-                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
-                        </div>
-                    `;
-                });
             } catch (err) {
-                container.innerHTML = `<p class="text-xs text-red-500 col-span-3 text-center">Erreur de chargement des profils.</p>`;
-            }
-        }
-
-        async function loadCollection(col, containerId, protectNames = false) {
-            const container = document.getElementById(containerId);
-            const snap = await db.collection(col).get();
-            container.innerHTML = '';
-            snap.forEach(doc => {
-                const d = doc.data();
-                let displayName = d.firstName || d.fullName || '';
-                if (protectNames && d.lastName) {
-                    displayName = `${d.firstName} ${d.lastName.charAt(0)}.`;
+                if (errBox) {
+                    errBox.innerText = "Erreur de connexion : " + err.message;
+                    errBox.classList.remove('hidden');
+                } else {
+                    alert("Erreur de connexion : " + err.message);
                 }
-                let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
-
-                container.innerHTML += `
-                    <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
-                        <div class="space-y-2">
-                            <div class="w-full h-32 bg-slate-100 rounded-xl overflow-hidden border">${photoHtml}</div>
-                            <div class="flex justify-between items-center">
-                                <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
-                                <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
-                            </div>
-                            <p class="font-bold text-slate-900 text-sm">${displayName}</p>
-                            <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
-                        </div>
-                        <button onclick="switchTab('sponsoring-hub')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
-                    </div>
-                `;
-            });
-        }
-
-        async function updateFinancialReports() {
-            try {
-                const snap = await db.collection("donations").get();
-                let totalPromis = 0;
-                let totalConfirmed = 0;
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    totalPromis += (d.amount || 0);
-                    if (d.status === "Confirmé") {
-                        totalConfirmed += (d.amount || 0);
-                    }
-                });
-                document.getElementById('report-promis-val').innerText = `${totalPromis} USD`;
-                document.getElementById('report-confirmed-val').innerText = `${totalConfirmed} USD`;
-            } catch (e) { console.error(e); }
-        }
-
-        async function loadAdminMasterList() {
-            const container = document.getElementById('admin-master-list');
-            container.innerHTML = 'Chargement...';
-            let html = '';
-            const labels = { children: 'ENFANT', widows: 'VEUVE', agents: 'AGENT', donations: 'DON' };
-            for (let col of ['children', 'widows', 'agents', 'donations']) {
-                const snap = await db.collection(col).get();
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    let title = d.matricule || d.refId || d.fullName || 'Élément';
-                    let detail = d.transId ? `(TransID: ${d.transId})` : '';
-                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title} ${detail}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
-                });
             }
-            container.innerHTML = html || 'Aucun enregistrement trouvé.';
         }
 
-        // MISE À JOUR COMPLÈTE DE LA PAGE PROFIL & TABLEAU DE BORD SPONSOR
+        async function handleSignOut() {
+            try {
+                await auth.signOut();
+                alert("Déconnexion réussie.");
+            } catch (err) {
+                alert("Erreur lors de la déconnexion : " + err.message);
+            }
+        }
+
+        // MODAL ET ENREGISTREMENT DE PROFIL
+        function openEditProfileModal() {
+            const user = auth.currentUser;
+            if (!user) return;
+            document.getElementById('edit-fullname').value = user.displayName || '';
+            document.getElementById('modal-edit-profile').classList.replace('hidden', 'flex');
+        }
+
+        function closeEditProfileModal() {
+            document.getElementById('modal-edit-profile').classList.replace('flex', 'hidden');
+        }
+
+        async function saveProfileChanges(e) {
+            e.preventDefault();
+            const user = auth.currentUser;
+            if (!user) return;
+
+            const fullName = document.getElementById('edit-fullname').value;
+            const phone = document.getElementById('edit-phone').value;
+            const country = document.getElementById('edit-country').value;
+            const city = document.getElementById('edit-city').value;
+
+            try {
+                await user.updateProfile({ displayName: fullName });
+                await db.collection("users").doc(user.uid).set({
+                    fullName, phone, country, city,
+                    email: user.email,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+
+                alert("Profil mis à jour avec succès !");
+                closeEditProfileModal();
+                updateProfileCard(user);
+            } catch (err) {
+                alert("Erreur lors de la mise à jour : " + err.message);
+            }
+        }
+
+        // METTRE À JOUR LA CARTE PROFIL ET TABLEAU DE BORD
         async function updateProfileCard(user) {
             const card = document.getElementById('profile-card');
             if (!card) return;
 
             if (user) {
-                // Récupération des données réelles de l'utilisateur connecté (Dons, Parrainages)
                 let userDonations = [];
                 let totalDonationsAmount = 0;
-                let activeSponsorshipsCount = 0;
+                let userPhone = '', userCountry = 'République Démocratique du Congo (RDC)', userCity = 'Bukavu';
 
                 try {
+                    const userDoc = await db.collection("users").doc(user.uid).get();
+                    if (userDoc.exists) {
+                        const uData = userDoc.data();
+                        if (uData.phone) userPhone = uData.phone;
+                        if (uData.country) userCountry = uData.country;
+                        if (uData.city) userCity = uData.city;
+                    }
+
                     const donSnap = await db.collection("donations").where("userId", "==", user.uid).get();
                     donSnap.forEach(doc => {
                         const d = doc.data();
@@ -1183,34 +705,34 @@
                         totalDonationsAmount += (d.amount || 0);
                     });
                 } catch (e) {
-                    console.error("Erreur chargement dons utilisateur:", e);
+                    console.error("Erreur chargement profil/dons:", e);
                 }
 
+                const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime).toLocaleDateString('fr-FR') : 'N/A';
+
                 card.innerHTML = `
-                    <!-- 1. EN-TÊTE PROFIL -->
                     <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
                         <div class="flex items-center gap-4">
-                            <div class="relative w-20 h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-green-500 overflow-hidden flex items-center justify-center text-white text-2xl font-black shadow-md">
-                                ${user.photoURL ? `<img src="${user.photoURL}" class="w-full h-full object-cover">` : (user.email ? user.email.charAt(0).toUpperCase() : 'U')}
+                            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-green-500 flex items-center justify-center text-white text-2xl font-black shadow-md shrink-0">
+                                ${user.email ? user.email.charAt(0).toUpperCase() : 'U'}
                             </div>
                             <div class="space-y-1">
                                 <h3 class="font-black text-slate-900 text-base md:text-lg">${user.displayName || 'Membre Panafricain'}</h3>
                                 <p class="text-xs font-mono text-blue-600 font-bold">${user.email}</p>
-                                <p class="text-[11px] text-slate-500">📍 Bukavu, République Démocratique du Congo (RDC)</p>
-                                <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Compte Vérifié</span>
+                                <p class="text-[11px] text-slate-500">📍 ${userCity}, ${userCountry} ${userPhone ? '| 📞 ' + userPhone : ''}</p>
+                                <p class="text-[10px] text-slate-400">Membre depuis le : ${creationTime}</p>
                             </div>
                         </div>
                         <div class="flex flex-col gap-2 w-full md:w-auto">
-                            <button onclick="alert('Fonction de modification du profil en cours de mise à jour.')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer shadow">
+                            <button onclick="openEditProfileModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer shadow">
                                 ✏️ Modifier mon profil
                             </button>
-                            <button onclick="auth.signOut()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer border border-red-200">
+                            <button onclick="handleSignOut()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer border border-red-200">
                                 Se Déconnecter
                             </button>
                         </div>
                     </div>
 
-                    <!-- 2. TABLEAU DE BORD DU SPONSOR (4 CARTES STATISTIQUES) -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Enfants parrainés</p>
@@ -1229,20 +751,18 @@
                         </div>
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Parrainages actifs</p>
-                            <p class="text-2xl font-black text-green-600">${activeSponsorshipsCount}</p>
+                            <p class="text-2xl font-black text-green-600">0</p>
                             <p class="text-[10px] text-slate-500">Engagements validés</p>
                         </div>
                     </div>
 
-                    <!-- 3. SECTIONS DÉTAILLÉES (ONGLETS OU CARTES REPLIABLES) -->
                     <div class="space-y-4">
-                        <!-- A. Mes dons & reçus -->
                         <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
                             <div class="flex justify-between items-center border-b pb-3">
                                 <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                    <i data-lucide="receipt" class="w-4 h-4 text-green-600"></i> Mes Dons & Reçus Téléchargeables
+                                    <i data-lucide="receipt" class="w-4 h-4 text-green-600"></i> Mes Dons & Reçus
                                 </h3>
-                                <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full font-bold">${userDonations.length} enregistrement(s)</span>
+                                <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full font-bold">${userDonations.length} don(s)</span>
                             </div>
                             <div class="space-y-2">
                                 ${userDonations.length > 0 ? userDonations.map(d => `
@@ -1254,56 +774,15 @@
                                         <div class="flex items-center gap-3">
                                             <span class="font-mono font-black text-green-700 text-sm">${d.amount}${d.currency}</span>
                                             <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">${d.status}</span>
-                                            <button onclick="alert('Reçu officiel disponible sous peu pour la référence ${d.refId}')" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl font-bold transition">📄 Reçu</button>
+                                            <button onclick="alert('Reçu disponible sous peu pour la référence ${d.refId}')" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl font-bold transition">📄 Reçu</button>
                                         </div>
                                     </div>
                                 `).join('') : `
                                     <div class="text-center py-6 text-slate-500 text-xs space-y-2">
-                                        <p>Vous n'avez pas encore effectué de don depuis ce compte.</p>
+                                        <p>Aucune contribution enregistrée pour le moment.</p>
                                         <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 text-white font-bold px-4 py-2 rounded-xl">Faire un don maintenant</button>
                                     </div>
                                 `}
-                            </div>
-                        </div>
-
-                        <!-- B. Mes Parrainages & Engagements -->
-                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
-                            <div class="flex justify-between items-center border-b pb-3">
-                                <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                    <i data-lucide="baby" class="w-4 h-4 text-blue-600"></i> Mes Parrainages & Bénéficiaires soutenus
-                                </h3>
-                            </div>
-                            <p class="text-xs text-slate-600">Aucun enfant ou veuve actuellement rattaché à votre profil personnel. Explorez le registre public pour commencer un parrainage.</p>
-                            <button onclick="switchTab('children')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">Explorer les dossiers enfants →</button>
-                        </div>
-
-                        <!-- C. Paramètres, Sécurité & Assistance -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
-                                <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                    <i data-lucide="settings" class="w-4 h-4 text-purple-600"></i> Paramètres & Sécurité
-                                </h4>
-                                <div class="space-y-2 text-xs">
-                                    <div class="flex justify-between items-center py-1 border-b">
-                                        <span>Langue de l'application</span>
-                                        <strong class="text-green-600">Français (FR)</strong>
-                                    </div>
-                                    <div class="flex justify-between items-center py-1 border-b">
-                                        <span>Notifications push</span>
-                                        <strong class="text-green-600">Activées</strong>
-                                    </div>
-                                    <button onclick="if(confirm('Voulez-vous vraiment supprimer votre compte ?')) alert('Action sécurisée nécessitant une ré-authentification.');" class="text-red-600 hover:underline font-bold text-xs pt-2 block">🗑️ Supprimer mon compte</button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
-                                <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                    <i data-lucide="help-circle" class="w-4 h-4 text-amber-600"></i> Assistance Dieudonné Care
-                                </h4>
-                                <p class="text-xs text-slate-600">Besoin d'aide avec un don, un reçu ou un dossier ? Contactez directement l'administration centrale.</p>
-                                <a href="https://wa.me/256792994716" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-center text-xs transition shadow">
-                                    💬 Contacter le Support WhatsApp
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -1312,10 +791,10 @@
                 card.innerHTML = `
                     <div class="bg-white p-8 rounded-3xl border shadow-sm text-center space-y-4 max-w-lg mx-auto">
                         <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="user-x" class="w-8 h-8"></i></div>
-                        <h3 class="font-black text-slate-900 text-lg">Espace restreint aux membres connectés</h3>
-                        <p class="text-xs text-slate-600">Veuillez vous connecter pour accéder à votre tableau de bord personnel, vos reçus de dons et vos parrainages.</p>
+                        <h3 class="font-black text-slate-900 text-lg">Espace réservé aux membres</h3>
+                        <p class="text-xs text-slate-600">Connectez-vous pour consulter vos statistiques réelles, vos dons et vos parrainages.</p>
                         <button onclick="openAuthModal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl text-xs transition shadow cursor-pointer">
-                            Se connecter maintenant
+                            Se connecter
                         </button>
                     </div>
                 `;
@@ -1323,12 +802,53 @@
             if (window.lucide) lucide.createIcons();
         }
 
+        // NAV & FONCTIONS INTERFACES
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.toggle('hidden');
+        }
+
+        function switchTab(tab) {
+            ['home', 'sponsoring-hub', 'search-id', 'notifications', 'children', 'widows', 'team', 'countries', 'reports', 'profile', 'admin'].forEach(t => document.getElementById(`sec-${t}`)?.classList.add('hidden'));
+            document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.add('hidden');
+
+            if (tab === 'home') loadHomeFeaturedProfiles();
+            if (tab === 'children') loadCollection('children', 'children-grid-container', true);
+            if (tab === 'widows') loadCollection('widows', 'widows-grid-container', false);
+            if (tab === 'team') backToBranchesGrid();
+            if (tab === 'countries') renderCountriesList();
+            if (tab === 'reports') updateFinancialReports();
+            if (tab === 'profile') updateProfileCard(auth.currentUser);
+
+            window.scrollTo(0, 0);
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function openAuthModal() {
+            const errBox = document.getElementById('auth-error-box');
+            if (errBox) errBox.classList.add('hidden');
+            document.getElementById('auth-modal').classList.replace('hidden', 'flex');
+        }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
+
+        function populateAfricanCountries() {
+            document.querySelectorAll('.african-countries-select').forEach(sel => {
+                sel.innerHTML = '';
+                africanCountries.forEach(country => {
+                    const opt = document.createElement('option');
+                    opt.value = country;
+                    opt.textContent = country;
+                    if (country.includes("RDC")) opt.selected = true;
+                    sel.appendChild(opt);
+                });
+            });
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
-            renderBranchesGrid();
             populateAfricanCountries();
             initAuthListener();
-            refreshCounters();
-            loadHomeFeaturedProfiles();
             if (window.lucide) lucide.createIcons();
         });
     </script>
