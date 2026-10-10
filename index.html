@@ -437,7 +437,7 @@
                 title: "1. 🎓 ÉDUCATION & SCOLARITÉ",
                 items: [
                     { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", procedure: "L’enfant est inscrit via un agent, les frais sont enregistrés et suivis.", activities: "Paiement, suivi des reçus, aide aux familles vulnérables." },
-                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables pour chaque élève.", procedure: "Recensement des besoins scolaires par classe et distribution contrôlée par les agents.", activities: "Achat de manuels, constitution des kits, distribution et inventaire." },
+                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables pour chaque élève.", procedure: "Recensement des besoins scolaires par classe et distribution controlled par les agents.", activities: "Achat de manuels, constitution des kits, distribution et inventaire." },
                     { name: "Fournitures scolaires", objective: "Garantir la disponibilité du matériel de papeterie (cahiers, stylos, sacs).", procedure: "Évaluation des besoins par période scolaire et dotation directe aux bénéficiaires.", activities: "Gestion des stocks de papeterie, préparation des lots, remise aux élèves." },
                     { name: "Tutorat & Accompagnement scolaire", objective: "Offrir un soutien académique pour réduire le taux d'échec scolaire.", procedure: "Identification des élèves en difficulté et mise en place de cours de soutien adaptés.", activities: "Séances de rattrapage, suivi des notes, encadrement aux devoirs." }
                 ]
@@ -458,9 +458,8 @@
             }
         ];
 
-        let selectedTargetProfile = ""; // Pour garder en mémoire le profil cliqué
+        let selectedTargetProfile = "";
 
-        // FONCTION D'INITIALISATION DU PROCESSUS DE PARRAINAGE/SOUTIEN
         function startSponsoringFlow(targetName) {
             selectedTargetProfile = targetName;
             const modal = document.getElementById('modal-sponsoring-action');
@@ -516,13 +515,12 @@
             if (window.lucide) lucide.createIcons();
         }
 
-        // ÉTAPE 2 : FORMULAIRE ET COORDONNÉES DE PAIEMENT DÉTAILLÉES
         function openFormForCause(causeName) {
             const title = document.getElementById('modal-sponsoring-title');
             const body = document.getElementById('modal-sponsoring-body');
 
             const fullCause = selectedTargetProfile ? `${selectedTargetProfile} — ${causeName}` : causeName;
-            title.innerText = `Étape 2 : Formulaire de Paiement`;
+            title.innerText = `Étape 2 : Procédure de Paiement`;
 
             body.innerHTML = `
                 <div class="space-y-4 text-slate-700">
@@ -530,28 +528,39 @@
                         <p class="font-black text-emerald-900 text-xs flex items-center gap-1.5">
                             <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${fullCause}</strong>
                         </p>
-                        <p class="text-[11px] text-emerald-800">Votre contribution est directement affectée à ce besoin sous la supervision du Centre Dieudonné à Bukavu.</p>
+                        <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision du Centre Dieudonné.</p>
                     </div>
 
-                    <!-- BLOC PAIEMENT OFFICIEL (AFFICHE MTN DISPONIBLE ET AUTRES COMPTES) -->
+                    <!-- GUIDE INSTRUCTIONS CLAIRES -->
+                    <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
+                        <p class="font-extrabold text-amber-950 flex items-center gap-1">📌 Instructions pour effectuer le transfert :</p>
+                        <ol class="list-decimal pl-4 space-y-1 text-[11px]">
+                            <li>Effectuez votre transfert vers le numéro MTN ci-dessous (soit en cliquant sur le bouton d'appel, soit depuis votre téléphone).</li>
+                            <li>Copiez ou notez l'<strong>ID de transaction (Référence)</strong> reçu par SMS de MTN.</li>
+                            <li>Remplissez le formulaire ci-dessous et cliquez sur <strong>« Confirmer mon transfert »</strong>.</li>
+                        </ol>
+                    </div>
+
+                    <!-- BLOC NUMÉRO OFFICIEL + BOUTON USSD DIRECT -->
                     <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3">
                         <div class="border-b border-slate-800 pb-2 flex justify-between items-center">
-                            <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉROS DE TRANSFERT OFFICIELS</span>
+                            <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉRO DE TRANSFERT OFFICIEL</span>
                             <span class="text-[9px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded font-mono font-bold">Actif</span>
                         </div>
                         
                         <div class="space-y-2 text-xs">
-                            <!-- MTN VALIDE -->
-                            <div class="bg-amber-500/10 border border-amber-500/40 p-3 rounded-xl space-y-1">
+                            <div class="bg-amber-500/10 border border-amber-500/40 p-3.5 rounded-xl space-y-2">
                                 <div class="flex justify-between items-center">
                                     <span class="font-black text-amber-400">💛 MTN Mobile Money (DISPONIBLE)</span>
-                                    <span class="text-[9px] bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded font-black">Recommandé</span>
                                 </div>
-                                <p class="text-sm font-mono font-bold text-white tracking-wider">+256 792994716</p>
+                                <p class="text-base font-mono font-black text-white tracking-wider">+256 792994716</p>
                                 <p class="text-[10px] text-amber-200">Nom du compte : <strong>GABRIEL MUSHAGALUSA</strong></p>
+                                
+                                <a href="tel:*165#" class="block w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-center text-xs transition shadow mt-2">
+                                    📲 Lancer le menu MTN (*165#) / composer
+                                </a>
                             </div>
 
-                            <!-- AUTRES OPTIONS NON DISPONIBLES ENCORE -->
                             <div class="grid grid-cols-2 gap-2 text-[10px] text-slate-400 pt-1">
                                 <div class="p-2 bg-slate-800/80 rounded-lg border border-slate-700/50">
                                     <span class="block font-bold text-slate-300">🟠 ORANGE MONEY :</span>
@@ -566,16 +575,16 @@
                                     <span class="italic text-slate-500">Bientôt disponible</span>
                                 </div>
                                 <div class="p-2 bg-slate-800/80 rounded-lg border border-slate-700/50">
-                                    <span class="block font-bold text-slate-300">🏦 EQUITY / RAW / ECOBANK :</span>
+                                    <span class="block font-bold text-slate-300">🏦 BANQUES (EQUITY/RAW) :</span>
                                     <span class="italic text-slate-500">Bientôt disponible</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- FORMULAIRE DE CONFIRMATION DU DONATEUR -->
+                    <!-- FORMULAIRE DE SAISIE DE LA PREUVE -->
                     <div class="space-y-3 text-xs bg-slate-50 p-4 rounded-2xl border">
-                        <h4 class="font-black text-slate-900 text-xs">Informations du donateur</h4>
+                        <h4 class="font-black text-slate-900 text-xs">Saisir les détails de votre transfert effectué</h4>
                         <div>
                             <label class="font-bold block mb-1">Nom complet / Donateur :</label>
                             <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
@@ -603,8 +612,8 @@
 
                         <div>
                             <label class="font-bold block mb-1 text-green-700">Référence / ID de transaction Mobile Money * :</label>
-                            <input type="text" id="don-transid" placeholder="Ex: 254896321 (Reçu par SMS)" class="w-full p-2.5 border border-green-400 rounded-xl bg-white font-mono font-bold text-slate-900">
-                            <p class="text-[9px] text-slate-500 mt-0.5">Entrez le code de confirmation reçu par SMS après votre transfert MTN.</p>
+                            <input type="text" id="don-transid" placeholder="Ex: 254896321 (ID reçu par SMS)" class="w-full p-2.5 border border-green-500 rounded-xl bg-white font-mono font-bold text-slate-900">
+                            <p class="text-[9px] text-slate-500 mt-0.5">Entrez le code de confirmation reçu par SMS après votre transfert.</p>
                         </div>
                     </div>
 
