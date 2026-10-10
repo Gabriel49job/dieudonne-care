@@ -908,7 +908,7 @@
                         <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
                         <div><span class="font-mono bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
                     </div>
-                    <button onclick="openFormForCause('Profil ${found.matricule} - ${name}')" class="w-full bg-green-600 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer">Soutenir ce profil</button>
+                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil (Choisir un motif)</button>
                 `;
             } else {
                 card.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier correspondant à ce matricule.</p>`;
@@ -963,7 +963,7 @@
                                 <h4 class="font-black text-slate-900 text-sm">${displayName}</h4>
                                 <p class="text-[11px] text-slate-600">Soutien prioritaire pour la scolarité et les besoins vitaux.</p>
                             </div>
-                            <button onclick="openFormForCause('Profil ${d.matricule} - ${displayName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
+                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
                         </div>
                     `;
                 });
@@ -995,7 +995,7 @@
                             <p class="font-bold text-slate-900 text-sm">${displayName}</p>
                             <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
                         </div>
-                        <button onclick="openFormForCause('Profil ${d.matricule} - ${displayName}')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
+                        <button onclick="switchTab('sponsoring-hub')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
                     </div>
                 `;
             });
