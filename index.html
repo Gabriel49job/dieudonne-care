@@ -71,7 +71,7 @@
         </div>
     </aside>
 
-    <!-- BARRE DE NAVIGATION INFÉRIEURE : EXACTEMENT 5 BOUTONS -->
+    <!-- BARRE DE NAVIGATION INFÉRIEURE -->
     <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-3 px-2 shadow-2xl">
         <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition cursor-pointer">
             <i data-lucide="home" class="w-5 h-5 text-green-400"></i> Accueil
@@ -93,7 +93,7 @@
     <!-- CONTENU PRINCIPAL -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
 
-        <!-- BOUTON 1 : ACCUEIL -->
+        <!-- SECT 1 : ACCUEIL -->
         <section id="sec-home" class="space-y-6">
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-12 shadow-2xl space-y-6 border border-slate-800 relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -112,7 +112,7 @@
                     <button onclick="switchTab('sponsoring-hub')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="users" class="w-5 h-5"></i> <span>Soutenir une veuve</span>
                     </button>
-                    <button onclick="openDonationModalFor('Don Direct & Libre')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                    <button onclick="startSponsoringFlow('Don Direct & Libre - Centre Dieudonné')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="heart" class="w-5 h-5"></i> <span>Faire un don direct</span>
                     </button>
                 </div>
@@ -137,22 +137,20 @@
                 </div>
             </div>
 
-            <!-- SECTION VISUELLE : ENFANTS & VEUVES EN VEDETTE SUR LA PAGE D'ACCUEIL -->
+            <!-- ENFANTS & VEUVES EN VEDETTE -->
             <div class="space-y-4 pt-4">
                 <div class="flex justify-between items-center">
                     <div>
                         <h3 class="text-lg font-black text-slate-900">Enfants et Veuves en attente de parrainage</h3>
-                        <p class="text-xs text-slate-500">Choisissez un profil ci-dessous et participez directement à sa prise en charge.</p>
+                        <p class="text-xs text-slate-500">Choisissez un profil ci-dessous et parrainez directement sa prise en charge.</p>
                     </div>
                     <button onclick="switchTab('sponsoring-hub')" class="text-xs font-bold text-green-600 hover:underline">Voir tout le catalogue →</button>
                 </div>
-                <div id="home-featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- Les profils récents s'afficheront dynamiquement ici -->
-                </div>
+                <div id="home-featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
             </div>
         </section>
 
-        <!-- BOUTON 2 : SOUTENIR AVEC SOUS-BESOINS DÉTAILLÉS -->
+        <!-- SECT 2 : SOUTENIR AVEC CHOIX DU MOTIF -->
         <section id="sec-sponsoring-hub" class="hidden space-y-6 max-w-6xl mx-auto">
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-800 shadow-xl space-y-4 text-center">
                 <div class="w-14 h-14 mx-auto rounded-2xl bg-green-600/20 border border-green-500/30 flex items-center justify-center text-green-400"><i data-lucide="heart-handshake" class="w-7 h-7"></i></div>
@@ -162,6 +160,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- PARRAINER ENFANT -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3 border-b pb-3">
@@ -172,22 +171,23 @@
                             </div>
                         </div>
                         <div class="space-y-2 pt-1">
-                            <button onclick="openDonationModalFor('Frais scolaires & Inscriptions')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('Frais scolaires & Inscriptions')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🎓 Frais scolaires & Inscriptions</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openDonationModalFor('Manuels & Kits scolaires')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('Manuels & Kits scolaires')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>📚 Manuels & Kits scolaires</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openDonationModalFor('Fournitures scolaires')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('Fournitures scolaires')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>✏️ Fournitures scolaires</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openDonationModalFor('Nutrition & Repas équilibrés')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('Nutrition & Repas équilibrés')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🍲 Nutrition & Repas</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
+                <!-- SOUTENIR VEUVE -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3 border-b pb-3">
@@ -198,19 +198,20 @@
                             </div>
                         </div>
                         <div class="space-y-2 pt-1">
-                            <button onclick="openDonationModalFor('Formation professionnelle des veuves')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('Formation professionnelle des veuves')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🧵 Formation professionnelle</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openDonationModalFor('Petits commerces & AGR')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('Petits commerces & AGR')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🛒 Petits commerces & AGR</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openDonationModalFor('Approvisionnement alimentaire')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('Approvisionnement alimentaire')" class="w-full text-left bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🌾 Vivres & Approvisionnement</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
+                <!-- DON LIBRE -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3 border-b pb-3">
@@ -223,7 +224,7 @@
                         <p class="text-xs text-slate-600">Participez au budget général pour couvrir les urgences et la gestion panafricaine.</p>
                         
                         <div class="space-y-2 pt-1">
-                            <button onclick="openDonationModalFor('Don Direct & Libre')" class="w-full text-left bg-amber-50 hover:bg-amber-100 p-4 rounded-xl border border-amber-200 text-xs font-bold text-amber-900 flex justify-between items-center transition cursor-pointer mt-6">
+                            <button onclick="openFormForCause('Don Direct & Libre')" class="w-full text-left bg-amber-50 hover:bg-amber-100 p-4 rounded-xl border border-amber-200 text-xs font-bold text-amber-900 flex justify-between items-center transition cursor-pointer mt-6">
                                 <span>💛 Faire un don libre</span> <span class="text-amber-700 text-xs">Donner →</span>
                             </button>
                         </div>
@@ -232,11 +233,11 @@
             </div>
         </section>
 
-        <!-- MODAL DE SOUTIEN AVEC LE MOTIF PRÉCIS CHOISI -->
+        <!-- MODAL DE SÉLECTION DU BESOIN / PROFIL (ÉTAPES 1 & 2) -->
         <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
-            <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
+            <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[90vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-green-700">Soutenir le programme</h3>
+                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-green-700">Sélectionnez le motif de soutien</h3>
                     <button onclick="closeSponsoringModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
                 </div>
                 <div id="modal-sponsoring-body" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
@@ -254,7 +255,7 @@
             </div>
         </div>
 
-        <!-- BOUTON 3 : RECHERCHE -->
+        <!-- RECHERCHE PAR ID -->
         <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
                 <h2 class="text-xl font-bold">Recherche par Matricule Unique</h2>
@@ -266,7 +267,7 @@
             <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
         </section>
 
-        <!-- BOUTON 4 : AGENTS -->
+        <!-- AGENTS & BRANCHES -->
         <section id="sec-team" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
                 <span class="text-[10px] font-extrabold bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 uppercase tracking-widest">ESPACE OPÉRATIONNEL</span>
@@ -276,7 +277,7 @@
             <div id="branches-accordion-container" class="space-y-4 text-xs"></div>
         </section>
 
-        <!-- BOUTON 5 : MON PROFIL -->
+        <!-- MON PROFIL -->
         <section id="sec-profile" class="hidden space-y-6 max-w-3xl mx-auto">
             <h2 class="text-2xl font-black">Mon Profil & Espace Sponsor</h2>
             <div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm space-y-4"></div>
@@ -336,7 +337,7 @@
 
     </main>
 
-    <!-- FORMULAIRES -->
+    <!-- FORMULAIRES DE SAISIE -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant</h3><button onclick="closeForm('child')" class="p-2 font-bold cursor-pointer">✕</button></div>
@@ -431,228 +432,183 @@
             "Tunisie", "Zambie", "Zimbabwe"
         ];
 
-        // STRUCTURE DÉTAILLÉE COMPLÈTE DES 8 BRANCHES ET 76 SOUS-PROGRAMMES
         const structureData = [
             {
                 title: "1. 🎓 ÉDUCATION & SCOLARITÉ",
                 items: [
-                    { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école[span_0](start_span)[span_0](end_span).", procedure: "L’enfant est inscrit via un agent, les frais sont enregistrés et suivis[span_1](start_span)[span_1](end_span).", activities: "Paiement, suivi des reçus, aide aux familles vulnérables[span_2](start_span)[span_2](end_span)." },
+                    { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", procedure: "L’enfant est inscrit via un agent, les frais sont enregistrés et suivis.", activities: "Paiement, suivi des reçus, aide aux familles vulnérables." },
                     { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables pour chaque élève.", procedure: "Recensement des besoins scolaires par classe et distribution contrôlée par les agents.", activities: "Achat de manuels, constitution des kits, distribution et inventaire." },
                     { name: "Fournitures scolaires", objective: "Garantir la disponibilité du matériel de papeterie (cahiers, stylos, sacs).", procedure: "Évaluation des besoins par période scolaire et dotation directe aux bénéficiaires.", activities: "Gestion des stocks de papeterie, préparation des lots, remise aux élèves." },
-                    { name: "Tutorat & Accompagnement scolaire", objective: "Offrir un soutien académique pour réduire le taux d'échec scolaire.", procedure: "Identification des élèves en difficulté et mise en place de cours de soutien adaptés.", activities: "Séances de rattrapage, suivi des notes, encadrement aux devoirs." },
-                    { name: "Informatique & Bibliothèque numérique", objective: "Initier les jeunes aux outils numériques et leur offrir des ressources documentaires.", procedure: "Planification des sessions informatiques et gestion des accès aux ouvrages.", activities: "Ateliers d'initiation, gestion des prêts de livres, maintenance des postes." },
-                    { name: "Équipement des écoles", objective: "Assurer des conditions d'accueil optimales (mobilier, matériel de classe).", procedure: "Remontée des besoins d'équipements par les établissements partenaires et dotation.", activities: "Achat ou réparation de tables, chaises et tableaux pédagogiques." },
-                    { name: "Alphabétisation & Éducation de base", objective: "Permettre aux adultes et jeunes non scolarisés d'acquérir les compétences fondamentales.", procedure: "Inscription, sessions d'apprentissage adaptées et évaluation des acquis.", activities: "Cours d'alphabétisation, conception de supports, délivrance d'attestations." },
-                    { name: "Orientation scolaire & Formation professionnelle", objective: "Orienter les jeunes vers des filières d'avenir en lien avec leurs aptitudes.", procedure: "Entretiens individuels, bilans de compétences et passerelles vers l'autonomisation.", activities: "Séances de coaching, séminaires d'orientation, partenariats professionnels." }
+                    { name: "Tutorat & Accompagnement scolaire", objective: "Offrir un soutien académique pour réduire le taux d'échec scolaire.", procedure: "Identification des élèves en difficulté et mise en place de cours de soutien adaptés.", activities: "Séances de rattrapage, suivi des notes, encadrement aux devoirs." }
                 ]
             },
             {
                 title: "2. 🏥 SOINS, SANTÉ & NUTRITION",
                 items: [
                     { name: "Suivi médical & Infirmerie", objective: "Assurer un suivi sanitaire régulier et des premiers soins de qualité.", procedure: "Consultations de routine, tenue des carnets de santé et soins d'urgence.", activities: "Visites médicales, pansements, surveillance des constantes." },
-                    { name: "Pharmacie & Médicaments", objective: "Garantir l’approvisionnement et la distribution des traitements essentiels.", procedure: "Gestion des stocks pharmaceutiques et délivrance sur prescription médicale.", activities: "Inventaire, contrôle des péremptions, distribution des médicaments." },
-                    { name: "Urgences médicales", objective: "Réagir rapidement face aux situations de détresse sanitaire critique.", procedure: "Alerte, prise en charge immédiate et évacuation vers les structures partenaires si besoin.", activities: "Premiers secours, coordination des transferts d'urgence." },
-                    { name: "Nutrition & Repas équilibrés", objective: "Lutter contre la malnutrition et garantir des apports nutritionnels adéquats.", procedure: "Élaboration des menus, préparation et distribution des repas collectifs.", activities: "Planification alimentaire, contrôle de la qualité des repas." },
-                    { name: "Nutrition des enfants", objective: "Surveiller la croissance des jeunes enfants et prévenir la malnutrition infantile.", procedure: "Dépistage de la malnutrition, pesées régulières et distribution de compléments.", activities: "Suivi pondéral, distribution de bouillies fortifiées, sensibilisation des mères." },
-                    { name: "Habits & Vêtements", objective: "Fournir des tenues vestimentaires décentes et adaptées aux saisons.", procedure: "Collecte, tri et distribution de vêtements aux bénéficiaires.", activities: "Gestion du vestiaire, distribution ciblée, inventaire." },
-                    { name: "Hygiène & Soins corporels", objective: "Promouvoir les bonnes pratiques d'hygiène et distribuer les produits nécessaires.", procedure: "Sensibilisation communautaire et distribution de kits d'hygiène.", activities: "Ateliers de lavage des mains, distribution de savon et produits d'entretien corporel." },
-                    { name: "Santé dentaire", objective: "Assurer la prévention et le traitement de base des affections bucco-dentaires.", procedure: "Campagnes de sensibilisation, brossage supervisé et soins de première ligne.", activities: "Distribution de kits dentaires, examens de contrôle." },
-                    { name: "Santé visuelle", objective: "Dépister les troubles de la vue et fournir des équipements correcteurs.", procedure: "Examens ophtalmologiques de dépistage et attribution de lunettes.", activities: "Campagnes de dépistage visuel, commande de verres correcteurs." },
-                    { name: "Matériel médical & Lits d’observation", objective: "Disposer du matériel technique nécessaire pour les soins de premier recours.", procedure: "Maintenance du matériel, renouvellement des lits et équipements biomédicaux.", activities: "Inventaire technique, entretien du matériel d'observation." }
+                    { name: "Nutrition & Repas équilibrés", objective: "Lutter contre la malnutrition et garantir des apports nutritionnels adéquats.", procedure: "Élaboration des menus, préparation et distribution des repas collectifs.", activities: "Planification alimentaire, contrôle de la qualité des repas." }
                 ]
             },
             {
                 title: "3. 👩‍🏭 AUTONOMISATION & AGR",
                 items: [
                     { name: "Coupe-Couture & Machines", objective: "Former aux métiers de la couture pour favoriser l'autonomie financière.", procedure: "Inscription aux ateliers, apprentissage pratique et dotation en machines à coudre.", activities: "Cours de coupe-couture, confection de vêtements, maintenance des machines." },
-                    { name: "Cuisine & Boulangerie", objective: "Transmettre des compétences professionnelles en art culinaire et pâtisserie.", procedure: "Formation technique aux métiers de la bouche et de la transformation alimentaire.", activities: "Ateliers de panification, cuisine, gestion de la production." },
-                    { name: "Artisanat & Métiers manuels", objective: "Valoriser le savoir-faire artisanal local pour générer des revenus.", procedure: "Apprentissage de techniques artisanales et encadrement.", activities: "Production artisanale, exposition-vente des produits finis." },
-                    { name: "Petits commerces & AGR", objective: "Soutenir le lancement d'Activités Génératrices de Revenus individuelles.", procedure: "Validation de projets de micro-commerce, appui au démarrage et suivi.", activities: "Conseil en gestion commerciale, constitution du fonds de roulement." },
-                    { name: "Agriculture & Jardinage", objective: "Développer des compétences en production maraîchère et agricole vivrière.", procedure: "Allocation de parcelles, formation aux techniques culturales et fourniture d'intrants.", activities: "Travaux de jardinage, semis, récoltes partagées." },
-                    { name: "Élevage & Aviculture", objective: "Initier aux petites activités d'élevage pour l'autonomie.", procedure: "Formation de base en zootechnie, attribution de têtes et suivi vétérinaire.", activities: "Alimentation des animaux, suivi sanitaire, gestion des couvoirs." },
-                    { name: "Microcrédits & Épargne", objective: "Faciliter l'accès au financement de micro-projets via des tontines ou crédits solidaires.", procedure: "Constitution de groupes d'épargne, octroi de micro-crédits et suivi des remboursements.", activities: "Réunions d'épargne, décaissement des prêts, éducation financière." },
-                    { name: "Gestion de petites entreprises", objective: "Renforcer les capacités entrepreneuriales des bénéficiaires.", procedure: "Formations ciblées sur la comptabilité simplifiée et le marketing.", activities: "Séminaires de formation, coaching individualisé." },
-                    { name: "Formation professionnelle des veuves", objective: "Offrir un parcours d'insertion socio-économique spécifique aux veuves.", procedure: "Accueil, orientation vers une filière porteuse et encadrement vers l'emploi/AGR.", activities: "Formations qualifiantes, groupes de soutien économique." },
-                    { name: "Accompagnement & Suivi économique", objective: "Mesurer l'impact des AGR et pérenniser les activités lancées.", procedure: "Visites régulières de terrain, audits de performance des micro-projets.", activities: "Évaluation des revenus générés, conseils stratégiques correctifs." }
-                ]
-            },
-            {
-                title: "4. 🛡️ ADMINISTRATION, SOCIAL & PROTECTION",
-                items: [
-                    { name: "Enregistrement & Badges", objective: "Immatriculer formellement chaque bénéficiaire et personnel de la structure.", procedure: "Collecte des données d'état civil, prise de photo et édition d'un badge officiel.", activities: "Enregistrement numérique, impression des badges d'identification." },
-                    { name: "Identification & Dossiers des bénéficiaires", objective: "Centraliser et sécuriser les profils individuels de chaque personne prise en charge.", procedure: "Création du dossier physique et numérique centralisé.", activities: "Saisie des données, mise à jour des dossiers familiaux." },
-                    { name: "Sécurité & Talkies-Walkies", objective: "Assurer la sécurité des sites et la coordination instantanée des équipes.", procedure: "Gestion des rondes de sécurité et attribution des équipements de communication radio.", activities: "Surveillance des périmètres, gestion du réseau radio (talkies)." },
-                    { name: "Suivi des familles", objective: "Maintenir un contact permanent et évaluer les conditions de vie au sein des foyers.", procedure: "Visites domiciliaires périodiques et rapports de situation sociale.", activities: "Enquêtes sociales, entretiens de suivi familial." },
-                    { name: "Assistance juridique", objective: "Protéger les droits des bénéficiaires et offrir un conseil légal de base.", procedure: "Écoute des litiges, orientation juridique et accompagnement administratif.", activities: "Consultations juridiques, médiation, rédaction de requêtes." },
-                    { name: "Écoute & Accompagnement social", objective: "Offrir un espace de parole, de soutien psychologique et d'orientation.", procedure: "Entretiens confidentiels d'écoute active et suivi psychosocial.", activities: "Séances de soutien psychologique, cercles de parole." },
-                    { name: "Protection des enfants", objective: "Veiller au respect des droits de l'enfant et prévenir toute forme de maltraitance.", procedure: "Signalement des cas de vulnérabilité extrême, mise en sécurité et prise en charge.", activities: "Veille protectrice, enquêtes de protection de l'enfance." },
-                    { name: "Gestion des dossiers sociaux", objective: "Traiter les requêtes spécifiques d'aide d'urgence et de soutien social.", procedure: "Analyse des demandes d'aide formulées par les familles et instruction des dossiers.", activities: "Instruction des cas, comités d'attribution des aides." },
-                    { name: "Confidentialité & Protection des données", objective: "Garantir la sécurité et la stricte confidentialité des informations des bénéficiaires.", procedure: "Application des protocoles de sécurisation des données numériques et physiques.", activities: "Chiffrement, contrôle des accès aux dossiers nominatifs." },
-                    { name: "Communication & Coordination sociale", objective: "Assurer la fluidité des informations entre les différents services d'assistance.", procedure: "Réunions de coordination inter-services et diffusion des notes de service.", activities: "Rédaction de comptes-rendus, notes d'information interne." }
-                ]
-            },
-            {
-                title: "5. 🏗️ LOGISTIQUE, INFRASTRUCTURE & ENVIRONNEMENT",
-                items: [
-                    { name: "Logement & Dortoirs", objective: "Offrir des espaces d'hébergement sûrs, propres et adaptés.", procedure: "Attribution des lits, gestion des entrées/sorties et respect du règlement intérieur.", activities: "Nettoyage des dortoirs, attribution des chambres, inspection de l'habitat." },
-                    { name: "Lits & Mobilier", objective: "Maintenir en bon état le mobilier de repos et de vie quotidienne.", procedure: "Recensement des lits, matelas et tables en service, et renouvellement en cas d'usure.", activities: "Réparation de mobilier, achat de literie." },
-                    { name: "Eau & Installations sanitaires", objective: "Garantir l'accès à l'eau potable et à des sanitaires fonctionnels et hygiéniques.", procedure: "Contrôle de la potabilité, maintenance des forages/points d'eau et des latrines.", activities: "Traitement de l'eau, curage des installations, réparations de plomberie." },
-                    { name: "Électricité & Énergie", objective: "Assurer l'alimentation électrique continue des infrastructures (solaire/réseau).", procedure: "Maintenance des générateurs, panneaux solaires et réseaux de câblage.", activities: "Vérification des installations électriques, entretien des batteries." },
-                    { name: "Maintenance & Réparations", objective: "Préserver le patrimoine immobilier et technique de la structure.", procedure: "Planification des interventions de maintenance préventive et curative.", activities: "Petits travaux de maçonnerie, peinture, réparations diverses." },
-                    { name: "Transport & Véhicules", objective: "Assurer la mobilité des équipes et l'acheminement du matériel et des vivres.", procedure: "Gestion du parc automobile, planification des missions et entretien des véhicules.", activities: "Réparations mécaniques, gestion des carburants." },
-                    { name: "Environnement & Propreté", objective: "Maintenir la salubrité des espaces communs et sensibiliser à l'écologie.", procedure: "Gestion des déchets, organisation de corvées de nettoyage et recyclage.", activities: "Ramassage des ordures, désinfection, entretien des espaces verts." },
-                    { name: "Construction & Agrandissement", objective: "Développer les infrastructures physiques face à l'accroissement des besoins.", procedure: "Étude de faisabilité, élaboration des plans architecturaux et suivi de chantier.", activities: "Travaux de construction de nouveaux bâtiments, supervision des ouvriers." }
-                ]
-            },
-            {
-                title: "6. 🌾 ALIMENTATION & AGRICULTURE",
-                items: [
-                    { name: "Production agricole", objective: "Produire des denrées alimentaires à grande échelle pour l'autoconsommation.", procedure: "Labour, préparation des sols, semis et suivi de la croissance des cultures.", activities: "Utilisation des tracteurs, désherbage, récoltes saisonnières." },
-                    { name: "Jardin potager", objective: "Cultiver des légumes frais pour diversifier l'alimentation quotidienne.", procedure: "Aménagement de parcelles maraîchères de proximité et arrosage régulier.", activities: "Semis de légumes, binage, récolte potagère." },
-                    { name: "Élevage de poulets", objective: "Assurer une production locale d'œufs et de chair de volaille.", procedure: "Gestion du poulailler, alimentation et suivi sanitaire des gallinacés.", activities: "Ramassage des œufs, vaccination des volailles, nettoyage des enclos." },
-                    { name: "Élevage de chèvres", objective: "Produire du lait et valoriser l'élevage caprin au sein des fermes.", procedure: "Pâturage encadré, abri et soins vétérinaires de base pour le troupeau caprin.", activities: "Traite, alimentation, surveillance sanitaire." },
-                    { name: "Élevage de bétail", objective: "Gérer un cheptel de gros bétail (bovins) pour les ressources globales.", procedure: "Gestion des pâturages, surveillance des naissances et suivi vétérinaire renforcé.", activities: "Gardiennage, alimentation, soins de santé animale." },
-                    { name: "Pisciculture", objective: "Produire du poisson en étangs pour l'apport en protéines.", procedure: "Aménagement des étangs, empoissonnement, nourrissage et pêche de régulation.", activities: "Contrôle de la qualité de l'eau, alimentation des poissons, pêche." },
-                    { name: "Stockage & Conservation des aliments", objective: "Éviter les pertes post-récolte et stocker les denrées dans de bonnes conditions.", procedure: "Utilisation de greniers sécurisés, chambres froides ou techniques de séchage.", activities: "Contrôle hygrométrique, fumage, emballage hermétique." },
-                    { name: "Cuisine & Préparation des repas", objective: "Transformer les produits bruts en repas chauds et nutritifs.", procedure: "Respect des normes d'hygiène en cuisine et préparation collective des plats.", activities: "Cuisson, découpe, dressage et service des repas." },
-                    { name: "Approvisionnement alimentaire", objective: "Centraliser les achats de denrées non produites en interne sur les marchés locaux.", procedure: "Établissement des listes de besoins, négociation des prix et transport des vivres.", activities: "Achat en gros, contrôle de la qualité des denrées à l'entrée." },
-                    { name: "Transformation & Valorisation des produits agricoles", objective: "Transformer les récoltes brutes en produits finis à plus forte valeur ajoutée.", procedure: "Techniques de mouture, séchage, mise en conserve ou fabrication de jus/huiles.", activities: "Transformation agroalimentaire, conditionnement, étiquetage." }
-                ]
-            },
-            {
-                title: "7. 💰 FINANCES, DONS & PARTENARIATS",
-                items: [
-                    { name: "Gestion du budget", objective: "Planifier, répartir et suivre rigoureusement l'utilisation des ressources financières.", procedure: "Élaboration des prévisions budgétaires annuelles et validation des dépenses.", activities: "Saisie comptable, contrôle des imputations budgétaires." },
-                    { name: "Dons financiers", objective: "Collecter et centraliser les contributions monétaires des donateurs.", procedure: "Réception des fonds et émission de reçus officiels.", activities: "Enregistrement des libéralités, rapprochements bancaires." },
-                    { name: "Dons matériels", objective: "Réceptionner et inventorier les apports en nature.", procedure: "Inspection à la réception, enregistrement dans le registre des immobilisations.", activities: "Réception physique, étiquetage, affectation aux départements." },
-                    { name: "Partenariats & Sponsors", objective: "Nouer et entretenir des relations stratégiques avec des partenaires.", procedure: "Prospection, signature de conventions de partenariat et suivi des engagements.", activities: "Réunions de cadrage, rédaction de conventions." },
-                    { name: "Relations avec les entreprises", objective: "Développer le mécénat d'entreprise et les synergies professionnelles.", procedure: "Campagnes de communication ciblée auprès du secteur privé.", activities: "Prospection B2B, pitchs de projets, conventions RSE." },
-                    { name: "Relations avec les ONG", objective: "Coordonner les actions humanitaires conjointes avec d'autres organisations.", procedure: "Partage d'expériences, mise en commun de réseaux et interventions coordonnées.", activities: "Réunions inter-ONG, projets humanitaires conjoints." },
-                    { name: "Partenariats avec les églises", objective: "Collaborer avec les réseaux confessionnels pour l'aide sociale.", procedure: "Conventions de collaboration pastorale et sociale pour le soutien aux démunis.", activities: "Campagnes de sensibilisation dans les lieux de culte, quêtes partagées." },
-                    { name: "Donateurs internationaux", objective: "Mobiliser des fonds auprès de fondations ou de donateurs basés à l'étranger.", procedure: "Rédaction de propositions de subvention (grants) et reporting international.", activities: "Soumission de projets, rapports d'impact financiers et qualitatifs." },
-                    { name: "Comptabilité & Rapports financiers", objective: "Tenir les livres comptables conformément aux normes en vigueur.", procedure: "Enregistrement chronologique de toutes les pièces justificatives et états périodiques.", activities: "Rapprochements, édition de la balance et du compte de résultat." },
-                    { name: "Audit & Transparence", objective: "Garantir l'intégrité de la gestion financière vis-à-vis des parties prenantes.", procedure: "Audits internes réguliers et audits externes indépendants de certification.", activities: "Contrôle des pièces justificatives, élaboration des rapports d'audit." }
-                ]
-            },
-            {
-                title: "8. 📊 ADMINISTRATION GÉNÉRALE & SUIVI",
-                items: [
-                    { name: "Gestion des enfants", objective: "Superviser le parcours global et le bien-être des enfants pris en charge.", procedure: "Enregistrement initial, suivi holistique (santé, éducation, social) et clôture.", activities: "Centralisation des profils, comités de suivi des mineurs." },
-                    { name: "Gestion des veuves", objective: "Coordonner les programmes d'accompagnement spécifiques dédiés aux veuves.", procedure: "Identification, inscription aux programmes d'autonomisation et suivi.", activities: "Évaluation des besoins spécifiques, réunions d'appui communautaire." },
-                    { name: "Système d’identification BKDD", objective: "Assurer la fiabilité du système d'identification unique de la structure.", procedure: "Génération des codes d'identification uniques pour chaque bénéficiaire.", activities: "Maintenance de l'algorithme d'identification, résolution des doublons." },
-                    { name: "Dossiers & Archives", objective: "Conserver et classer l'ensemble de la mémoire institutionnelle et administrative.", procedure: "Numérisation des documents physiques et classement rigoureux.", activities: "Archivage, indexation, sécurisation des documents sensibles." },
-                    { name: "Suivi des programmes", objective: "Mesurer l'avancement des activités par rapport aux objectifs fixés.", procedure: "Collecte d'indicateurs de performance sur le terrain et analyse des écarts.", activities: "Visites de terrain, élaboration de tableaux de bord de suivi." },
-                    { name: "Gestion des agents", objective: "Administrer les ressources humaines, le personnel salarié et les bénévoles.", procedure: "Contrats de travail, pointage des présences, évaluation et paie.", activities: "Gestion administrative du personnel, plannings de service." },
-                    { name: "Planning & Calendrier", objective: "Coordonner l'agenda global des événements, des formations et des interventions.", procedure: "Centralisation des plannings de chaque branche et publication du calendrier.", activities: "Planification des réunions, des missions et des activités majeures." },
-                    { name: "Statistiques & Rapports", objective: "Produire des analyses chiffrées et des rapports d'activités périodiques.", procedure: "Compilation des données de l'ensemble des 8 branches et mise en forme.", activities: "Rédaction de rapports de synthèse, création de graphiques statistiques." },
-                    { name: "Notifications & Alertes", objective: "Diffuser les messages d'urgence, les rappels et les alertes.", procedure: "Configuration des canaux de diffusion automatisés (SMS, applications).", activities: "Envoi de rappels de planning, diffusion d'alertes sécuritaires ou sanitaires." },
-                    { name: "Évaluation & Contrôle des activités", objective: "Conduire des audits internes de performance et s'assurer de la conformité.", procedure: "Inspections inopinées, évaluations d'impact et recommandations correctives.", activities: "Visites d'évaluation qualitative, rédaction de bilans critiques." }
+                    { name: "Petits commerces & AGR", objective: "Soutenir le lancement d'Activités Génératrices de Revenus individuelles.", procedure: "Validation de projets de micro-commerce, appui au démarrage et suivi.", activities: "Conseil en gestion commerciale, constitution du fonds de roulement." }
                 ]
             }
         ];
 
-        function renderStructureAccordion() {
-            const container = document.getElementById('branches-accordion-container');
-            const agentBranchSelect = document.getElementById('a-branch');
-            if (!container || !agentBranchSelect) return;
+        let selectedTargetProfile = ""; // Pour garder en mémoire le profil cliqué
 
-            container.innerHTML = '';
-            agentBranchSelect.innerHTML = '';
-
-            structureData.forEach((branch) => {
-                const opt = document.createElement('option');
-                opt.value = branch.title;
-                opt.textContent = branch.title;
-                agentBranchSelect.appendChild(opt);
-
-                let subHtml = '';
-                branch.items.forEach(sub => {
-                    subHtml += `
-                        <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex flex-col justify-between space-y-2 shadow-xs">
-                            <span class="font-bold text-slate-800 text-xs">${sub.name}</span>
-                            <div class="flex gap-2 pt-1">
-                                <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.name.replace(/'/g, "\\'")}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">Détails</button>
-                                <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.name.replace(/'/g, "\\'")}')" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">📞 Contacts</button>
-                            </div>
-                        </div>
-                    `;
-                });
-
-                container.innerHTML += `
-                    <div class="border rounded-2xl p-4 bg-slate-50/80 space-y-3">
-                        <div class="flex justify-between items-center">
-                            <h3 class="font-black text-slate-900 text-sm">${branch.title}</h3>
-                            <span class="text-[10px] font-mono bg-purple-100 text-purple-800 px-2.5 py-1 rounded-full font-bold">${branch.items.length} Sous-programmes</span>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
-                            ${subHtml}
-                        </div>
-                    </div>
-                `;
-            });
-            updateSubactivityOptions();
-        }
-
-        function renderCountriesList() {
-            const container = document.getElementById('countries-list-container');
-            if (!container) return;
-            container.innerHTML = '';
-            africanCountries.forEach(c => {
-                container.innerHTML += `<div class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-slate-700 flex items-center gap-2"><span>🌍</span> ${c}</div>`;
-            });
-        }
-
-        function openDonationModalFor(programName) {
+        // FONCTION D'INITIALISATION DU PROCESSUS DE PARRAINAGE/SOUTIEN
+        function startSponsoringFlow(targetName) {
+            selectedTargetProfile = targetName;
             const modal = document.getElementById('modal-sponsoring-action');
             const title = document.getElementById('modal-sponsoring-title');
             const body = document.getElementById('modal-sponsoring-body');
 
-            title.innerText = `Soutenir — ${programName}`;
+            title.innerText = `Étape 1 : Choisir le motif pour ${targetName}`;
             modal.classList.replace('hidden', 'flex');
 
             body.innerHTML = `
-                <div class="space-y-4 text-slate-700">
-                    <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl space-y-2 text-xs text-emerald-950">
-                        <p class="font-black text-emerald-900 text-sm flex items-center gap-1.5">
-                            <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${programName}</strong>
-                        </p>
-                        <ul class="list-disc pl-4 space-y-1 text-emerald-900">
-                            <li><strong>Affectation directe :</strong> Votre contribution est strictement affectée à ce besoin spécifique sous la supervision du Centre Dieudonné à Bukavu.</li>
-                            <li><strong>Traçabilité :</strong> Un reçu officiel avec numéro de référence unique vous est attribué dès l'enregistrement.</li>
-                        </ul>
+                <div class="space-y-4">
+                    <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-1">
+                        <span class="text-[10px] uppercase text-green-400 font-extrabold tracking-wider">ESPACE DONATEUR & SOUTIEN CIBLÉ</span>
+                        <h4 class="font-black text-sm">Choisissez précisément le besoin que vous souhaitez financer</h4>
+                        <p class="text-[11px] text-slate-300">Sélectionnez ci-dessous pour ouvrir les détails de paiement.</p>
                     </div>
 
-                    <div class="space-y-2 text-xs">
-                        <label class="font-bold">Nom complet / Donateur :</label>
-                        <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
+                    <div class="space-y-3">
+                        <h5 class="font-bold text-slate-800 text-xs flex items-center gap-1.5"><i data-lucide="baby" class="w-4 h-4 text-blue-600"></i> Pour un Enfant :</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <button onclick="openFormForCause('Frais scolaires & Inscriptions')" class="bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border text-left flex justify-between items-center text-xs font-bold transition cursor-pointer">
+                                <span>🎓 Frais scolaires & Inscriptions</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openFormForCause('Manuels & Kits scolaires')" class="bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border text-left flex justify-between items-center text-xs font-bold transition cursor-pointer">
+                                <span>📚 Manuels & Kits scolaires</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openFormForCause('Fournitures scolaires')" class="bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border text-left flex justify-between items-center text-xs font-bold transition cursor-pointer">
+                                <span>✏️ Fournitures scolaires</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openFormForCause('Nutrition & Repas')" class="bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border text-left flex justify-between items-center text-xs font-bold transition cursor-pointer">
+                                <span>🍲 Nutrition & Repas</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            </button>
+                        </div>
+
+                        <h5 class="font-bold text-slate-800 text-xs flex items-center gap-1.5 pt-2"><i data-lucide="users" class="w-4 h-4 text-emerald-600"></i> Pour une Veuve :</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <button onclick="openFormForCause('Formation professionnelle')" class="bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border text-left flex justify-between items-center text-xs font-bold transition cursor-pointer">
+                                <span>🧵 Formation professionnelle</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
+                            </button>
+                            <button onclick="openFormForCause('Petits commerces & AGR')" class="bg-slate-50 hover:bg-emerald-50 p-3 rounded-xl border text-left flex justify-between items-center text-xs font-bold transition cursor-pointer">
+                                <span>🛒 Petits commerces & AGR</span> <span class="text-emerald-600 text-[10px]">Choisir →</span>
+                            </button>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="openFormForCause('Don Direct & Libre')" class="w-full bg-amber-50 hover:bg-amber-100 border border-amber-200 p-3.5 rounded-xl text-left flex justify-between items-center text-xs font-extrabold text-amber-900 transition cursor-pointer">
+                                <span>💛 Faire un don direct / libre</span> <span class="text-amber-700 text-xs">Choisir →</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // ÉTAPE 2 : FORMULAIRE ET COORDONNÉES DE PAIEMENT DÉTAILLÉES
+        function openFormForCause(causeName) {
+            const title = document.getElementById('modal-sponsoring-title');
+            const body = document.getElementById('modal-sponsoring-body');
+
+            const fullCause = selectedTargetProfile ? `${selectedTargetProfile} — ${causeName}` : causeName;
+            title.innerText = `Étape 2 : Formulaire de Paiement`;
+
+            body.innerHTML = `
+                <div class="space-y-4 text-slate-700">
+                    <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-2xl space-y-1 text-xs text-emerald-950">
+                        <p class="font-black text-emerald-900 text-xs flex items-center gap-1.5">
+                            <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${fullCause}</strong>
+                        </p>
+                        <p class="text-[11px] text-emerald-800">Votre contribution est directement affectée à ce besoin sous la supervision du Centre Dieudonné à Bukavu.</p>
+                    </div>
+
+                    <!-- BLOC PAIEMENT OFFICIEL (AFFICHE MTN DISPONIBLE ET AUTRES COMPTES) -->
+                    <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3">
+                        <div class="border-b border-slate-800 pb-2 flex justify-between items-center">
+                            <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉROS DE TRANSFERT OFFICIELS</span>
+                            <span class="text-[9px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded font-mono font-bold">Actif</span>
+                        </div>
                         
-                        <label class="font-bold">Email de contact :</label>
-                        <input type="email" id="don-email" placeholder="votre@email.com" class="w-full p-2.5 border rounded-xl bg-white">
+                        <div class="space-y-2 text-xs">
+                            <!-- MTN VALIDE -->
+                            <div class="bg-amber-500/10 border border-amber-500/40 p-3 rounded-xl space-y-1">
+                                <div class="flex justify-between items-center">
+                                    <span class="font-black text-amber-400">💛 MTN Mobile Money (DISPONIBLE)</span>
+                                    <span class="text-[9px] bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded font-black">Recommandé</span>
+                                </div>
+                                <p class="text-sm font-mono font-bold text-white tracking-wider">+256 792994716</p>
+                                <p class="text-[10px] text-amber-200">Nom du compte : <strong>GABRIEL MUSHAGALUSA</strong></p>
+                            </div>
+
+                            <!-- AUTRES OPTIONS NON DISPONIBLES ENCORE -->
+                            <div class="grid grid-cols-2 gap-2 text-[10px] text-slate-400 pt-1">
+                                <div class="p-2 bg-slate-800/80 rounded-lg border border-slate-700/50">
+                                    <span class="block font-bold text-slate-300">🟠 ORANGE MONEY :</span>
+                                    <span class="italic text-slate-500">Bientôt disponible</span>
+                                </div>
+                                <div class="p-2 bg-slate-800/80 rounded-lg border border-slate-700/50">
+                                    <span class="block font-bold text-slate-300">🔴 AIRTEL MONEY :</span>
+                                    <span class="italic text-slate-500">Bientôt disponible</span>
+                                </div>
+                                <div class="p-2 bg-slate-800/80 rounded-lg border border-slate-700/50">
+                                    <span class="block font-bold text-slate-300">🟢 M-PESA :</span>
+                                    <span class="italic text-slate-500">Bientôt disponible</span>
+                                </div>
+                                <div class="p-2 bg-slate-800/80 rounded-lg border border-slate-700/50">
+                                    <span class="block font-bold text-slate-300">🏦 EQUITY / RAW / ECOBANK :</span>
+                                    <span class="italic text-slate-500">Bientôt disponible</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FORMULAIRE DE CONFIRMATION DU DONATEUR -->
+                    <div class="space-y-3 text-xs bg-slate-50 p-4 rounded-2xl border">
+                        <h4 class="font-black text-slate-900 text-xs">Informations du donateur</h4>
+                        <div>
+                            <label class="font-bold block mb-1">Nom complet / Donateur :</label>
+                            <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
+                        </div>
                         
+                        <div>
+                            <label class="font-bold block mb-1">Email ou Téléphone de contact :</label>
+                            <input type="text" id="don-email" placeholder="votre@email.com ou +243..." class="w-full p-2.5 border rounded-xl bg-white">
+                        </div>
+
                         <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label class="font-bold">Montant :</label>
+                                <label class="font-bold block mb-1">Montant envoyé :</label>
                                 <input type="number" id="don-amount" placeholder="50" class="w-full p-2.5 border rounded-xl bg-white">
                             </div>
                             <div>
-                                <label class="font-bold">Devise :</label>
+                                <label class="font-bold block mb-1">Devise :</label>
                                 <select id="don-currency" class="w-full p-2.5 border rounded-xl bg-white font-bold">
                                     <option value="USD">USD ($)</option>
-                                    <option value="CDF">CDF (Franc Congolais)</option>
                                     <option value="UGX">UGX (Shilling Ougandais)</option>
+                                    <option value="CDF">CDF (Franc Congolais)</option>
                                 </select>
                             </div>
                         </div>
 
-                        <label class="font-bold">Moyen de contribution :</label>
-                        <select id="don-method" class="w-full p-2.5 border rounded-xl bg-white">
-                            <option value="MobileMoney">Mobile Money (M-Pesa / Airtel)</option>
-                            <option value="Bank">Virement Bancaire</option>
-                            <option value="Cash">Espèces / Guichet Centre Bukavu</option>
-                        </select>
+                        <div>
+                            <label class="font-bold block mb-1 text-green-700">Référence / ID de transaction Mobile Money * :</label>
+                            <input type="text" id="don-transid" placeholder="Ex: 254896321 (Reçu par SMS)" class="w-full p-2.5 border border-green-400 rounded-xl bg-white font-mono font-bold text-slate-900">
+                            <p class="text-[9px] text-slate-500 mt-0.5">Entrez le code de confirmation reçu par SMS après votre transfert MTN.</p>
+                        </div>
                     </div>
 
-                    <button type="button" onclick="submitDonation('${programName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs">Enregistrer ma contribution</button>
+                    <button type="button" onclick="submitDonation('${fullCause}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs uppercase tracking-wider">Confirmer mon transfert</button>
                 </div>
             `;
             if (window.lucide) lucide.createIcons();
@@ -667,18 +623,21 @@
             const email = document.getElementById('don-email').value || "Non fourni";
             const amount = parseFloat(document.getElementById('don-amount').value) || 0;
             const currency = document.getElementById('don-currency').value;
-            const method = document.getElementById('don-method').value;
+            const transId = document.getElementById('don-transid').value.trim();
 
             if (amount <= 0) { alert("Veuillez entrer un montant valide."); return; }
+            if (!transId) { alert("Veuillez saisir la référence/ID de la transaction reçue par SMS pour nous permettre de valider votre don."); return; }
 
             try {
                 const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
                 await db.collection("donations").add({
-                    refId, name, email, amount, currency, method, cause,
+                    refId, name, email, amount, currency, cause,
+                    transId: transId,
+                    method: "MTN Mobile Money (+256792994716)",
                     status: "En attente de vérification",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-                alert(`Contribution enregistrée avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nMerci pour votre confiance.`);
+                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nMerci pour votre soutien envers le Centre Dieudonné !`);
                 closeSponsoringModal();
                 updateFinancialReports();
             } catch (err) { alert("Erreur : " + err.message); }
@@ -729,19 +688,16 @@
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
-        let currentUser = null;
 
         function initAuthListener() {
             auth.onAuthStateChanged(user => {
                 if (user) {
-                    currentUser = user;
                     document.getElementById('user-display').innerText = user.email;
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion`;
                     document.getElementById('auth-btn').onclick = () => auth.signOut();
                     updateProfileCard(user);
                 } else {
-                    currentUser = null;
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i> Connexion`;
                     document.getElementById('auth-btn').onclick = openAuthModal;
@@ -776,7 +732,7 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
@@ -788,20 +744,60 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
+        function renderStructureAccordion() {
+            const container = document.getElementById('branches-accordion-container');
+            const agentBranchSelect = document.getElementById('a-branch');
+            if (!container || !agentBranchSelect) return;
+
+            container.innerHTML = '';
+            agentBranchSelect.innerHTML = '';
+
+            structureData.forEach((branch) => {
+                const opt = document.createElement('option');
+                opt.value = branch.title;
+                opt.textContent = branch.title;
+                agentBranchSelect.appendChild(opt);
+
+                let subHtml = '';
+                branch.items.forEach(sub => {
+                    subHtml += `
+                        <div class="bg-white p-3.5 rounded-xl border flex flex-col justify-between space-y-2">
+                            <span class="font-bold text-slate-800 text-xs">${sub.name}</span>
+                            <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.name.replace(/'/g, "\\'")}')" class="bg-purple-600 hover:bg-purple-700 text-white py-1.5 rounded-lg text-[10px] font-bold cursor-pointer">Détails & Contacts</button>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="border rounded-2xl p-4 bg-slate-50 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-black text-slate-900 text-sm">${branch.title}</h3>
+                            <span class="text-[10px] font-mono bg-purple-100 text-purple-800 px-2.5 py-1 rounded-full font-bold">${branch.items.length} Sous-programmes</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">${subHtml}</div>
+                    </div>
+                `;
+            });
+            updateSubactivityOptions();
+        }
+
+        function renderCountriesList() {
+            const container = document.getElementById('countries-list-container');
+            if (!container) return;
+            container.innerHTML = '';
+            africanCountries.forEach(c => {
+                container.innerHTML += `<div class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-slate-700 flex items-center gap-2"><span>🌍</span> ${c}</div>`;
+            });
+        }
+
         async function showSubBranchDetails(branchTitle, subActivityName) {
             const modal = document.getElementById('modal-branch-agents');
             const title = document.getElementById('modal-branch-title');
             const listContainer = document.getElementById('modal-branch-list');
 
             title.innerText = `${branchTitle} — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement des détails et des contacts...";
+            listContainer.innerHTML = "Chargement...";
             modal.classList.replace('hidden', 'flex');
-
-            let foundDetails = null;
-            const bObj = structureData.find(b => b.title === branchTitle);
-            if (bObj) {
-                foundDetails = bObj.items.find(i => i.name === subActivityName);
-            }
 
             try {
                 const snap = await db.collection("agents").get();
@@ -810,54 +806,27 @@
                 snap.forEach(doc => {
                     const agent = doc.data();
                     if (agent.subactivity === subActivityName || agent.branch === branchTitle) {
-                        const photoHtml = agent.photo ? `<img src="${agent.photo}" class="w-full h-full object-cover">` : `👤`;
                         const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
-
                         agentsHtml += `
-                            <div class="bg-slate-50 p-3 rounded-2xl border space-y-2 shadow-sm">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden flex items-center justify-center border shrink-0">${photoHtml}</div>
-                                    <div class="flex-grow">
-                                        <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
-                                        <h4 class="font-bold text-slate-900 text-xs mt-0.5">${agent.fullName}</h4>
-                                        <p class="text-[10px] text-slate-600">Fonction : ${agent.role}</p>
-                                    </div>
-                                </div>
+                            <div class="bg-slate-50 p-3 rounded-2xl border space-y-2">
+                                <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
+                                <h4 class="font-bold text-slate-900 text-xs">${agent.fullName} (${agent.role})</h4>
                                 <div class="grid grid-cols-2 gap-2 pt-1">
-                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1">📞 Appeler</a>
-                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 text-white p-2 rounded-xl text-center font-bold flex items-center justify-center gap-1">💬 WhatsApp</a>
+                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold">📞 Appeler</a>
+                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 text-white p-2 rounded-xl text-center font-bold">💬 WhatsApp</a>
                                 </div>
                             </div>
                         `;
                     }
                 });
 
-                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent enregistré spécifiquement sur ce sous-programme pour le moment.</p>`;
-
-                const objText = foundDetails ? foundDetails.objective : "Faciliter et coordonner les actions humanitaires et sociales.";
-                const procText = foundDetails ? foundDetails.procedure : "Enregistrement, planification et suivi rigoureux via les agents de terrain.";
-                const actText = foundDetails ? foundDetails.activities : "Suivi, évaluation, et assistance directe aux bénéficiaires.";
+                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent affecté pour le moment.</p>`;
 
                 listContainer.innerHTML = `
-                    <div class="space-y-3 text-slate-700">
-                        <div class="bg-slate-50 border p-3 rounded-xl flex justify-between items-center">
-                            <span class="font-bold text-slate-800">📋 STATUT : ACTIF</span>
-                            <span class="text-[10px] font-mono bg-white px-2 py-1 rounded border">Panafricain</span>
-                        </div>
-                        <div class="space-y-1">
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-green-700">🎯 OBJECTIF</h4>
-                            <p class="text-[11px] text-slate-600">${objText}</p>
-                        </div>
-                        <div class="space-y-1">
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-blue-700">⚙️ PROCÉDURE</h4>
-                            <p class="text-[11px] text-slate-600">${procText}</p>
-                        </div>
-                        <div class="space-y-1">
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-amber-700">📌 ACTIVITÉS</h4>
-                            <p class="text-[11px] text-slate-600">${actText}</p>
-                        </div>
+                    <div class="space-y-3 text-slate-700 text-xs">
+                        <p><strong>Objectif :</strong> Coordination et suivi sur le terrain.</p>
                         <div class="pt-2 border-t space-y-2">
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS RESPONSABLES ET CONTACTS</h4>
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 AGENTS CONTACTS</h4>
                             <div class="space-y-2">${agentsHtml}</div>
                         </div>
                     </div>
@@ -986,12 +955,7 @@
                         <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
                         <div><span class="font-mono bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
                     </div>
-                    <div class="grid grid-cols-2 gap-2 text-xs pt-2">
-                        <div><strong>Branche :</strong> ${found.branch || 'Soutien Social Panafricain'}</div>
-                        <div><strong>Pays :</strong> ${found.country || ''}</div>
-                        <div><strong>Statut :</strong> Dossier Vérifié & Actif</div>
-                    </div>
-                    <button onclick="openDonationModalFor('${found.matricule}')" class="w-full bg-green-600 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer">Soutenir ce profil</button>
+                    <button onclick="startSponsoringFlow('${found.matricule} - ${name}')" class="w-full bg-green-600 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer">Soutenir ce profil</button>
                 `;
             } else {
                 card.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier correspondant à ce matricule.</p>`;
@@ -1023,7 +987,7 @@
                 wSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Veuve', badgeBg: 'bg-emerald-50 text-emerald-700' }));
 
                 if (items.length === 0) {
-                    container.innerHTML = `<p class="text-xs text-slate-500 col-span-3 text-center py-6">Aucun profil enregistré pour le moment. Utilisez les menus pour ajouter des dossiers.</p>`;
+                    container.innerHTML = `<p class="text-xs text-slate-500 col-span-3 text-center py-6">Aucun profil enregistré pour le moment.</p>`;
                     return;
                 }
 
@@ -1046,7 +1010,7 @@
                                 <h4 class="font-black text-slate-900 text-sm">${displayName}</h4>
                                 <p class="text-[11px] text-slate-600">Soutien prioritaire pour la scolarité et les besoins vitaux.</p>
                             </div>
-                            <button onclick="openDonationModalFor('${d.matricule} - ${displayName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer shadow-xs">Soutenir ce profil</button>
+                            <button onclick="startSponsoringFlow('${d.matricule} - ${displayName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
                         </div>
                     `;
                 });
@@ -1078,7 +1042,7 @@
                             <p class="font-bold text-slate-900 text-sm">${displayName}</p>
                             <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
                         </div>
-                        <button onclick="openDonationModalFor('${d.matricule} - ${displayName}')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
+                        <button onclick="startSponsoringFlow('${d.matricule} - ${displayName}')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
                     </div>
                 `;
             });
@@ -1105,13 +1069,14 @@
             const container = document.getElementById('admin-master-list');
             container.innerHTML = 'Chargement...';
             let html = '';
-            const labels = { children: 'ENFANT', widows: 'VEUVE', agents: 'AGENT', donations: 'DON', partnerships: 'PARTENARIAT' };
-            for (let col of ['children', 'widows', 'agents', 'donations', 'partnerships']) {
+            const labels = { children: 'ENFANT', widows: 'VEUVE', agents: 'AGENT', donations: 'DON' };
+            for (let col of ['children', 'widows', 'agents', 'donations']) {
                 const snap = await db.collection(col).get();
                 snap.forEach(doc => {
                     const d = doc.data();
-                    let title = d.matricule || d.refId || d.org || 'Élément';
-                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
+                    let title = d.matricule || d.refId || d.fullName || 'Élément';
+                    let detail = d.transId ? `(TransID: ${d.transId})` : '';
+                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title} ${detail}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
                 });
             }
             container.innerHTML = html || 'Aucun enregistrement trouvé.';
@@ -1127,18 +1092,14 @@
                             <span class="text-xs text-slate-600">Compte connecté :</span>
                             <strong class="text-xs font-mono text-green-700">${user.email}</strong>
                         </div>
-                        <div class="p-4 bg-green-50 rounded-xl border border-green-200 text-xs space-y-1">
-                            <p class="font-bold text-green-900">👤 Espace Personnel Panafricain</p>
-                            <p class="text-green-700">Vous pouvez consulter vos engagements, suivre vos contributions et gérer vos parrainages.</p>
-                        </div>
-                        <button onclick="auth.signOut()" class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-xl text-xs shadow transition cursor-pointer">Se Déconnecter</button>
+                        <button onclick="auth.signOut()" class="w-full bg-red-600 text-white font-bold py-3 rounded-xl text-xs">Se Déconnecter</button>
                     </div>
                 `;
             } else {
                 card.innerHTML = `
                     <div class="space-y-3 text-center py-4">
                         <p class="text-xs text-slate-600">Vous n'êtes pas connecté.</p>
-                        <button onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white font-bold px-6 py-3 rounded-xl text-xs shadow transition cursor-pointer">Se Connecter maintenant</button>
+                        <button onclick="openAuthModal()" class="bg-green-600 text-white font-bold px-6 py-3 rounded-xl text-xs">Se Connecter maintenant</button>
                     </div>
                 `;
             }
