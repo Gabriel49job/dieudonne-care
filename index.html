@@ -136,6 +136,20 @@
                     <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i data-lucide="globe" class="w-5 h-5"></i></div>
                 </div>
             </div>
+
+            <!-- SECTION VISUELLE : ENFANTS & VEUVES EN VEDETTE SUR LA PAGE D'ACCUEIL -->
+            <div class="space-y-4 pt-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-lg font-black text-slate-900">Enfants et Veuves en attente de parrainage</h3>
+                        <p class="text-xs text-slate-500">Choisissez un profil ci-dessous et participez directement à sa prise en charge.</p>
+                    </div>
+                    <button onclick="switchTab('sponsoring-hub')" class="text-xs font-bold text-green-600 hover:underline">Voir tout le catalogue →</button>
+                </div>
+                <div id="home-featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Les profils récents s'afficheront dynamiquement ici -->
+                </div>
+            </div>
         </section>
 
         <!-- BOUTON 2 : SOUTENIR AVEC SOUS-BESOINS DÉTAILLÉS -->
@@ -747,6 +761,7 @@
             document.getElementById('sidebar').classList.add('-translate-x-full');
             document.getElementById('sidebar-overlay').classList.add('hidden');
 
+            if (tab === 'home') loadHomeFeaturedProfiles();
             if (tab === 'children') loadCollection('children', 'children-grid-container', true);
             if (tab === 'widows') loadCollection('widows', 'widows-grid-container', false);
             if (tab === 'team') renderStructureAccordion();
@@ -761,7 +776,7 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
@@ -994,6 +1009,52 @@
             } catch (e) { console.error(e); }
         }
 
+        async function loadHomeFeaturedProfiles() {
+            const container = document.getElementById('home-featured-grid');
+            if (!container) return;
+            container.innerHTML = '<p class="text-xs text-slate-400 col-span-3 text-center py-4">Chargement des profils...</p>';
+            
+            try {
+                let items = [];
+                const cSnap = await db.collection("children").limit(2).get();
+                cSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Enfant Orphelin', badgeBg: 'bg-blue-50 text-blue-700' }));
+                
+                const wSnap = await db.collection("widows").limit(1).get();
+                wSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Veuve', badgeBg: 'bg-emerald-50 text-emerald-700' }));
+
+                if (items.length === 0) {
+                    container.innerHTML = `<p class="text-xs text-slate-500 col-span-3 text-center py-6">Aucun profil enregistré pour le moment. Utilisez les menus pour ajouter des dossiers.</p>`;
+                    return;
+                }
+
+                container.innerHTML = '';
+                items.forEach(d => {
+                    let displayName = d.firstName ? `${d.firstName} ${d.lastName ? d.lastName.charAt(0) + '.' : ''}` : (d.fullName || '');
+                    let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
+
+                    container.innerHTML += `
+                        <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <div class="w-full h-36 bg-slate-100 rounded-xl overflow-hidden border relative">
+                                    ${photoHtml}
+                                    <span class="absolute top-2 left-2 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full ${d.badgeBg} shadow">${d.typeLabel}</span>
+                                </div>
+                                <div class="flex justify-between items-center pt-1">
+                                    <span class="font-mono font-bold text-slate-700">${d.matricule}</span>
+                                    <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
+                                </div>
+                                <h4 class="font-black text-slate-900 text-sm">${displayName}</h4>
+                                <p class="text-[11px] text-slate-600">Soutien prioritaire pour la scolarité et les besoins vitaux.</p>
+                            </div>
+                            <button onclick="openDonationModalFor('${d.matricule} - ${displayName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer shadow-xs">Soutenir ce profil</button>
+                        </div>
+                    `;
+                });
+            } catch (err) {
+                container.innerHTML = `<p class="text-xs text-red-500 col-span-3 text-center">Erreur de chargement des profils.</p>`;
+            }
+        }
+
         async function loadCollection(col, containerId, protectNames = false) {
             const container = document.getElementById(containerId);
             const snap = await db.collection(col).get();
@@ -1004,16 +1065,20 @@
                 if (protectNames && d.lastName) {
                     displayName = `${d.firstName} ${d.lastName.charAt(0)}.`;
                 }
+                let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
 
                 container.innerHTML += `
-                    <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-2">
-                        <div class="flex justify-between items-center">
-                            <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
-                            <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
+                    <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <div class="w-full h-32 bg-slate-100 rounded-xl overflow-hidden border">${photoHtml}</div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
+                                <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
+                            </div>
+                            <p class="font-bold text-slate-900 text-sm">${displayName}</p>
+                            <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
                         </div>
-                        <p class="font-bold text-slate-900 text-sm">${displayName}</p>
-                        <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
-                        <button onclick="openDonationModalFor('${d.matricule}')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
+                        <button onclick="openDonationModalFor('${d.matricule} - ${displayName}')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
                     </div>
                 `;
             });
@@ -1084,6 +1149,7 @@
             populateAfricanCountries();
             initAuthListener();
             refreshCounters();
+            loadHomeFeaturedProfiles();
             if (window.lucide) lucide.createIcons();
         });
     </script>
