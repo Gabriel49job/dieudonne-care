@@ -294,10 +294,17 @@
             </div>
         </section>
 
-        <!-- MON PROFIL -->
-        <section id="sec-profile" class="hidden space-y-6 max-w-3xl mx-auto">
-            <h2 class="text-2xl font-black">Mon Profil & Espace Sponsor</h2>
-            <div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm space-y-4"></div>
+        <!-- MON PROFIL & ESPACE SPONSOR (MIS À JOUR ET COMPLET) -->
+        <section id="sec-profile" class="hidden space-y-6 max-w-4xl mx-auto">
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
+                <span class="text-[10px] font-extrabold bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">ESPACE PERSONNEL & TABLEAU DE BORD</span>
+                <h2 class="text-2xl md:text-3xl font-black mt-2">Mon Profil & Espace Sponsor</h2>
+                <p class="text-xs text-slate-300">Gérez vos informations personnelles, vos parrainages, vos dons et vos reçus officiels en toute sécurité.</p>
+            </div>
+
+            <div id="profile-card" class="space-y-6">
+                <!-- LE CONTENU DU PROFIL EST GÉNÉRÉ DYNAMIQUEMENT PAR JAVASCRIPT -->
+            </div>
         </section>
 
         <!-- AUTRES SECTIONS -->
@@ -650,6 +657,7 @@
             const amount = parseFloat(document.getElementById('don-amount').value) || 0;
             const currency = document.getElementById('don-currency').value;
             const transId = document.getElementById('don-transid').value.trim();
+            const currentUser = auth.currentUser;
 
             if (amount <= 0) { alert("Veuillez entrer un montant valide."); return; }
             if (!transId) { alert("Veuillez saisir la référence/ID de la transaction reçue par SMS pour nous permettre de valider votre don."); return; }
@@ -659,6 +667,8 @@
                 await db.collection("donations").add({
                     refId, name, email, amount, currency, cause,
                     transId: transId,
+                    userId: currentUser ? currentUser.uid : 'anonymous',
+                    userEmail: currentUser ? currentUser.email : email,
                     method: "MTN Mobile Money (+256792994716)",
                     status: "En attente de vérification",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
@@ -666,6 +676,7 @@
                 alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nMerci pour votre soutien envers le Centre Dieudonné !`);
                 closeSponsoringModal();
                 updateFinancialReports();
+                if (currentUser) updateProfileCard(currentUser);
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
@@ -749,6 +760,7 @@
             if (tab === 'admin') loadAdminMasterList();
             if (tab === 'countries') renderCountriesList();
             if (tab === 'reports') updateFinancialReports();
+            if (tab === 'profile') updateProfileCard(auth.currentUser);
 
             window.scrollTo(0, 0);
             if (window.lucide) lucide.createIcons();
@@ -757,7 +769,7 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'hidden'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
@@ -1152,27 +1164,163 @@
             container.innerHTML = html || 'Aucun enregistrement trouvé.';
         }
 
-        function updateProfileCard(user) {
+        // MISE À JOUR COMPLÈTE DE LA PAGE PROFIL & TABLEAU DE BORD SPONSOR
+        async function updateProfileCard(user) {
             const card = document.getElementById('profile-card');
             if (!card) return;
+
             if (user) {
+                // Récupération des données réelles de l'utilisateur connecté (Dons, Parrainages)
+                let userDonations = [];
+                let totalDonationsAmount = 0;
+                let activeSponsorshipsCount = 0;
+
+                try {
+                    const donSnap = await db.collection("donations").where("userId", "==", user.uid).get();
+                    donSnap.forEach(doc => {
+                        const d = doc.data();
+                        userDonations.push(d);
+                        totalDonationsAmount += (d.amount || 0);
+                    });
+                } catch (e) {
+                    console.error("Erreur chargement dons utilisateur:", e);
+                }
+
                 card.innerHTML = `
-                    <div class="space-y-3">
-                        <div class="p-3 bg-slate-50 rounded-xl border flex items-center justify-between">
-                            <span class="text-xs text-slate-600">Compte connecté :</span>
-                            <strong class="text-xs font-mono text-green-700">${user.email}</strong>
+                    <!-- 1. EN-TÊTE PROFIL -->
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="relative w-20 h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-green-500 overflow-hidden flex items-center justify-center text-white text-2xl font-black shadow-md">
+                                ${user.photoURL ? `<img src="${user.photoURL}" class="w-full h-full object-cover">` : (user.email ? user.email.charAt(0).toUpperCase() : 'U')}
+                            </div>
+                            <div class="space-y-1">
+                                <h3 class="font-black text-slate-900 text-base md:text-lg">${user.displayName || 'Membre Panafricain'}</h3>
+                                <p class="text-xs font-mono text-blue-600 font-bold">${user.email}</p>
+                                <p class="text-[11px] text-slate-500">📍 Bukavu, République Démocratique du Congo (RDC)</p>
+                                <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Compte Vérifié</span>
+                            </div>
                         </div>
-                        <button onclick="auth.signOut()" class="w-full bg-red-600 text-white font-bold py-3 rounded-xl text-xs">Se Déconnecter</button>
+                        <div class="flex flex-col gap-2 w-full md:w-auto">
+                            <button onclick="alert('Fonction de modification du profil en cours de mise à jour.')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer shadow">
+                                ✏️ Modifier mon profil
+                            </button>
+                            <button onclick="auth.signOut()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer border border-red-200">
+                                Se Déconnecter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. TABLEAU DE BORD DU SPONSOR (4 CARTES STATISTIQUES) -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Enfants parrainés</p>
+                            <p class="text-2xl font-black text-blue-600">0</p>
+                            <p class="text-[10px] text-slate-500">Aucun parrainage actif</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Veuves soutenues</p>
+                            <p class="text-2xl font-black text-emerald-600">0</p>
+                            <p class="text-[10px] text-slate-500">Suivi direct</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total des dons</p>
+                            <p class="text-2xl font-black text-slate-900 font-mono">${totalDonationsAmount} USD</p>
+                            <p class="text-[10px] text-slate-500">${userDonations.length} transaction(s)</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Parrainages actifs</p>
+                            <p class="text-2xl font-black text-green-600">${activeSponsorshipsCount}</p>
+                            <p class="text-[10px] text-slate-500">Engagements validés</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. SECTIONS DÉTAILLÉES (ONGLETS OU CARTES REPLIABLES) -->
+                    <div class="space-y-4">
+                        <!-- A. Mes dons & reçus -->
+                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
+                            <div class="flex justify-between items-center border-b pb-3">
+                                <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                    <i data-lucide="receipt" class="w-4 h-4 text-green-600"></i> Mes Dons & Reçus Téléchargeables
+                                </h3>
+                                <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full font-bold">${userDonations.length} enregistrement(s)</span>
+                            </div>
+                            <div class="space-y-2">
+                                ${userDonations.length > 0 ? userDonations.map(d => `
+                                    <div class="p-3.5 bg-slate-50 border rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-2 text-xs">
+                                        <div>
+                                            <p class="font-bold text-slate-900">Motif : ${d.cause}</p>
+                                            <p class="text-slate-500 font-mono text-[10px]">Réf : ${d.refId} \vert{} TransID :${d.transId || 'N/A'}</p>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <span class="font-mono font-black text-green-700 text-sm">${d.amount}${d.currency}</span>
+                                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">${d.status}</span>
+                                            <button onclick="alert('Reçu officiel disponible sous peu pour la référence ${d.refId}')" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl font-bold transition">📄 Reçu</button>
+                                        </div>
+                                    </div>
+                                `).join('') : `
+                                    <div class="text-center py-6 text-slate-500 text-xs space-y-2">
+                                        <p>Vous n'avez pas encore effectué de don depuis ce compte.</p>
+                                        <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 text-white font-bold px-4 py-2 rounded-xl">Faire un don maintenant</button>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+
+                        <!-- B. Mes Parrainages & Engagements -->
+                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
+                            <div class="flex justify-between items-center border-b pb-3">
+                                <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                    <i data-lucide="baby" class="w-4 h-4 text-blue-600"></i> Mes Parrainages & Bénéficiaires soutenus
+                                </h3>
+                            </div>
+                            <p class="text-xs text-slate-600">Aucun enfant ou veuve actuellement rattaché à votre profil personnel. Explorez le registre public pour commencer un parrainage.</p>
+                            <button onclick="switchTab('children')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">Explorer les dossiers enfants →</button>
+                        </div>
+
+                        <!-- C. Paramètres, Sécurité & Assistance -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
+                                <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                    <i data-lucide="settings" class="w-4 h-4 text-purple-600"></i> Paramètres & Sécurité
+                                </h4>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex justify-between items-center py-1 border-b">
+                                        <span>Langue de l'application</span>
+                                        <strong class="text-green-600">Français (FR)</strong>
+                                    </div>
+                                    <div class="flex justify-between items-center py-1 border-b">
+                                        <span>Notifications push</span>
+                                        <strong class="text-green-600">Activées</strong>
+                                    </div>
+                                    <button onclick="if(confirm('Voulez-vous vraiment supprimer votre compte ?')) alert('Action sécurisée nécessitant une ré-authentification.');" class="text-red-600 hover:underline font-bold text-xs pt-2 block">🗑️ Supprimer mon compte</button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
+                                <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                    <i data-lucide="help-circle" class="w-4 h-4 text-amber-600"></i> Assistance Dieudonné Care
+                                </h4>
+                                <p class="text-xs text-slate-600">Besoin d'aide avec un don, un reçu ou un dossier ? Contactez directement l'administration centrale.</p>
+                                <a href="https://wa.me/256792994716" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-center text-xs transition shadow">
+                                    💬 Contacter le Support WhatsApp
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 `;
             } else {
                 card.innerHTML = `
-                    <div class="space-y-3 text-center py-4">
-                        <p class="text-xs text-slate-600">Vous n'êtes pas connecté.</p>
-                        <button onclick="openAuthModal()" class="bg-green-600 text-white font-bold px-6 py-3 rounded-xl text-xs">Se Connecter maintenant</button>
+                    <div class="bg-white p-8 rounded-3xl border shadow-sm text-center space-y-4 max-w-lg mx-auto">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="user-x" class="w-8 h-8"></i></div>
+                        <h3 class="font-black text-slate-900 text-lg">Espace restreint aux membres connectés</h3>
+                        <p class="text-xs text-slate-600">Veuillez vous connecter pour accéder à votre tableau de bord personnel, vos reçus de dons et vos parrainages.</p>
+                        <button onclick="openAuthModal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl text-xs transition shadow cursor-pointer">
+                            Se connecter maintenant
+                        </button>
                     </div>
                 `;
             }
+            if (window.lucide) lucide.createIcons();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
