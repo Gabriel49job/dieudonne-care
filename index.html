@@ -437,7 +437,7 @@
                 title: "1. 🎓 ÉDUCATION & SCOLARITÉ",
                 items: [
                     { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", procedure: "L’enfant est inscrit via un agent, les frais sont enregistrés et suivis.", activities: "Paiement, suivi des reçus, aide aux familles vulnérables." },
-                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables pour chaque élève.", procedure: "Recensement des besoins scolaires par classe et distribution controlled par les agents.", activities: "Achat de manuels, constitution des kits, distribution et inventaire." },
+                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables pour chaque élève.", procedure: "Recensement des besoins scolaires par classe et distribution contrôlée par les agents.", activities: "Achat de manuels, constitution des kits, distribution et inventaire." },
                     { name: "Fournitures scolaires", objective: "Garantir la disponibilité du matériel de papeterie (cahiers, stylos, sacs).", procedure: "Évaluation des besoins par période scolaire et dotation directe aux bénéficiaires.", activities: "Gestion des stocks de papeterie, préparation des lots, remise aux élèves." },
                     { name: "Tutorat & Accompagnement scolaire", objective: "Offrir un soutien académique pour réduire le taux d'échec scolaire.", procedure: "Identification des élèves en difficulté et mise en place de cours de soutien adaptés.", activities: "Séances de rattrapage, suivi des notes, encadrement aux devoirs." }
                 ]
@@ -459,6 +459,16 @@
         ];
 
         let selectedTargetProfile = "";
+
+        // FONCTION POUR COPIER LE NUMÉRO DANS LE PRESSE-PAPIER
+        function copyMtnNumber() {
+            const numToCopy = "+256792994716";
+            navigator.clipboard.writeText(numToCopy).then(() => {
+                alert("Numéro MTN copié dans le presse-papier : " + numToCopy);
+            }).catch(err => {
+                alert("Erreur lors de la copie : " + err);
+            });
+        }
 
         function startSponsoringFlow(targetName) {
             selectedTargetProfile = targetName;
@@ -535,13 +545,14 @@
                     <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
                         <p class="font-extrabold text-amber-950 flex items-center gap-1">📌 Instructions pour effectuer le transfert :</p>
                         <ol class="list-decimal pl-4 space-y-1 text-[11px]">
-                            <li>Effectuez votre transfert vers le numéro MTN ci-dessous (soit en cliquant sur le bouton d'appel, soit depuis votre téléphone).</li>
-                            <li>Copiez ou notez l'<strong>ID de transaction (Référence)</strong> reçu par SMS de MTN.</li>
-                            <li>Remplissez le formulaire ci-dessous et cliquez sur <strong>« Confirmer mon transfert »</strong>.</li>
+                            <li>Cliquez sur <strong>« Copier le numéro »</strong> pour éviter toute erreur de frappe.</li>
+                            <li>Effectuez votre transfert MTN vers ce numéro (ou composez <strong>*165#</strong>).</li>
+                            <li>Récupérez l'<strong>ID de transaction (Référence)</strong> reçu par SMS de MTN.</li>
+                            <li>Remplissez le formulaire ci-dessous et validez.</li>
                         </ol>
                     </div>
 
-                    <!-- BLOC NUMÉRO OFFICIEL + BOUTON USSD DIRECT -->
+                    <!-- BLOC NUMÉRO OFFICIEL + BOUTON COPIER ET USSD -->
                     <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3">
                         <div class="border-b border-slate-800 pb-2 flex justify-between items-center">
                             <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉRO DE TRANSFERT OFFICIEL</span>
@@ -556,9 +567,14 @@
                                 <p class="text-base font-mono font-black text-white tracking-wider">+256 792994716</p>
                                 <p class="text-[10px] text-amber-200">Nom du compte : <strong>GABRIEL MUSHAGALUSA</strong></p>
                                 
-                                <a href="tel:*165#" class="block w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-center text-xs transition shadow mt-2">
-                                    📲 Lancer le menu MTN (*165#) / composer
-                                </a>
+                                <div class="grid grid-cols-2 gap-2 pt-2">
+                                    <button type="button" onclick="copyMtnNumber()" class="bg-green-600 hover:bg-green-500 text-white font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
+                                        📋 Copier le numéro
+                                    </button>
+                                    <a href="tel:*165#<" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
+                                        📲 Menu (*165#)
+                                    </a>
+                                </div>
                             </div>
 
                             <div class="grid grid-cols-2 gap-2 text-[10px] text-slate-400 pt-1">
