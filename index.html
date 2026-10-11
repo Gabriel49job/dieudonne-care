@@ -15,7 +15,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-40">
 
-    <!-- EN-TÊTE PROFESSIONNEL -->
+    <!-- EN-TÊTE PROFESSIONNEL CORRIGÉ (Anti-débordement mobile) -->
     <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-3 py-2.5 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -48,7 +48,7 @@
         </div>
     </header>
 
-    <!-- MENU LATÉRAL -->
+    <!-- MENU LATÉRAL STRUCTURÉ ET PROFESSIONNEL -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden transition-opacity"></div>
     <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
@@ -60,22 +60,25 @@
         </div>
         
         <div class="space-y-5 text-xs">
+            <!-- CATÉGORIE A : NAVIGATION PRINCIPALE -->
             <div class="space-y-1">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pb-1">Navigation Principale</p>
                 <button onclick="switchTab('home')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
                 <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-green-400"></i> Soutenir & Parrainer</button>
-                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Rechercher une personne</button>
+                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / QR code</button>
             </div>
 
+            <!-- CATÉGORIE B : GESTION DES BÉNÉFICIAIRES -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Gestion des Bénéficiaires</p>
                 <button onclick="switchTab('children')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (BKDD-E)</button>
                 <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (BKDD-V)</button>
             </div>
 
+            <!-- CATÉGORIE C : ORGANISATION PANAFRICAINE -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Organisation Panafricaine</p>
-                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Activités & Programmes</button>
+                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Gestion des Activités & Programmes</button>
                 <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 pays)</button>
                 <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center justify-between transition cursor-pointer">
                     <span class="flex items-center gap-2.5"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</span>
@@ -84,11 +87,14 @@
                 <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Rapports</button>
             </div>
 
+            <!-- CATÉGORIE D : MON ESPACE -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Mon Espace</p>
                 <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-blue-400"></i> Mon Profil & Espace Sponsor</button>
+                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="settings" class="w-4 h-4 text-purple-400"></i> Paramètres & Sécurité</button>
             </div>
 
+            <!-- CATÉGORIE E : ADMINISTRATION -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80 pb-6">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Administration</p>
                 <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
@@ -121,47 +127,45 @@
 
         <!-- SECT 1 : ACCUEIL -->
         <section id="sec-home" class="space-y-6">
-            <div class="bg-slate-900 text-white rounded-3xl p-5 md:p-10 shadow-2xl space-y-5 border border-slate-800 relative overflow-hidden w-full">
+            <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-12 shadow-2xl space-y-6 border border-slate-800 relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="space-y-3 relative z-10 w-full overflow-hidden break-words">
-                    <span class="text-[9px] md:text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1.5 rounded-full border border-green-500/30 uppercase tracking-widest inline-block">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
-                    <h1 class="text-lg sm:text-2xl md:text-3xl font-black mt-2 leading-snug tracking-tight text-white uppercase break-words">
-                        SOUTENEZ UN ENFANT, AIDEZ UNE VEUVE, CHANGEZ UNE VIE
-                    </h1>
-                    <p class="text-xs text-slate-300 max-w-3xl leading-relaxed pt-1">
+                <div class="space-y-3 relative z-10">
+                    <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1.5 rounded-full border border-green-500/30 uppercase tracking-widest">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
+                    <h1 class="text-2xl md:text-5xl font-black mt-2 leading-tight">SOUTENEZ UN ENFANT, AIDEZ UNE VEUVE, CHANGEZ UNE VIE</h1>
+                    <p class="text-xs md:text-sm text-slate-300 max-w-3xl leading-relaxed pt-2">
                         Avec DIEUDONNÉ CARE PANAFRICAIN, contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
-                    <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 hover:bg-green-500 text-white p-3.5 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="baby" class="w-4 h-4"></i> <span>Parrainer un enfant</span>
+                    <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                        <i data-lucide="baby" class="w-5 h-5"></i> <span>Parrainer un enfant</span>
                     </button>
-                    <button onclick="switchTab('sponsoring-hub')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-3.5 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="users" class="w-4 h-4"></i> <span>Soutenir une veuve</span>
+                    <button onclick="switchTab('sponsoring-hub')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                        <i data-lucide="users" class="w-5 h-5"></i> <span>Soutenir une veuve</span>
                     </button>
-                    <button onclick="openFormForCause('Don Direct & Libre - Centre Dieudonné')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-3.5 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
-                        <i data-lucide="heart" class="w-4 h-4"></i> <span>Faire un don direct</span>
+                    <button onclick="openFormForCause('Don Direct & Libre - Centre Dieudonné')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                        <i data-lucide="heart" class="w-5 h-5"></i> <span>Faire un don direct</span>
                     </button>
                 </div>
             </div>
 
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Enfants Suivis</p><p id="stat-children-count" class="text-2xl font-black text-slate-900 mt-1">0</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"><i data-lucide="baby" class="w-5 h-5"></i></div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Enfants Suivis</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="baby" class="w-5 h-5"></i></div>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Veuves Aidées</p><p id="stat-widows-count" class="text-2xl font-black text-slate-900 mt-1">0</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0"><i data-lucide="users" class="w-5 h-5"></i></div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Veuves Aidées</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i data-lucide="users" class="w-5 h-5"></i></div>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Agents Actifs</p><p id="stat-agents-count" class="text-2xl font-black text-slate-900 mt-1">0</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0"><i data-lucide="user-check" class="w-5 h-5"></i></div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Agents Actifs</p><p id="stat-agents-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center"><i data-lucide="user-check" class="w-5 h-5"></i></div>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Pays Couverts</p><p class="text-2xl font-black text-green-600 mt-1">54</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center shrink-0"><i data-lucide="globe" class="w-5 h-5"></i></div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Pays Couverts</p><p class="text-3xl font-black text-green-600 mt-1">54</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i data-lucide="globe" class="w-5 h-5"></i></div>
                 </div>
             </div>
 
@@ -169,10 +173,10 @@
             <div class="space-y-4 pt-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h3 class="text-base md:text-lg font-black text-slate-900">Enfants et Veuves en attente de parrainage</h3>
+                        <h3 class="text-lg font-black text-slate-900">Enfants et Veuves en attente de parrainage</h3>
                         <p class="text-xs text-slate-500">Choisissez un profil ci-dessous et parrainez directement sa prise en charge.</p>
                     </div>
-                    <button onclick="switchTab('sponsoring-hub')" class="text-xs font-bold text-green-600 hover:underline">Voir tout →</button>
+                    <button onclick="switchTab('sponsoring-hub')" class="text-xs font-bold text-green-600 hover:underline">Voir tout le catalogue →</button>
                 </div>
                 <div id="home-featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
             </div>
@@ -183,7 +187,7 @@
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-800 shadow-xl space-y-4 text-center">
                 <div class="w-14 h-14 mx-auto rounded-2xl bg-green-600/20 border border-green-500/30 flex items-center justify-center text-green-400"><i data-lucide="heart-handshake" class="w-7 h-7"></i></div>
                 <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">ESPACE DONATEUR & SOUTIEN CIBLÉ</span>
-                <h2 class="text-xl md:text-3xl font-black">Choisissez précisément le besoin que vous souhaitez financer</h2>
+                <h2 class="text-2xl md:text-3xl font-black">Choisissez précisément le besoin que vous souhaitez financer</h2>
                 <p class="text-xs text-slate-300 max-w-xl mx-auto leading-relaxed">Sélectionnez directement un sous-besoin ci-dessous pour ouvrir le formulaire de contribution sécurisé.</p>
             </div>
 
@@ -272,62 +276,253 @@
             </div>
         </div>
 
-        <!-- MODULE RECHERCHE PROFESSIONNEL -->
-        <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
-            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4 border border-slate-800">
-                <div class="space-y-2">
-                    <span class="text-[10px] font-extrabold bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full border border-amber-500/30 uppercase tracking-widest">CENTRE DE VÉRIFICATION</span>
-                    <h2 class="text-xl md:text-2xl font-black">Rechercher une personne</h2>
-                    <p class="text-xs text-slate-300">Retrouvez rapidement un dossier grâce à son matricule unique (Ex: BKDD-E01, BKDD-V01, BKDD-A01).</p>
+        <!-- MODAL DÉTAILS & CONTACTS DE LA BRANCHE / PROGRAMME -->
+        <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+            <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Détails, Tâches & Contacts</h3>
+                    <button onclick="closeBranchModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
                 </div>
-                
-                <div class="flex flex-col md:flex-row gap-2 pt-2">
-                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none focus:border-amber-400 transition">
-                    <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer shadow flex items-center justify-center gap-2 shrink-0">
-                        <i data-lucide="search" class="w-4 h-4"></i> <span>Rechercher</span>
-                    </button>
+                <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
+            </div>
+        </div>
+
+        <!-- RECHERCHE PAR ID -->
+        <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
+                <h2 class="text-xl font-bold">Recherche par Matricule Unique</h2>
+                <div class="flex gap-2 pt-2">
+                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
+                    <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer">Chercher</button>
                 </div>
             </div>
-
-            <div id="search-result-card" class="hidden bg-white p-6 rounded-3xl border shadow-lg space-y-4"></div>
+            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
         </section>
 
-        <!-- MODULE ACTIVITÉS & PROGRAMMES -->
+        <!-- GESTION DES ACTIVITÉS & 8 BRANCHES PANAFRICAINES -->
         <section id="sec-team" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
                         <span class="text-[10px] font-extrabold bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 uppercase tracking-widest">CENTRE OPÉRATIONNEL PANAFRICAIN</span>
-                        <h2 class="text-2xl md:text-3xl font-black mt-2">Activités & Programmes</h2>
-                        <p class="text-xs text-slate-300 leading-relaxed pt-1">Consultez les programmes et suivez les équipes à travers les 8 branches de l'organisation.</p>
+                        <h2 class="text-2xl md:text-3xl font-black mt-2">GESTION DES ACTIVITÉS & 8 BRANCHES</h2>
+                        <p class="text-xs text-slate-300 leading-relaxed pt-1">Explorez les 8 grandes branches de l'organisation pour accéder aux programmes, aux tâches et au personnel affecté.</p>
                     </div>
+                    <button onclick="openForm('agent')" class="flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs cursor-pointer shadow shrink-0">
+                        <i data-lucide="user-plus" class="w-4 h-4"></i> Enregistrer un agent
+                    </button>
                 </div>
             </div>
+
+            <!-- VUE DES 8 GRANDES BRANCHES (CARTES ILLUSTRÉES) -->
             <div id="branches-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+
+            <!-- VUE DES PROGRAMMES DE LA BRANCHE SÉLECTIONNÉE (CACHÉE PAR DÉFAUT) -->
+            <div id="branch-details-view" class="hidden space-y-4">
+                <button onclick="backToBranchesGrid()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 cursor-pointer">
+                    ← Retour aux 8 branches
+                </button>
+                <div id="branch-details-content" class="space-y-4"></div>
+            </div>
         </section>
 
         <!-- MON PROFIL & ESPACE SPONSOR -->
         <section id="sec-profile" class="hidden space-y-6 max-w-4xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
-                <span class="text-[10px] font-extrabold bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">ESPACE PERSONNEL</span>
+                <span class="text-[10px] font-extrabold bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">ESPACE PERSONNEL & TABLEAU DE BORD</span>
                 <h2 class="text-2xl md:text-3xl font-black mt-2">Mon Profil & Espace Sponsor</h2>
-                <p class="text-xs text-slate-300">Gérez vos informations personnelles et vos parrainages en toute sécurité.</p>
+                <p class="text-xs text-slate-300">Gérez vos informations personnelles, vos parrainages, vos dons et vos reçus officiels en toute sécurité.</p>
             </div>
+
             <div id="profile-card" class="space-y-6"></div>
         </section>
 
-        <!-- REGISTRES ENFANTS ET VEUVES -->
+        <!-- NOUVEAU MODULE : NOTIFICATIONS & ALERTES (CENTRE OPÉRATIONNEL) -->
+        <section id="sec-notifications" class="hidden space-y-6 max-w-5xl mx-auto">
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="text-[10px] font-extrabold bg-pink-500/20 text-pink-300 px-3 py-1.5 rounded-full border border-pink-500/30 uppercase tracking-widest">CENTRE DE SUIVI PANAFRICAIN</span>
+                        <h2 class="text-2xl md:text-3xl font-black mt-2">Notifications & Alertes</h2>
+                        <p class="text-xs text-slate-300 max-w-2xl leading-relaxed pt-1">Supervision en temps réel des alertes, signalements d'urgence, validations de dossiers et activités des 54 pays.</p>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button onclick="markAllNotificationsAsRead()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-3.5 py-2.5 rounded-xl text-xs transition cursor-pointer border border-slate-700 flex items-center gap-1.5 shadow">
+                            <i data-lucide="check-check" class="w-4 h-4 text-green-400"></i> Tout marquer comme lu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STATISTIQUES DE NOTIFICATIONS -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
+                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Non lues</p>
+                            <p id="notif-stat-unread" class="text-2xl font-black text-pink-400 mt-0.5">0</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center"><i data-lucide="bell" class="w-4 h-4"></i></div>
+                    </div>
+                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Urgentes</p>
+                            <p id="notif-stat-urgent" class="text-2xl font-black text-red-400 mt-0.5">0</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center"><i data-lucide="alert-triangle" class="w-4 h-4"></i></div>
+                    </div>
+                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Aujourd'hui</p>
+                            <p id="notif-stat-today" class="text-2xl font-black text-amber-400 mt-0.5">0</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center"><i data-lucide="calendar" class="w-4 h-4"></i></div>
+                    </div>
+                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total</p>
+                            <p id="notif-stat-total" class="text-2xl font-black text-green-400 mt-0.5">0</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-xl bg-green-500/10 text-green-400 flex items-center justify-center"><i data-lucide="layers" class="w-4 h-4"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FILTRES DE RECHERCHE ET CATÉGORIES -->
+            <div class="bg-white p-4 rounded-3xl border shadow-sm space-y-4">
+                <div class="flex flex-col md:flex-row gap-3 justify-between items-center">
+                    <div class="flex items-center gap-1.5 overflow-x-auto w-full pb-2 md:pb-0" id="notif-filter-buttons">
+                        <button onclick="filterNotifications('all')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white whitespace-nowrap transition cursor-pointer">Toutes</button>
+                        <button onclick="filterNotifications('unread')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition cursor-pointer">Non lues</button>
+                        <button onclick="filterNotifications('urgente')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition cursor-pointer">Urgentes</button>
+                        <button onclick="filterNotifications('importante')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition cursor-pointer">Importantes</button>
+                        <button onclick="filterNotifications('information')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition cursor-pointer">Informations</button>
+                        <button onclick="filterNotifications('traitee')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition cursor-pointer">Traitées</button>
+                    </div>
+                    <div class="w-full md:w-72 shrink-0">
+                        <input type="text" id="notif-search-input" oninput="renderNotificationsList()" placeholder="Rechercher une alerte..." class="w-full bg-slate-50 border border-slate-200 p-2.5 rounded-xl text-xs focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- LISTE DES NOTIFICATIONS -->
+                <div id="notifications-container" class="space-y-3 pt-2">
+                    <!-- Rempli dynamiquement -->
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTRES SECTIONS -->
         <section id="sec-children" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-xl md:text-2xl font-black">Registre Public des Enfants (BKDD-E)</h2></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Enfants (BKDD-E)</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
             <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
         <section id="sec-widows" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-xl md:text-2xl font-black">Registre Public des Veuves (BKDD-V)</h2></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Veuves (BKDD-V)</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
             <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
+        <section id="sec-countries" class="hidden space-y-6">
+            <h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2>
+            <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-3">
+                <p class="text-xs text-slate-600">Coordination centralisée depuis Bukavu (RDC).</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pt-2" id="countries-list-container"></div>
+            </div>
+        </section>
+
+        <section id="sec-reports" class="hidden space-y-6 max-w-4xl mx-auto">
+            <div class="bg-white p-6 md:p-8 rounded-3xl border shadow-sm space-y-6">
+                <div>
+                    <span class="text-[10px] font-extrabold bg-amber-100 text-amber-800 px-3 py-1 rounded-full uppercase tracking-widest">TRANSPARENCE</span>
+                    <h2 class="text-2xl font-black text-slate-900 mt-2">Rapports & Transparence Financière</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="p-4 bg-slate-50 border rounded-2xl space-y-2"><h4 class="font-black text-slate-900 text-sm">💰 Dons Totaux Enregistrés</h4><p id="report-promis-val" class="text-lg font-mono font-bold text-slate-800">Calcul...</p></div>
+                    <div class="p-4 bg-green-50 border border-green-200 rounded-2xl space-y-2"><h4 class="font-black text-green-900 text-sm">✅ Paiements Confirmés</h4><p id="report-confirmed-val" class="text-lg font-mono font-bold text-green-700">Calcul...</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sec-admin" class="hidden space-y-6">
+            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
+                <div><h2 class="text-xl font-black text-green-400">Administration Centrale</h2><p class="text-xs text-slate-400">Gestion sécurisée.</p></div>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-3">
+                <h3 class="font-bold text-slate-900 text-sm">Enregistrements</h3>
+                <div id="admin-master-list" class="space-y-2 text-xs"></div>
+            </div>
+        </section>
+
     </main>
+
+    <!-- FORMULAIRES DE SAISIE -->
+    <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant</h3><button onclick="closeForm('child')" class="p-2 font-bold cursor-pointer">✕</button></div>
+            <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-green-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Enfant</label><input type="file" id="c-photo" accept="image/*" class="w-full text-[10px]"></div>
+                    <div class="bg-emerald-50 p-3 rounded-xl border"><label class="font-bold">🏠 Photo Famille</label><input type="file" id="c-family-photo" accept="image/*" class="w-full text-[10px]"></div>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    <div><label class="font-bold">Prénom *</label><input type="text" id="c-firstname" required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Nom *</label><input type="text" id="c-lastname" required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Post-nom</label><input type="text" id="c-postname" class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Sexe *</label><select id="c-gender" class="w-full p-2 border rounded bg-white"><option value="M">Masculin</option><option value="F">Féminin</option></select></div>
+                    <div><label class="font-bold">Âge *</label><input type="number" id="c-age" required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">ID Famille</label><input type="text" id="c-famid" value="FAM0001" required class="w-full p-2 border rounded font-mono bg-white"></div>
+                    <div><label class="font-bold">Pays *</label><select id="c-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
+                    <div><label class="font-bold">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded bg-white"></div>
+                </div>
+                <button type="button" onclick="saveChildForm()" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Veuve</h3><button onclick="closeForm('widow')" class="p-2 font-bold cursor-pointer">✕</button></div>
+            <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-emerald-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Veuve</label><input type="file" id="w-photo" accept="image/*" class="w-full text-[10px]"></div>
+                    <div class="bg-teal-50 p-3 rounded-xl border"><label class="font-bold">🏠 Photo Foyer</label><input type="file" id="w-family-photo" accept="image/*" class="w-full text-[10px]"></div>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    <div><label class="font-bold">Prénom *</label><input type="text" id="w-firstname" required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Nom *</label><input type="text" id="w-lastname" required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Post-nom</label><input type="text" id="w-postname" class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Âge</label><input type="number" id="w-age" class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">ID Famille</label><input type="text" id="w-famid" value="FAM0001" required class="w-full p-2 border rounded font-mono bg-white"></div>
+                    <div><label class="font-bold">Téléphone</label><input type="text" id="w-phone" class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Pays *</label><select id="w-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
+                    <div><label class="font-bold">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
+                </div>
+                <button type="button" onclick="saveWidowForm()" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent</h3><button onclick="closeForm('agent')" class="p-2 font-bold cursor-pointer">✕</button></div>
+            <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-24">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-purple-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Agent</label><input type="file" id="a-photo" accept="image/*" class="w-full text-[10px]"></div>
+                    <div class="bg-indigo-50 p-3 rounded-xl border"><label class="font-bold">🏢 Photo Bureau</label><input type="file" id="a-family-photo" accept="image/*" class="w-full text-[10px]"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Branche *</label><select id="a-branch" onchange="updateSubactivityOptions()" class="w-full p-2 border rounded bg-white font-bold"></select></div>
+                    <div><label class="font-bold">Sous-programme *</label><select id="a-subactivity" class="w-full p-2 border rounded bg-white font-bold"></select></div>
+                    <div><label class="font-bold">Fonction *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Matériel</label><input type="text" id="a-equipments" class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
+                    <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
+                </div>
+                <button type="button" onclick="saveAgentForm()" class="w-full bg-purple-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-6">Enregistrer</button>
+            </div>
+        </div>
+    </div>
 
     <!-- AUTH MODAL -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
@@ -342,6 +537,491 @@
     </div>
 
     <script>
+        const africanCountries = [
+            "République Démocratique du Congo (RDC)", "Afrique du Sud", "Algérie", "Angola", "Bénin", 
+            "Botswana", "Burkina Faso", "Burundi", "Cameroun", "Cap-Vert", "République Centrafricaine", 
+            "Comores", "Congo-Brazzaville", "Côte d'Ivoire", "Djibouti", "Égypte", "Érythrée", "Eswatini", 
+            "Éthiopie", "Gabon", "Gambie", "Ghana", "Guinée", "Guinée-Bissau", "Guinée équatoriale", "Kenya", 
+            "Lesotho", "Liberia", "Libye", "Madagascar", "Malawi", "Mali", "Maroc", "Maurice", "Mauritanie", 
+            "Mozambique", "Namibie", "Niger", "Nigeria", "Ouganda", "Rwanda", "São Tomé-et-Príncipe", "Sénégal", 
+            "Seychelles", "Sierra Leone", "Somalie", "Soudan", "Soudan du Sud", "Tanzanie", "Tchad", "Togo", 
+            "Tunisie", "Zambie", "Zimbabwe"
+        ];
+
+        const structureData = [
+            {
+                id: "branch-1",
+                title: "01. Éducation & Scolarité",
+                photo: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&auto=format&fit=crop&q=60",
+                description: "Frais scolaires, inscriptions, manuels, fournitures, tutorat, informatique et orientation.",
+                items: [
+                    { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", procedure: "L’enfant est inscrit via un agent, les frais sont enregistrés et suivis.", activities: "Paiement, suivi des reçus, aide aux familles vulnérables." },
+                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables pour chaque élève.", procedure: "Recensement des besoins scolaires par classe et distribution contrôlée.", activities: "Achat de manuels, constitution des kits, distribution et inventaire." },
+                    { name: "Fournitures scolaires", objective: "Garantir la disponibilité du matériel de papeterie (cahiers, stylos, sacs).", procedure: "Évaluation des besoins par période scolaire et dotation directe.", activities: "Gestion des stocks de papeterie, préparation des lots, remise aux élèves." },
+                    { name: "Tutorat & Accompagnement scolaire", objective: "Offrir un soutien académique pour réduire le taux d'échec scolaire.", procedure: "Identification des élèves en difficulté et mise en place de cours adaptés.", activities: "Séances de rattrapage, suivi des notes, encadrement aux devoirs." }
+                ]
+            },
+            {
+                id: "branch-2",
+                title: "02. Soins, Santé & Nutrition",
+                photo: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&auto=format&fit=crop&q=60",
+                description: "Suivi médical, pharmacie, urgences, nutrition, hygiène et soins.",
+                items: [
+                    { name: "Suivi médical & Infirmerie", objective: "Assurer un suivi sanitaire régulier et des premiers soins de qualité.", procedure: "Consultations de routine, tenue des carnets de santé et soins d'urgence.", activities: "Visites médicales, pansements, surveillance des constantes." },
+                    { name: "Nutrition & Repas équilibrés", objective: "Lutter contre la malnutrition et garantir des apports nutritionnels adéquats.", procedure: "Élaboration des menus, préparation et distribution des repas collectifs.", activities: "Planification alimentaire, contrôle de la qualité des repas." }
+                ]
+            },
+            {
+                id: "branch-3",
+                title: "03. Autonomisation & AGR",
+                photo: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=600&auto=format&fit=crop&q=60",
+                description: "Couture, petits commerces, agriculture, élevage et activités génératrices de revenus.",
+                items: [
+                    { name: "Coupe-Couture & Machines", objective: "Former aux métiers de la couture pour favoriser l'autonomie financière.", procedure: "Inscription aux ateliers, apprentissage pratique et dotation en machines.", activities: "Cours de coupe-couture, confection de vêtements, maintenance." },
+                    { name: "Petits commerces & AGR", objective: "Soutenir le lancement d'Activités Génératrices de Revenus individuelles.", procedure: "Validation de projets de micro-commerce, appui au démarrage et suivi.", activities: "Conseil en gestion commerciale, constitution du fonds de roulement." }
+                ]
+            },
+            {
+                id: "branch-4",
+                title: "04. Protection & Accompagnement social",
+                photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60",
+                description: "Protection, suivi social, soutien psychologique et accompagnement familial.",
+                items: [
+                    { name: "Assistance Sociale & Juridique", objective: "Protéger les droits fondamentaux des enfants et des veuves.", procedure: "Signalement, écoute active et intervention de terrain.", activities: "Médiation familiale, défense des droits, orientations." },
+                    { name: "Soutien Psychologique", objective: "Offrir un appui émotionnel aux personnes traumatisées ou vulnérables.", procedure: "Séances de soutien individuel ou en groupe.", activities: "Écoute, thérapie par l'art, résilience." }
+                ]
+            },
+            {
+                id: "branch-5",
+                title: "05. Sport, Culture & Développement des talents",
+                photo: "https://images.unsplash.com/photo-1517649763962-0c6232660102?w=600&auto=format&fit=crop&q=60",
+                description: "Sport, musique, danse, théâtre, dessin, loisirs et talents.",
+                items: [
+                    { name: "Tournois & Activités Sportives", objective: "Favoriser la cohésion sociale et la santé par le sport.", procedure: "Organisation de championnats de football et sports collectifs.", activities: "Entraînements, compétitions inter-centres, dotation en équipements." },
+                    { name: "Arts, Musique & Théâtre", objective: "Développer l'expression artistique et culturelle des jeunes.", procedure: "Ateliers de musique, chant, théâtre et peinture.", activities: "Répétitions, représentations publiques, expositions." }
+                ]
+            },
+            {
+                id: "branch-6",
+                title: "06. Hébergement, Hygiène & Logistique",
+                photo: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop&q=60",
+                description: "Logement, literie, vêtements, hygiène, eau potable, équipements et stocks.",
+                items: [
+                    { name: "Gestion des Stocks & Vivres", objective: "Garantir la disponibilité des biens de première nécessité.", procedure: "Inventaire régulier, stockage sécurisé et approvisionnement.", activities: "Réception des marchandises, gestion des entrepôts." },
+                    { name: "Assassinement & Eau Potable", objective: "Assurer un environnement de vie sain et sécurisé.", procedure: "Nettoyage des infrastructures, contrôle de l'eau.", activities: "Distribution d'hygiène, traitement de l'eau." }
+                ]
+            },
+            {
+                id: "branch-7",
+                title: "07. Formation, Emploi & Autonomie",
+                photo: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60",
+                description: "Formation professionnelle, compétences numériques, stages, orientation et préparation à la vie adulte.",
+                items: [
+                    { name: "Initiation Informatique & Numérique", objective: "Maîtriser les outils informatiques de base.", procedure: "Cours pratiques en salle multimédia.", activities: "Apprentissage traitement de texte, internet, bureautique." },
+                    { name: "Orientation & Stages professionnels", objective: "Préparer l'insertion professionnelle des jeunes majeurs.", procedure: "Partenariats avec des entreprises locales.", activities: "Bilan de compétences, stages d'immersion, coaching." }
+                ]
+            },
+            {
+                id: "branch-8",
+                title: "08. Administration, Finances & Partenariats",
+                photo: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=60",
+                description: "Personnel, budgets, achats, comptabilité, rapports, partenariats et coordination panafricaine.",
+                items: [
+                    { name: "Coordination & Gestion Administrative", objective: "Superviser l'ensemble des opérations panafricaines.", procedure: "Réunions de pilotage et validation des procédures.", activities: "Gestion des plannings, suivi des rapports, secrétariat." },
+                    { name: "Finances, Dons & Partenariats", objective: "Assurer la transparence financière et la recherche de fonds.", procedure: "Tenue de la comptabilité et gestion des donateurs.", activities: "Établissement des reçus, bilans financiers, relations partenaires." }
+                ]
+            }
+        ];
+
+        const OFFICIAL_WHATSAPP_NUMBER = "256792994716";
+        let currentNotificationFilter = 'all';
+
+        function copyMtnNumber() {
+            const numToCopy = "+256792994716";
+            navigator.clipboard.writeText(numToCopy).then(() => {
+                alert("Numéro MTN copié dans le presse-papier : " + numToCopy);
+            }).catch(err => {
+                alert("Erreur lors de la copie : " + err);
+            });
+        }
+
+        function openFormForCause(causeName) {
+            const modal = document.getElementById('modal-sponsoring-action');
+            const title = document.getElementById('modal-sponsoring-title');
+            const body = document.getElementById('modal-sponsoring-body');
+
+            title.innerText = `Validation du Paiement`;
+            modal.classList.replace('hidden', 'flex');
+
+            body.innerHTML = `
+                <div class="space-y-4 text-slate-700">
+                    <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-2xl space-y-1 text-xs text-emerald-950">
+                        <p class="font-black text-emerald-900 text-xs flex items-center gap-1.5">
+                            <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${causeName}</strong>
+                        </p>
+                        <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision du Centre Dieudonné.</p>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
+                        <p class="font-extrabold text-amber-950 flex items-center gap-1">📌 Instructions pour effectuer le transfert :</p>
+                        <ol class="list-decimal pl-4 space-y-1 text-[11px]">
+                            <li>Cliquez sur <strong>« Copier le numéro »</strong> pour éviter toute erreur de frappe.</li>
+                            <li>Effectuez votre transfert MTN vers ce numéro (ou composez <strong>*165#</strong>).</li>
+                            <li>Récupérez l'<strong>ID de transaction (Référence)</strong> reçu par SMS de MTN.</li>
+                            <li>Remplissez le formulaire ci-dessous et validez.</li>
+                        </ol>
+                    </div>
+
+                    <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3">
+                        <div class="border-b border-slate-800 pb-2 flex justify-between items-center">
+                            <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉRO DE TRANSFERT OFFICIEL</span>
+                            <span class="text-[9px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded font-mono font-bold">Actif</span>
+                        </div>
+                        
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-amber-500/10 border border-amber-500/40 p-3.5 rounded-xl space-y-2">
+                                <span class="font-black text-amber-400">💛 MTN Mobile Money (DISPONIBLE)</span>
+                                <p class="text-base font-mono font-black text-white tracking-wider">+256 792994716</p>
+                                <p class="text-[10px] text-amber-200">Nom du compte : <strong>GABRIEL MUSHAGALUSA</strong></p>
+                                
+                                <div class="grid grid-cols-2 gap-2 pt-2">
+                                    <button type="button" onclick="copyMtnNumber()" class="bg-green-600 hover:bg-green-500 text-white font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
+                                        📋 Copier le numéro
+                                    </button>
+                                    <a href="tel:*165#" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
+                                        📲 Menu (*165#)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs bg-slate-50 p-4 rounded-2xl border">
+                        <h4 class="font-black text-slate-900 text-xs">Saisir les détails de votre transfert effectué</h4>
+                        <div>
+                            <label class="font-bold block mb-1">Nom complet / Donateur :</label>
+                            <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
+                        </div>
+                        
+                        <div>
+                            <label class="font-bold block mb-1">Email ou Téléphone de contact :</label>
+                            <input type="text" id="don-email" placeholder="votre@email.com ou +243..." class="w-full p-2.5 border rounded-xl bg-white">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="font-bold block mb-1">Montant envoyé :</label>
+                                <input type="number" id="don-amount" placeholder="50" class="w-full p-2.5 border rounded-xl bg-white">
+                            </div>
+                            <div>
+                                <label class="font-bold block mb-1">Devise :</label>
+                                <select id="don-currency" class="w-full p-2.5 border rounded-xl bg-white font-bold">
+                                    <option value="USD">USD ($)</option>
+                                    <option value="UGX">UGX (Shilling Ougandais)</option>
+                                    <option value="CDF">CDF (Franc Congolais)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="font-bold block mb-1 text-green-700">Référence / ID de transaction Mobile Money * :</label>
+                            <input type="text" id="don-transid" placeholder="Ex: 254896321 (ID reçu par SMS)" class="w-full p-2.5 border border-green-500 rounded-xl bg-white font-mono font-bold text-slate-900">
+                            <p class="text-[9px] text-slate-500 mt-0.5">Entrez le code de confirmation reçu par SMS après votre transfert.</p>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="submitDonation('${causeName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs uppercase tracking-wider">Confirmer mon transfert</button>
+                </div>
+            `;
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function closeSponsoringModal() {
+            document.getElementById('modal-sponsoring-action').classList.replace('flex', 'hidden');
+        }
+
+        async function submitDonation(cause) {
+            const name = document.getElementById('don-name').value || "Anonyme";
+            const email = document.getElementById('don-email').value || "Non fourni";
+            const amount = parseFloat(document.getElementById('don-amount').value) || 0;
+            const currency = document.getElementById('don-currency').value;
+            const transId = document.getElementById('don-transid').value.trim();
+            const currentUser = auth.currentUser;
+
+            if (amount <= 0) { alert("Veuillez entrer un montant valide."); return; }
+            if (!transId) { alert("Veuillez saisir la référence/ID de la transaction reçue par SMS pour nous permettre de valider votre don."); return; }
+
+            try {
+                const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
+                await db.collection("donations").add({
+                    refId, name, email, amount, currency, cause,
+                    transId: transId,
+                    userId: currentUser ? currentUser.uid : 'anonymous',
+                    userEmail: currentUser ? currentUser.email : email,
+                    paymentMethod: "MTN Mobile Money (+256792994716)",
+                    status: "pending",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // Création automatique d'une notification pour l'administration
+                await createSystemNotification({
+                    title: "Nouveau Don Déclaré",
+                    message: `${name} a déclaré un don de ${amount} ${currency} pour [${cause}]. Réf: ${transId}`,
+                    category: "Sponsors, Dons & Partenariats",
+                    priority: "importante",
+                    targetRole: "admin"
+                });
+
+                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nVotre don est enregistré en attente de confirmation par l'administration.`);
+                closeSponsoringModal();
+                updateFinancialReports();
+                if (currentUser) updateProfileCard(currentUser);
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        // --- GESTION DES NOTIFICATIONS AUTOMATIQUES ET DU CENTRE ---
+        async function createSystemNotification(notifData) {
+            try {
+                await db.collection("notifications").add({
+                    title: notifData.title,
+                    message: notifData.message,
+                    category: notifData.category || "Système & Technique",
+                    priority: notifData.priority || "information", // urgente, importante, information, confirmation
+                    status: "nouvelle", // nouvelle, en_cours, resolue, cloturee
+                    isRead: false,
+                    targetRole: notifData.targetRole || "all",
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    actionHistory: [{ action: "Création automatique", date: new Date().toISOString() }]
+                });
+                updateNotificationBadges();
+            } catch (e) {
+                console.error("Erreur création notification:", e);
+            }
+        }
+
+        async function updateNotificationBadges() {
+            try {
+                const snap = await db.collection("notifications").get();
+                let unreadCount = 0;
+                snap.forEach(doc => {
+                    if (!doc.data().isRead) unreadCount++;
+                });
+
+                const badge = document.getElementById('sidebar-notif-badge');
+                if (badge) {
+                    if (unreadCount > 0) {
+                        badge.innerText = unreadCount;
+                        badge.classList.remove('hidden');
+                    } else {
+                        badge.classList.add('hidden');
+                    }
+                }
+            } catch (e) {
+                console.error("Erreur badge:", e);
+            }
+        }
+
+        function filterNotifications(filter) {
+            currentNotificationFilter = filter;
+            document.querySelectorAll('.notif-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-slate-900', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            event.target.classList.remove('bg-slate-100', 'text-slate-700');
+            event.target.classList.add('bg-slate-900', 'text-white');
+            renderNotificationsList();
+        }
+
+        async function renderNotificationsList() {
+            const container = document.getElementById('notifications-container');
+            const searchInput = document.getElementById('notif-search-input');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            if (!container) return;
+
+            container.innerHTML = `<div class="text-center py-8 text-xs text-slate-400">Chargement des notifications...</div>`;
+
+            try {
+                const snap = await db.collection("notifications").orderBy("createdAt", "desc").get();
+                let notifications = [];
+                let unreadCount = 0;
+                let urgentCount = 0;
+                let todayCount = 0;
+                let totalCount = 0;
+
+                const todayStr = new Date().toDateString();
+
+                snap.forEach(doc => {
+                    const data = { id: doc.id, ...doc.data() };
+                    totalCount++;
+                    if (!data.isRead) unreadCount++;
+                    if (data.priority === 'urgente' && data.status !== 'cloturee') urgentCount++;
+                    
+                    const notifDate = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
+                    if (notifDate.toDateString() === todayStr) todayCount++;
+
+                    // Filtrage
+                    let matchesFilter = true;
+                    if (currentNotificationFilter === 'unread') matchesFilter = !data.isRead;
+                    else if (currentNotificationFilter === 'urgente') matchesFilter = data.priority === 'urgente';
+                    else if (currentNotificationFilter === 'importante') matchesFilter = data.priority === 'importante';
+                    else if (currentNotificationFilter === 'information') matchesFilter = data.priority === 'information';
+                    else if (currentNotificationFilter === 'traitee') matchesFilter = data.status === 'resolue' || data.status === 'cloturee';
+
+                    let matchesSearch = true;
+                    if (searchTerm) {
+                        matchesSearch = (data.title && data.title.toLowerCase().includes(searchTerm)) ||
+                                        (data.message && data.message.toLowerCase().includes(searchTerm)) ||
+                                        (data.category && data.category.toLowerCase().includes(searchTerm));
+                    }
+
+                    if (matchesFilter && matchesSearch) {
+                        notifications.push(data);
+                    }
+                });
+
+                // Mise à jour des compteurs en haut
+                document.getElementById('notif-stat-unread').innerText = unreadCount;
+                document.getElementById('notif-stat-urgent').innerText = urgentCount;
+                document.getElementById('notif-stat-today').innerText = todayCount;
+                document.getElementById('notif-stat-total').innerText = totalCount;
+                updateNotificationBadges();
+
+                if (notifications.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-12 space-y-3 bg-slate-50 rounded-2xl border">
+                            <div class="w-12 h-12 mx-auto rounded-full bg-slate-200 text-slate-600 flex items-center justify-center"><i data-lucide="bell-off" class="w-6 h-6"></i></div>
+                            <p class="text-xs font-bold text-slate-700">Aucune notification correspondante</p>
+                            <p class="text-[11px] text-slate-500">Le système n'enregistre aucune alerte dans cette catégorie pour le moment.</p>
+                        </div>
+                    `;
+                    if (window.lucide) lucide.createIcons();
+                    return;
+                }
+
+                container.innerHTML = '';
+                notifications.forEach(n => {
+                    const dateFormatted = n.createdAt?.toDate ? n.createdAt.toDate().toLocaleString() : 'Récemment';
+                    
+                    // Couleur selon priorité
+                    let priorityBadge = '';
+                    if (n.priority === 'urgente') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-red-100 text-red-800 uppercase">Urgente</span>`;
+                    else if (n.priority === 'importante') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-amber-100 text-amber-800 uppercase">Importante</span>`;
+                    else if (n.priority === 'confirmation') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-green-100 text-green-800 uppercase">Confirmation</span>`;
+                    else priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-blue-100 text-blue-800 uppercase">Info</span>`;
+
+                    let statusBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-slate-100 text-slate-700">${n.status || 'nouvelle'}</span>`;
+                    if (n.status === 'resolue') statusBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-emerald-100 text-emerald-800">Résolue</span>`;
+                    if (n.status === 'en_cours') statusBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-purple-100 text-purple-800">En cours</span>`;
+
+                    container.innerHTML += `
+                        <div class="p-4 rounded-2xl border transition ${n.isRead ? 'bg-white border-slate-200' : 'bg-slate-50/90 border-slate-300 shadow-sm'} space-y-3">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="text-[10px] font-bold text-slate-400 font-mono">${dateFormatted}</span>
+                                    ${priorityBadge}
+                                    <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold">${n.category || 'Général'}</span>
+                                    ${statusBadge}
+                                </div>
+                                <div class="flex items-center gap-1.5 self-end md:self-auto">
+                                    <button onclick="toggleNotificationRead('${n.id}', ${!n.isRead})" class="p-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[10px] font-bold cursor-pointer transition" title="Marquer lu/non lu">
+                                        ${n.isRead ? '✉️ Non lu' : '📩 Lu'}
+                                    </button>
+                                    <button onclick="changeNotificationStatus('${n.id}', 'resolue')" class="p-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg text-[10px] font-bold cursor-pointer transition">
+                                        ✅ Résoudre
+                                    </button>
+                                    <button onclick="deleteNotification('${n.id}')" class="p-1.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg text-[10px] font-bold cursor-pointer transition" title="Supprimer">
+                                        🗑️
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <h4 class="font-black text-slate-900 text-xs md:text-sm">${n.title}</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed">${n.message}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                if (window.lucide) lucide.createIcons();
+            } catch (e) {
+                console.error("Erreur chargement notifications:", e);
+                container.innerHTML = `<p class="text-xs text-red-500 text-center py-4">Erreur de chargement des alertes.</p>`;
+            }
+        }
+
+        async function toggleNotificationRead(id, isRead) {
+            try {
+                await db.collection("notifications").doc(id).update({ isRead });
+                renderNotificationsList();
+            } catch (e) {
+                alert("Erreur : " + e.message);
+            }
+        }
+
+        async function markAllNotificationsAsRead() {
+            try {
+                const snap = await db.collection("notifications").get();
+                const batch = db.batch();
+                snap.forEach(doc => {
+                    batch.update(doc.ref, { isRead: true });
+                });
+                await batch.commit();
+                renderNotificationsList();
+                alert("Toutes les notifications ont été marquées comme lues.");
+            } catch (e) {
+                alert("Erreur : " + e.message);
+            }
+        }
+
+        async function changeNotificationStatus(id, status) {
+            try {
+                await db.collection("notifications").doc(id).update({ status });
+                renderNotificationsList();
+            } catch (e) {
+                alert("Erreur : " + e.message);
+            }
+        }
+
+        async function deleteNotification(id) {
+            if (confirm("Voulez-vous supprimer cette notification ?")) {
+                try {
+                    await db.collection("notifications").doc(id).delete();
+                    renderNotificationsList();
+                } catch (e) {
+                    alert("Erreur : " + e.message);
+                }
+            }
+        }
+
+        function updateSubactivityOptions() {
+            const branchSelect = document.getElementById('a-branch');
+            const subSelect = document.getElementById('a-subactivity');
+            if (!branchSelect || !subSelect) return;
+
+            subSelect.innerHTML = '';
+            structureData.forEach(branch => {
+                branch.items.forEach(item => {
+                    const opt = document.createElement('option');
+                    opt.value = item.name;
+                    opt.textContent = `${branch.title} — ${item.name}`;
+                    subSelect.appendChild(opt);
+                });
+            });
+        }
+
+        function populateAfricanCountries() {
+            document.querySelectorAll('.african-countries-select').forEach(sel => {
+                sel.innerHTML = '';
+                africanCountries.forEach(country => {
+                    const opt = document.createElement('option');
+                    opt.value = country;
+                    opt.textContent = country;
+                    if (country.includes("RDC")) opt.selected = true;
+                    sel.appendChild(opt);
+                });
+            });
+        }
+
         const firebaseConfig = {
             apiKey: "AIzaSyATlu2mUJmPlmkJkVow1ap35RSl6zt30nY",
             authDomain: "dieudonne-f074d.firebaseapp.com",
@@ -363,12 +1043,14 @@
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Déconnexion</span>`;
                     document.getElementById('auth-btn').onclick = () => auth.signOut();
+                    updateProfileCard(user);
                 } else {
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Connexion</span>`;
                     document.getElementById('auth-btn').onclick = openAuthModal;
+                    updateProfileCard(null);
                 }
-                if (window.lucide) lucide.createIcons();
+                updateNotificationBadges();
             });
         }
 
@@ -382,12 +1064,25 @@
             document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
             document.getElementById('sidebar').classList.add('-translate-x-full');
             document.getElementById('sidebar-overlay').classList.add('hidden');
+
+            if (tab === 'home') loadHomeFeaturedProfiles();
+            if (tab === 'children') loadCollection('children', 'children-grid-container', true);
+            if (tab === 'widows') loadCollection('widows', 'widows-grid-container', false);
+            if (tab === 'team') { backToBranchesGrid(); }
+            if (tab === 'admin') loadAdminMasterList();
+            if (tab === 'countries') renderCountriesList();
+            if (tab === 'reports') updateFinancialReports();
+            if (tab === 'profile') updateProfileCard(auth.currentUser);
+            if (tab === 'notifications') renderNotificationsList();
+
             window.scrollTo(0, 0);
             if (window.lucide) lucide.createIcons();
         }
 
+        function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
+        function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'hidden'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
@@ -395,102 +1090,816 @@
             try {
                 await auth.signInWithEmailAndPassword(email, password);
                 closeAuthModal();
+                alert("Connexion réussie !");
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        async function executeIdSearch() {
-            const inputVal = document.getElementById('input-search-id').value.trim().toUpperCase();
-            const card = document.getElementById('search-result-card');
-            
-            card.classList.remove('hidden');
+        function renderBranchesGrid() {
+            const gridContainer = document.getElementById('branches-grid-container');
+            if (!gridContainer) return;
 
-            if (!inputVal) {
-                card.innerHTML = `
-                    <div class="p-4 bg-amber-50 border border-amber-200 rounded-2xl text-xs text-amber-900 space-y-1">
-                        <p class="font-bold">⚠️ Champ requis</p>
-                        <p>Veuillez saisir un matricule valide (ex: BKDD-E01) pour lancer la recherche.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            card.innerHTML = `
-                <div class="text-center py-8 space-y-3">
-                    <div class="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-                    <p class="text-xs font-bold text-slate-600">Recherche du dossier en cours dans la base de données panafricaine...</p>
-                </div>
-            `;
-
-            try {
-                let foundDoc = null;
-                let foundCategory = '';
-                const collectionsToSearch = [
-                    { name: 'children', label: 'Enfant Orphelin' },
-                    { name: 'widows', label: 'Veuve' },
-                    { name: 'agents', label: 'Agent / Personnel' }
-                ];
-
-                for (let col of collectionsToSearch) {
-                    const snap = await db.collection(col.name).where('matricule', '==', inputVal).get();
-                    if (!snap.empty) {
-                        foundDoc = snap.docs[0].data();
-                        foundCategory = col.label;
-                        break;
-                    }
-                }
-
-                if (foundDoc) {
-                    const isAuthorized = auth.currentUser !== null;
-                    const displayName = foundDoc.firstName 
-                        ? `${foundDoc.firstName} ${isAuthorized ? (foundDoc.lastName || '') : (foundDoc.lastName ? foundDoc.lastName.charAt(0) + '.' : '')}` 
-                        : (foundDoc.fullName || 'Nom confidentiel');
-
-                    const photoHtml = foundDoc.photo 
-                        ? `<img src="${foundDoc.photo}" class="w-full h-full object-cover">` 
-                        : `<div class="flex items-center justify-center h-full text-2xl bg-slate-100 text-slate-400">👤</div>`;
-
-                    card.innerHTML = `
-                        <div class="flex flex-col md:flex-row items-start md:items-center gap-4 border-b pb-4">
-                            <div class="w-20 h-20 bg-slate-100 rounded-2xl overflow-hidden border shrink-0 shadow-sm">${photoHtml}</div>
-                            <div class="space-y-1 flex-grow">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="font-mono bg-slate-900 text-amber-400 px-2.5 py-1 rounded-lg text-xs font-bold">${foundDoc.matricule}</span>
-                                    <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-green-100 text-green-800 uppercase">${foundCategory}</span>
-                                </div>
-                                <h3 class="font-black text-slate-900 text-base mt-1">${displayName}</h3>
-                                <p class="text-xs text-slate-500">📍 ${foundDoc.city || 'Bukavu'}, ${foundDoc.country || 'République Démocratique du Congo (RDC)'}</p>
+            gridContainer.innerHTML = '';
+            structureData.forEach(branch => {
+                gridContainer.innerHTML += `
+                    <div class="bg-white rounded-3xl border shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                        <div class="relative h-44 bg-slate-100">
+                            <img src="${branch.photo}" alt="${branch.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+                                <span class="bg-purple-600 text-white font-mono text-[10px] px-2.5 py-1 rounded-full font-bold shadow">${branch.items.length} Programmes</span>
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-3 rounded-2xl border">
-                            <div><strong>Statut :</strong> <span class="text-green-600 font-bold">Actif & Vérifié</span></div>
-                            <div><strong>Centre :</strong> ${foundDoc.center || 'Centre Dieudonné'}</div>
+                        <div class="p-5 space-y-3 flex flex-col justify-between flex-grow">
+                            <div class="space-y-2">
+                                <h3 class="font-black text-slate-900 text-sm md:text-base">${branch.title}</h3>
+                                <p class="text-xs text-slate-600 line-clamp-2">${branch.description}</p>
+                            </div>
+                            <button type="button" onclick="openBranchPrograms('${branch.id}')" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer flex items-center justify-center gap-1.5 shadow">
+                                Voir les programmes <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
                         </div>
-                        <div class="flex gap-2 pt-2">
-                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl transition cursor-pointer text-xs uppercase shadow">Soutenir ce profil</button>
+                    </div>
+                `;
+            });
+            updateSubactivityOptions();
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function openBranchPrograms(branchId) {
+            const branch = structureData.find(b => b.id === branchId);
+            if (!branch) return;
+
+            document.getElementById('branches-grid-container').classList.add('hidden');
+            const detailsView = document.getElementById('branch-details-view');
+            const content = document.getElementById('branch-details-content');
+            detailsView.classList.remove('hidden');
+
+            let programsHtml = '';
+            branch.items.forEach(sub => {
+                programsHtml += `
+                    <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-3 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-black text-slate-900 text-sm">${sub.name}</h4>
+                                <span class="text-[10px] bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full font-bold border border-green-200">Actif</span>
+                            </div>
+                            <p class="text-xs text-slate-600"><strong>Objectif :</strong> ${sub.objective}</p>
+                            <p class="text-xs text-slate-500"><strong>Procédure :</strong> ${sub.procedure}</p>
                         </div>
-                    `;
-                } else {
-                    card.innerHTML = `
-                        <div class="p-5 bg-red-50 border border-red-200 rounded-2xl text-xs text-red-900 space-y-2 text-center">
-                            <p class="font-black text-sm text-red-800">Aucun dossier trouvé</p>
-                            <p class="text-slate-600">Aucun enregistrement ne correspond au matricule <strong>${inputVal}</strong>. Vérifiez le matricule et réessayer.</p>
+                        <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.name.replace(/'/g, "\\'")}')" class="w-full bg-purple-50 hover:bg-purple-600 hover:text-white text-purple-700 border border-purple-200 py-2.5 rounded-xl text-xs font-bold cursor-pointer transition flex items-center justify-center gap-1">
+                            Détails, Tâches & Contacts <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            content.innerHTML = `
+                <div class="bg-slate-900 text-white p-6 rounded-3xl space-y-2 shadow-xl">
+                    <span class="text-[10px] uppercase font-bold text-purple-400 tracking-wider">Branche Panafricaine</span>
+                    <h3 class="text-xl font-black">${branch.title}</h3>
+                    <p class="text-xs text-slate-300">${branch.description}</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">${programsHtml}</div>
+            `;
+            if (window.lucide) lucide.createIcons();
+            window.scrollTo(0, 0);
+        }
+
+        function backToBranchesGrid() {
+            document.getElementById('branch-details-view').classList.add('hidden');
+            document.getElementById('branches-grid-container').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function renderCountriesList() {
+            const container = document.getElementById('countries-list-container');
+            if (!container) return;
+            container.innerHTML = '';
+            africanCountries.forEach(c => {
+                container.innerHTML += `<div class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-slate-700 flex items-center gap-2"><span>🌍</span> ${c}</div>`;
+            });
+        }
+
+        async function showSubBranchDetails(branchTitle, subActivityName) {
+            const modal = document.getElementById('modal-branch-agents');
+            const title = document.getElementById('modal-branch-title');
+            const listContainer = document.getElementById('modal-branch-list');
+
+            title.innerText = `${branchTitle} — ${subActivityName}`;
+            listContainer.innerHTML = "Chargement des données du programme...";
+            modal.classList.replace('hidden', 'flex');
+
+            try {
+                const snap = await db.collection("agents").get();
+                let agentsHtml = '';
+
+                snap.forEach(doc => {
+                    const agent = doc.data();
+                    if (agent.subactivity === subActivityName || agent.branch === branchTitle) {
+                        const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
+                        agentsHtml += `
+                            <div class="bg-slate-50 p-3 rounded-2xl border space-y-2">
+                                <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
+                                <h4 class="font-bold text-slate-900 text-xs">${agent.fullName} (${agent.role})</h4>
+                                <div class="grid grid-cols-2 gap-2 pt-1">
+                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold">📞 Appeler</a>
+                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 text-white p-2 rounded-xl text-center font-bold">💬 WhatsApp</a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent affecté pour le moment.</p>`;
+
+                listContainer.innerHTML = `
+                    <div class="space-y-3 text-slate-700 text-xs">
+                        <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
+                            <p class="font-bold text-slate-900">Objectif & Activités :</p>
+                            <p class="text-slate-600">Exécution et suivi opérationnel sur le terrain sous la supervision panafricaine.</p>
                         </div>
-                    `;
-                }
-            } catch (err) {
+                        <div class="pt-2 border-t space-y-2">
+                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 Personnel & Agents affectés</h4>
+                            <div class="space-y-2">${agentsHtml}</div>
+                        </div>
+                        <button onclick="openForm('agent')" class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl cursor-pointer mt-2">+ Assigner un nouvel agent</button>
+                    </div>
+                `;
+            } catch (err) { listContainer.innerHTML = `<p class="text-red-500 text-center">Erreur : ${err.message}</p>`; }
+        }
+
+        function closeBranchModal() { document.getElementById('modal-branch-agents').classList.replace('flex', 'hidden'); }
+
+        function compressImage(file) {
+            return new Promise((resolve) => {
+                if (!file) { resolve(''); return; }
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 400;
+                        const scaleSize = MAX_WIDTH / img.width;
+                        canvas.width = MAX_WIDTH;
+                        canvas.height = img.height * scaleSize;
+                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.6));
+                    };
+                };
+            });
+        }
+
+        async function generateNextMatricule(col, prefix) {
+            const snap = await db.collection(col).get();
+            const count = snap.size + 1;
+            return `BKDD-${prefix}${count < 10 ? '0' + count : count}`;
+        }
+
+        async function saveAgentForm() {
+            try {
+                const photo = await compressImage(document.getElementById('a-photo').files[0]);
+                const familyPhoto = await compressImage(document.getElementById('a-family-photo').files[0]);
+                const matricule = await generateNextMatricule('agents', 'A');
+                const fullName = document.getElementById('a-fullname').value;
+                
+                await db.collection("agents").add({
+                    matricule, photo, familyPhoto,
+                    fullName,
+                    branch: document.getElementById('a-branch').value,
+                    subactivity: document.getElementById('a-subactivity').value,
+                    role: document.getElementById('a-role').value,
+                    equipments: document.getElementById('a-equipments').value,
+                    phone: document.getElementById('a-phone').value,
+                    country: document.getElementById('a-country').value,
+                    city: document.getElementById('a-city').value,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                await createSystemNotification({
+                    title: "Nouvel Agent Enregistré",
+                    message: `L'agent ${fullName} a été affecté à la branche ${document.getElementById('a-branch').value} (${matricule}).`,
+                    category: "Agents",
+                    priority: "information"
+                });
+
+                alert(`Agent enregistré ! ID : ${matricule}`);
+                closeForm('agent'); refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        async function saveChildForm() {
+            try {
+                const photo = await compressImage(document.getElementById('c-photo').files[0]);
+                const familyPhoto = await compressImage(document.getElementById('c-family-photo').files[0]);
+                const matricule = await generateNextMatricule('children', 'E');
+                const firstName = document.getElementById('c-firstname').value;
+                const lastName = document.getElementById('c-lastname').value;
+
+                await db.collection("children").add({
+                    matricule, photo, familyPhoto,
+                    famId: document.getElementById('c-famid').value,
+                    firstName,
+                    lastName,
+                    postName: document.getElementById('c-postname').value,
+                    gender: document.getElementById('c-gender').value,
+                    age: parseInt(document.getElementById('c-age').value) || 0,
+                    country: document.getElementById('c-country').value,
+                    city: document.getElementById('c-city').value,
+                    center: document.getElementById('c-center').value,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                await createSystemNotification({
+                    title: "Nouveau Dossier Enfant",
+                    message: `L'enfant ${firstName} ${lastName} a été enregistré dans le registre (Matricule : ${matricule}).`,
+                    category: "Enfants",
+                    priority: "importante"
+                });
+
+                alert(`Enfant enregistré avec succès ! ID Public : ${matricule}`);
+                closeForm('child'); refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        async function saveWidowForm() {
+            try {
+                const photo = await compressImage(document.getElementById('w-photo').files[0]);
+                const familyPhoto = await compressImage(document.getElementById('w-family-photo').files[0]);
+                const matricule = await generateNextMatricule('widows', 'V');
+                const firstName = document.getElementById('w-firstname').value;
+                const lastName = document.getElementById('w-lastname').value;
+
+                await db.collection("widows").add({
+                    matricule, photo, familyPhoto,
+                    famId: document.getElementById('w-famid').value,
+                    firstName,
+                    lastName,
+                    postName: document.getElementById('w-postname').value,
+                    age: parseInt(document.getElementById('w-age').value) || 0,
+                    phone: document.getElementById('w-phone').value,
+                    country: document.getElementById('w-country').value,
+                    city: document.getElementById('w-city').value,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                await createSystemNotification({
+                    title: "Nouveau Dossier Veuve",
+                    message: `La veuve ${firstName} ${lastName} a été enregistrée dans le registre (Matricule : ${matricule}).`,
+                    category: "Veuves",
+                    priority: "importante"
+                });
+
+                alert(`Veuve enregistrée avec succès ! ID : ${matricule}`);
+                closeForm('widow'); refreshCounters();
+            } catch (err) { alert("Erreur : " + err.message); }
+        }
+
+        async function deleteDocument(col, id) {
+            if (confirm("Supprimer ce dossier ?")) {
+                await db.collection(col).doc(id).delete();
+                loadAdminMasterList(); refreshCounters();
+            }
+        }
+
+        async function executeIdSearch() {
+            const val = document.getElementById('input-search-id').value.trim().toUpperCase();
+            const card = document.getElementById('search-result-card');
+            if (!val) return;
+            card.classList.remove('hidden'); card.innerHTML = "Recherche...";
+            let found = null, type = '';
+            for (let col of ['children', 'widows', 'agents']) {
+                const snap = await db.collection(col).where('matricule', '==', val).get();
+                if (!snap.empty) { found = snap.docs[0].data(); type = col; break; }
+            }
+            if (found) {
+                let name = found.firstName ? `${found.firstName} ${type === 'children' ? '***' : found.lastName}` : (found.fullName || '');
                 card.innerHTML = `
-                    <div class="p-5 bg-red-50 border border-red-200 rounded-2xl text-xs text-red-900 space-y-2 text-center">
-                        <p class="font-black text-sm text-red-800">Erreur de connexion</p>
-                        <p class="text-slate-600">Impossible d'accéder au serveur. Vérifiez votre connexion Internet et réessayer.</p>
-                        <button onclick="executeIdSearch()" class="bg-slate-900 text-white font-bold px-4 py-2 rounded-xl mt-2 cursor-pointer">Réessayer</button>
+                    <div class="flex items-center gap-3 border-b pb-3">
+                        <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
+                        <div><span class="font-mono bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
+                    </div>
+                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil (Choisir un motif)</button>
+                `;
+            } else {
+                card.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier correspondant à ce matricule.</p>`;
+            }
+        }
+
+        async function refreshCounters() {
+            try {
+                const c = await db.collection("children").get();
+                const w = await db.collection("widows").get();
+                const a = await db.collection("agents").get();
+                document.getElementById('stat-children-count').innerText = c.size;
+                document.getElementById('stat-widows-count').innerText = w.size;
+                document.getElementById('stat-agents-count').innerText = a.size;
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadHomeFeaturedProfiles() {
+            const container = document.getElementById('home-featured-grid');
+            if (!container) return;
+            container.innerHTML = '<p class="text-xs text-slate-400 col-span-3 text-center py-4">Chargement des profils...</p>';
+            
+            try {
+                let items = [];
+                const cSnap = await db.collection("children").limit(2).get();
+                cSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Enfant Orphelin', badgeBg: 'bg-blue-50 text-blue-700' }));
+                
+                const wSnap = await db.collection("widows").limit(1).get();
+                wSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Veuve', badgeBg: 'bg-emerald-50 text-emerald-700' }));
+
+                if (items.length === 0) {
+                    container.innerHTML = `<p class="text-xs text-slate-500 col-span-3 text-center py-6">Aucun profil enregistré pour le moment.</p>`;
+                    return;
+                }
+
+                container.innerHTML = '';
+                items.forEach(d => {
+                    let displayName = d.firstName ? `${d.firstName} ${d.lastName ? d.lastName.charAt(0) + '.' : ''}` : (d.fullName || '');
+                    let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
+
+                    container.innerHTML += `
+                        <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <div class="w-full h-36 bg-slate-100 rounded-xl overflow-hidden border relative">
+                                    ${photoHtml}
+                                    <span class="absolute top-2 left-2 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full ${d.badgeBg} shadow">${d.typeLabel}</span>
+                                </div>
+                                <div class="flex justify-between items-center pt-1">
+                                    <span class="font-mono font-bold text-slate-700">${d.matricule}</span>
+                                    <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
+                                </div>
+                                <h4 class="font-black text-slate-900 text-sm">${displayName}</h4>
+                                <p class="text-[11px] text-slate-600">Soutien prioritaire pour la scolarité et les besoins vitaux.</p>
+                            </div>
+                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
+                        </div>
+                    `;
+                });
+            } catch (err) {
+                container.innerHTML = `<p class="text-xs text-red-500 col-span-3 text-center">Erreur de chargement des profils.</p>`;
+            }
+        }
+
+        async function loadCollection(col, containerId, protectNames = false) {
+            const container = document.getElementById(containerId);
+            const snap = await db.collection(col).get();
+            container.innerHTML = '';
+            snap.forEach(doc => {
+                const d = doc.data();
+                let displayName = d.firstName || d.fullName || '';
+                if (protectNames && d.lastName) {
+                    displayName = `${d.firstName} ${d.lastName.charAt(0)}.`;
+                }
+                let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
+
+                container.innerHTML += `
+                    <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <div class="w-full h-32 bg-slate-100 rounded-xl overflow-hidden border">${photoHtml}</div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
+                                <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
+                            </div>
+                            <p class="font-bold text-slate-900 text-sm">${displayName}</p>
+                            <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
+                        </div>
+                        <button onclick="switchTab('sponsoring-hub')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
+                    </div>
+                `;
+            });
+        }
+
+        async function updateFinancialReports() {
+            try {
+                const snap = await db.collection("donations").get();
+                let totalPromis = 0;
+                let totalConfirmed = 0;
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    totalPromis += (d.amount || 0);
+                    if (d.status === "confirmed") {
+                        totalConfirmed += (d.amount || 0);
+                    }
+                });
+                document.getElementById('report-promis-val').innerText = `${totalPromis} USD`;
+                document.getElementById('report-confirmed-val').innerText = `${totalConfirmed} USD`;
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadAdminMasterList() {
+            const container = document.getElementById('admin-master-list');
+            container.innerHTML = 'Chargement...';
+            let html = '';
+            const labels = { children: 'ENFANT', widows: 'VEUVE', agents: 'AGENT', donations: 'DON' };
+            for (let col of ['children', 'widows', 'agents', 'donations']) {
+                const snap = await db.collection(col).get();
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    let title = d.matricule || d.refId || d.fullName || 'Élément';
+                    let detail = d.transId ? `(TransID: ${d.transId})` : '';
+                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title} ${detail}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
+                });
+            }
+            container.innerHTML = html || 'Aucun enregistrement trouvé.';
+        }
+
+        async function updateProfileCard(user) {
+            const card = document.getElementById('profile-card');
+            if (!card) return;
+
+            if (user) {
+                let userData = {};
+                try {
+                    const userDoc = await db.collection("users").doc(user.uid).get();
+                    if (userDoc.exists) {
+                        userData = userDoc.data();
+                    } else {
+                        userData = {
+                            nom: user.displayName || "",
+                            postnom: "",
+                            prenom: "",
+                            phone: "",
+                            pays: "République Démocratique du Congo (RDC)",
+                            ville: "Bukavu",
+                            langue: "fr",
+                            role: "Sponsor / Donateur",
+                            isVerified: false,
+                            photoURL: user.photoURL || "",
+                            memberId: 'BKDD-SP-' + Math.floor(1000 + Math.random() * 9000),
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        };
+                        await db.collection("users").doc(user.uid).set(userData);
+                    }
+                } catch (e) {
+                    console.error("Erreur lecture profil Firestore:", e);
+                }
+
+                let userDonations = [];
+                let totalConfirmedDonations = 0;
+                let activeSponsorshipsCount = 0;
+
+                try {
+                    const donSnap = await db.collection("donations").where("userId", "==", user.uid).get();
+                    donSnap.forEach(doc => {
+                        const d = { id: doc.id, ...doc.data() };
+                        userDonations.push(d);
+                        if (d.status === "confirmed") {
+                            totalConfirmedDonations += (Number(d.amount) || 0);
+                        }
+                    });
+                } catch (e) {
+                    console.error("Erreur chargement dons:", e);
+                }
+
+                let userSponsorships = [];
+                try {
+                    const spSnap = await db.collection("sponsorships").where("sponsorId", "==", user.uid).get();
+                    spSnap.forEach(doc => {
+                        const s = doc.data();
+                        userSponsorships.push(s);
+                        if (s.status === "active") activeSponsorshipsCount++;
+                    });
+                } catch (e) {
+                    console.error("Erreur parrainages:", e);
+                }
+
+                const userPhoto = userData.photoURL || user.photoURL || "";
+                const userInitials = (userData.prenom ? userData.prenom.charAt(0) : '') + (userData.nom ? userData.nom.charAt(0) : (user.email ? user.email.charAt(0).toUpperCase() : 'U'));
+                const isVerified = userData.isVerified === true;
+                const memberId = userData.memberId || 'BKDD-SP-0001';
+                const memberSince = userData.createdAt ? (userData.createdAt.toDate ? userData.createdAt.toDate().toLocaleDateString() : 'Récemment') : 'Récemment';
+
+                card.innerHTML = `
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="relative w-20 h-20 rounded-full bg-slate-200 overflow-hidden border-2 border-green-500 shadow-md flex items-center justify-center font-black text-slate-700 text-xl">
+                                ${userPhoto 
+                                    ? `<img id="profile-avatar-preview" src="${userPhoto}" class="w-full h-full object-cover">`
+                                    : `<span id="profile-avatar-preview" class="text-green-700">${userInitials}</span>`
+                                }
+                                <label for="avatar-file-input" class="absolute inset-0 bg-slate-950/50 opacity-0 hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-bold cursor-pointer">
+                                    📷 Modifier
+                                </label>
+                                <input type="file" id="avatar-file-input" accept="image/*" class="hidden" onchange="uploadUserAvatar(event)">
+                            </div>
+                            <div class="space-y-1">
+                                <h3 class="font-black text-slate-900 text-base md:text-lg">${userData.prenom || ''} ${userData.nom || user.displayName || 'Membre Panafricain'}</h3>
+                                <p class="text-xs font-mono text-blue-600 font-bold">${user.email}</p>
+                                <p class="text-[11px] text-slate-500">📍 ${userData.ville || 'Bukavu'}, ${userData.pays || 'RDC'}</p>
+                                <div class="flex items-center gap-2 pt-1 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-slate-100 text-slate-700">ID : ${memberId}</span>
+                                    <span class="text-[10px] text-slate-400">Inscrit le : ${memberSince}</span>
+                                </div>
+                                <div class="pt-1">
+                                    ${isVerified 
+                                        ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800 flex items-center gap-1 w-fit"><i data-lucide="check-circle" class="w-3 h-3"></i> Compte vérifié</span>`
+                                        : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 flex items-center gap-1 w-fit"><i data-lucide="clock" class="w-3 h-3"></i> Compte en attente de vérification</span>`
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 w-full md:w-auto">
+                            <button onclick="auth.signOut()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer border border-red-200">
+                                Se Déconnecter
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Enfants parrainés</p>
+                            <p class="text-2xl font-black text-blue-600">${userSponsorships.filter(s => s.beneficiaryType === 'child').length}</p>
+                            <p class="text-[10px] text-slate-500">Suivi direct</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Veuves soutenues</p>
+                            <p class="text-2xl font-black text-emerald-600">${userSponsorships.filter(s => s.beneficiaryType === 'widow').length}</p>
+                            <p class="text-[10px] text-slate-500">Suivi direct</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total des dons</p>
+                            <p class="text-2xl font-black text-slate-900 font-mono">${totalConfirmedDonations} USD</p>
+                            <p class="text-[10px] text-slate-500">Confirmés</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Parrainages actifs</p>
+                            <p class="text-2xl font-black text-green-600">${activeSponsorshipsCount}</p>
+                            <p class="text-[10px] text-slate-500">Engagements validés</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
+                        <h3 class="font-black text-slate-900 text-sm flex items-center gap-2 border-b pb-3">
+                            <i data-lucide="user-edit" class="w-4 h-4 text-blue-600"></i> Modifier mes informations personnelles
+                        </h3>
+                        <form id="user-profile-form" onsubmit="saveUserProfileChanges(event)" class="space-y-4 text-xs">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="font-bold block mb-1">Nom :</label>
+                                    <input type="text" id="p-nom" value="${userData.nom || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1">Postnom :</label>
+                                    <input type="text" id="p-postnom" value="${userData.postnom || ''}" class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1">Prénom :</label>
+                                    <input type="text" id="p-prenom" value="${userData.prenom || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="font-bold block mb-1">Téléphone :</label>
+                                    <input type="text" id="p-phone" value="${userData.phone || ''}" placeholder="+243..." class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1">Pays :</label>
+                                    <select id="p-pays" class="african-countries-select w-full p-2.5 border rounded-xl bg-white font-bold"></select>
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1">Ville :</label>
+                                    <input type="text" id="p-ville" value="${userData.ville || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="font-bold block mb-1">Langue préférée :</label>
+                                    <select id="p-langue" class="w-full p-2.5 border rounded-xl bg-white font-bold">
+                                        <option value="fr" ${userData.langue === 'fr' ? 'selected' : ''}>Français</option>
+                                        <option value="en" ${userData.langue === 'en' ? 'selected' : ''}>English</option>
+                                        <option value="sw" ${userData.langue === 'sw' ? 'selected' : ''}>Kiswahili</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1 text-slate-400">Adresse e-mail (Protégée) :</label>
+                                    <input type="text" disabled value="${user.email}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono">
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1 text-slate-400">Rôle administratif (Protégé) :</label>
+                                    <input type="text" disabled value="${userData.role || 'Sponsor / Donateur'}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono font-bold text-green-700">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition cursor-pointer shadow">
+                                Enregistrer les modifications du profil
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b pb-3">
+                            <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                <i data-lucide="receipt" class="w-4 h-4 text-green-600"></i> Historique des Dons & Reçus Officiels
+                            </h3>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full font-bold">${userDonations.length} transaction(s)</span>
+                        </div>
+                        <div class="space-y-3">
+                            ${userDonations.length > 0 ? userDonations.map(d => {
+                                const isConfirmed = d.status === "confirmed";
+                                const statusBadge = isConfirmed 
+                                    ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Confirmé</span>`
+                                    : (d.status === "failed" ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-red-800">Échoué</span>` : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">En attente</span>`);
+                                
+                                return `
+                                    <div class="p-4 bg-slate-50 border rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-xs">
+                                        <div class="space-y-1">
+                                            <p class="font-bold text-slate-900">Motif : ${d.cause}</p>
+                                            <p class="text-slate-500 font-mono text-[10px]">Réf : ${d.refId} \vert{} TransID :${d.transId || 'N/A'}</p>
+                                            <p class="text-slate-400 text-[10px]">Méthode : ${d.paymentMethod || 'Mobile Money'}</p>
+                                        </div>
+                                        <div class="flex items-center gap-3 flex-wrap">
+                                            <span class="font-mono font-black text-green-700 text-sm">${d.amount}${d.currency || 'USD'}</span>
+                                            ${statusBadge}${isConfirmed 
+                                                ? `<button onclick="downloadDonationReceipt('${d.refId}', '${d.amount}', '${d.currency}', '${d.cause}')" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1 cursor-pointer"><i data-lucide="download" class="w-3.5 h-3.5"></i> Reçu PDF</button>`
+                                                : `<span class="text-[10px] text-slate-400 italic">Reçu disponible après confirmation</span>`
+                                            }
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('') : `
+                                <div class="text-center py-6 text-slate-500 text-xs space-y-2">
+                                    <p>Aucun don enregistré sur votre compte.</p>
+                                    <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 text-white font-bold px-4 py-2 rounded-xl">Faire un don</button>
+                                </div>
+                            `}
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b pb-3">
+                            <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                <i data-lucide="heart" class="w-4 h-4 text-pink-600"></i> Mes Parrainages & Engagements
+                            </h3>
+                        </div>
+                        ${userSponsorships.length > 0 ? `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                ${userSponsorships.map(s => `
+                                    <div class="p-4 bg-slate-50 border rounded-2xl text-xs space-y-2">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-mono font-bold text-green-700">${s.beneficiaryCode || 'REF-BEN'}</span>
+                                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">${s.status}</span>
+                                        </div>
+                                        <p><strong>Type de soutien :</strong> ${s.supportType || 'Prise en charge globale'}</p>
+                                        <p class="text-slate-500 text-[10px]">Date de début : ${s.startDate ? new Date(s.startDate.toDate()).toLocaleDateString() : 'Récemment'}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : `
+                            <p class="text-xs text-slate-600">Aucun enfant ou veuve actuellement rattaché directement à votre profil. Explorez le catalogue public pour initier un parrainage sécurisé.</p>
+                            <button onclick="switchTab('children')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">Explorer les dossiers enfants →</button>
+                        `}
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
+                            <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                <i data-lucide="settings" class="w-4 h-4 text-purple-600"></i> Sécurité & Suppression du compte
+                            </h4>
+                            <p class="text-xs text-slate-600">Conformément aux obligations de transparence, la suppression du compte entraîne l'archivage sécurisé des reçus légaux.</p>
+                            <button onclick="confirmAccountDeletion()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition border border-red-200 cursor-pointer w-full mt-2">
+                                🗑️ Supprimer définitivement mon compte
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
+                            <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                <i data-lucide="help-circle" class="w-4 h-4 text-amber-600"></i> Assistance Officielle
+                            </h4>
+                            <p class="text-xs text-slate-600">Contactez directement l'administration via le canal officiel sécurisé.</p>
+                            <a href="https://wa.me/${OFFICIAL_WHATSAPP_NUMBER}" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-2">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i> Support WhatsApp officiel
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                populateAfricanCountries();
+                if (userData.pays) {
+                    const countrySelect = document.getElementById('p-pays');
+                    if (countrySelect) countrySelect.value = userData.pays;
+                }
+            } else {
+                card.innerHTML = `
+                    <div class="bg-white p-8 rounded-3xl border shadow-sm text-center space-y-4 max-w-lg mx-auto">
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="user-x" class="w-8 h-8"></i></div>
+                        <h3 class="font-black text-slate-900 text-lg">Espace restreint aux membres connectés</h3>
+                        <p class="text-xs text-slate-600">Veuillez vous connecter pour accéder à votre tableau de bord personnel, vos reçus de dons et vos parrainages.</p>
+                        <button onclick="openAuthModal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl text-xs transition shadow cursor-pointer">
+                            Se connecter maintenant
+                        </button>
                     </div>
                 `;
             }
             if (window.lucide) lucide.createIcons();
         }
 
+        async function saveUserProfileChanges(e) {
+            e.preventDefault();
+            const user = auth.currentUser;
+            if (!user) return;
+
+            try {
+                const updatedData = {
+                    nom: document.getElementById('p-nom').value.trim(),
+                    postnom: document.getElementById('p-postnom').value.trim(),
+                    prenom: document.getElementById('p-prenom').value.trim(),
+                    phone: document.getElementById('p-phone').value.trim(),
+                    pays: document.getElementById('p-pays').value,
+                    ville: document.getElementById('p-ville').value.trim(),
+                    langue: document.getElementById('p-langue').value,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+
+                await db.collection("users").doc(user.uid).set(updatedData, { merge: true });
+                alert("Informations de profil mises à jour avec succès !");
+                updateProfileCard(user);
+            } catch (err) {
+                alert("Erreur lors de la mise à jour : " + err.message);
+            }
+        }
+
+        async function uploadUserAvatar(event) {
+            const file = event.target.files[0];
+            const user = auth.currentUser;
+            if (!file || !user) return;
+
+            try {
+                const base64Img = await compressImage(file);
+                await db.collection("users").doc(user.uid).set({ photoURL: base64Img }, { merge: true });
+                await user.updateProfile({ photoURL: base64Img });
+
+                updateProfileCard(user);
+                alert("Photo de profil mise à jour avec succès !");
+            } catch (err) {
+                alert("Erreur lors du chargement de l'image : " + err.message);
+            }
+        }
+
+        function downloadDonationReceipt(refId, amount, currency, cause) {
+            const receiptWindow = window.open('', '_blank');
+            receiptWindow.document.write(`
+                <html>
+                <head>
+                    <title>Reçu Officiel - ${refId}</title>
+                    <style>
+                        body { font-family: sans-serif; padding: 40px; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #cbd5e1; border-radius: 12px; }
+                        h1 { color: #166534; font-size: 22px; margin-bottom: 5px; }
+                        .header { border-bottom: 2px solid #22c55e; padding-bottom: 15px; margin-bottom: 20px; }
+                        .details { margin: 20px 0; line-height: 1.6; }
+                        .footer { margin-top: 40px; font-size: 11px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>DIEUDONNÉ CARE PANAFRICAIN</h1>
+                        <p>Centre de Bukavu (RDC) — Reçu de Don Officiel</p>
+                    </div>
+                    <div class="details">
+                        <p><strong>Référence de transaction :</strong> ${refId}</p>
+                        <p><strong>Date :</strong> ${new Date().toLocaleDateString()}</p>
+                        <p><strong>Motif / Cause :</strong> ${cause}</p>
+                        <p><strong>Montant payé :</strong> <span style="font-size: 18px; color: #166534; font-weight: bold;">${amount} ${currency}</span></p>
+                        <p><strong>Statut :</strong> <span style="color: #166534; font-weight: bold;">CONFIRMÉ</span></p>
+                    </div>
+                    <div class="footer">
+                        <p>Ce document certifie la bonne réception du don au profit des actions humanitaires de Dieudonné Care.</p>
+                        <button onclick="window.print()" style="background: #166534; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px;">Imprimer / Télécharger en PDF</button>
+                    </div>
+                </body>
+                </html>
+            `);
+            receiptWindow.document.close();
+        }
+
+        async function confirmAccountDeletion() {
+            const user = auth.currentUser;
+            if (!user) return;
+
+            const confirmText = prompt("Pour confirmer la suppression définitive de votre compte, tapez SUPPRIMER :");
+            if (confirmText === "SUPPRIMER") {
+                try {
+                    await db.collection("users").doc(user.uid).update({
+                        accountStatus: "deleted",
+                        deletedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    await user.delete();
+                    alert("Votre compte a été supprimé avec succès.");
+                    window.location.reload();
+                } catch (err) {
+                    alert("Pour des raisons de sécurité, veuillez vous déconnecter et vous reconnecter avant de supprimer votre compte.");
+                }
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
+            renderBranchesGrid();
+            populateAfricanCountries();
             initAuthListener();
+            refreshCounters();
+            loadHomeFeaturedProfiles();
+            updateNotificationBadges();
             if (window.lucide) lucide.createIcons();
         });
     </script>
