@@ -518,7 +518,7 @@
                 description: "Logement, literie, vêtements, hygiène, eau potable, équipements et stocks.",
                 items: [
                     { name: "Gestion des Stocks & Vivres", objective: "Garantir la disponibilité des biens de première nécessité.", procedure: "Inventaire régulier, stockage sécurisé et approvisionnement.", activities: "Réception des marchandises, gestion des entrepôts." },
-                    { name: "Assainissement & Eau Potable", objective: "Assurer un environnement de vie sain et sécurisé.", procedure: "Nettoyage des infrastructures, contrôle de l'eau.", activities: "Distribution de kits d'hygiène, traitement de l'eau." }
+                    { name: "Assainissement & Eau Potable", objective: "Assurer un environnement de vie sain et sécurisé.", procedure: "Nettoyage des infrastructures, contrôle de l'eau.", activities: "Distribution d'hygiène, traitement de l'eau." }
                 ]
             },
             {
@@ -543,7 +543,6 @@
             }
         ];
 
-        // NUMÉRO OFFICIEL CONFIGURÉ PAR L'ADMINISTRATION POUR WHATSAPP
         const OFFICIAL_WHATSAPP_NUMBER = "256792994716";
 
         function copyMtnNumber() {
@@ -669,7 +668,7 @@
                     userId: currentUser ? currentUser.uid : 'anonymous',
                     userEmail: currentUser ? currentUser.email : email,
                     paymentMethod: "MTN Mobile Money (+256792994716)",
-                    status: "pending", // Don en attente par défaut (jamais présenté comme payé d'office)
+                    status: "pending",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nVotre don est enregistré en attente de confirmation par l'administration.`);
@@ -684,9 +683,7 @@
             const subSelect = document.getElementById('a-subactivity');
             if (!branchSelect || !subSelect) return;
 
-            const branchVal = branchSelect.value;
             subSelect.innerHTML = '';
-
             structureData.forEach(branch => {
                 branch.items.forEach(item => {
                     const opt = document.createElement('option');
@@ -723,7 +720,6 @@
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
-        const storage = firebase.storage();
 
         function initAuthListener() {
             auth.onAuthStateChanged(user => {
@@ -1163,7 +1159,7 @@
         }
 
         // ==========================================
-        // GESTION DU PROFIL & ESPACE SPONSOR (MIS À JOUR)
+        // GESTION DU PROFIL & ESPACE SPONSOR (CORRIGÉ & DÉFINITIF)
         // ==========================================
         async function updateProfileCard(user) {
             const card = document.getElementById('profile-card');
@@ -1176,7 +1172,6 @@
                     if (userDoc.exists) {
                         userData = userDoc.data();
                     } else {
-                        // Initialisation automatique du profil Firestore si inexistant
                         userData = {
                             nom: user.displayName || "",
                             postnom: "",
@@ -1187,7 +1182,9 @@
                             langue: "fr",
                             role: "Sponsor / Donateur",
                             isVerified: false,
-                            photoURL: user.photoURL || ""
+                            photoURL: user.photoURL || "",
+                            memberId: 'BKDD-SP-' + Math.floor(1000 + Math.random() * 9000),
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
                         };
                         await db.collection("users").doc(user.uid).set(userData);
                     }
@@ -1226,16 +1223,23 @@
                     console.error("Erreur parrainages:", e);
                 }
 
-                const avatarSrc = userData.photoURL || user.photoURL || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=60';
+                // Affichage strict de la photo personnelle (Pas de photo de démonstration d'une autre personne)
+                const userPhoto = userData.photoURL || user.photoURL || "";
+                const userInitials = (userData.prenom ? userData.prenom.charAt(0) : '') + (userData.nom ? userData.nom.charAt(0) : (user.email ? user.email.charAt(0).toUpperCase() : 'U'));
                 const isVerified = userData.isVerified === true;
+                const memberId = userData.memberId || 'BKDD-SP-0001';
+                const memberSince = userData.createdAt ? (userData.createdAt.toDate ? userData.createdAt.toDate().toLocaleDateString() : 'Récemment') : 'Récemment';
 
                 card.innerHTML = `
-                    <!-- 1. EN-TÊTE PROFIL & PHOTO MODIFIABLE -->
+                    <!-- 1. EN-TÊTE PROFIL & PHOTO PERSONNELLE MODIFIABLE -->
                     <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
                         <div class="flex items-center gap-4">
-                            <div class="relative w-20 h-20 rounded-full bg-slate-100 overflow-hidden border-2 border-green-500 shadow-md">
-                                <img id="profile-avatar-preview" src="${avatarSrc}" class="w-full h-full object-cover">
-                                <label for="avatar-file-input" class="absolute inset-0 bg-slate-950/40 opacity-0 hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-bold cursor-pointer">
+                            <div class="relative w-20 h-20 rounded-full bg-slate-200 overflow-hidden border-2 border-green-500 shadow-md flex items-center justify-center font-black text-slate-700 text-xl">
+                                ${userPhoto 
+                                    ? `<img id="profile-avatar-preview" src="${userPhoto}" class="w-full h-full object-cover">`
+                                    : `<span id="profile-avatar-preview" class="text-green-700">${userInitials}</span>`
+                                }
+                                <label for="avatar-file-input" class="absolute inset-0 bg-slate-950/50 opacity-0 hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-bold cursor-pointer">
                                     📷 Modifier
                                 </label>
                                 <input type="file" id="avatar-file-input" accept="image/*" class="hidden" onchange="uploadUserAvatar(event)">
@@ -1244,6 +1248,10 @@
                                 <h3 class="font-black text-slate-900 text-base md:text-lg">${userData.prenom || ''} ${userData.nom || user.displayName || 'Membre Panafricain'}</h3>
                                 <p class="text-xs font-mono text-blue-600 font-bold">${user.email}</p>
                                 <p class="text-[11px] text-slate-500">📍 ${userData.ville || 'Bukavu'}, ${userData.pays || 'RDC'}</p>
+                                <div class="flex items-center gap-2 pt-1 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-slate-100 text-slate-700">ID : ${memberId}</span>
+                                    <span class="text-[10px] text-slate-400">Inscrit le : ${memberSince}</span>
+                                </div>
                                 <div class="pt-1">
                                     ${isVerified 
                                         ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800 flex items-center gap-1 w-fit"><i data-lucide="check-circle" class="w-3 h-3"></i> Compte vérifié</span>`
@@ -1317,7 +1325,7 @@
                                     <input type="text" id="p-ville" value="${userData.ville || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 <div>
                                     <label class="font-bold block mb-1">Langue préférée :</label>
                                     <select id="p-langue" class="w-full p-2.5 border rounded-xl bg-white font-bold">
@@ -1327,8 +1335,12 @@
                                     </select>
                                 </div>
                                 <div>
+                                    <label class="font-bold block mb-1 text-slate-400">Adresse e-mail (Protégée) :</label>
+                                    <input type="text" disabled value="${user.email}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono">
+                                </div>
+                                <div>
                                     <label class="font-bold block mb-1 text-slate-400">Rôle administratif (Protégé) :</label>
-                                    <input type="text" disabled value="${userData.role || 'Sponsor / Donateur'}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono">
+                                    <input type="text" disabled value="${userData.role || 'Sponsor / Donateur'}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono font-bold text-green-700">
                                 </div>
                             </div>
                             <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition cursor-pointer shadow">
@@ -1427,7 +1439,6 @@
                     </div>
                 `;
 
-                // Remplir dynamiquement les pays dans le select du profil
                 populateAfricanCountries();
                 if (userData.pays) {
                     const countrySelect = document.getElementById('p-pays');
@@ -1448,7 +1459,6 @@
             if (window.lucide) lucide.createIcons();
         }
 
-        // Enregistrement des modifications du profil dans Firestore
         async function saveUserProfileChanges(e) {
             e.preventDefault();
             const user = auth.currentUser;
@@ -1464,7 +1474,6 @@
                     ville: document.getElementById('p-ville').value.trim(),
                     langue: document.getElementById('p-langue').value,
                     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    // NB: Le rôle et le statut isVerified ne sont pas modifiables par l'utilisateur (Sécurité)
                 };
 
                 await db.collection("users").doc(user.uid).set(updatedData, { merge: true });
@@ -1475,7 +1484,6 @@
             }
         }
 
-        // Téléversement et mise à jour de la photo de profil
         async function uploadUserAvatar(event) {
             const file = event.target.files[0];
             const user = auth.currentUser;
@@ -1483,18 +1491,16 @@
 
             try {
                 const base64Img = await compressImage(file);
-                // Sauvegarde de l'image compressée dans Firestore et dans l'Auth Firebase
                 await db.collection("users").doc(user.uid).set({ photoURL: base64Img }, { merge: true });
                 await user.updateProfile({ photoURL: base64Img });
 
-                document.getElementById('profile-avatar-preview').src = base64Img;
+                updateProfileCard(user);
                 alert("Photo de profil mise à jour avec succès !");
             } catch (err) {
                 alert("Erreur lors du chargement de l'image : " + err.message);
             }
         }
 
-        // Génération / Téléchargement du reçu PDF (Uniquement pour les dons confirmés)
         function downloadDonationReceipt(refId, amount, currency, cause) {
             const receiptWindow = window.open('', '_blank');
             receiptWindow.document.write(`
@@ -1506,7 +1512,7 @@
                         h1 { color: #166534; font-size: 22px; margin-bottom: 5px; }
                         .header { border-bottom: 2px solid #22c55e; padding-bottom: 15px; margin-bottom: 20px; }
                         .details { margin: 20px 0; line-height: 1.6; }
-                        .footer { margin-top: 40px; font-size: 11px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; pt: 10px; }
+                        .footer { margin-top: 40px; font-size: 11px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; }
                     </style>
                 </head>
                 <body>
@@ -1531,7 +1537,6 @@
             receiptWindow.document.close();
         }
 
-        // Procédure de suppression de compte sécurisée
         async function confirmAccountDeletion() {
             const user = auth.currentUser;
             if (!user) return;
