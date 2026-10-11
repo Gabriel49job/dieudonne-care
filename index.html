@@ -60,7 +60,6 @@
         </div>
         
         <div class="space-y-5 text-xs">
-            <!-- CATÉGORIE A : NAVIGATION PRINCIPALE -->
             <div class="space-y-1">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pb-1">Navigation Principale</p>
                 <button onclick="switchTab('home')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
@@ -68,17 +67,15 @@
                 <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / QR code</button>
             </div>
 
-            <!-- CATÉGORIE B : GESTION DES BÉNÉFICIAIRES -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Gestion des Bénéficiaires</p>
                 <button onclick="switchTab('children')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (BKDD-E)</button>
                 <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (BKDD-V)</button>
             </div>
 
-            <!-- CATÉGORIE C : ORGANISATION PANAFRICAINE -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Organisation Panafricaine</p>
-                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Gestion des Activités & Programmes</button>
+                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Activités & Programmes</button>
                 <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 pays)</button>
                 <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center justify-between transition cursor-pointer">
                     <span class="flex items-center gap-2.5"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</span>
@@ -87,14 +84,11 @@
                 <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Rapports</button>
             </div>
 
-            <!-- CATÉGORIE D : MON ESPACE -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Mon Espace</p>
                 <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-blue-400"></i> Mon Profil & Espace Sponsor</button>
-                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="settings" class="w-4 h-4 text-purple-400"></i> Paramètres & Sécurité</button>
             </div>
 
-            <!-- CATÉGORIE E : ADMINISTRATION -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80 pb-6">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Administration</p>
                 <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
@@ -299,18 +293,40 @@
             <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
         </section>
 
-        <!-- GESTION DES ACTIVITÉS & 8 BRANCHES PANAFRICAINES -->
+        <!-- MODULE CORRIGÉ : ACTIVITÉS & PROGRAMMES (8 BRANCHES) -->
         <section id="sec-team" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
                         <span class="text-[10px] font-extrabold bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 uppercase tracking-widest">CENTRE OPÉRATIONNEL PANAFRICAIN</span>
-                        <h2 class="text-2xl md:text-3xl font-black mt-2">GESTION DES ACTIVITÉS & 8 BRANCHES</h2>
-                        <p class="text-xs text-slate-300 leading-relaxed pt-1">Explorez les 8 grandes branches de l'organisation pour accéder aux programmes, aux tâches et au personnel affecté.</p>
+                        <h2 class="text-2xl md:text-3xl font-black mt-2">Activités & Programmes</h2>
+                        <p class="text-xs text-slate-300 leading-relaxed pt-1">Cette rubrique permet de consulter les programmes, de gérer les tâches et de suivre les équipes à travers les 8 branches de l'organisation.</p>
                     </div>
-                    <button onclick="openForm('agent')" class="flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs cursor-pointer shadow shrink-0">
+                    <!-- Bouton Enregistrer un agent affiché selon autorisations/rôle -->
+                    <button id="btn-register-agent-top" onclick="openForm('agent')" class="hidden items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs cursor-pointer shadow shrink-0">
                         <i data-lucide="user-plus" class="w-4 h-4"></i> Enregistrer un agent
                     </button>
+                </div>
+
+                <!-- Barre de recherche fonctionnelle et filtres -->
+                <div class="pt-4 border-t border-slate-800 flex flex-col md:flex-row gap-3 items-center justify-between">
+                    <div class="w-full md:w-80">
+                        <input type="text" id="branch-search-input" oninput="filterBranchesAndPrograms()" placeholder="Rechercher un programme, une branche..." class="w-full bg-slate-800 text-white p-2.5 rounded-xl text-xs border border-slate-700 focus:outline-none">
+                    </div>
+                    <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                        <select id="filter-status" onchange="filterBranchesAndPrograms()" class="bg-slate-800 text-slate-300 text-xs font-bold px-3 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
+                            <option value="all">Statut : Tous</option>
+                            <option value="brouillon">Brouillon</option>
+                            <option value="validation">En attente de validation</option>
+                            <option value="actif">Actif</option>
+                            <option value="suspendu">Suspendu</option>
+                            <option value="termine">Terminé</option>
+                            <option value="archive">Archivé</option>
+                        </select>
+                        <select id="filter-country" onchange="filterBranchesAndPrograms()" class="african-countries-select bg-slate-800 text-slate-300 text-xs font-bold px-3 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
+                            <option value="all">Tous les pays</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -337,7 +353,7 @@
             <div id="profile-card" class="space-y-6"></div>
         </section>
 
-        <!-- NOUVEAU MODULE : NOTIFICATIONS & ALERTES (CENTRE OPÉRATIONNEL) -->
+        <!-- NOTIFICATIONS & ALERTES -->
         <section id="sec-notifications" class="hidden space-y-6 max-w-5xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -353,7 +369,6 @@
                     </div>
                 </div>
 
-                <!-- STATISTIQUES DE NOTIFICATIONS -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
                     <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
                         <div>
@@ -386,7 +401,6 @@
                 </div>
             </div>
 
-            <!-- FILTRES DE RECHERCHE ET CATÉGORIES -->
             <div class="bg-white p-4 rounded-3xl border shadow-sm space-y-4">
                 <div class="flex flex-col md:flex-row gap-3 justify-between items-center">
                     <div class="flex items-center gap-1.5 overflow-x-auto w-full pb-2 md:pb-0" id="notif-filter-buttons">
@@ -402,10 +416,7 @@
                     </div>
                 </div>
 
-                <!-- LISTE DES NOTIFICATIONS -->
-                <div id="notifications-container" class="space-y-3 pt-2">
-                    <!-- Rempli dynamiquement -->
-                </div>
+                <div id="notifications-container" class="space-y-3 pt-2"></div>
             </div>
         </section>
 
@@ -501,26 +512,42 @@
         </div>
     </div>
 
+    <!-- FORMULAIRE D'ENREGISTREMENT D'AGENT AMÉLIORÉ AVEC AFFECTATION PROFESSIONNELLE -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent</h3><button onclick="closeForm('agent')" class="p-2 font-bold cursor-pointer">✕</button></div>
+            <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm uppercase text-purple-700">Enregistrer & Assigner un Agent</h3><button onclick="closeForm('agent')" class="p-2 font-bold cursor-pointer">✕</button></div>
             <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-24">
                 <div class="grid grid-cols-2 gap-3">
                     <div class="bg-purple-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Agent</label><input type="file" id="a-photo" accept="image/*" class="w-full text-[10px]"></div>
                     <div class="bg-indigo-50 p-3 rounded-xl border"><label class="font-bold">🏢 Photo Bureau</label><input type="file" id="a-family-photo" accept="image/*" class="w-full text-[10px]"></div>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Branche *</label><select id="a-branch" onchange="updateSubactivityOptions()" class="w-full p-2 border rounded bg-white font-bold"></select></div>
-                    <div><label class="font-bold">Sous-programme *</label><select id="a-subactivity" class="w-full p-2 border rounded bg-white font-bold"></select></div>
-                    <div><label class="font-bold">Fonction *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Matériel</label><input type="text" id="a-equipments" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
-                    <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2.5 border rounded-xl bg-white"></div>
+                    <div><label class="font-bold">Fonction / Rôle *</label><input type="text" id="a-role" placeholder="Travailleur Social / Coordinateur..." required class="w-full p-2.5 border rounded-xl bg-white"></div>
                 </div>
-                <button type="button" onclick="saveAgentForm()" class="w-full bg-purple-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-6">Enregistrer</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div><label class="font-bold">Branche *</label><select id="a-branch" onchange="updateSubactivityOptions()" class="w-full p-2.5 border rounded-xl bg-white font-bold"></select></div>
+                    <div><label class="font-bold">Programme / Sous-bouton *</label><select id="a-subactivity" class="w-full p-2.5 border rounded-xl bg-white font-bold"></select></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2.5 border rounded-xl bg-white font-bold"></select></div>
+                    <div><label class="font-bold">Ville / Centre *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2.5 border rounded-xl bg-white"></div>
+                    <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2.5 border rounded-xl bg-white"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div><label class="font-bold">Mission précise</label><input type="text" id="a-mission" placeholder="Ex: Encadrement et suivi sanitaire..." class="w-full p-2.5 border rounded-xl bg-white"></div>
+                    <div><label class="font-bold">Responsable hiérarchique</label><input type="text" id="a-manager" placeholder="Ex: Directeur Général" class="w-full p-2.5 border rounded-xl bg-white"></div>
+                </div>
+                <button type="button" onclick="saveAgentForm()" class="w-full bg-purple-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer & Assigner l'agent</button>
             </div>
+        </div>
+    </div>
+
+    <!-- MODAL DÉTAILS D'ASSIGNATION / MODIFICATION D'AFFECTATION -->
+    <div id="modal-assign-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+            <div class="flex justify-between items-center border-b pb-3"><h3 id="modal-assign-title" class="font-bold text-slate-900 text-sm uppercase text-purple-700">Gestion des Affectations</h3><button onclick="closeAssignModal()" class="p-2 font-bold cursor-pointer">✕</button></div>
+            <div id="modal-assign-body" class="space-y-4 text-xs overflow-y-auto flex-grow"></div>
         </div>
     </div>
 
@@ -548,17 +575,19 @@
             "Tunisie", "Zambie", "Zimbabwe"
         ];
 
+        // STRUCTURE DES 8 BRANCHES CORRIGÉES (AVEC BRANCH 08 CORRIGÉE SANS RÉPÉTITION DE TITRES)
         const structureData = [
             {
                 id: "branch-1",
                 title: "01. Éducation & Scolarité",
                 photo: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&auto=format&fit=crop&q=60",
                 description: "Frais scolaires, inscriptions, manuels, fournitures, tutorat, informatique et orientation.",
+                status: "actif",
                 items: [
-                    { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", procedure: "L’enfant est inscrit via un agent, les frais sont enregistrés et suivis.", activities: "Paiement, suivi des reçus, aide aux familles vulnérables." },
-                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables pour chaque élève.", procedure: "Recensement des besoins scolaires par classe et distribution contrôlée.", activities: "Achat de manuels, constitution des kits, distribution et inventaire." },
-                    { name: "Fournitures scolaires", objective: "Garantir la disponibilité du matériel de papeterie (cahiers, stylos, sacs).", procedure: "Évaluation des besoins par période scolaire et dotation directe.", activities: "Gestion des stocks de papeterie, préparation des lots, remise aux élèves." },
-                    { name: "Tutorat & Accompagnement scolaire", objective: "Offrir un soutien académique pour réduire le taux d'échec scolaire.", procedure: "Identification des élèves en difficulté et mise en place de cours adaptés.", activities: "Séances de rattrapage, suivi des notes, encadrement aux devoirs." }
+                    { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", beneficiaries: "Enfants orphelins et vulnérables", tasks: "Paiement, suivi des reçus, aide aux familles", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-10", endDate: "2026-12-15", status: "actif", progress: 75, budget: "5000 USD", expenses: "3750 USD", resources: "Fonds de parrainage", reports: "Rapport T1 validé", issues: "Retard de versement pour 2 enfants" },
+                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables.", beneficiaries: "Élèves inscrits", tasks: "Achat de manuels, constitution des kits", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-02-01", endDate: "2026-11-30", status: "actif", progress: 90, budget: "2500 USD", expenses: "2200 USD", resources: "Dons matériels", reports: "Inventaire complet", issues: "Aucune" },
+                    { name: "Fournitures scolaires", objective: "Garantir la disponibilité du matériel de papeterie.", beneficiaries: "Tous les enfants suivis", tasks: "Gestion des stocks de papeterie, lots", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-15", endDate: "2026-12-20", status: "actif", progress: 60, budget: "1500 USD", expenses: "900 USD", resources: "Stock central", reports: "Rapport mensuel", issues: "Demande de renouvellement en cours" },
+                    { name: "Tutorat & Accompagnement scolaire", objective: "Offrir un soutien académique.", beneficiaries: "Élèves en difficulté", tasks: "Séances de rattrapage, suivi des notes", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-20", endDate: "2026-12-10", status: "actif", progress: 80, budget: "1200 USD", expenses: "950 USD", resources: "Volontaires éducatifs", reports: "Notes de suivi", issues: "Besoin de salles supplémentaires" }
                 ]
             },
             {
@@ -566,9 +595,10 @@
                 title: "02. Soins, Santé & Nutrition",
                 photo: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&auto=format&fit=crop&q=60",
                 description: "Suivi médical, pharmacie, urgences, nutrition, hygiène et soins.",
+                status: "actif",
                 items: [
-                    { name: "Suivi médical & Infirmerie", objective: "Assurer un suivi sanitaire régulier et des premiers soins de qualité.", procedure: "Consultations de routine, tenue des carnets de santé et soins d'urgence.", activities: "Visites médicales, pansements, surveillance des constantes." },
-                    { name: "Nutrition & Repas équilibrés", objective: "Lutter contre la malnutrition et garantir des apports nutritionnels adéquats.", procedure: "Élaboration des menus, préparation et distribution des repas collectifs.", activities: "Planification alimentaire, contrôle de la qualité des repas." }
+                    { name: "Suivi médical & Infirmerie", objective: "Assurer un suivi sanitaire régulier et premiers soins.", beneficiaries: "Enfants et veuves", tasks: "Consultations de routine, carnets de santé", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 85, budget: "4000 USD", expenses: "3200 USD", resources: "Pharmacie de base", reports: "Rapport sanitaire trimestriel", issues: "Rupture temporaire de certains antipaludéens" },
+                    { name: "Nutrition & Repas équilibrés", objective: "Lutter contre la malnutrition.", beneficiaries: "Enfants de la crèche et de l'école", tasks: "Élaboration des menus, préparation des repas", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 95, budget: "8000 USD", expenses: "7600 USD", resources: "Vivres locaux", reports: "Bilan nutritionnel mensuel", issues: "Hausse du coût des denrées" }
                 ]
             },
             {
@@ -576,9 +606,10 @@
                 title: "03. Autonomisation & AGR",
                 photo: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=600&auto=format&fit=crop&q=60",
                 description: "Couture, petits commerces, agriculture, élevage et activités génératrices de revenus.",
+                status: "actif",
                 items: [
-                    { name: "Coupe-Couture & Machines", objective: "Former aux métiers de la couture pour favoriser l'autonomie financière.", procedure: "Inscription aux ateliers, apprentissage pratique et dotation en machines.", activities: "Cours de coupe-couture, confection de vêtements, maintenance." },
-                    { name: "Petits commerces & AGR", objective: "Soutenir le lancement d'Activités Génératrices de Revenus individuelles.", procedure: "Validation de projets de micro-commerce, appui au démarrage et suivi.", activities: "Conseil en gestion commerciale, constitution du fonds de roulement." }
+                    { name: "Coupe-Couture & Machines", objective: "Former aux métiers de la couture pour l'autonomie.", beneficiaries: "Veuves et mères de famille", tasks: "Cours pratiques, confection, maintenance", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-15", endDate: "2026-12-15", status: "actif", progress: 70, budget: "3500 USD", expenses: "2800 USD", resources: "10 Machines à coudre", reports: "Rapport de formation", issues: "Maintenance requise pour 2 machines" },
+                    { name: "Petits commerces & AGR", objective: "Soutenir le lancement de micro-commerces.", beneficiaries: "Veuves sélectionnées", tasks: "Validation de projets, appui au démarrage", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-02-01", endDate: "2026-11-30", status: "actif", progress: 65, budget: "6000 USD", expenses: "4500 USD", resources: "Fonds renouvelable", reports: "Suivi des remboursements", issues: "Difficultés de transport dans certaines zones" }
                 ]
             },
             {
@@ -586,9 +617,10 @@
                 title: "04. Protection & Accompagnement social",
                 photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60",
                 description: "Protection, suivi social, soutien psychologique et accompagnement familial.",
+                status: "actif",
                 items: [
-                    { name: "Assistance Sociale & Juridique", objective: "Protéger les droits fondamentaux des enfants et des veuves.", procedure: "Signalement, écoute active et intervention de terrain.", activities: "Médiation familiale, défense des droits, orientations." },
-                    { name: "Soutien Psychologique", objective: "Offrir un appui émotionnel aux personnes traumatisées ou vulnérables.", procedure: "Séances de soutien individuel ou en groupe.", activities: "Écoute, thérapie par l'art, résilience." }
+                    { name: "Assistance Sociale & Juridique", objective: "Protéger les droits fondamentaux.", beneficiaries: "Familles vulnérables", tasks: "Médiation familiale, défense des droits", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 80, budget: "2000 USD", expenses: "1500 USD", resources: "Conseillers juridiques", reports: "Registre des cas", issues: "Afflux important de nouveaux dossiers" },
+                    { name: "Soutien Psychologique", objective: "Offrir un appui émotionnel et résilience.", beneficiaries: "Enfants traumatisés et veuves", tasks: "Écoute, thérapie de groupe", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 75, budget: "1800 USD", expenses: "1300 USD", resources: "Psychologues bénévoles", reports: "Rapport d'impact", issues: "Disponibilité limitée des spécialistes" }
                 ]
             },
             {
@@ -596,9 +628,10 @@
                 title: "05. Sport, Culture & Développement des talents",
                 photo: "https://images.unsplash.com/photo-1517649763962-0c6232660102?w=600&auto=format&fit=crop&q=60",
                 description: "Sport, musique, danse, théâtre, dessin, loisirs et talents.",
+                status: "actif",
                 items: [
-                    { name: "Tournois & Activités Sportives", objective: "Favoriser la cohésion sociale et la santé par le sport.", procedure: "Organisation de championnats de football et sports collectifs.", activities: "Entraînements, compétitions inter-centres, dotation en équipements." },
-                    { name: "Arts, Musique & Théâtre", objective: "Développer l'expression artistique et culturelle des jeunes.", procedure: "Ateliers de musique, chant, théâtre et peinture.", activities: "Répétitions, représentations publiques, expositions." }
+                    { name: "Tournois & Activités Sportives", objective: "Favoriser la cohésion sociale par le sport.", beneficiaries: "Jeunes des centres", tasks: "Championnats de football, dotation en équipements", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-03-01", endDate: "2026-11-30", status: "actif", progress: 85, budget: "1500 USD", expenses: "1200 USD", resources: "Ballons, maillots", reports: "Bilan des tournois", issues: "État du terrain de sport" },
+                    { name: "Arts, Musique & Théâtre", objective: "Développer l'expression artistique.", beneficiaries: "Enfants et adolescents", tasks: "Ateliers de chant, théâtre et peinture", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-15", endDate: "2026-12-15", status: "actif", progress: 70, budget: "1000 USD", expenses: "750 USD", resources: "Instruments de musique", reports: "Expositions et spectacles", issues: "Manque d'espace de répétition" }
                 ]
             },
             {
@@ -606,9 +639,10 @@
                 title: "06. Hébergement, Hygiène & Logistique",
                 photo: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop&q=60",
                 description: "Logement, literie, vêtements, hygiène, eau potable, équipements et stocks.",
+                status: "actif",
                 items: [
-                    { name: "Gestion des Stocks & Vivres", objective: "Garantir la disponibilité des biens de première nécessité.", procedure: "Inventaire régulier, stockage sécurisé et approvisionnement.", activities: "Réception des marchandises, gestion des entrepôts." },
-                    { name: "Assassinement & Eau Potable", objective: "Assurer un environnement de vie sain et sécurisé.", procedure: "Nettoyage des infrastructures, contrôle de l'eau.", activities: "Distribution d'hygiène, traitement de l'eau." }
+                    { name: "Gestion des Stocks & Vivres", objective: "Garantir la disponibilité des biens de première nécessité.", beneficiaries: "Centres d'hébergement", tasks: "Inventaire, stockage sécurisé, approvisionnement", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 90, budget: "10000 USD", expenses: "9200 USD", resources: "Entrepôts centraux", reports: "Fiches de stock", issues: "Capacité de stockage limitée" },
+                    { name: "Assainissement & Eau Potable", objective: "Assurer un environnement de vie sain.", beneficiaries: "Communauté des centres", tasks: "Nettoyage des infrastructures, traitement de l'eau", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 88, budget: "3000 USD", expenses: "2500 USD", resources: "Système de filtration", reports: "Contrôle qualité de l'eau", issues: "Coupures d'électricité affectant le pompage" }
                 ]
             },
             {
@@ -616,25 +650,26 @@
                 title: "07. Formation, Emploi & Autonomie",
                 photo: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60",
                 description: "Formation professionnelle, compétences numériques, stages, orientation et préparation à la vie adulte.",
+                status: "actif",
                 items: [
-                    { name: "Initiation Informatique & Numérique", objective: "Maîtriser les outils informatiques de base.", procedure: "Cours pratiques en salle multimédia.", activities: "Apprentissage traitement de texte, internet, bureautique." },
-                    { name: "Orientation & Stages professionnels", objective: "Préparer l'insertion professionnelle des jeunes majeurs.", procedure: "Partenariats avec des entreprises locales.", activities: "Bilan de compétences, stages d'immersion, coaching." }
+                    { name: "Initiation Informatique & Numérique", objective: "Maîtriser les outils informatiques de base.", beneficiaries: "Jeunes majeurs et adolescents", tasks: "Cours pratiques en salle multimédia", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-02-01", endDate: "2026-12-15", status: "actif", progress: 75, budget: "4000 USD", expenses: "3400 USD", resources: "15 Ordinateurs portables", reports: "Certificats délivrés", issues: "Connexion internet instable" },
+                    { name: "Orientation & Stages professionnels", objective: "Préparer l'insertion professionnelle.", beneficiaries: "Jeunes en fin de scolarité", tasks: "Partenariats entreprises, stages d'immersion", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-03-01", endDate: "2026-11-30", status: "actif", progress: 60, budget: "2000 USD", expenses: "1400 USD", resources: "Réseau d'entreprises partenaires", reports: "Bilan d'insertion", issues: "Nombre restreint de partenaires locaux" }
                 ]
             },
             {
                 id: "branch-8",
                 title: "08. Administration, Finances & Partenariats",
                 photo: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=60",
-                description: "Personnel, budgets, achats, comptabilité, rapports, partenariats et coordination panafricaine.",
+                description: "Coordination, personnel, budgets, comptabilité, rapports, partenariats et gestion panafricaine.",
+                status: "actif",
                 items: [
-                    { name: "Coordination & Gestion Administrative", objective: "Superviser l'ensemble des opérations panafricaines.", procedure: "Réunions de pilotage et validation des procédures.", activities: "Gestion des plannings, suivi des rapports, secrétariat." },
-                    { name: "Finances, Dons & Partenariats", objective: "Assurer la transparence financière et la recherche de fonds.", procedure: "Tenue de la comptabilité et gestion des donateurs.", activities: "Établissement des reçus, bilans financiers, relations partenaires." }
+                    { name: "Coordination & Gestion administrative", objective: "Superviser l'ensemble des opérations panafricaines et administratives.", beneficiaries: "Équipes et centres", tasks: "Réunions de pilotage, gestion des plannings, secrétariat, suivi des rapports.", country: "République Démocratique du Congo (RDC)", center: "Secrétariat Général Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 90, budget: "12000 USD", expenses: "11000 USD", resources: "Bureautique centrale", reports: "Rapports de coordination trimestriels", issues: "Coordination inter-pays à synchroniser" },
+                    { name: "Finances, Dons & Partenariats", objective: "Assurer la transparence financière, la comptabilité, la gestion des donateurs et des sponsors.", beneficiaries: "Organisation et donateurs", tasks: "Tenue de la comptabilité, bilans financiers, reçus de dons, relations partenaires.", country: "République Démocratique du Congo (RDC)", center: "Direction Financière Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 95, budget: "15000 USD", expenses: "14200 USD", resources: "Logiciel comptable et sécurisé", reports: "Bilan financier certifié", issues: "Délais bancaires sur virements internationaux" }
                 ]
             }
         ];
 
         const OFFICIAL_WHATSAPP_NUMBER = "256792994716";
-        let currentNotificationFilter = 'all';
 
         function copyMtnNumber() {
             const numToCopy = "+256792994716";
@@ -749,7 +784,7 @@
             const currentUser = auth.currentUser;
 
             if (amount <= 0) { alert("Veuillez entrer un montant valide."); return; }
-            if (!transId) { alert("Veuillez saisir la référence/ID de la transaction reçue par SMS pour nous permettre de valider votre don."); return; }
+            if (!transId) { alert("Veuillez saisir la référence/ID de la transaction reçue par SMS."); return; }
 
             try {
                 const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
@@ -763,7 +798,6 @@
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
-                // Création automatique d'une notification pour l'administration
                 await createSystemNotification({
                     title: "Nouveau Don Déclaré",
                     message: `${name} a déclaré un don de ${amount} ${currency} pour [${cause}]. Réf: ${transId}`,
@@ -772,26 +806,24 @@
                     targetRole: "admin"
                 });
 
-                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nVotre don est enregistré en attente de confirmation par l'administration.`);
+                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nVotre don est enregistré en attente de confirmation.`);
                 closeSponsoringModal();
                 updateFinancialReports();
                 if (currentUser) updateProfileCard(currentUser);
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // --- GESTION DES NOTIFICATIONS AUTOMATIQUES ET DU CENTRE ---
         async function createSystemNotification(notifData) {
             try {
                 await db.collection("notifications").add({
                     title: notifData.title,
                     message: notifData.message,
                     category: notifData.category || "Système & Technique",
-                    priority: notifData.priority || "information", // urgente, importante, information, confirmation
-                    status: "nouvelle", // nouvelle, en_cours, resolue, cloturee
+                    priority: notifData.priority || "information",
+                    status: "nouvelle",
                     isRead: false,
                     targetRole: notifData.targetRole || "all",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    actionHistory: [{ action: "Création automatique", date: new Date().toISOString() }]
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 updateNotificationBadges();
             } catch (e) {
@@ -803,9 +835,7 @@
             try {
                 const snap = await db.collection("notifications").get();
                 let unreadCount = 0;
-                snap.forEach(doc => {
-                    if (!doc.data().isRead) unreadCount++;
-                });
+                snap.forEach(doc => { if (!doc.data().isRead) unreadCount++; });
 
                 const badge = document.getElementById('sidebar-notif-badge');
                 if (badge) {
@@ -832,6 +862,8 @@
             renderNotificationsList();
         }
 
+        let currentNotificationFilter = 'all';
+
         async function renderNotificationsList() {
             const container = document.getElementById('notifications-container');
             const searchInput = document.getElementById('notif-search-input');
@@ -843,11 +875,7 @@
             try {
                 const snap = await db.collection("notifications").orderBy("createdAt", "desc").get();
                 let notifications = [];
-                let unreadCount = 0;
-                let urgentCount = 0;
-                let todayCount = 0;
-                let totalCount = 0;
-
+                let unreadCount = 0, urgentCount = 0, todayCount = 0, totalCount = 0;
                 const todayStr = new Date().toDateString();
 
                 snap.forEach(doc => {
@@ -859,7 +887,6 @@
                     const notifDate = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
                     if (notifDate.toDateString() === todayStr) todayCount++;
 
-                    // Filtrage
                     let matchesFilter = true;
                     if (currentNotificationFilter === 'unread') matchesFilter = !data.isRead;
                     else if (currentNotificationFilter === 'urgente') matchesFilter = data.priority === 'urgente';
@@ -870,16 +897,12 @@
                     let matchesSearch = true;
                     if (searchTerm) {
                         matchesSearch = (data.title && data.title.toLowerCase().includes(searchTerm)) ||
-                                        (data.message && data.message.toLowerCase().includes(searchTerm)) ||
-                                        (data.category && data.category.toLowerCase().includes(searchTerm));
+                                        (data.message && data.message.toLowerCase().includes(searchTerm));
                     }
 
-                    if (matchesFilter && matchesSearch) {
-                        notifications.push(data);
-                    }
+                    if (matchesFilter && matchesSearch) notifications.push(data);
                 });
 
-                // Mise à jour des compteurs en haut
                 document.getElementById('notif-stat-unread').innerText = unreadCount;
                 document.getElementById('notif-stat-urgent').innerText = urgentCount;
                 document.getElementById('notif-stat-today').innerText = todayCount;
@@ -887,13 +910,7 @@
                 updateNotificationBadges();
 
                 if (notifications.length === 0) {
-                    container.innerHTML = `
-                        <div class="text-center py-12 space-y-3 bg-slate-50 rounded-2xl border">
-                            <div class="w-12 h-12 mx-auto rounded-full bg-slate-200 text-slate-600 flex items-center justify-center"><i data-lucide="bell-off" class="w-6 h-6"></i></div>
-                            <p class="text-xs font-bold text-slate-700">Aucune notification correspondante</p>
-                            <p class="text-[11px] text-slate-500">Le système n'enregistre aucune alerte dans cette catégorie pour le moment.</p>
-                        </div>
-                    `;
+                    container.innerHTML = `<div class="text-center py-12 text-xs text-slate-500">Aucune notification correspondante.</div>`;
                     if (window.lucide) lucide.createIcons();
                     return;
                 }
@@ -901,95 +918,22 @@
                 container.innerHTML = '';
                 notifications.forEach(n => {
                     const dateFormatted = n.createdAt?.toDate ? n.createdAt.toDate().toLocaleString() : 'Récemment';
-                    
-                    // Couleur selon priorité
-                    let priorityBadge = '';
-                    if (n.priority === 'urgente') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-red-100 text-red-800 uppercase">Urgente</span>`;
-                    else if (n.priority === 'importante') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-amber-100 text-amber-800 uppercase">Importante</span>`;
-                    else if (n.priority === 'confirmation') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-green-100 text-green-800 uppercase">Confirmation</span>`;
-                    else priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-blue-100 text-blue-800 uppercase">Info</span>`;
-
-                    let statusBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-slate-100 text-slate-700">${n.status || 'nouvelle'}</span>`;
-                    if (n.status === 'resolue') statusBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-emerald-100 text-emerald-800">Résolue</span>`;
-                    if (n.status === 'en_cours') statusBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-purple-100 text-purple-800">En cours</span>`;
+                    let priorityBadge = n.priority === 'urgente' ? `<span class="px-2 py-0.5 rounded text-[9px] font-bold bg-red-100 text-red-800">Urgente</span>` : `<span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-100 text-blue-800">Info</span>`;
 
                     container.innerHTML += `
-                        <div class="p-4 rounded-2xl border transition ${n.isRead ? 'bg-white border-slate-200' : 'bg-slate-50/90 border-slate-300 shadow-sm'} space-y-3">
-                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="text-[10px] font-bold text-slate-400 font-mono">${dateFormatted}</span>
-                                    ${priorityBadge}
-                                    <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-bold">${n.category || 'Général'}</span>
-                                    ${statusBadge}
-                                </div>
-                                <div class="flex items-center gap-1.5 self-end md:self-auto">
-                                    <button onclick="toggleNotificationRead('${n.id}', ${!n.isRead})" class="p-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[10px] font-bold cursor-pointer transition" title="Marquer lu/non lu">
-                                        ${n.isRead ? '✉️ Non lu' : '📩 Lu'}
-                                    </button>
-                                    <button onclick="changeNotificationStatus('${n.id}', 'resolue')" class="p-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg text-[10px] font-bold cursor-pointer transition">
-                                        ✅ Résoudre
-                                    </button>
-                                    <button onclick="deleteNotification('${n.id}')" class="p-1.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-lg text-[10px] font-bold cursor-pointer transition" title="Supprimer">
-                                        🗑️
-                                    </button>
-                                </div>
+                        <div class="p-4 rounded-2xl border transition ${n.isRead ? 'bg-white border-slate-200' : 'bg-slate-50 border-slate-300 shadow-sm'} space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-bold text-slate-400">${dateFormatted}</span>
+                                ${priorityBadge}
                             </div>
-
-                            <div class="space-y-1">
-                                <h4 class="font-black text-slate-900 text-xs md:text-sm">${n.title}</h4>
-                                <p class="text-xs text-slate-600 leading-relaxed">${n.message}</p>
-                            </div>
+                            <h4 class="font-black text-slate-900 text-xs">${n.title}</h4>
+                            <p class="text-xs text-slate-600">${n.message}</p>
                         </div>
                     `;
                 });
                 if (window.lucide) lucide.createIcons();
             } catch (e) {
-                console.error("Erreur chargement notifications:", e);
-                container.innerHTML = `<p class="text-xs text-red-500 text-center py-4">Erreur de chargement des alertes.</p>`;
-            }
-        }
-
-        async function toggleNotificationRead(id, isRead) {
-            try {
-                await db.collection("notifications").doc(id).update({ isRead });
-                renderNotificationsList();
-            } catch (e) {
-                alert("Erreur : " + e.message);
-            }
-        }
-
-        async function markAllNotificationsAsRead() {
-            try {
-                const snap = await db.collection("notifications").get();
-                const batch = db.batch();
-                snap.forEach(doc => {
-                    batch.update(doc.ref, { isRead: true });
-                });
-                await batch.commit();
-                renderNotificationsList();
-                alert("Toutes les notifications ont été marquées comme lues.");
-            } catch (e) {
-                alert("Erreur : " + e.message);
-            }
-        }
-
-        async function changeNotificationStatus(id, status) {
-            try {
-                await db.collection("notifications").doc(id).update({ status });
-                renderNotificationsList();
-            } catch (e) {
-                alert("Erreur : " + e.message);
-            }
-        }
-
-        async function deleteNotification(id) {
-            if (confirm("Voulez-vous supprimer cette notification ?")) {
-                try {
-                    await db.collection("notifications").doc(id).delete();
-                    renderNotificationsList();
-                } catch (e) {
-                    alert("Erreur : " + e.message);
-                }
+                container.innerHTML = `<p class="text-xs text-red-500 text-center py-4">Erreur de chargement.</p>`;
             }
         }
 
@@ -1011,7 +955,7 @@
 
         function populateAfricanCountries() {
             document.querySelectorAll('.african-countries-select').forEach(sel => {
-                sel.innerHTML = '';
+                sel.innerHTML = '<option value="all">Tous les pays</option>';
                 africanCountries.forEach(country => {
                     const opt = document.createElement('option');
                     opt.value = country;
@@ -1038,16 +982,19 @@
 
         function initAuthListener() {
             auth.onAuthStateChanged(user => {
+                const btnRegisterTop = document.getElementById('btn-register-agent-top');
                 if (user) {
                     document.getElementById('user-display').innerText = user.email;
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Déconnexion</span>`;
                     document.getElementById('auth-btn').onclick = () => auth.signOut();
+                    if (btnRegisterTop) btnRegisterTop.classList.remove('hidden'); // Affiché aux utilisateurs connectés / autorisés
                     updateProfileCard(user);
                 } else {
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Connexion</span>`;
                     document.getElementById('auth-btn').onclick = openAuthModal;
+                    if (btnRegisterTop) btnRegisterTop.classList.add('hidden');
                     updateProfileCard(null);
                 }
                 updateNotificationBadges();
@@ -1068,7 +1015,7 @@
             if (tab === 'home') loadHomeFeaturedProfiles();
             if (tab === 'children') loadCollection('children', 'children-grid-container', true);
             if (tab === 'widows') loadCollection('widows', 'widows-grid-container', false);
-            if (tab === 'team') { backToBranchesGrid(); }
+            if (tab === 'team') { backToBranchesGrid(); renderBranchesGrid(); }
             if (tab === 'admin') loadAdminMasterList();
             if (tab === 'countries') renderCountriesList();
             if (tab === 'reports') updateFinancialReports();
@@ -1094,18 +1041,25 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        function renderBranchesGrid() {
+        // RENDU DES 8 BRANCHES AVEC FILTRES ET NOMBRES RÉELS DE PROGRAMMES ACTIFS
+        function renderBranchesGrid(filteredData = structureData) {
             const gridContainer = document.getElementById('branches-grid-container');
             if (!gridContainer) return;
 
             gridContainer.innerHTML = '';
-            structureData.forEach(branch => {
+            if (filteredData.length === 0) {
+                gridContainer.innerHTML = `<div class="col-span-2 text-center py-12 text-xs text-slate-500">Aucune branche ou programme ne correspond à votre recherche.</div>`;
+                return;
+            }
+
+            filteredData.forEach(branch => {
+                const activeProgramsCount = branch.items.filter(i => i.status === 'actif').length;
                 gridContainer.innerHTML += `
                     <div class="bg-white rounded-3xl border shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
                         <div class="relative h-44 bg-slate-100">
                             <img src="${branch.photo}" alt="${branch.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60'">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
-                                <span class="bg-purple-600 text-white font-mono text-[10px] px-2.5 py-1 rounded-full font-bold shadow">${branch.items.length} Programmes</span>
+                                <span class="bg-purple-600 text-white font-mono text-[10px] px-2.5 py-1 rounded-full font-bold shadow">${activeProgramsCount} programme(s) actif(s)</span>
                             </div>
                         </div>
                         <div class="p-5 space-y-3 flex flex-col justify-between flex-grow">
@@ -1124,6 +1078,30 @@
             if (window.lucide) lucide.createIcons();
         }
 
+        function filterBranchesAndPrograms() {
+            const searchTerm = document.getElementById('branch-search-input').value.toLowerCase();
+            const statusFilter = document.getElementById('filter-status').value;
+            const countryFilter = document.getElementById('filter-country').value;
+
+            const filtered = structureData.map(branch => {
+                const matchingItems = branch.items.filter(item => {
+                    const matchText = item.name.toLowerCase().includes(searchTerm) || 
+                                      item.objective.toLowerCase().includes(searchTerm) || 
+                                      branch.title.toLowerCase().includes(searchTerm);
+                    const matchStatus = statusFilter === 'all' || item.status === statusFilter;
+                    const matchCountry = countryFilter === 'all' || item.country === countryFilter;
+                    return matchText && matchStatus && matchCountry;
+                });
+
+                if (matchingItems.length > 0 || branch.title.toLowerCase().includes(searchTerm)) {
+                    return { ...branch, items: matchingItems.length > 0 ? matchingItems : branch.items };
+                }
+                return null;
+            }).filter(Boolean);
+
+            renderBranchesGrid(filtered);
+        }
+
         function openBranchPrograms(branchId) {
             const branch = structureData.find(b => b.id === branchId);
             if (!branch) return;
@@ -1140,13 +1118,34 @@
                         <div class="space-y-2">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-black text-slate-900 text-sm">${sub.name}</h4>
-                                <span class="text-[10px] bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full font-bold border border-green-200">Actif</span>
+                                <span class="text-[10px] bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full font-bold border border-green-200 uppercase">${sub.status || 'actif'}</span>
                             </div>
-                            <p class="text-xs text-slate-600"><strong>Objectif :</strong> ${sub.objective}</p>
-                            <p class="text-xs text-slate-500"><strong>Procédure :</strong> ${sub.procedure}</p>
+                            <p class="text-xs text-slate-600"><strong>Objectif précis :</strong> ${sub.objective}</p>
+                            <p class="text-xs text-slate-500"><strong>Bénéficiaires :</strong> ${sub.beneficiaries}</p>
+                            <p class="text-xs text-slate-500"><strong>Activités & Tâches :</strong> ${sub.tasks}</p>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-xl border">
+                                <div>📍 <strong>Pays :</strong> ${sub.country}</div>
+                                <div>🏢 <strong>Centre :</strong> ${sub.center}</div>
+                                <div>⏱️ <strong>Début :</strong> ${sub.startDate}</div>
+                                <div>🏁 <strong>Fin :</strong> ${sub.endDate}</div>
+                            </div>
+                            <div class="space-y-1 pt-1">
+                                <div class="flex justify-between text-[11px] font-bold">
+                                    <span>Progression</span>
+                                    <span>${sub.progress}%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-purple-600 h-full rounded-full" style="width: ${sub.progress}%"></div>
+                                </div>
+                            </div>
+                            <div class="text-[11px] text-slate-600 bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
+                                <p>💰 <strong>Budget :</strong> ${sub.budget} | <strong>Dépenses :</strong> ${sub.expenses}</p>
+                                <p>📈 <strong>Résultats / Rapport :</strong> ${sub.reports}</p>
+                                <p class="text-amber-700">⚠️ <strong>Difficultés :</strong> ${sub.issues}</p>
+                            </div>
                         </div>
                         <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.name.replace(/'/g, "\\'")}')" class="w-full bg-purple-50 hover:bg-purple-600 hover:text-white text-purple-700 border border-purple-200 py-2.5 rounded-xl text-xs font-bold cursor-pointer transition flex items-center justify-center gap-1">
-                            Détails, Tâches & Contacts <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            Détails, Agents & Contacts <i data-lucide="chevron-right" class="w-4 h-4"></i>
                         </button>
                     </div>
                 `;
@@ -1185,7 +1184,7 @@
             const listContainer = document.getElementById('modal-branch-list');
 
             title.innerText = `${branchTitle} — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement des données du programme...";
+            listContainer.innerHTML = "Chargement des agents affectés...";
             modal.classList.replace('hidden', 'flex');
 
             try {
@@ -1193,13 +1192,18 @@
                 let agentsHtml = '';
 
                 snap.forEach(doc => {
-                    const agent = doc.data();
+                    const agent = { id: doc.id, ...doc.data() };
                     if (agent.subactivity === subActivityName || agent.branch === branchTitle) {
                         const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
                         agentsHtml += `
                             <div class="bg-slate-50 p-3 rounded-2xl border space-y-2">
-                                <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
+                                    <button onclick="removeAgentAssignment('${agent.id}')" class="text-red-500 hover:text-red-700 text-[10px] font-bold cursor-pointer">Retirer l'affectation</button>
+                                </div>
                                 <h4 class="font-bold text-slate-900 text-xs">${agent.fullName} (${agent.role})</h4>
+                                <p class="text-[11px] text-slate-600"><strong>Mission :</strong> ${agent.mission || 'Mission générale'}</p>
+                                <p class="text-[11px] text-slate-500">📍 ${agent.country || 'RDC'} | 👤 Resp : ${agent.manager || 'Direction'}</p>
                                 <div class="grid grid-cols-2 gap-2 pt-1">
                                     <a href="tel:${cleanPhone}" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold">📞 Appeler</a>
                                     <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 text-white p-2 rounded-xl text-center font-bold">💬 WhatsApp</a>
@@ -1209,13 +1213,13 @@
                     }
                 });
 
-                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent affecté pour le moment.</p>`;
+                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent affecté pour ce programme.</p>`;
 
                 listContainer.innerHTML = `
                     <div class="space-y-3 text-slate-700 text-xs">
                         <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
-                            <p class="font-bold text-slate-900">Objectif & Activités :</p>
-                            <p class="text-slate-600">Exécution et suivi opérationnel sur le terrain sous la supervision panafricaine.</p>
+                            <p class="font-bold text-slate-900">Objectif & Tâches associées :</p>
+                            <p class="text-slate-600">Suivi rigoureux sur le terrain sous la supervision panafricaine.</p>
                         </div>
                         <div class="pt-2 border-t space-y-2">
                             <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 Personnel & Agents affectés</h4>
@@ -1228,6 +1232,18 @@
         }
 
         function closeBranchModal() { document.getElementById('modal-branch-agents').classList.replace('flex', 'hidden'); }
+
+        async function removeAgentAssignment(agentId) {
+            if (confirm("Voulez-vous retirer cet agent de ce programme sans supprimer son dossier global ?")) {
+                try {
+                    await db.collection("agents").doc(agentId).update({ subactivity: "Non assigné" });
+                    alert("Affectation retirée avec succès.");
+                    closeBranchModal();
+                } catch (e) {
+                    alert("Erreur : " + e.message);
+                }
+            }
+        }
 
         function compressImage(file) {
             return new Promise((resolve) => {
@@ -1262,28 +1278,29 @@
                 const familyPhoto = await compressImage(document.getElementById('a-family-photo').files[0]);
                 const matricule = await generateNextMatricule('agents', 'A');
                 const fullName = document.getElementById('a-fullname').value;
-                
+                const branch = document.getElementById('a-branch').value;
+                const subactivity = document.getElementById('a-subactivity').value;
+                const role = document.getElementById('a-role').value;
+                const phone = document.getElementById('a-phone').value;
+                const country = document.getElementById('a-country').value;
+                const city = document.getElementById('a-city').value;
+                const mission = document.getElementById('a-mission').value;
+                const manager = document.getElementById('a-manager').value;
+
                 await db.collection("agents").add({
                     matricule, photo, familyPhoto,
-                    fullName,
-                    branch: document.getElementById('a-branch').value,
-                    subactivity: document.getElementById('a-subactivity').value,
-                    role: document.getElementById('a-role').value,
-                    equipments: document.getElementById('a-equipments').value,
-                    phone: document.getElementById('a-phone').value,
-                    country: document.getElementById('a-country').value,
-                    city: document.getElementById('a-city').value,
+                    fullName, branch, subactivity, role, phone, country, city, mission, manager,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
                 await createSystemNotification({
                     title: "Nouvel Agent Enregistré",
-                    message: `L'agent ${fullName} a été affecté à la branche ${document.getElementById('a-branch').value} (${matricule}).`,
+                    message: `L'agent ${fullName} a été affecté au programme [${subactivity}] (${matricule}).`,
                     category: "Agents",
                     priority: "information"
                 });
 
-                alert(`Agent enregistré ! ID : ${matricule}`);
+                alert(`Agent enregistré et affecté avec succès ! ID : ${matricule}`);
                 closeForm('agent'); refreshCounters();
             } catch (err) { alert("Erreur : " + err.message); }
         }
@@ -1299,8 +1316,7 @@
                 await db.collection("children").add({
                     matricule, photo, familyPhoto,
                     famId: document.getElementById('c-famid').value,
-                    firstName,
-                    lastName,
+                    firstName, lastName,
                     postName: document.getElementById('c-postname').value,
                     gender: document.getElementById('c-gender').value,
                     age: parseInt(document.getElementById('c-age').value) || 0,
@@ -1312,12 +1328,12 @@
 
                 await createSystemNotification({
                     title: "Nouveau Dossier Enfant",
-                    message: `L'enfant ${firstName} ${lastName} a été enregistré dans le registre (Matricule : ${matricule}).`,
+                    message: `L'enfant ${firstName} ${lastName} a été enregistré (Matricule : ${matricule}).`,
                     category: "Enfants",
                     priority: "importante"
                 });
 
-                alert(`Enfant enregistré avec succès ! ID Public : ${matricule}`);
+                alert(`Enfant enregistré avec succès ! ID : ${matricule}`);
                 closeForm('child'); refreshCounters();
             } catch (err) { alert("Erreur : " + err.message); }
         }
@@ -1333,8 +1349,7 @@
                 await db.collection("widows").add({
                     matricule, photo, familyPhoto,
                     famId: document.getElementById('w-famid').value,
-                    firstName,
-                    lastName,
+                    firstName, lastName,
                     postName: document.getElementById('w-postname').value,
                     age: parseInt(document.getElementById('w-age').value) || 0,
                     phone: document.getElementById('w-phone').value,
@@ -1345,7 +1360,7 @@
 
                 await createSystemNotification({
                     title: "Nouveau Dossier Veuve",
-                    message: `La veuve ${firstName} ${lastName} a été enregistrée dans le registre (Matricule : ${matricule}).`,
+                    message: `La veuve ${firstName} ${lastName} a été enregistrée (Matricule : ${matricule}).`,
                     category: "Veuves",
                     priority: "importante"
                 });
@@ -1379,7 +1394,7 @@
                         <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
                         <div><span class="font-mono bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
                     </div>
-                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil (Choisir un motif)</button>
+                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil</button>
                 `;
             } else {
                 card.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier correspondant à ce matricule.</p>`;
@@ -1439,7 +1454,7 @@
                     `;
                 });
             } catch (err) {
-                container.innerHTML = `<p class="text-xs text-red-500 col-span-3 text-center">Erreur de chargement des profils.</p>`;
+                container.innerHTML = `<p class="text-xs text-red-500 col-span-3 text-center">Erreur de chargement.</p>`;
             }
         }
 
@@ -1475,14 +1490,11 @@
         async function updateFinancialReports() {
             try {
                 const snap = await db.collection("donations").get();
-                let totalPromis = 0;
-                let totalConfirmed = 0;
+                let totalPromis = 0, totalConfirmed = 0;
                 snap.forEach(doc => {
                     const d = doc.data();
                     totalPromis += (d.amount || 0);
-                    if (d.status === "confirmed") {
-                        totalConfirmed += (d.amount || 0);
-                    }
+                    if (d.status === "confirmed") totalConfirmed += (d.amount || 0);
                 });
                 document.getElementById('report-promis-val').innerText = `${totalPromis} USD`;
                 document.getElementById('report-confirmed-val').innerText = `${totalConfirmed} USD`;
@@ -1499,8 +1511,7 @@
                 snap.forEach(doc => {
                     const d = doc.data();
                     let title = d.matricule || d.refId || d.fullName || 'Élément';
-                    let detail = d.transId ? `(TransID: ${d.transId})` : '';
-                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title} ${detail}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
+                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
                 });
             }
             container.innerHTML = html || 'Aucun enregistrement trouvé.';
@@ -1518,379 +1529,61 @@
                         userData = userDoc.data();
                     } else {
                         userData = {
-                            nom: user.displayName || "",
-                            postnom: "",
-                            prenom: "",
-                            phone: "",
-                            pays: "République Démocratique du Congo (RDC)",
-                            ville: "Bukavu",
-                            langue: "fr",
-                            role: "Sponsor / Donateur",
-                            isVerified: false,
-                            photoURL: user.photoURL || "",
+                            nom: user.displayName || "", postnom: "", prenom: "", phone: "",
+                            pays: "République Démocratique du Congo (RDC)", ville: "Bukavu", langue: "fr",
+                            role: "Sponsor / Donateur", isVerified: false, photoURL: user.photoURL || "",
                             memberId: 'BKDD-SP-' + Math.floor(1000 + Math.random() * 9000),
                             createdAt: firebase.firestore.FieldValue.serverTimestamp()
                         };
                         await db.collection("users").doc(user.uid).set(userData);
                     }
-                } catch (e) {
-                    console.error("Erreur lecture profil Firestore:", e);
-                }
+                } catch (e) { console.error(e); }
 
                 let userDonations = [];
                 let totalConfirmedDonations = 0;
-                let activeSponsorshipsCount = 0;
-
                 try {
                     const donSnap = await db.collection("donations").where("userId", "==", user.uid).get();
                     donSnap.forEach(doc => {
                         const d = { id: doc.id, ...doc.data() };
                         userDonations.push(d);
-                        if (d.status === "confirmed") {
-                            totalConfirmedDonations += (Number(d.amount) || 0);
-                        }
+                        if (d.status === "confirmed") totalConfirmedDonations += (Number(d.amount) || 0);
                     });
-                } catch (e) {
-                    console.error("Erreur chargement dons:", e);
-                }
-
-                let userSponsorships = [];
-                try {
-                    const spSnap = await db.collection("sponsorships").where("sponsorId", "==", user.uid).get();
-                    spSnap.forEach(doc => {
-                        const s = doc.data();
-                        userSponsorships.push(s);
-                        if (s.status === "active") activeSponsorshipsCount++;
-                    });
-                } catch (e) {
-                    console.error("Erreur parrainages:", e);
-                }
+                } catch (e) { console.error(e); }
 
                 const userPhoto = userData.photoURL || user.photoURL || "";
-                const userInitials = (userData.prenom ? userData.prenom.charAt(0) : '') + (userData.nom ? userData.nom.charAt(0) : (user.email ? user.email.charAt(0).toUpperCase() : 'U'));
-                const isVerified = userData.isVerified === true;
-                const memberId = userData.memberId || 'BKDD-SP-0001';
-                const memberSince = userData.createdAt ? (userData.createdAt.toDate ? userData.createdAt.toDate().toLocaleDateString() : 'Récemment') : 'Récemment';
+                const userInitials = (userData.prenom ? userData.prenom.charAt(0) : '') + (userData.nom ? userData.nom.charAt(0) : 'U');
 
                 card.innerHTML = `
                     <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
                         <div class="flex items-center gap-4">
                             <div class="relative w-20 h-20 rounded-full bg-slate-200 overflow-hidden border-2 border-green-500 shadow-md flex items-center justify-center font-black text-slate-700 text-xl">
-                                ${userPhoto 
-                                    ? `<img id="profile-avatar-preview" src="${userPhoto}" class="w-full h-full object-cover">`
-                                    : `<span id="profile-avatar-preview" class="text-green-700">${userInitials}</span>`
-                                }
-                                <label for="avatar-file-input" class="absolute inset-0 bg-slate-950/50 opacity-0 hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-bold cursor-pointer">
-                                    📷 Modifier
-                                </label>
-                                <input type="file" id="avatar-file-input" accept="image/*" class="hidden" onchange="uploadUserAvatar(event)">
+                                ${userPhoto ? `<img src="${userPhoto}" class="w-full h-full object-cover">` : `<span class="text-green-700">${userInitials}</span>`}
                             </div>
                             <div class="space-y-1">
                                 <h3 class="font-black text-slate-900 text-base md:text-lg">${userData.prenom || ''} ${userData.nom || user.displayName || 'Membre Panafricain'}</h3>
                                 <p class="text-xs font-mono text-blue-600 font-bold">${user.email}</p>
                                 <p class="text-[11px] text-slate-500">📍 ${userData.ville || 'Bukavu'}, ${userData.pays || 'RDC'}</p>
-                                <div class="flex items-center gap-2 pt-1 flex-wrap">
-                                    <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-slate-100 text-slate-700">ID : ${memberId}</span>
-                                    <span class="text-[10px] text-slate-400">Inscrit le : ${memberSince}</span>
-                                </div>
-                                <div class="pt-1">
-                                    ${isVerified 
-                                        ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800 flex items-center gap-1 w-fit"><i data-lucide="check-circle" class="w-3 h-3"></i> Compte vérifié</span>`
-                                        : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 flex items-center gap-1 w-fit"><i data-lucide="clock" class="w-3 h-3"></i> Compte en attente de vérification</span>`
-                                    }
-                                </div>
                             </div>
                         </div>
-                        <div class="flex flex-col gap-2 w-full md:w-auto">
-                            <button onclick="auth.signOut()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer border border-red-200">
-                                Se Déconnecter
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Enfants parrainés</p>
-                            <p class="text-2xl font-black text-blue-600">${userSponsorships.filter(s => s.beneficiaryType === 'child').length}</p>
-                            <p class="text-[10px] text-slate-500">Suivi direct</p>
-                        </div>
-                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Veuves soutenues</p>
-                            <p class="text-2xl font-black text-emerald-600">${userSponsorships.filter(s => s.beneficiaryType === 'widow').length}</p>
-                            <p class="text-[10px] text-slate-500">Suivi direct</p>
-                        </div>
-                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total des dons</p>
-                            <p class="text-2xl font-black text-slate-900 font-mono">${totalConfirmedDonations} USD</p>
-                            <p class="text-[10px] text-slate-500">Confirmés</p>
-                        </div>
-                        <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Parrainages actifs</p>
-                            <p class="text-2xl font-black text-green-600">${activeSponsorshipsCount}</p>
-                            <p class="text-[10px] text-slate-500">Engagements validés</p>
-                        </div>
+                        <button onclick="auth.signOut()" class="bg-red-50 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs border border-red-200 cursor-pointer">Se Déconnecter</button>
                     </div>
 
                     <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
-                        <h3 class="font-black text-slate-900 text-sm flex items-center gap-2 border-b pb-3">
-                            <i data-lucide="user-edit" class="w-4 h-4 text-blue-600"></i> Modifier mes informations personnelles
-                        </h3>
-                        <form id="user-profile-form" onsubmit="saveUserProfileChanges(event)" class="space-y-4 text-xs">
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                <div>
-                                    <label class="font-bold block mb-1">Nom :</label>
-                                    <input type="text" id="p-nom" value="${userData.nom || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
-                                </div>
-                                <div>
-                                    <label class="font-bold block mb-1">Postnom :</label>
-                                    <input type="text" id="p-postnom" value="${userData.postnom || ''}" class="w-full p-2.5 border rounded-xl bg-white">
-                                </div>
-                                <div>
-                                    <label class="font-bold block mb-1">Prénom :</label>
-                                    <input type="text" id="p-prenom" value="${userData.prenom || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                <div>
-                                    <label class="font-bold block mb-1">Téléphone :</label>
-                                    <input type="text" id="p-phone" value="${userData.phone || ''}" placeholder="+243..." class="w-full p-2.5 border rounded-xl bg-white">
-                                </div>
-                                <div>
-                                    <label class="font-bold block mb-1">Pays :</label>
-                                    <select id="p-pays" class="african-countries-select w-full p-2.5 border rounded-xl bg-white font-bold"></select>
-                                </div>
-                                <div>
-                                    <label class="font-bold block mb-1">Ville :</label>
-                                    <input type="text" id="p-ville" value="${userData.ville || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                <div>
-                                    <label class="font-bold block mb-1">Langue préférée :</label>
-                                    <select id="p-langue" class="w-full p-2.5 border rounded-xl bg-white font-bold">
-                                        <option value="fr" ${userData.langue === 'fr' ? 'selected' : ''}>Français</option>
-                                        <option value="en" ${userData.langue === 'en' ? 'selected' : ''}>English</option>
-                                        <option value="sw" ${userData.langue === 'sw' ? 'selected' : ''}>Kiswahili</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="font-bold block mb-1 text-slate-400">Adresse e-mail (Protégée) :</label>
-                                    <input type="text" disabled value="${user.email}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono">
-                                </div>
-                                <div>
-                                    <label class="font-bold block mb-1 text-slate-400">Rôle administratif (Protégé) :</label>
-                                    <input type="text" disabled value="${userData.role || 'Sponsor / Donateur'}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono font-bold text-green-700">
-                                </div>
-                            </div>
-                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition cursor-pointer shadow">
-                                Enregistrer les modifications du profil
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
-                        <div class="flex justify-between items-center border-b pb-3">
-                            <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                <i data-lucide="receipt" class="w-4 h-4 text-green-600"></i> Historique des Dons & Reçus Officiels
-                            </h3>
-                            <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full font-bold">${userDonations.length} transaction(s)</span>
-                        </div>
+                        <h3 class="font-black text-slate-900 text-sm border-b pb-3">Historique des Dons & Reçus Officiels</h3>
                         <div class="space-y-3">
-                            ${userDonations.length > 0 ? userDonations.map(d => {
-                                const isConfirmed = d.status === "confirmed";
-                                const statusBadge = isConfirmed 
-                                    ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Confirmé</span>`
-                                    : (d.status === "failed" ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-red-800">Échoué</span>` : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">En attente</span>`);
-                                
-                                return `
-                                    <div class="p-4 bg-slate-50 border rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-xs">
-                                        <div class="space-y-1">
-                                            <p class="font-bold text-slate-900">Motif : ${d.cause}</p>
-                                            <p class="text-slate-500 font-mono text-[10px]">Réf : ${d.refId} \vert{} TransID :${d.transId || 'N/A'}</p>
-                                            <p class="text-slate-400 text-[10px]">Méthode : ${d.paymentMethod || 'Mobile Money'}</p>
-                                        </div>
-                                        <div class="flex items-center gap-3 flex-wrap">
-                                            <span class="font-mono font-black text-green-700 text-sm">${d.amount}${d.currency || 'USD'}</span>
-                                            ${statusBadge}${isConfirmed 
-                                                ? `<button onclick="downloadDonationReceipt('${d.refId}', '${d.amount}', '${d.currency}', '${d.cause}')" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1 cursor-pointer"><i data-lucide="download" class="w-3.5 h-3.5"></i> Reçu PDF</button>`
-                                                : `<span class="text-[10px] text-slate-400 italic">Reçu disponible après confirmation</span>`
-                                            }
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('') : `
-                                <div class="text-center py-6 text-slate-500 text-xs space-y-2">
-                                    <p>Aucun don enregistré sur votre compte.</p>
-                                    <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 text-white font-bold px-4 py-2 rounded-xl">Faire un don</button>
+                            ${userDonations.length > 0 ? userDonations.map(d => `
+                                <div class="p-4 bg-slate-50 border rounded-2xl flex justify-between items-center text-xs">
+                                    <div><p class="font-bold">Motif : ${d.cause}</p><p class="text-slate-500 font-mono text-[10px]">Réf : ${d.refId}</p></div>
+                                    <div class="flex items-center gap-2"><span class="font-mono font-black text-green-700">${d.amount}${d.currency || 'USD'}</span></div>
                                 </div>
-                            `}
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
-                        <div class="flex justify-between items-center border-b pb-3">
-                            <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                <i data-lucide="heart" class="w-4 h-4 text-pink-600"></i> Mes Parrainages & Engagements
-                            </h3>
-                        </div>
-                        ${userSponsorships.length > 0 ? `
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                ${userSponsorships.map(s => `
-                                    <div class="p-4 bg-slate-50 border rounded-2xl text-xs space-y-2">
-                                        <div class="flex justify-between items-center">
-                                            <span class="font-mono font-bold text-green-700">${s.beneficiaryCode || 'REF-BEN'}</span>
-                                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">${s.status}</span>
-                                        </div>
-                                        <p><strong>Type de soutien :</strong> ${s.supportType || 'Prise en charge globale'}</p>
-                                        <p class="text-slate-500 text-[10px]">Date de début : ${s.startDate ? new Date(s.startDate.toDate()).toLocaleDateString() : 'Récemment'}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        ` : `
-                            <p class="text-xs text-slate-600">Aucun enfant ou veuve actuellement rattaché directement à votre profil. Explorez le catalogue public pour initier un parrainage sécurisé.</p>
-                            <button onclick="switchTab('children')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">Explorer les dossiers enfants →</button>
-                        `}
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
-                            <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                <i data-lucide="settings" class="w-4 h-4 text-purple-600"></i> Sécurité & Suppression du compte
-                            </h4>
-                            <p class="text-xs text-slate-600">Conformément aux obligations de transparence, la suppression du compte entraîne l'archivage sécurisé des reçus légaux.</p>
-                            <button onclick="confirmAccountDeletion()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition border border-red-200 cursor-pointer w-full mt-2">
-                                🗑️ Supprimer définitivement mon compte
-                            </button>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
-                            <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                <i data-lucide="help-circle" class="w-4 h-4 text-amber-600"></i> Assistance Officielle
-                            </h4>
-                            <p class="text-xs text-slate-600">Contactez directement l'administration via le canal officiel sécurisé.</p>
-                            <a href="https://wa.me/${OFFICIAL_WHATSAPP_NUMBER}" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-2">
-                                <i data-lucide="message-circle" class="w-4 h-4"></i> Support WhatsApp officiel
-                            </a>
+                            `).join('') : `<p class="text-xs text-slate-500 text-center py-4">Aucun don enregistré.</p>`}
                         </div>
                     </div>
                 `;
-
-                populateAfricanCountries();
-                if (userData.pays) {
-                    const countrySelect = document.getElementById('p-pays');
-                    if (countrySelect) countrySelect.value = userData.pays;
-                }
             } else {
-                card.innerHTML = `
-                    <div class="bg-white p-8 rounded-3xl border shadow-sm text-center space-y-4 max-w-lg mx-auto">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="user-x" class="w-8 h-8"></i></div>
-                        <h3 class="font-black text-slate-900 text-lg">Espace restreint aux membres connectés</h3>
-                        <p class="text-xs text-slate-600">Veuillez vous connecter pour accéder à votre tableau de bord personnel, vos reçus de dons et vos parrainages.</p>
-                        <button onclick="openAuthModal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl text-xs transition shadow cursor-pointer">
-                            Se connecter maintenant
-                        </button>
-                    </div>
-                `;
+                card.innerHTML = `<div class="bg-white p-8 rounded-3xl border shadow-sm text-center space-y-4 max-w-lg mx-auto"><h3 class="font-black text-slate-900 text-lg">Espace restreint</h3><button onclick="openAuthModal()" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl text-xs cursor-pointer">Se connecter</button></div>`;
             }
             if (window.lucide) lucide.createIcons();
-        }
-
-        async function saveUserProfileChanges(e) {
-            e.preventDefault();
-            const user = auth.currentUser;
-            if (!user) return;
-
-            try {
-                const updatedData = {
-                    nom: document.getElementById('p-nom').value.trim(),
-                    postnom: document.getElementById('p-postnom').value.trim(),
-                    prenom: document.getElementById('p-prenom').value.trim(),
-                    phone: document.getElementById('p-phone').value.trim(),
-                    pays: document.getElementById('p-pays').value,
-                    ville: document.getElementById('p-ville').value.trim(),
-                    langue: document.getElementById('p-langue').value,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                };
-
-                await db.collection("users").doc(user.uid).set(updatedData, { merge: true });
-                alert("Informations de profil mises à jour avec succès !");
-                updateProfileCard(user);
-            } catch (err) {
-                alert("Erreur lors de la mise à jour : " + err.message);
-            }
-        }
-
-        async function uploadUserAvatar(event) {
-            const file = event.target.files[0];
-            const user = auth.currentUser;
-            if (!file || !user) return;
-
-            try {
-                const base64Img = await compressImage(file);
-                await db.collection("users").doc(user.uid).set({ photoURL: base64Img }, { merge: true });
-                await user.updateProfile({ photoURL: base64Img });
-
-                updateProfileCard(user);
-                alert("Photo de profil mise à jour avec succès !");
-            } catch (err) {
-                alert("Erreur lors du chargement de l'image : " + err.message);
-            }
-        }
-
-        function downloadDonationReceipt(refId, amount, currency, cause) {
-            const receiptWindow = window.open('', '_blank');
-            receiptWindow.document.write(`
-                <html>
-                <head>
-                    <title>Reçu Officiel - ${refId}</title>
-                    <style>
-                        body { font-family: sans-serif; padding: 40px; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #cbd5e1; border-radius: 12px; }
-                        h1 { color: #166534; font-size: 22px; margin-bottom: 5px; }
-                        .header { border-bottom: 2px solid #22c55e; padding-bottom: 15px; margin-bottom: 20px; }
-                        .details { margin: 20px 0; line-height: 1.6; }
-                        .footer { margin-top: 40px; font-size: 11px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header">
-                        <h1>DIEUDONNÉ CARE PANAFRICAIN</h1>
-                        <p>Centre de Bukavu (RDC) — Reçu de Don Officiel</p>
-                    </div>
-                    <div class="details">
-                        <p><strong>Référence de transaction :</strong> ${refId}</p>
-                        <p><strong>Date :</strong> ${new Date().toLocaleDateString()}</p>
-                        <p><strong>Motif / Cause :</strong> ${cause}</p>
-                        <p><strong>Montant payé :</strong> <span style="font-size: 18px; color: #166534; font-weight: bold;">${amount} ${currency}</span></p>
-                        <p><strong>Statut :</strong> <span style="color: #166534; font-weight: bold;">CONFIRMÉ</span></p>
-                    </div>
-                    <div class="footer">
-                        <p>Ce document certifie la bonne réception du don au profit des actions humanitaires de Dieudonné Care.</p>
-                        <button onclick="window.print()" style="background: #166534; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px;">Imprimer / Télécharger en PDF</button>
-                    </div>
-                </body>
-                </html>
-            `);
-            receiptWindow.document.close();
-        }
-
-        async function confirmAccountDeletion() {
-            const user = auth.currentUser;
-            if (!user) return;
-
-            const confirmText = prompt("Pour confirmer la suppression définitive de votre compte, tapez SUPPRIMER :");
-            if (confirmText === "SUPPRIMER") {
-                try {
-                    await db.collection("users").doc(user.uid).update({
-                        accountStatus: "deleted",
-                        deletedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                    await user.delete();
-                    alert("Votre compte a été supprimé avec succès.");
-                    window.location.reload();
-                } catch (err) {
-                    alert("Pour des raisons de sécurité, veuillez vous déconnecter et vous reconnecter avant de supprimer votre compte.");
-                }
-            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
