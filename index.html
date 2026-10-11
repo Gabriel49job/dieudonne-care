@@ -9,39 +9,40 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-40">
 
-    <!-- EN-TÊTE PROFESSIONNEL -->
+    <!-- EN-TÊTE PROFESSIONNEL CORRIGÉ (Anti-débordement mobile) -->
     <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <button onclick="toggleSidebar()" class="p-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 transition cursor-pointer shadow">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+        <div class="max-w-7xl mx-auto px-3 py-2.5 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleSidebar()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 transition cursor-pointer shadow">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
-                <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchTab('home')">
-                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-sm text-white shadow-md">DC</div>
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-xs text-white shadow-md">DC</div>
                     <div>
-                        <span class="text-sm font-black tracking-wider text-white block leading-tight">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
-                        <span class="text-[9px] text-slate-400 tracking-widest uppercase block font-semibold">Panafricain</span>
+                        <span class="text-xs font-black tracking-wider text-white block leading-tight">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
+                        <span class="text-[8px] text-slate-400 tracking-widest uppercase block font-semibold">Panafricain</span>
                     </div>
                 </div>
             </div>
 
-            <div class="flex items-center space-x-3">
-                <select id="lang-selector" class="bg-slate-800 text-green-400 font-bold text-xs px-2.5 py-2 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
+            <div class="flex items-center space-x-2">
+                <select id="lang-selector" class="bg-slate-800 text-green-400 font-bold text-[11px] px-2 py-1.5 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
                     <option value="fr">🇫🇷 FR</option>
                     <option value="en">🇬🇧 EN</option>
                     <option value="sw">🇹🇿 SW</option>
                 </select>
 
-                <div id="user-info-badge" class="hidden items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
-                    <span id="user-display" class="text-xs font-mono text-green-400 font-bold"></span>
+                <div id="user-info-badge" class="hidden items-center gap-1.5 bg-slate-800/80 px-2.5 py-1 rounded-xl border border-slate-700">
+                    <span id="user-display" class="text-[11px] font-mono text-green-400 font-bold truncate max-w-[100px]"></span>
                 </div>
-                <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md cursor-pointer">
-                    <i data-lucide="log-in" class="w-4 h-4"></i> Connexion
+                <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 shadow-md cursor-pointer">
+                    <i data-lucide="log-in" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Connexion</span>
                 </button>
             </div>
         </div>
@@ -65,13 +66,13 @@
             <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</button>
             <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 Pays)</button>
             <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Rapports</button>
-            <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-slate-300"></i> Mon Profil & Espace Sponsor</button>
+            <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-blue-400"></i> Mon Profil & Espace Sponsor</button>
             <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
             <button onclick="auth.signOut(); toggleSidebar();" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-red-900/50 text-red-400 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion</button>
         </div>
     </aside>
 
-    <!-- BARRE DE NAVIGATION INFÉRIEURE -->
+    <!-- BARRE DE NAVIGATION INFÉRIEURE (Exactement 5 boutons demandés, sans doublons) -->
     <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-3 px-2 shadow-2xl">
         <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition cursor-pointer">
             <i data-lucide="home" class="w-5 h-5 text-green-400"></i> Accueil
@@ -294,7 +295,7 @@
             </div>
         </section>
 
-        <!-- MON PROFIL & ESPACE SPONSOR (MIS À JOUR ET COMPLET) -->
+        <!-- MON PROFIL & ESPACE SPONSOR (CORRIGÉ ET ENTIÈREMENT PROFESSIONNEL) -->
         <section id="sec-profile" class="hidden space-y-6 max-w-4xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
                 <span class="text-[10px] font-extrabold bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">ESPACE PERSONNEL & TABLEAU DE BORD</span>
@@ -303,7 +304,7 @@
             </div>
 
             <div id="profile-card" class="space-y-6">
-                <!-- LE CONTENU DU PROFIL EST GÉNÉRÉ DYNAMIQUEMENT PAR JAVASCRIPT -->
+                <!-- LE CONTENU DU PROFIL EST GÉNÉRÉ DYNAMIQUEMENT PAR JAVASCRIPT AVEC PERSISTENCE FIRESTORE -->
             </div>
         </section>
 
@@ -343,7 +344,7 @@
                     <h2 class="text-2xl font-black text-slate-900 mt-2">Rapports & Transparence Financière</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                    <div class="p-4 bg-slate-50 border rounded-2xl space-y-2"><h4 class="font-black text-slate-900 text-sm">💰 Dons Promis</h4><p id="report-promis-val" class="text-lg font-mono font-bold text-slate-800">Calcul...</p></div>
+                    <div class="p-4 bg-slate-50 border rounded-2xl space-y-2"><h4 class="font-black text-slate-900 text-sm">💰 Dons Totaux Enregistrés</h4><p id="report-promis-val" class="text-lg font-mono font-bold text-slate-800">Calcul...</p></div>
                     <div class="p-4 bg-green-50 border border-green-200 rounded-2xl space-y-2"><h4 class="font-black text-green-900 text-sm">✅ Paiements Confirmés</h4><p id="report-confirmed-val" class="text-lg font-mono font-bold text-green-700">Calcul...</p></div>
                 </div>
             </div>
@@ -542,7 +543,9 @@
             }
         ];
 
-        // FONCTION POUR COPIER LE NUMÉRO DANS LE PRESSE-PAPIER
+        // NUMÉRO OFFICIEL CONFIGURÉ PAR L'ADMINISTRATION POUR WHATSAPP
+        const OFFICIAL_WHATSAPP_NUMBER = "256792994716";
+
         function copyMtnNumber() {
             const numToCopy = "+256792994716";
             navigator.clipboard.writeText(numToCopy).then(() => {
@@ -552,7 +555,6 @@
             });
         }
 
-        // OUVRE DIRECTEMENT LE FORMULAIRE DE PAIEMENT SÉCURISÉ
         function openFormForCause(causeName) {
             const modal = document.getElementById('modal-sponsoring-action');
             const title = document.getElementById('modal-sponsoring-title');
@@ -570,7 +572,6 @@
                         <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision du Centre Dieudonné.</p>
                     </div>
 
-                    <!-- GUIDE INSTRUCTIONS CLAIRES -->
                     <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
                         <p class="font-extrabold text-amber-950 flex items-center gap-1">📌 Instructions pour effectuer le transfert :</p>
                         <ol class="list-decimal pl-4 space-y-1 text-[11px]">
@@ -581,7 +582,6 @@
                         </ol>
                     </div>
 
-                    <!-- BLOC NUMÉRO OFFICIEL -->
                     <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3">
                         <div class="border-b border-slate-800 pb-2 flex justify-between items-center">
                             <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉRO DE TRANSFERT OFFICIEL</span>
@@ -606,7 +606,6 @@
                         </div>
                     </div>
 
-                    <!-- FORMULAIRE DE SAISIE DE LA PREUVE -->
                     <div class="space-y-3 text-xs bg-slate-50 p-4 rounded-2xl border">
                         <h4 class="font-black text-slate-900 text-xs">Saisir les détails de votre transfert effectué</h4>
                         <div>
@@ -669,11 +668,11 @@
                     transId: transId,
                     userId: currentUser ? currentUser.uid : 'anonymous',
                     userEmail: currentUser ? currentUser.email : email,
-                    method: "MTN Mobile Money (+256792994716)",
-                    status: "En attente de vérification",
+                    paymentMethod: "MTN Mobile Money (+256792994716)",
+                    status: "pending", // Don en attente par défaut (jamais présenté comme payé d'office)
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nMerci pour votre soutien envers le Centre Dieudonné !`);
+                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nVotre don est enregistré en attente de confirmation par l'administration.`);
                 closeSponsoringModal();
                 updateFinancialReports();
                 if (currentUser) updateProfileCard(currentUser);
@@ -724,18 +723,19 @@
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
+        const storage = firebase.storage();
 
         function initAuthListener() {
             auth.onAuthStateChanged(user => {
                 if (user) {
                     document.getElementById('user-display').innerText = user.email;
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
-                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion`;
+                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Déconnexion</span>`;
                     document.getElementById('auth-btn').onclick = () => auth.signOut();
                     updateProfileCard(user);
                 } else {
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
-                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i> Connexion`;
+                    document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Connexion</span>`;
                     document.getElementById('auth-btn').onclick = openAuthModal;
                     updateProfileCard(null);
                 }
@@ -781,7 +781,6 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // RENDU DES 8 CARTES DE BRANCHES DANS LA PAGE ACTIVITÉS
         function renderBranchesGrid() {
             const gridContainer = document.getElementById('branches-grid-container');
             if (!gridContainer) return;
@@ -812,7 +811,6 @@
             if (window.lucide) lucide.createIcons();
         }
 
-        // OUVERTURE DE LA VUE DES PROGRAMMES D'UNE BRANCHE
         function openBranchPrograms(branchId) {
             const branch = structureData.find(b => b.id === branchId);
             if (!branch) return;
@@ -1138,7 +1136,7 @@
                 snap.forEach(doc => {
                     const d = doc.data();
                     totalPromis += (d.amount || 0);
-                    if (d.status === "Confirmé") {
+                    if (d.status === "confirmed") {
                         totalConfirmed += (d.amount || 0);
                     }
                 });
@@ -1164,68 +1162,119 @@
             container.innerHTML = html || 'Aucun enregistrement trouvé.';
         }
 
-        // MISE À JOUR COMPLÈTE DE LA PAGE PROFIL & TABLEAU DE BORD SPONSOR
+        // ==========================================
+        // GESTION DU PROFIL & ESPACE SPONSOR (MIS À JOUR)
+        // ==========================================
         async function updateProfileCard(user) {
             const card = document.getElementById('profile-card');
             if (!card) return;
 
             if (user) {
-                // Récupération des données réelles de l'utilisateur connecté (Dons, Parrainages)
+                let userData = {};
+                try {
+                    const userDoc = await db.collection("users").doc(user.uid).get();
+                    if (userDoc.exists) {
+                        userData = userDoc.data();
+                    } else {
+                        // Initialisation automatique du profil Firestore si inexistant
+                        userData = {
+                            nom: user.displayName || "",
+                            postnom: "",
+                            prenom: "",
+                            phone: "",
+                            pays: "République Démocratique du Congo (RDC)",
+                            ville: "Bukavu",
+                            langue: "fr",
+                            role: "Sponsor / Donateur",
+                            isVerified: false,
+                            photoURL: user.photoURL || ""
+                        };
+                        await db.collection("users").doc(user.uid).set(userData);
+                    }
+                } catch (e) {
+                    console.error("Erreur lecture profil Firestore:", e);
+                }
+
+                // Récupération des dons de l'utilisateur
                 let userDonations = [];
-                let totalDonationsAmount = 0;
+                let totalConfirmedDonations = 0;
                 let activeSponsorshipsCount = 0;
 
                 try {
                     const donSnap = await db.collection("donations").where("userId", "==", user.uid).get();
                     donSnap.forEach(doc => {
-                        const d = doc.data();
+                        const d = { id: doc.id, ...doc.data() };
                         userDonations.push(d);
-                        totalDonationsAmount += (d.amount || 0);
+                        if (d.status === "confirmed") {
+                            totalConfirmedDonations += (Number(d.amount) || 0);
+                        }
                     });
                 } catch (e) {
-                    console.error("Erreur chargement dons utilisateur:", e);
+                    console.error("Erreur chargement dons:", e);
                 }
 
+                // Récupération des parrainages réels
+                let userSponsorships = [];
+                try {
+                    const spSnap = await db.collection("sponsorships").where("sponsorId", "==", user.uid).get();
+                    spSnap.forEach(doc => {
+                        const s = doc.data();
+                        userSponsorships.push(s);
+                        if (s.status === "active") activeSponsorshipsCount++;
+                    });
+                } catch (e) {
+                    console.error("Erreur parrainages:", e);
+                }
+
+                const avatarSrc = userData.photoURL || user.photoURL || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=60';
+                const isVerified = userData.isVerified === true;
+
                 card.innerHTML = `
-                    <!-- 1. EN-TÊTE PROFIL -->
+                    <!-- 1. EN-TÊTE PROFIL & PHOTO MODIFIABLE -->
                     <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
                         <div class="flex items-center gap-4">
-                            <div class="relative w-20 h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-green-500 overflow-hidden flex items-center justify-center text-white text-2xl font-black shadow-md">
-                                ${user.photoURL ? `<img src="${user.photoURL}" class="w-full h-full object-cover">` : (user.email ? user.email.charAt(0).toUpperCase() : 'U')}
+                            <div class="relative w-20 h-20 rounded-full bg-slate-100 overflow-hidden border-2 border-green-500 shadow-md">
+                                <img id="profile-avatar-preview" src="${avatarSrc}" class="w-full h-full object-cover">
+                                <label for="avatar-file-input" class="absolute inset-0 bg-slate-950/40 opacity-0 hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-bold cursor-pointer">
+                                    📷 Modifier
+                                </label>
+                                <input type="file" id="avatar-file-input" accept="image/*" class="hidden" onchange="uploadUserAvatar(event)">
                             </div>
                             <div class="space-y-1">
-                                <h3 class="font-black text-slate-900 text-base md:text-lg">${user.displayName || 'Membre Panafricain'}</h3>
+                                <h3 class="font-black text-slate-900 text-base md:text-lg">${userData.prenom || ''} ${userData.nom || user.displayName || 'Membre Panafricain'}</h3>
                                 <p class="text-xs font-mono text-blue-600 font-bold">${user.email}</p>
-                                <p class="text-[11px] text-slate-500">📍 Bukavu, République Démocratique du Congo (RDC)</p>
-                                <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Compte Vérifié</span>
+                                <p class="text-[11px] text-slate-500">📍 ${userData.ville || 'Bukavu'}, ${userData.pays || 'RDC'}</p>
+                                <div class="pt-1">
+                                    ${isVerified 
+                                        ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800 flex items-center gap-1 w-fit"><i data-lucide="check-circle" class="w-3 h-3"></i> Compte vérifié</span>`
+                                        : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 flex items-center gap-1 w-fit"><i data-lucide="clock" class="w-3 h-3"></i> Compte en attente de vérification</span>`
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div class="flex flex-col gap-2 w-full md:w-auto">
-                            <button onclick="alert('Fonction de modification du profil en cours de mise à jour.')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer shadow">
-                                ✏️ Modifier mon profil
-                            </button>
                             <button onclick="auth.signOut()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer border border-red-200">
                                 Se Déconnecter
                             </button>
                         </div>
                     </div>
 
-                    <!-- 2. TABLEAU DE BORD DU SPONSOR (4 CARTES STATISTIQUES) -->
+                    <!-- 2. TABLEAU DE BORD (INDICATEURS RÉELS) -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Enfants parrainés</p>
-                            <p class="text-2xl font-black text-blue-600">0</p>
-                            <p class="text-[10px] text-slate-500">Aucun parrainage actif</p>
+                            <p class="text-2xl font-black text-blue-600">${userSponsorships.filter(s => s.beneficiaryType === 'child').length}</p>
+                            <p class="text-[10px] text-slate-500">Suivi direct</p>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Veuves soutenues</p>
-                            <p class="text-2xl font-black text-emerald-600">0</p>
+                            <p class="text-2xl font-black text-emerald-600">${userSponsorships.filter(s => s.beneficiaryType === 'widow').length}</p>
                             <p class="text-[10px] text-slate-500">Suivi direct</p>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total des dons</p>
-                            <p class="text-2xl font-black text-slate-900 font-mono">${totalDonationsAmount} USD</p>
-                            <p class="text-[10px] text-slate-500">${userDonations.length} transaction(s)</p>
+                            <p class="text-2xl font-black text-slate-900 font-mono">${totalConfirmedDonations} USD</p>
+                            <p class="text-[10px] text-slate-500">Confirmés</p>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Parrainages actifs</p>
@@ -1234,80 +1283,156 @@
                         </div>
                     </div>
 
-                    <!-- 3. SECTIONS DÉTAILLÉES (ONGLETS OU CARTES REPLIABLES) -->
-                    <div class="space-y-4">
-                        <!-- A. Mes dons & reçus -->
-                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
-                            <div class="flex justify-between items-center border-b pb-3">
-                                <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                    <i data-lucide="receipt" class="w-4 h-4 text-green-600"></i> Mes Dons & Reçus Téléchargeables
-                                </h3>
-                                <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full font-bold">${userDonations.length} enregistrement(s)</span>
-                            </div>
-                            <div class="space-y-2">
-                                ${userDonations.length > 0 ? userDonations.map(d => `
-                                    <div class="p-3.5 bg-slate-50 border rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-2 text-xs">
-                                        <div>
-                                            <p class="font-bold text-slate-900">Motif : ${d.cause}</p>
-                                            <p class="text-slate-500 font-mono text-[10px]">Réf : ${d.refId} \vert{} TransID :${d.transId || 'N/A'}</p>
-                                        </div>
-                                        <div class="flex items-center gap-3">
-                                            <span class="font-mono font-black text-green-700 text-sm">${d.amount}${d.currency}</span>
-                                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">${d.status}</span>
-                                            <button onclick="alert('Reçu officiel disponible sous peu pour la référence ${d.refId}')" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl font-bold transition">📄 Reçu</button>
-                                        </div>
-                                    </div>
-                                `).join('') : `
-                                    <div class="text-center py-6 text-slate-500 text-xs space-y-2">
-                                        <p>Vous n'avez pas encore effectué de don depuis ce compte.</p>
-                                        <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 text-white font-bold px-4 py-2 rounded-xl">Faire un don maintenant</button>
-                                    </div>
-                                `}
-                            </div>
-                        </div>
-
-                        <!-- B. Mes Parrainages & Engagements -->
-                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
-                            <div class="flex justify-between items-center border-b pb-3">
-                                <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                    <i data-lucide="baby" class="w-4 h-4 text-blue-600"></i> Mes Parrainages & Bénéficiaires soutenus
-                                </h3>
-                            </div>
-                            <p class="text-xs text-slate-600">Aucun enfant ou veuve actuellement rattaché à votre profil personnel. Explorez le registre public pour commencer un parrainage.</p>
-                            <button onclick="switchTab('children')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">Explorer les dossiers enfants →</button>
-                        </div>
-
-                        <!-- C. Paramètres, Sécurité & Assistance -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
-                                <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                    <i data-lucide="settings" class="w-4 h-4 text-purple-600"></i> Paramètres & Sécurité
-                                </h4>
-                                <div class="space-y-2 text-xs">
-                                    <div class="flex justify-between items-center py-1 border-b">
-                                        <span>Langue de l'application</span>
-                                        <strong class="text-green-600">Français (FR)</strong>
-                                    </div>
-                                    <div class="flex justify-between items-center py-1 border-b">
-                                        <span>Notifications push</span>
-                                        <strong class="text-green-600">Activées</strong>
-                                    </div>
-                                    <button onclick="if(confirm('Voulez-vous vraiment supprimer votre compte ?')) alert('Action sécurisée nécessitant une ré-authentification.');" class="text-red-600 hover:underline font-bold text-xs pt-2 block">🗑️ Supprimer mon compte</button>
+                    <!-- 3. FORMULAIRE DE MODIFICATION DES INFORMATIONS PERSONNELLES -->
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
+                        <h3 class="font-black text-slate-900 text-sm flex items-center gap-2 border-b pb-3">
+                            <i data-lucide="user-edit" class="w-4 h-4 text-blue-600"></i> Modifier mes informations personnelles
+                        </h3>
+                        <form id="user-profile-form" onsubmit="saveUserProfileChanges(event)" class="space-y-4 text-xs">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="font-bold block mb-1">Nom :</label>
+                                    <input type="text" id="p-nom" value="${userData.nom || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1">Postnom :</label>
+                                    <input type="text" id="p-postnom" value="${userData.postnom || ''}" class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1">Prénom :</label>
+                                    <input type="text" id="p-prenom" value="${userData.prenom || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
                                 </div>
                             </div>
-
-                            <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
-                                <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                    <i data-lucide="help-circle" class="w-4 h-4 text-amber-600"></i> Assistance Dieudonné Care
-                                </h4>
-                                <p class="text-xs text-slate-600">Besoin d'aide avec un don, un reçu ou un dossier ? Contactez directement l'administration centrale.</p>
-                                <a href="https://wa.me/256792994716" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-center text-xs transition shadow">
-                                    💬 Contacter le Support WhatsApp
-                                </a>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div>
+                                    <label class="font-bold block mb-1">Téléphone :</label>
+                                    <input type="text" id="p-phone" value="${userData.phone || ''}" placeholder="+243..." class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1">Pays :</label>
+                                    <select id="p-pays" class="african-countries-select w-full p-2.5 border rounded-xl bg-white font-bold"></select>
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1">Ville :</label>
+                                    <input type="text" id="p-ville" value="${userData.ville || ''}" required class="w-full p-2.5 border rounded-xl bg-white">
+                                </div>
                             </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="font-bold block mb-1">Langue préférée :</label>
+                                    <select id="p-langue" class="w-full p-2.5 border rounded-xl bg-white font-bold">
+                                        <option value="fr" ${userData.langue === 'fr' ? 'selected' : ''}>Français</option>
+                                        <option value="en" ${userData.langue === 'en' ? 'selected' : ''}>English</option>
+                                        <option value="sw" ${userData.langue === 'sw' ? 'selected' : ''}>Kiswahili</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1 text-slate-400">Rôle administratif (Protégé) :</label>
+                                    <input type="text" disabled value="${userData.role || 'Sponsor / Donateur'}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition cursor-pointer shadow">
+                                Enregistrer les modifications du profil
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 4. HISTORIQUE DES DONS ET REÇUS PDF -->
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b pb-3">
+                            <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                <i data-lucide="receipt" class="w-4 h-4 text-green-600"></i> Historique des Dons & Reçus Officiels
+                            </h3>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full font-bold">${userDonations.length} transaction(s)</span>
+                        </div>
+                        <div class="space-y-3">
+                            ${userDonations.length > 0 ? userDonations.map(d => {
+                                const isConfirmed = d.status === "confirmed";
+                                const statusBadge = isConfirmed 
+                                    ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Confirmé</span>`
+                                    : (d.status === "failed" ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-red-800">Échoué</span>` : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">En attente</span>`);
+                                
+                                return `
+                                    <div class="p-4 bg-slate-50 border rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-xs">
+                                        <div class="space-y-1">
+                                            <p class="font-bold text-slate-900">Motif : ${d.cause}</p>
+                                            <p class="text-slate-500 font-mono text-[10px]">Réf : ${d.refId} \vert{} TransID :${d.transId || 'N/A'}</p>
+                                            <p class="text-slate-400 text-[10px]">Méthode : ${d.paymentMethod || 'Mobile Money'}</p>
+                                        </div>
+                                        <div class="flex items-center gap-3 flex-wrap">
+                                            <span class="font-mono font-black text-green-700 text-sm">${d.amount}${d.currency || 'USD'}</span>
+                                            ${statusBadge}${isConfirmed 
+                                                ? `<button onclick="downloadDonationReceipt('${d.refId}', '${d.amount}', '${d.currency}', '${d.cause}')" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1 cursor-pointer"><i data-lucide="download" class="w-3.5 h-3.5"></i> Reçu PDF</button>`
+                                                : `<span class="text-[10px] text-slate-400 italic">Reçu disponible après confirmation</span>`
+                                            }
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('') : `
+                                <div class="text-center py-6 text-slate-500 text-xs space-y-2">
+                                    <p>Aucun don enregistré sur votre compte.</p>
+                                    <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 text-white font-bold px-4 py-2 rounded-xl">Faire un don</button>
+                                </div>
+                            `}
+                        </div>
+                    </div>
+
+                    <!-- 5. PARRAINAGES ET BÉNÉFICIAIRES PROTÉGÉS -->
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b pb-3">
+                            <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                <i data-lucide="heart" class="w-4 h-4 text-pink-600"></i> Mes Parrainages & Engagements
+                            </h3>
+                        </div>
+                        ${userSponsorships.length > 0 ? `
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                ${userSponsorships.map(s => `
+                                    <div class="p-4 bg-slate-50 border rounded-2xl text-xs space-y-2">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-mono font-bold text-green-700">${s.beneficiaryCode || 'REF-BEN'}</span>
+                                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">${s.status}</span>
+                                        </div>
+                                        <p><strong>Type de soutien :</strong> ${s.supportType || 'Prise en charge globale'}</p>
+                                        <p class="text-slate-500 text-[10px]">Date de début : ${s.startDate ? new Date(s.startDate.toDate()).toLocaleDateString() : 'Récemment'}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : `
+                            <p class="text-xs text-slate-600">Aucun enfant ou veuve actuellement rattaché directement à votre profil. Explorez le catalogue public pour initier un parrainage sécurisé.</p>
+                            <button onclick="switchTab('children')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">Explorer les dossiers enfants →</button>
+                        `}
+                    </div>
+
+                    <!-- 6. PARAMÈTRES, SÉCURITÉ & ASSISTANCE WHATSAPP -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
+                            <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                <i data-lucide="settings" class="w-4 h-4 text-purple-600"></i> Sécurité & Suppression du compte
+                            </h4>
+                            <p class="text-xs text-slate-600">Conformément aux obligations de transparence, la suppression du compte entraîne l'archivage sécurisé des reçus légaux.</p>
+                            <button onclick="confirmAccountDeletion()" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs transition border border-red-200 cursor-pointer w-full mt-2">
+                                🗑️ Supprimer définitivement mon compte
+                            </button>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
+                            <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
+                                <i data-lucide="help-circle" class="w-4 h-4 text-amber-600"></i> Assistance Officielle
+                            </h4>
+                            <p class="text-xs text-slate-600">Contactez directement l'administration via le canal officiel sécurisé.</p>
+                            <a href="https://wa.me/${OFFICIAL_WHATSAPP_NUMBER}" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-2">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i> Support WhatsApp officiel
+                            </a>
                         </div>
                     </div>
                 `;
+
+                // Remplir dynamiquement les pays dans le select du profil
+                populateAfricanCountries();
+                if (userData.pays) {
+                    const countrySelect = document.getElementById('p-pays');
+                    if (countrySelect) countrySelect.value = userData.pays;
+                }
             } else {
                 card.innerHTML = `
                     <div class="bg-white p-8 rounded-3xl border shadow-sm text-center space-y-4 max-w-lg mx-auto">
@@ -1321,6 +1446,110 @@
                 `;
             }
             if (window.lucide) lucide.createIcons();
+        }
+
+        // Enregistrement des modifications du profil dans Firestore
+        async function saveUserProfileChanges(e) {
+            e.preventDefault();
+            const user = auth.currentUser;
+            if (!user) return;
+
+            try {
+                const updatedData = {
+                    nom: document.getElementById('p-nom').value.trim(),
+                    postnom: document.getElementById('p-postnom').value.trim(),
+                    prenom: document.getElementById('p-prenom').value.trim(),
+                    phone: document.getElementById('p-phone').value.trim(),
+                    pays: document.getElementById('p-pays').value,
+                    ville: document.getElementById('p-ville').value.trim(),
+                    langue: document.getElementById('p-langue').value,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    // NB: Le rôle et le statut isVerified ne sont pas modifiables par l'utilisateur (Sécurité)
+                };
+
+                await db.collection("users").doc(user.uid).set(updatedData, { merge: true });
+                alert("Informations de profil mises à jour avec succès !");
+                updateProfileCard(user);
+            } catch (err) {
+                alert("Erreur lors de la mise à jour : " + err.message);
+            }
+        }
+
+        // Téléversement et mise à jour de la photo de profil
+        async function uploadUserAvatar(event) {
+            const file = event.target.files[0];
+            const user = auth.currentUser;
+            if (!file || !user) return;
+
+            try {
+                const base64Img = await compressImage(file);
+                // Sauvegarde de l'image compressée dans Firestore et dans l'Auth Firebase
+                await db.collection("users").doc(user.uid).set({ photoURL: base64Img }, { merge: true });
+                await user.updateProfile({ photoURL: base64Img });
+
+                document.getElementById('profile-avatar-preview').src = base64Img;
+                alert("Photo de profil mise à jour avec succès !");
+            } catch (err) {
+                alert("Erreur lors du chargement de l'image : " + err.message);
+            }
+        }
+
+        // Génération / Téléchargement du reçu PDF (Uniquement pour les dons confirmés)
+        function downloadDonationReceipt(refId, amount, currency, cause) {
+            const receiptWindow = window.open('', '_blank');
+            receiptWindow.document.write(`
+                <html>
+                <head>
+                    <title>Reçu Officiel - ${refId}</title>
+                    <style>
+                        body { font-family: sans-serif; padding: 40px; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #cbd5e1; border-radius: 12px; }
+                        h1 { color: #166534; font-size: 22px; margin-bottom: 5px; }
+                        .header { border-bottom: 2px solid #22c55e; padding-bottom: 15px; margin-bottom: 20px; }
+                        .details { margin: 20px 0; line-height: 1.6; }
+                        .footer { margin-top: 40px; font-size: 11px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; pt: 10px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>DIEUDONNÉ CARE PANAFRICAIN</h1>
+                        <p>Centre de Bukavu (RDC) — Reçu de Don Officiel</p>
+                    </div>
+                    <div class="details">
+                        <p><strong>Référence de transaction :</strong> ${refId}</p>
+                        <p><strong>Date :</strong> ${new Date().toLocaleDateString()}</p>
+                        <p><strong>Motif / Cause :</strong> ${cause}</p>
+                        <p><strong>Montant payé :</strong> <span style="font-size: 18px; color: #166534; font-weight: bold;">${amount} ${currency}</span></p>
+                        <p><strong>Statut :</strong> <span style="color: #166534; font-weight: bold;">CONFIRMÉ</span></p>
+                    </div>
+                    <div class="footer">
+                        <p>Ce document certifie la bonne réception du don au profit des actions humanitaires de Dieudonné Care.</p>
+                        <button onclick="window.print()" style="background: #166534; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px;">Imprimer / Télécharger en PDF</button>
+                    </div>
+                </body>
+                </html>
+            `);
+            receiptWindow.document.close();
+        }
+
+        // Procédure de suppression de compte sécurisée
+        async function confirmAccountDeletion() {
+            const user = auth.currentUser;
+            if (!user) return;
+
+            const confirmText = prompt("Pour confirmer la suppression définitive de votre compte, tapez SUPPRIMER :");
+            if (confirmText === "SUPPRIMER") {
+                try {
+                    await db.collection("users").doc(user.uid).update({
+                        accountStatus: "deleted",
+                        deletedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    await user.delete();
+                    alert("Votre compte a été supprimé avec succès.");
+                    window.location.reload();
+                } catch (err) {
+                    alert("Pour des raisons de sécurité, veuillez vous déconnecter et vous reconnecter avant de supprimer votre compte.");
+                }
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
