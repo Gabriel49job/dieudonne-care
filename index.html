@@ -48,27 +48,55 @@
         </div>
     </header>
 
-    <!-- MENU LATÉRAL CACHÉ -->
+    <!-- MENU LATÉRAL STRUCTURÉ ET PROFESSIONNEL -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden transition-opacity"></div>
-    <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-4 overflow-y-auto shadow-2xl">
+    <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <span class="font-black text-white text-sm tracking-wider uppercase">Menu Panafricain</span>
-            <button onclick="toggleSidebar()" class="text-slate-400 p-1.5 font-bold text-lg hover:text-white rounded-lg bg-slate-800 cursor-pointer">✕</button>
+            <div class="flex items-center space-x-2">
+                <div class="w-7 h-7 rounded-lg bg-green-600 flex items-center justify-center font-bold text-xs text-white">DC</div>
+                <span class="font-black text-white text-xs tracking-wider uppercase">Menu Panafricain</span>
+            </div>
+            <button onclick="toggleSidebar()" class="text-slate-400 p-1.5 font-bold text-base hover:text-white rounded-lg bg-slate-800 cursor-pointer">✕</button>
         </div>
         
-        <div class="space-y-1.5 text-xs">
-            <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
-            <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-green-400"></i> Soutenir (Dons & Parrainage)</button>
-            <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / Scan</button>
-            <button onclick="switchTab('children')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (BKDD-E)</button>
-            <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (BKDD-V)</button>
-            <button onclick="switchTab('team')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Gestion des Activités</button>
-            <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</button>
-            <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 Pays)</button>
-            <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Rapports</button>
-            <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-blue-400"></i> Mon Profil & Espace Sponsor</button>
-            <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2.5 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
-            <button onclick="auth.signOut(); toggleSidebar();" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-red-900/50 text-red-400 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion</button>
+        <div class="space-y-5 text-xs">
+            <!-- CATÉGORIE A : NAVIGATION PRINCIPALE -->
+            <div class="space-y-1">
+                <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pb-1">Navigation Principale</p>
+                <button onclick="switchTab('home')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
+                <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-green-400"></i> Soutenir & Parrainer</button>
+                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / QR code</button>
+            </div>
+
+            <!-- CATÉGORIE B : GESTION DES BÉNÉFICIAIRES -->
+            <div class="space-y-1 pt-1 border-t border-slate-800/80">
+                <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Gestion des Bénéficiaires</p>
+                <button onclick="switchTab('children')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (BKDD-E)</button>
+                <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (BKDD-V)</button>
+            </div>
+
+            <!-- CATÉGORIE C : ORGANISATION PANAFRICAINE -->
+            <div class="space-y-1 pt-1 border-t border-slate-800/80">
+                <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Organisation Panafricaine</p>
+                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Gestion des Activités & Programmes</button>
+                <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 pays)</button>
+                <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</button>
+                <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Rapports</button>
+            </div>
+
+            <!-- CATÉGORIE D : MON ESPACE -->
+            <div class="space-y-1 pt-1 border-t border-slate-800/80">
+                <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Mon Espace</p>
+                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-blue-400"></i> Mon Profil & Espace Sponsor</button>
+                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="settings" class="w-4 h-4 text-purple-400"></i> Paramètres & Sécurité</button>
+            </div>
+
+            <!-- CATÉGORIE E : ADMINISTRATION -->
+            <div class="space-y-1 pt-1 border-t border-slate-800/80 pb-6">
+                <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Administration</p>
+                <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
+                <button onclick="auth.signOut(); toggleSidebar();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-red-900/50 text-red-400 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="log-out" class="w-4 h-4"></i> Déconnexion</button>
+            </div>
         </div>
     </aside>
 
@@ -457,7 +485,6 @@
             "Tunisie", "Zambie", "Zimbabwe"
         ];
 
-        // STRUCTURE COMPLÈTE DES 8 GRANDES BRANCHES ET DE LEURS PROGRAMMES
         const structureData = [
             {
                 id: "branch-1",
@@ -1158,9 +1185,6 @@
             container.innerHTML = html || 'Aucun enregistrement trouvé.';
         }
 
-        // ==========================================
-        // GESTION DU PROFIL & ESPACE SPONSOR (CORRIGÉ & DÉFINITIF)
-        // ==========================================
         async function updateProfileCard(user) {
             const card = document.getElementById('profile-card');
             if (!card) return;
@@ -1192,7 +1216,6 @@
                     console.error("Erreur lecture profil Firestore:", e);
                 }
 
-                // Récupération des dons de l'utilisateur
                 let userDonations = [];
                 let totalConfirmedDonations = 0;
                 let activeSponsorshipsCount = 0;
@@ -1210,7 +1233,6 @@
                     console.error("Erreur chargement dons:", e);
                 }
 
-                // Récupération des parrainages réels
                 let userSponsorships = [];
                 try {
                     const spSnap = await db.collection("sponsorships").where("sponsorId", "==", user.uid).get();
@@ -1223,7 +1245,6 @@
                     console.error("Erreur parrainages:", e);
                 }
 
-                // Affichage strict de la photo personnelle (Pas de photo de démonstration d'une autre personne)
                 const userPhoto = userData.photoURL || user.photoURL || "";
                 const userInitials = (userData.prenom ? userData.prenom.charAt(0) : '') + (userData.nom ? userData.nom.charAt(0) : (user.email ? user.email.charAt(0).toUpperCase() : 'U'));
                 const isVerified = userData.isVerified === true;
@@ -1231,7 +1252,6 @@
                 const memberSince = userData.createdAt ? (userData.createdAt.toDate ? userData.createdAt.toDate().toLocaleDateString() : 'Récemment') : 'Récemment';
 
                 card.innerHTML = `
-                    <!-- 1. EN-TÊTE PROFIL & PHOTO PERSONNELLE MODIFIABLE -->
                     <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
                         <div class="flex items-center gap-4">
                             <div class="relative w-20 h-20 rounded-full bg-slate-200 overflow-hidden border-2 border-green-500 shadow-md flex items-center justify-center font-black text-slate-700 text-xl">
@@ -1267,7 +1287,6 @@
                         </div>
                     </div>
 
-                    <!-- 2. TABLEAU DE BORD (INDICATEURS RÉELS) -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Enfants parrainés</p>
@@ -1291,7 +1310,6 @@
                         </div>
                     </div>
 
-                    <!-- 3. FORMULAIRE DE MODIFICATION DES INFORMATIONS PERSONNELLES -->
                     <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
                         <h3 class="font-black text-slate-900 text-sm flex items-center gap-2 border-b pb-3">
                             <i data-lucide="user-edit" class="w-4 h-4 text-blue-600"></i> Modifier mes informations personnelles
@@ -1349,7 +1367,6 @@
                         </form>
                     </div>
 
-                    <!-- 4. HISTORIQUE DES DONS ET REÇUS PDF -->
                     <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b pb-3">
                             <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
@@ -1389,7 +1406,6 @@
                         </div>
                     </div>
 
-                    <!-- 5. PARRAINAGES ET BÉNÉFICIAIRES PROTÉGÉS -->
                     <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b pb-3">
                             <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
@@ -1415,7 +1431,6 @@
                         `}
                     </div>
 
-                    <!-- 6. PARAMÈTRES, SÉCURITÉ & ASSISTANCE WHATSAPP -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-3">
                             <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
