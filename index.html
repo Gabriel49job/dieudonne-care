@@ -15,7 +15,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-40">
 
-    <!-- EN-TÊTE PROFESSIONNEL CORRIGÉ (Anti-débordement mobile) -->
+    <!-- EN-TÊTE PROFESSIONNEL -->
     <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-3 py-2.5 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -48,7 +48,7 @@
         </div>
     </header>
 
-    <!-- MENU LATÉRAL STRUCTURÉ ET PROFESSIONNEL -->
+    <!-- MENU LATÉRAL STRUCTURÉ -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden transition-opacity"></div>
     <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
@@ -64,7 +64,7 @@
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pb-1">Navigation Principale</p>
                 <button onclick="switchTab('home')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
                 <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-green-400"></i> Soutenir & Parrainer</button>
-                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / QR code</button>
+                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Rechercher une personne</button>
             </div>
 
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
@@ -281,19 +281,27 @@
             </div>
         </div>
 
-        <!-- RECHERCHE PAR ID -->
+        <!-- MODULE RECHERCHE CORRIGÉ ET PROFESSIONNALISÉ -->
         <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
-            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
-                <h2 class="text-xl font-bold">Recherche par Matricule Unique</h2>
-                <div class="flex gap-2 pt-2">
-                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
-                    <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer">Chercher</button>
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4 border border-slate-800">
+                <div class="space-y-2">
+                    <span class="text-[10px] font-extrabold bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full border border-amber-500/30 uppercase tracking-widest">CENTRE DE VÉRIFICATION</span>
+                    <h2 class="text-2xl font-black">Rechercher une personne</h2>
+                    <p class="text-xs text-slate-300">Retrouvez rapidement un dossier grâce à son matricule unique (Ex: BKDD-E01, BKDD-V01, BKDD-A01).</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-2 pt-2">
+                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none focus:border-amber-400 transition">
+                    <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer shadow flex items-center justify-center gap-2 shrink-0">
+                        <i data-lucide="search" class="w-4 h-4"><span>Rechercher</span></i>
+                    </button>
                 </div>
             </div>
-            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
+
+            <div id="search-result-card" class="hidden bg-white p-6 rounded-3xl border shadow-lg space-y-4"></div>
         </section>
 
-        <!-- MODULE CORRIGÉ : ACTIVITÉS & PROGRAMMES (8 BRANCHES) -->
+        <!-- MODULE ACTIVITÉS & PROGRAMMES -->
         <section id="sec-team" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -302,13 +310,11 @@
                         <h2 class="text-2xl md:text-3xl font-black mt-2">Activités & Programmes</h2>
                         <p class="text-xs text-slate-300 leading-relaxed pt-1">Cette rubrique permet de consulter les programmes, de gérer les tâches et de suivre les équipes à travers les 8 branches de l'organisation.</p>
                     </div>
-                    <!-- Bouton Enregistrer un agent affiché selon autorisations/rôle -->
                     <button id="btn-register-agent-top" onclick="openForm('agent')" class="hidden items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs cursor-pointer shadow shrink-0">
                         <i data-lucide="user-plus" class="w-4 h-4"></i> Enregistrer un agent
                     </button>
                 </div>
 
-                <!-- Barre de recherche fonctionnelle et filtres -->
                 <div class="pt-4 border-t border-slate-800 flex flex-col md:flex-row gap-3 items-center justify-between">
                     <div class="w-full md:w-80">
                         <input type="text" id="branch-search-input" oninput="filterBranchesAndPrograms()" placeholder="Rechercher un programme, une branche..." class="w-full bg-slate-800 text-white p-2.5 rounded-xl text-xs border border-slate-700 focus:outline-none">
@@ -330,10 +336,8 @@
                 </div>
             </div>
 
-            <!-- VUE DES 8 GRANDES BRANCHES (CARTES ILLUSTRÉES) -->
             <div id="branches-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
 
-            <!-- VUE DES PROGRAMMES DE LA BRANCHE SÉLECTIONNÉE (CACHÉE PAR DÉFAUT) -->
             <div id="branch-details-view" class="hidden space-y-4">
                 <button onclick="backToBranchesGrid()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 cursor-pointer">
                     ← Retour aux 8 branches
@@ -512,7 +516,7 @@
         </div>
     </div>
 
-    <!-- FORMULAIRE D'ENREGISTREMENT D'AGENT AMÉLIORÉ AVEC AFFECTATION PROFESSIONNELLE -->
+    <!-- FORMULAIRE D'ENREGISTREMENT D'AGENT -->
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm uppercase text-purple-700">Enregistrer & Assigner un Agent</h3><button onclick="closeForm('agent')" class="p-2 font-bold cursor-pointer">✕</button></div>
@@ -543,14 +547,6 @@
         </div>
     </div>
 
-    <!-- MODAL DÉTAILS D'ASSIGNATION / MODIFICATION D'AFFECTATION -->
-    <div id="modal-assign-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
-            <div class="flex justify-between items-center border-b pb-3"><h3 id="modal-assign-title" class="font-bold text-slate-900 text-sm uppercase text-purple-700">Gestion des Affectations</h3><button onclick="closeAssignModal()" class="p-2 font-bold cursor-pointer">✕</button></div>
-            <div id="modal-assign-body" class="space-y-4 text-xs overflow-y-auto flex-grow"></div>
-        </div>
-    </div>
-
     <!-- AUTH MODAL -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
@@ -575,7 +571,6 @@
             "Tunisie", "Zambie", "Zimbabwe"
         ];
 
-        // STRUCTURE DES 8 BRANCHES CORRIGÉES (AVEC BRANCH 08 CORRIGÉE SANS RÉPÉTITION DE TITRES)
         const structureData = [
             {
                 id: "branch-1",
@@ -584,76 +579,7 @@
                 description: "Frais scolaires, inscriptions, manuels, fournitures, tutorat, informatique et orientation.",
                 status: "actif",
                 items: [
-                    { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", beneficiaries: "Enfants orphelins et vulnérables", tasks: "Paiement, suivi des reçus, aide aux familles", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-10", endDate: "2026-12-15", status: "actif", progress: 75, budget: "5000 USD", expenses: "3750 USD", resources: "Fonds de parrainage", reports: "Rapport T1 validé", issues: "Retard de versement pour 2 enfants" },
-                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques indispensables.", beneficiaries: "Élèves inscrits", tasks: "Achat de manuels, constitution des kits", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-02-01", endDate: "2026-11-30", status: "actif", progress: 90, budget: "2500 USD", expenses: "2200 USD", resources: "Dons matériels", reports: "Inventaire complet", issues: "Aucune" },
-                    { name: "Fournitures scolaires", objective: "Garantir la disponibilité du matériel de papeterie.", beneficiaries: "Tous les enfants suivis", tasks: "Gestion des stocks de papeterie, lots", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-15", endDate: "2026-12-20", status: "actif", progress: 60, budget: "1500 USD", expenses: "900 USD", resources: "Stock central", reports: "Rapport mensuel", issues: "Demande de renouvellement en cours" },
-                    { name: "Tutorat & Accompagnement scolaire", objective: "Offrir un soutien académique.", beneficiaries: "Élèves en difficulté", tasks: "Séances de rattrapage, suivi des notes", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-20", endDate: "2026-12-10", status: "actif", progress: 80, budget: "1200 USD", expenses: "950 USD", resources: "Volontaires éducatifs", reports: "Notes de suivi", issues: "Besoin de salles supplémentaires" }
-                ]
-            },
-            {
-                id: "branch-2",
-                title: "02. Soins, Santé & Nutrition",
-                photo: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&auto=format&fit=crop&q=60",
-                description: "Suivi médical, pharmacie, urgences, nutrition, hygiène et soins.",
-                status: "actif",
-                items: [
-                    { name: "Suivi médical & Infirmerie", objective: "Assurer un suivi sanitaire régulier et premiers soins.", beneficiaries: "Enfants et veuves", tasks: "Consultations de routine, carnets de santé", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 85, budget: "4000 USD", expenses: "3200 USD", resources: "Pharmacie de base", reports: "Rapport sanitaire trimestriel", issues: "Rupture temporaire de certains antipaludéens" },
-                    { name: "Nutrition & Repas équilibrés", objective: "Lutter contre la malnutrition.", beneficiaries: "Enfants de la crèche et de l'école", tasks: "Élaboration des menus, préparation des repas", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 95, budget: "8000 USD", expenses: "7600 USD", resources: "Vivres locaux", reports: "Bilan nutritionnel mensuel", issues: "Hausse du coût des denrées" }
-                ]
-            },
-            {
-                id: "branch-3",
-                title: "03. Autonomisation & AGR",
-                photo: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=600&auto=format&fit=crop&q=60",
-                description: "Couture, petits commerces, agriculture, élevage et activités génératrices de revenus.",
-                status: "actif",
-                items: [
-                    { name: "Coupe-Couture & Machines", objective: "Former aux métiers de la couture pour l'autonomie.", beneficiaries: "Veuves et mères de famille", tasks: "Cours pratiques, confection, maintenance", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-15", endDate: "2026-12-15", status: "actif", progress: 70, budget: "3500 USD", expenses: "2800 USD", resources: "10 Machines à coudre", reports: "Rapport de formation", issues: "Maintenance requise pour 2 machines" },
-                    { name: "Petits commerces & AGR", objective: "Soutenir le lancement de micro-commerces.", beneficiaries: "Veuves sélectionnées", tasks: "Validation de projets, appui au démarrage", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-02-01", endDate: "2026-11-30", status: "actif", progress: 65, budget: "6000 USD", expenses: "4500 USD", resources: "Fonds renouvelable", reports: "Suivi des remboursements", issues: "Difficultés de transport dans certaines zones" }
-                ]
-            },
-            {
-                id: "branch-4",
-                title: "04. Protection & Accompagnement social",
-                photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60",
-                description: "Protection, suivi social, soutien psychologique et accompagnement familial.",
-                status: "actif",
-                items: [
-                    { name: "Assistance Sociale & Juridique", objective: "Protéger les droits fondamentaux.", beneficiaries: "Familles vulnérables", tasks: "Médiation familiale, défense des droits", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 80, budget: "2000 USD", expenses: "1500 USD", resources: "Conseillers juridiques", reports: "Registre des cas", issues: "Afflux important de nouveaux dossiers" },
-                    { name: "Soutien Psychologique", objective: "Offrir un appui émotionnel et résilience.", beneficiaries: "Enfants traumatisés et veuves", tasks: "Écoute, thérapie de groupe", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 75, budget: "1800 USD", expenses: "1300 USD", resources: "Psychologues bénévoles", reports: "Rapport d'impact", issues: "Disponibilité limitée des spécialistes" }
-                ]
-            },
-            {
-                id: "branch-5",
-                title: "05. Sport, Culture & Développement des talents",
-                photo: "https://images.unsplash.com/photo-1517649763962-0c6232660102?w=600&auto=format&fit=crop&q=60",
-                description: "Sport, musique, danse, théâtre, dessin, loisirs et talents.",
-                status: "actif",
-                items: [
-                    { name: "Tournois & Activités Sportives", objective: "Favoriser la cohésion sociale par le sport.", beneficiaries: "Jeunes des centres", tasks: "Championnats de football, dotation en équipements", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-03-01", endDate: "2026-11-30", status: "actif", progress: 85, budget: "1500 USD", expenses: "1200 USD", resources: "Ballons, maillots", reports: "Bilan des tournois", issues: "État du terrain de sport" },
-                    { name: "Arts, Musique & Théâtre", objective: "Développer l'expression artistique.", beneficiaries: "Enfants et adolescents", tasks: "Ateliers de chant, théâtre et peinture", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-15", endDate: "2026-12-15", status: "actif", progress: 70, budget: "1000 USD", expenses: "750 USD", resources: "Instruments de musique", reports: "Expositions et spectacles", issues: "Manque d'espace de répétition" }
-                ]
-            },
-            {
-                id: "branch-6",
-                title: "06. Hébergement, Hygiène & Logistique",
-                photo: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop&q=60",
-                description: "Logement, literie, vêtements, hygiène, eau potable, équipements et stocks.",
-                status: "actif",
-                items: [
-                    { name: "Gestion des Stocks & Vivres", objective: "Garantir la disponibilité des biens de première nécessité.", beneficiaries: "Centres d'hébergement", tasks: "Inventaire, stockage sécurisé, approvisionnement", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 90, budget: "10000 USD", expenses: "9200 USD", resources: "Entrepôts centraux", reports: "Fiches de stock", issues: "Capacité de stockage limitée" },
-                    { name: "Assainissement & Eau Potable", objective: "Assurer un environnement de vie sain.", beneficiaries: "Communauté des centres", tasks: "Nettoyage des infrastructures, traitement de l'eau", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 88, budget: "3000 USD", expenses: "2500 USD", resources: "Système de filtration", reports: "Contrôle qualité de l'eau", issues: "Coupures d'électricité affectant le pompage" }
-                ]
-            },
-            {
-                id: "branch-7",
-                title: "07. Formation, Emploi & Autonomie",
-                photo: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60",
-                description: "Formation professionnelle, compétences numériques, stages, orientation et préparation à la vie adulte.",
-                status: "actif",
-                items: [
-                    { name: "Initiation Informatique & Numérique", objective: "Maîtriser les outils informatiques de base.", beneficiaries: "Jeunes majeurs et adolescents", tasks: "Cours pratiques en salle multimédia", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-02-01", endDate: "2026-12-15", status: "actif", progress: 75, budget: "4000 USD", expenses: "3400 USD", resources: "15 Ordinateurs portables", reports: "Certificats délivrés", issues: "Connexion internet instable" },
-                    { name: "Orientation & Stages professionnels", objective: "Préparer l'insertion professionnelle.", beneficiaries: "Jeunes en fin de scolarité", tasks: "Partenariats entreprises, stages d'immersion", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-03-01", endDate: "2026-11-30", status: "actif", progress: 60, budget: "2000 USD", expenses: "1400 USD", resources: "Réseau d'entreprises partenaires", reports: "Bilan d'insertion", issues: "Nombre restreint de partenaires locaux" }
+                    { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", beneficiaries: "Enfants orphelins et vulnérables", tasks: "Paiement, suivi des reçus, aide aux familles", country: "République Démocratique du Congo (RDC)", center: "Centre Dieudonné Bukavu", startDate: "2026-01-10", endDate: "2026-12-15", status: "actif", progress: 75, budget: "5000 USD", expenses: "3750 USD", resources: "Fonds de parrainage", reports: "Rapport T1 validé", issues: "Retard de versement pour 2 enfants" }
                 ]
             },
             {
@@ -663,8 +589,8 @@
                 description: "Coordination, personnel, budgets, comptabilité, rapports, partenariats et gestion panafricaine.",
                 status: "actif",
                 items: [
-                    { name: "Coordination & Gestion administrative", objective: "Superviser l'ensemble des opérations panafricaines et administratives.", beneficiaries: "Équipes et centres", tasks: "Réunions de pilotage, gestion des plannings, secrétariat, suivi des rapports.", country: "République Démocratique du Congo (RDC)", center: "Secrétariat Général Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 90, budget: "12000 USD", expenses: "11000 USD", resources: "Bureautique centrale", reports: "Rapports de coordination trimestriels", issues: "Coordination inter-pays à synchroniser" },
-                    { name: "Finances, Dons & Partenariats", objective: "Assurer la transparence financière, la comptabilité, la gestion des donateurs et des sponsors.", beneficiaries: "Organisation et donateurs", tasks: "Tenue de la comptabilité, bilans financiers, reçus de dons, relations partenaires.", country: "République Démocratique du Congo (RDC)", center: "Direction Financière Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 95, budget: "15000 USD", expenses: "14200 USD", resources: "Logiciel comptable et sécurisé", reports: "Bilan financier certifié", issues: "Délais bancaires sur virements internationaux" }
+                    { name: "Coordination & Gestion administrative", objective: "Superviser l'ensemble des opérations panafricaines.", beneficiaries: "Équipes et centres", tasks: "Réunions de pilotage, gestion des plannings", country: "République Démocratique du Congo (RDC)", center: "Secrétariat Général Bukavu", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 90, budget: "12000 USD", expenses: "11000 USD", resources: "Bureautique", reports: "Rapports trimestriels", issues: "Aucune" },
+                    { name: "Finances, Dons & Partenariats", objective: "Assurer la transparence financière.", beneficiaries: "Organisation et donateurs", tasks: "Comptabilité, bilans financiers, reçus", country: "République Démocratique du Congo (RDC)", center: "Direction Financière", startDate: "2026-01-01", endDate: "2026-12-31", status: "actif", progress: 95, budget: "15000 USD", expenses: "14200 USD", resources: "Logiciel comptable", reports: "Bilan certifié", issues: "Délais bancaires" }
                 ]
             }
         ];
@@ -672,11 +598,8 @@
         const OFFICIAL_WHATSAPP_NUMBER = "256792994716";
 
         function copyMtnNumber() {
-            const numToCopy = "+256792994716";
-            navigator.clipboard.writeText(numToCopy).then(() => {
-                alert("Numéro MTN copié dans le presse-papier : " + numToCopy);
-            }).catch(err => {
-                alert("Erreur lors de la copie : " + err);
+            navigator.clipboard.writeText("+256792994716").then(() => {
+                alert("Numéro MTN copié dans le presse-papier : +256792994716");
             });
         }
 
@@ -684,88 +607,23 @@
             const modal = document.getElementById('modal-sponsoring-action');
             const title = document.getElementById('modal-sponsoring-title');
             const body = document.getElementById('modal-sponsoring-body');
-
             title.innerText = `Validation du Paiement`;
             modal.classList.replace('hidden', 'flex');
-
             body.innerHTML = `
                 <div class="space-y-4 text-slate-700">
                     <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-2xl space-y-1 text-xs text-emerald-950">
-                        <p class="font-black text-emerald-900 text-xs flex items-center gap-1.5">
-                            <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${causeName}</strong>
-                        </p>
-                        <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision du Centre Dieudonné.</p>
+                        <p class="font-black text-emerald-900 text-xs">Motif : <strong>${causeName}</strong></p>
                     </div>
-
-                    <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
-                        <p class="font-extrabold text-amber-950 flex items-center gap-1">📌 Instructions pour effectuer le transfert :</p>
-                        <ol class="list-decimal pl-4 space-y-1 text-[11px]">
-                            <li>Cliquez sur <strong>« Copier le numéro »</strong> pour éviter toute erreur de frappe.</li>
-                            <li>Effectuez votre transfert MTN vers ce numéro (ou composez <strong>*165#</strong>).</li>
-                            <li>Récupérez l'<strong>ID de transaction (Référence)</strong> reçu par SMS de MTN.</li>
-                            <li>Remplissez le formulaire ci-dessous et validez.</li>
-                        </ol>
+                    <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3 text-xs">
+                        <p class="font-mono font-black text-white text-base">+256 792994716</p>
+                        <button type="button" onclick="copyMtnNumber()" class="w-full bg-green-600 text-white font-bold py-2.5 rounded-xl cursor-pointer">Copier le numéro</button>
                     </div>
-
-                    <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3">
-                        <div class="border-b border-slate-800 pb-2 flex justify-between items-center">
-                            <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉRO DE TRANSFERT OFFICIEL</span>
-                            <span class="text-[9px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded font-mono font-bold">Actif</span>
-                        </div>
-                        
-                        <div class="space-y-2 text-xs">
-                            <div class="bg-amber-500/10 border border-amber-500/40 p-3.5 rounded-xl space-y-2">
-                                <span class="font-black text-amber-400">💛 MTN Mobile Money (DISPONIBLE)</span>
-                                <p class="text-base font-mono font-black text-white tracking-wider">+256 792994716</p>
-                                <p class="text-[10px] text-amber-200">Nom du compte : <strong>GABRIEL MUSHAGALUSA</strong></p>
-                                
-                                <div class="grid grid-cols-2 gap-2 pt-2">
-                                    <button type="button" onclick="copyMtnNumber()" class="bg-green-600 hover:bg-green-500 text-white font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
-                                        📋 Copier le numéro
-                                    </button>
-                                    <a href="tel:*165#" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
-                                        📲 Menu (*165#)
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="space-y-3 text-xs bg-slate-50 p-4 rounded-2xl border">
-                        <h4 class="font-black text-slate-900 text-xs">Saisir les détails de votre transfert effectué</h4>
-                        <div>
-                            <label class="font-bold block mb-1">Nom complet / Donateur :</label>
-                            <input type="text" id="don-name" placeholder="Votre nom ou Anonyme" class="w-full p-2.5 border rounded-xl bg-white">
-                        </div>
-                        
-                        <div>
-                            <label class="font-bold block mb-1">Email ou Téléphone de contact :</label>
-                            <input type="text" id="don-email" placeholder="votre@email.com ou +243..." class="w-full p-2.5 border rounded-xl bg-white">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="font-bold block mb-1">Montant envoyé :</label>
-                                <input type="number" id="don-amount" placeholder="50" class="w-full p-2.5 border rounded-xl bg-white">
-                            </div>
-                            <div>
-                                <label class="font-bold block mb-1">Devise :</label>
-                                <select id="don-currency" class="w-full p-2.5 border rounded-xl bg-white font-bold">
-                                    <option value="USD">USD ($)</option>
-                                    <option value="UGX">UGX (Shilling Ougandais)</option>
-                                    <option value="CDF">CDF (Franc Congolais)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="font-bold block mb-1 text-green-700">Référence / ID de transaction Mobile Money * :</label>
-                            <input type="text" id="don-transid" placeholder="Ex: 254896321 (ID reçu par SMS)" class="w-full p-2.5 border border-green-500 rounded-xl bg-white font-mono font-bold text-slate-900">
-                            <p class="text-[9px] text-slate-500 mt-0.5">Entrez le code de confirmation reçu par SMS après votre transfert.</p>
-                        </div>
+                        <div><label class="font-bold block mb-1">Nom complet :</label><input type="text" id="don-name" class="w-full p-2.5 border rounded-xl bg-white"></div>
+                        <div><label class="font-bold block mb-1">Montant (USD) :</label><input type="number" id="don-amount" class="w-full p-2.5 border rounded-xl bg-white"></div>
+                        <div><label class="font-bold block mb-1 text-green-700">ID / Référence SMS MTN * :</label><input type="text" id="don-transid" class="w-full p-2.5 border border-green-500 rounded-xl bg-white font-mono font-bold"></div>
                     </div>
-
-                    <button type="button" onclick="submitDonation('${causeName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs uppercase tracking-wider">Confirmer mon transfert</button>
+                    <button type="button" onclick="submitDonation('${causeName}')" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs uppercase">Confirmer</button>
                 </div>
             `;
             if (window.lucide) lucide.createIcons();
@@ -777,193 +635,115 @@
 
         async function submitDonation(cause) {
             const name = document.getElementById('don-name').value || "Anonyme";
-            const email = document.getElementById('don-email').value || "Non fourni";
             const amount = parseFloat(document.getElementById('don-amount').value) || 0;
-            const currency = document.getElementById('don-currency').value;
-            const transId = document.getElementById('don-transid').value.trim();
-            const currentUser = auth.currentUser;
-
-            if (amount <= 0) { alert("Veuillez entrer un montant valide."); return; }
-            if (!transId) { alert("Veuillez saisir la référence/ID de la transaction reçue par SMS."); return; }
+            const transId = document.getElementById('don-transid'].value.trim();
+            if (amount <= 0) { alert("Montant invalide."); return; }
+            if (!transId) { alert("Veuillez saisir l'ID de transaction reçu par SMS."); return; }
 
             try {
                 const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
                 await db.collection("donations").add({
-                    refId, name, email, amount, currency, cause,
-                    transId: transId,
-                    userId: currentUser ? currentUser.uid : 'anonymous',
-                    userEmail: currentUser ? currentUser.email : email,
-                    paymentMethod: "MTN Mobile Money (+256792994716)",
+                    refId, name, amount, cause, transId,
+                    userId: auth.currentUser ? auth.currentUser.uid : 'anonymous',
                     status: "pending",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-
-                await createSystemNotification({
-                    title: "Nouveau Don Déclaré",
-                    message: `${name} a déclaré un don de ${amount} ${currency} pour [${cause}]. Réf: ${transId}`,
-                    category: "Sponsors, Dons & Partenariats",
-                    priority: "importante",
-                    targetRole: "admin"
-                });
-
-                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nVotre don est enregistré en attente de confirmation.`);
+                alert("Don enregistré en attente de validation ! Réf : " + refId);
                 closeSponsoringModal();
-                updateFinancialReports();
-                if (currentUser) updateProfileCard(currentUser);
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        async function createSystemNotification(notifData) {
-            try {
-                await db.collection("notifications").add({
-                    title: notifData.title,
-                    message: notifData.message,
-                    category: notifData.category || "Système & Technique",
-                    priority: notifData.priority || "information",
-                    status: "nouvelle",
-                    isRead: false,
-                    targetRole: notifData.targetRole || "all",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                updateNotificationBadges();
-            } catch (e) {
-                console.error("Erreur création notification:", e);
+        // --- MODULE DE RECHERCHE PROFESSIONNEL CORRIGÉ ---
+        async function executeIdSearch() {
+            const inputVal = document.getElementById('input-search-id').value.trim().toUpperCase();
+            const card = document.getElementById('search-result-card');
+            
+            card.classList.remove('hidden');
+
+            if (!inputVal) {
+                card.innerHTML = `
+                    <div class="p-4 bg-amber-50 border border-amber-200 rounded-2xl text-xs text-amber-900 space-y-1">
+                        <p class="font-bold">⚠️ Champ requis</p>
+                        <p>Veuillez saisir un matricule valide (ex: BKDD-E01) pour lancer la recherche.</p>
+                    </div>
+                `;
+                return;
             }
-        }
 
-        async function updateNotificationBadges() {
+            // Indicateur de chargement professionnel
+            card.innerHTML = `
+                <div class="text-center py-8 space-y-3">
+                    <div class="w-8 h-8 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <p class="text-xs font-bold text-slate-600">Recherche du dossier en cours dans la base de données panafricaine...</p>
+                </div>
+            `;
+
             try {
-                const snap = await db.collection("notifications").get();
-                let unreadCount = 0;
-                snap.forEach(doc => { if (!doc.data().isRead) unreadCount++; });
+                let foundDoc = null;
+                let foundCategory = '';
+                const collectionsToSearch = [
+                    { name: 'children', label: 'Enfant Orphelin', prefix: 'E' },
+                    { name: 'widows', label: 'Veuve', prefix: 'V' },
+                    { name: 'agents', label: 'Agent / Personnel', prefix: 'A' }
+                ];
 
-                const badge = document.getElementById('sidebar-notif-badge');
-                if (badge) {
-                    if (unreadCount > 0) {
-                        badge.innerText = unreadCount;
-                        badge.classList.remove('hidden');
-                    } else {
-                        badge.classList.add('hidden');
+                for (let col of collectionsToSearch) {
+                    const snap = await db.collection(col.name).where('matricule', '==', inputVal).get();
+                    if (!snap.empty) {
+                        foundDoc = snap.docs[0].data();
+                        foundCategory = col.label;
+                        break;
                     }
                 }
-            } catch (e) {
-                console.error("Erreur badge:", e);
-            }
-        }
 
-        function filterNotifications(filter) {
-            currentNotificationFilter = filter;
-            document.querySelectorAll('.notif-filter-btn').forEach(btn => {
-                btn.classList.remove('bg-slate-900', 'text-white');
-                btn.classList.add('bg-slate-100', 'text-slate-700');
-            });
-            event.target.classList.remove('bg-slate-100', 'text-slate-700');
-            event.target.classList.add('bg-slate-900', 'text-white');
-            renderNotificationsList();
-        }
+                if (foundDoc) {
+                    const isAuthorized = auth.currentUser !== null;
+                    const displayName = foundDoc.firstName 
+                        ? `${foundDoc.firstName} ${isAuthorized ? (foundDoc.lastName || '') : (foundDoc.lastName ? foundDoc.lastName.charAt(0) + '.' : '')}` 
+                        : (foundDoc.fullName || 'Nom confidentiel');
 
-        let currentNotificationFilter = 'all';
+                    const photoHtml = foundDoc.photo 
+                        ? `<img src="${foundDoc.photo}" class="w-full h-full object-cover">` 
+                        : `<div class="flex items-center justify-center h-full text-2xl bg-slate-100 text-slate-400">👤</div>`;
 
-        async function renderNotificationsList() {
-            const container = document.getElementById('notifications-container');
-            const searchInput = document.getElementById('notif-search-input');
-            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-            if (!container) return;
-
-            container.innerHTML = `<div class="text-center py-8 text-xs text-slate-400">Chargement des notifications...</div>`;
-
-            try {
-                const snap = await db.collection("notifications").orderBy("createdAt", "desc").get();
-                let notifications = [];
-                let unreadCount = 0, urgentCount = 0, todayCount = 0, totalCount = 0;
-                const todayStr = new Date().toDateString();
-
-                snap.forEach(doc => {
-                    const data = { id: doc.id, ...doc.data() };
-                    totalCount++;
-                    if (!data.isRead) unreadCount++;
-                    if (data.priority === 'urgente' && data.status !== 'cloturee') urgentCount++;
-                    
-                    const notifDate = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
-                    if (notifDate.toDateString() === todayStr) todayCount++;
-
-                    let matchesFilter = true;
-                    if (currentNotificationFilter === 'unread') matchesFilter = !data.isRead;
-                    else if (currentNotificationFilter === 'urgente') matchesFilter = data.priority === 'urgente';
-                    else if (currentNotificationFilter === 'importante') matchesFilter = data.priority === 'importante';
-                    else if (currentNotificationFilter === 'information') matchesFilter = data.priority === 'information';
-                    else if (currentNotificationFilter === 'traitee') matchesFilter = data.status === 'resolue' || data.status === 'cloturee';
-
-                    let matchesSearch = true;
-                    if (searchTerm) {
-                        matchesSearch = (data.title && data.title.toLowerCase().includes(searchTerm)) ||
-                                        (data.message && data.message.toLowerCase().includes(searchTerm));
-                    }
-
-                    if (matchesFilter && matchesSearch) notifications.push(data);
-                });
-
-                document.getElementById('notif-stat-unread').innerText = unreadCount;
-                document.getElementById('notif-stat-urgent').innerText = urgentCount;
-                document.getElementById('notif-stat-today').innerText = todayCount;
-                document.getElementById('notif-stat-total').innerText = totalCount;
-                updateNotificationBadges();
-
-                if (notifications.length === 0) {
-                    container.innerHTML = `<div class="text-center py-12 text-xs text-slate-500">Aucune notification correspondante.</div>`;
-                    if (window.lucide) lucide.createIcons();
-                    return;
-                }
-
-                container.innerHTML = '';
-                notifications.forEach(n => {
-                    const dateFormatted = n.createdAt?.toDate ? n.createdAt.toDate().toLocaleString() : 'Récemment';
-                    let priorityBadge = n.priority === 'urgente' ? `<span class="px-2 py-0.5 rounded text-[9px] font-bold bg-red-100 text-red-800">Urgente</span>` : `<span class="px-2 py-0.5 rounded text-[9px] font-bold bg-blue-100 text-blue-800">Info</span>`;
-
-                    container.innerHTML += `
-                        <div class="p-4 rounded-2xl border transition ${n.isRead ? 'bg-white border-slate-200' : 'bg-slate-50 border-slate-300 shadow-sm'} space-y-2">
-                            <div class="flex justify-between items-center">
-                                <span class="text-[10px] font-bold text-slate-400">${dateFormatted}</span>
-                                ${priorityBadge}
+                    card.innerHTML = `
+                        <div class="flex flex-col md:flex-row items-start md:items-center gap-4 border-b pb-4">
+                            <div class="w-20 h-20 bg-slate-100 rounded-2xl overflow-hidden border shrink-0 shadow-sm">${photoHtml}</div>
+                            <div class="space-y-1 flex-grow">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="font-mono bg-slate-900 text-amber-400 px-2.5 py-1 rounded-lg text-xs font-bold">${foundDoc.matricule}</span>
+                                    <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-green-100 text-green-800 uppercase">${foundCategory}</span>
+                                </div>
+                                <h3 class="font-black text-slate-900 text-base mt-1">${displayName}</h3>
+                                <p class="text-xs text-slate-500">📍 ${foundDoc.city || 'Bukavu'}, ${foundDoc.country || 'République Démocratique du Congo (RDC)'}</p>
                             </div>
-                            <h4 class="font-black text-slate-900 text-xs">${n.title}</h4>
-                            <p class="text-xs text-slate-600">${n.message}</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 bg-slate-50 p-3 rounded-2xl border">
+                            <div><strong>Statut du dossier :</strong> <span class="text-green-600 font-bold">Actif & Vérifié</span></div>
+                            <div><strong>Centre de rattachement :</strong> ${foundDoc.center || 'Centre Dieudonné'}</div>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl transition cursor-pointer text-xs uppercase shadow">Soutenir ce profil</button>
                         </div>
                     `;
-                });
-                if (window.lucide) lucide.createIcons();
-            } catch (e) {
-                container.innerHTML = `<p class="text-xs text-red-500 text-center py-4">Erreur de chargement.</p>`;
+                } else {
+                    card.innerHTML = `
+                        <div class="p-5 bg-red-50 border border-red-200 rounded-2xl text-xs text-red-900 space-y-2 text-center">
+                            <p class="font-black text-sm text-red-800">Aucun dossier trouvé</p>
+                            <p class="text-slate-600">Aucun enregistrement ne correspond au matricule <strong>${inputVal}</strong>. Veuillez vérifier le code et réessayer.</p>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                card.innerHTML = `
+                    <div class="p-5 bg-red-50 border border-red-200 rounded-2xl text-xs text-red-900 space-y-2 text-center">
+                        <p class="font-black text-sm text-red-800">Erreur de connexion</p>
+                        <p class="text-slate-600">Impossible de joindre la base de données panafricaine. Veuillez vérifier votre connexion Internet et réessayer.</p>
+                        <button onclick="executeIdSearch()" class="bg-slate-900 text-white font-bold px-4 py-2 rounded-xl mt-2 cursor-pointer">Réessayer</button>
+                    </div>
+                `;
             }
-        }
-
-        function updateSubactivityOptions() {
-            const branchSelect = document.getElementById('a-branch');
-            const subSelect = document.getElementById('a-subactivity');
-            if (!branchSelect || !subSelect) return;
-
-            subSelect.innerHTML = '';
-            structureData.forEach(branch => {
-                branch.items.forEach(item => {
-                    const opt = document.createElement('option');
-                    opt.value = item.name;
-                    opt.textContent = `${branch.title} — ${item.name}`;
-                    subSelect.appendChild(opt);
-                });
-            });
-        }
-
-        function populateAfricanCountries() {
-            document.querySelectorAll('.african-countries-select').forEach(sel => {
-                sel.innerHTML = '<option value="all">Tous les pays</option>';
-                africanCountries.forEach(country => {
-                    const opt = document.createElement('option');
-                    opt.value = country;
-                    opt.textContent = country;
-                    if (country.includes("RDC")) opt.selected = true;
-                    sel.appendChild(opt);
-                });
-            });
+            if (window.lucide) lucide.createIcons();
         }
 
         const firebaseConfig = {
@@ -988,16 +768,13 @@
                     document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-out" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Déconnexion</span>`;
                     document.getElementById('auth-btn').onclick = () => auth.signOut();
-                    if (btnRegisterTop) btnRegisterTop.classList.remove('hidden'); // Affiché aux utilisateurs connectés / autorisés
-                    updateProfileCard(user);
+                    if (btnRegisterTop) btnRegisterTop.classList.remove('hidden');
                 } else {
                     document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
                     document.getElementById('auth-btn').innerHTML = `<i data-lucide="log-in" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Connexion</span>`;
                     document.getElementById('auth-btn').onclick = openAuthModal;
                     if (btnRegisterTop) btnRegisterTop.classList.add('hidden');
-                    updateProfileCard(null);
                 }
-                updateNotificationBadges();
             });
         }
 
@@ -1011,17 +788,6 @@
             document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
             document.getElementById('sidebar').classList.add('-translate-x-full');
             document.getElementById('sidebar-overlay').classList.add('hidden');
-
-            if (tab === 'home') loadHomeFeaturedProfiles();
-            if (tab === 'children') loadCollection('children', 'children-grid-container', true);
-            if (tab === 'widows') loadCollection('widows', 'widows-grid-container', false);
-            if (tab === 'team') { backToBranchesGrid(); renderBranchesGrid(); }
-            if (tab === 'admin') loadAdminMasterList();
-            if (tab === 'countries') renderCountriesList();
-            if (tab === 'reports') updateFinancialReports();
-            if (tab === 'profile') updateProfileCard(auth.currentUser);
-            if (tab === 'notifications') renderNotificationsList();
-
             window.scrollTo(0, 0);
             if (window.lucide) lucide.createIcons();
         }
@@ -1041,558 +807,8 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // RENDU DES 8 BRANCHES AVEC FILTRES ET NOMBRES RÉELS DE PROGRAMMES ACTIFS
-        function renderBranchesGrid(filteredData = structureData) {
-            const gridContainer = document.getElementById('branches-grid-container');
-            if (!gridContainer) return;
-
-            gridContainer.innerHTML = '';
-            if (filteredData.length === 0) {
-                gridContainer.innerHTML = `<div class="col-span-2 text-center py-12 text-xs text-slate-500">Aucune branche ou programme ne correspond à votre recherche.</div>`;
-                return;
-            }
-
-            filteredData.forEach(branch => {
-                const activeProgramsCount = branch.items.filter(i => i.status === 'actif').length;
-                gridContainer.innerHTML += `
-                    <div class="bg-white rounded-3xl border shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
-                        <div class="relative h-44 bg-slate-100">
-                            <img src="${branch.photo}" alt="${branch.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
-                                <span class="bg-purple-600 text-white font-mono text-[10px] px-2.5 py-1 rounded-full font-bold shadow">${activeProgramsCount} programme(s) actif(s)</span>
-                            </div>
-                        </div>
-                        <div class="p-5 space-y-3 flex flex-col justify-between flex-grow">
-                            <div class="space-y-2">
-                                <h3 class="font-black text-slate-900 text-sm md:text-base">${branch.title}</h3>
-                                <p class="text-xs text-slate-600 line-clamp-2">${branch.description}</p>
-                            </div>
-                            <button type="button" onclick="openBranchPrograms('${branch.id}')" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl text-xs transition cursor-pointer flex items-center justify-center gap-1.5 shadow">
-                                Voir les programmes <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-            updateSubactivityOptions();
-            if (window.lucide) lucide.createIcons();
-        }
-
-        function filterBranchesAndPrograms() {
-            const searchTerm = document.getElementById('branch-search-input').value.toLowerCase();
-            const statusFilter = document.getElementById('filter-status').value;
-            const countryFilter = document.getElementById('filter-country').value;
-
-            const filtered = structureData.map(branch => {
-                const matchingItems = branch.items.filter(item => {
-                    const matchText = item.name.toLowerCase().includes(searchTerm) || 
-                                      item.objective.toLowerCase().includes(searchTerm) || 
-                                      branch.title.toLowerCase().includes(searchTerm);
-                    const matchStatus = statusFilter === 'all' || item.status === statusFilter;
-                    const matchCountry = countryFilter === 'all' || item.country === countryFilter;
-                    return matchText && matchStatus && matchCountry;
-                });
-
-                if (matchingItems.length > 0 || branch.title.toLowerCase().includes(searchTerm)) {
-                    return { ...branch, items: matchingItems.length > 0 ? matchingItems : branch.items };
-                }
-                return null;
-            }).filter(Boolean);
-
-            renderBranchesGrid(filtered);
-        }
-
-        function openBranchPrograms(branchId) {
-            const branch = structureData.find(b => b.id === branchId);
-            if (!branch) return;
-
-            document.getElementById('branches-grid-container').classList.add('hidden');
-            const detailsView = document.getElementById('branch-details-view');
-            const content = document.getElementById('branch-details-content');
-            detailsView.classList.remove('hidden');
-
-            let programsHtml = '';
-            branch.items.forEach(sub => {
-                programsHtml += `
-                    <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-3 flex flex-col justify-between">
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-start">
-                                <h4 class="font-black text-slate-900 text-sm">${sub.name}</h4>
-                                <span class="text-[10px] bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full font-bold border border-green-200 uppercase">${sub.status || 'actif'}</span>
-                            </div>
-                            <p class="text-xs text-slate-600"><strong>Objectif précis :</strong> ${sub.objective}</p>
-                            <p class="text-xs text-slate-500"><strong>Bénéficiaires :</strong> ${sub.beneficiaries}</p>
-                            <p class="text-xs text-slate-500"><strong>Activités & Tâches :</strong> ${sub.tasks}</p>
-                            <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-xl border">
-                                <div>📍 <strong>Pays :</strong> ${sub.country}</div>
-                                <div>🏢 <strong>Centre :</strong> ${sub.center}</div>
-                                <div>⏱️ <strong>Début :</strong> ${sub.startDate}</div>
-                                <div>🏁 <strong>Fin :</strong> ${sub.endDate}</div>
-                            </div>
-                            <div class="space-y-1 pt-1">
-                                <div class="flex justify-between text-[11px] font-bold">
-                                    <span>Progression</span>
-                                    <span>${sub.progress}%</span>
-                                </div>
-                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                    <div class="bg-purple-600 h-full rounded-full" style="width: ${sub.progress}%"></div>
-                                </div>
-                            </div>
-                            <div class="text-[11px] text-slate-600 bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
-                                <p>💰 <strong>Budget :</strong> ${sub.budget} | <strong>Dépenses :</strong> ${sub.expenses}</p>
-                                <p>📈 <strong>Résultats / Rapport :</strong> ${sub.reports}</p>
-                                <p class="text-amber-700">⚠️ <strong>Difficultés :</strong> ${sub.issues}</p>
-                            </div>
-                        </div>
-                        <button type="button" onclick="showSubBranchDetails('${branch.title.replace(/'/g, "\\'")}', '${sub.name.replace(/'/g, "\\'")}')" class="w-full bg-purple-50 hover:bg-purple-600 hover:text-white text-purple-700 border border-purple-200 py-2.5 rounded-xl text-xs font-bold cursor-pointer transition flex items-center justify-center gap-1">
-                            Détails, Agents & Contacts <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                `;
-            });
-
-            content.innerHTML = `
-                <div class="bg-slate-900 text-white p-6 rounded-3xl space-y-2 shadow-xl">
-                    <span class="text-[10px] uppercase font-bold text-purple-400 tracking-wider">Branche Panafricaine</span>
-                    <h3 class="text-xl font-black">${branch.title}</h3>
-                    <p class="text-xs text-slate-300">${branch.description}</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">${programsHtml}</div>
-            `;
-            if (window.lucide) lucide.createIcons();
-            window.scrollTo(0, 0);
-        }
-
-        function backToBranchesGrid() {
-            document.getElementById('branch-details-view').classList.add('hidden');
-            document.getElementById('branches-grid-container').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        function renderCountriesList() {
-            const container = document.getElementById('countries-list-container');
-            if (!container) return;
-            container.innerHTML = '';
-            africanCountries.forEach(c => {
-                container.innerHTML += `<div class="p-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-slate-700 flex items-center gap-2"><span>🌍</span> ${c}</div>`;
-            });
-        }
-
-        async function showSubBranchDetails(branchTitle, subActivityName) {
-            const modal = document.getElementById('modal-branch-agents');
-            const title = document.getElementById('modal-branch-title');
-            const listContainer = document.getElementById('modal-branch-list');
-
-            title.innerText = `${branchTitle} — ${subActivityName}`;
-            listContainer.innerHTML = "Chargement des agents affectés...";
-            modal.classList.replace('hidden', 'flex');
-
-            try {
-                const snap = await db.collection("agents").get();
-                let agentsHtml = '';
-
-                snap.forEach(doc => {
-                    const agent = { id: doc.id, ...doc.data() };
-                    if (agent.subactivity === subActivityName || agent.branch === branchTitle) {
-                        const cleanPhone = (agent.phone || '').replace(/\s+/g, '');
-                        agentsHtml += `
-                            <div class="bg-slate-50 p-3 rounded-2xl border space-y-2">
-                                <div class="flex justify-between items-center">
-                                    <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
-                                    <button onclick="removeAgentAssignment('${agent.id}')" class="text-red-500 hover:text-red-700 text-[10px] font-bold cursor-pointer">Retirer l'affectation</button>
-                                </div>
-                                <h4 class="font-bold text-slate-900 text-xs">${agent.fullName} (${agent.role})</h4>
-                                <p class="text-[11px] text-slate-600"><strong>Mission :</strong> ${agent.mission || 'Mission générale'}</p>
-                                <p class="text-[11px] text-slate-500">📍 ${agent.country || 'RDC'} | 👤 Resp : ${agent.manager || 'Direction'}</p>
-                                <div class="grid grid-cols-2 gap-2 pt-1">
-                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold">📞 Appeler</a>
-                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 text-white p-2 rounded-xl text-center font-bold">💬 WhatsApp</a>
-                                </div>
-                            </div>
-                        `;
-                    }
-                });
-
-                if (!agentsHtml) agentsHtml = `<p class="text-slate-500 text-center py-2 italic">Aucun agent affecté pour ce programme.</p>`;
-
-                listContainer.innerHTML = `
-                    <div class="space-y-3 text-slate-700 text-xs">
-                        <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
-                            <p class="font-bold text-slate-900">Objectif & Tâches associées :</p>
-                            <p class="text-slate-600">Suivi rigoureux sur le terrain sous la supervision panafricaine.</p>
-                        </div>
-                        <div class="pt-2 border-t space-y-2">
-                            <h4 class="font-black text-slate-900 text-xs uppercase text-purple-700">👤 Personnel & Agents affectés</h4>
-                            <div class="space-y-2">${agentsHtml}</div>
-                        </div>
-                        <button onclick="openForm('agent')" class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl cursor-pointer mt-2">+ Assigner un nouvel agent</button>
-                    </div>
-                `;
-            } catch (err) { listContainer.innerHTML = `<p class="text-red-500 text-center">Erreur : ${err.message}</p>`; }
-        }
-
-        function closeBranchModal() { document.getElementById('modal-branch-agents').classList.replace('flex', 'hidden'); }
-
-        async function removeAgentAssignment(agentId) {
-            if (confirm("Voulez-vous retirer cet agent de ce programme sans supprimer son dossier global ?")) {
-                try {
-                    await db.collection("agents").doc(agentId).update({ subactivity: "Non assigné" });
-                    alert("Affectation retirée avec succès.");
-                    closeBranchModal();
-                } catch (e) {
-                    alert("Erreur : " + e.message);
-                }
-            }
-        }
-
-        function compressImage(file) {
-            return new Promise((resolve) => {
-                if (!file) { resolve(''); return; }
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.src = event.target.result;
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 400;
-                        const scaleSize = MAX_WIDTH / img.width;
-                        canvas.width = MAX_WIDTH;
-                        canvas.height = img.height * scaleSize;
-                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.6));
-                    };
-                };
-            });
-        }
-
-        async function generateNextMatricule(col, prefix) {
-            const snap = await db.collection(col).get();
-            const count = snap.size + 1;
-            return `BKDD-${prefix}${count < 10 ? '0' + count : count}`;
-        }
-
-        async function saveAgentForm() {
-            try {
-                const photo = await compressImage(document.getElementById('a-photo').files[0]);
-                const familyPhoto = await compressImage(document.getElementById('a-family-photo').files[0]);
-                const matricule = await generateNextMatricule('agents', 'A');
-                const fullName = document.getElementById('a-fullname').value;
-                const branch = document.getElementById('a-branch').value;
-                const subactivity = document.getElementById('a-subactivity').value;
-                const role = document.getElementById('a-role').value;
-                const phone = document.getElementById('a-phone').value;
-                const country = document.getElementById('a-country').value;
-                const city = document.getElementById('a-city').value;
-                const mission = document.getElementById('a-mission').value;
-                const manager = document.getElementById('a-manager').value;
-
-                await db.collection("agents").add({
-                    matricule, photo, familyPhoto,
-                    fullName, branch, subactivity, role, phone, country, city, mission, manager,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                await createSystemNotification({
-                    title: "Nouvel Agent Enregistré",
-                    message: `L'agent ${fullName} a été affecté au programme [${subactivity}] (${matricule}).`,
-                    category: "Agents",
-                    priority: "information"
-                });
-
-                alert(`Agent enregistré et affecté avec succès ! ID : ${matricule}`);
-                closeForm('agent'); refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function saveChildForm() {
-            try {
-                const photo = await compressImage(document.getElementById('c-photo').files[0]);
-                const familyPhoto = await compressImage(document.getElementById('c-family-photo').files[0]);
-                const matricule = await generateNextMatricule('children', 'E');
-                const firstName = document.getElementById('c-firstname').value;
-                const lastName = document.getElementById('c-lastname').value;
-
-                await db.collection("children").add({
-                    matricule, photo, familyPhoto,
-                    famId: document.getElementById('c-famid').value,
-                    firstName, lastName,
-                    postName: document.getElementById('c-postname').value,
-                    gender: document.getElementById('c-gender').value,
-                    age: parseInt(document.getElementById('c-age').value) || 0,
-                    country: document.getElementById('c-country').value,
-                    city: document.getElementById('c-city').value,
-                    center: document.getElementById('c-center').value,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                await createSystemNotification({
-                    title: "Nouveau Dossier Enfant",
-                    message: `L'enfant ${firstName} ${lastName} a été enregistré (Matricule : ${matricule}).`,
-                    category: "Enfants",
-                    priority: "importante"
-                });
-
-                alert(`Enfant enregistré avec succès ! ID : ${matricule}`);
-                closeForm('child'); refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function saveWidowForm() {
-            try {
-                const photo = await compressImage(document.getElementById('w-photo').files[0]);
-                const familyPhoto = await compressImage(document.getElementById('w-family-photo').files[0]);
-                const matricule = await generateNextMatricule('widows', 'V');
-                const firstName = document.getElementById('w-firstname').value;
-                const lastName = document.getElementById('w-lastname').value;
-
-                await db.collection("widows").add({
-                    matricule, photo, familyPhoto,
-                    famId: document.getElementById('w-famid').value,
-                    firstName, lastName,
-                    postName: document.getElementById('w-postname').value,
-                    age: parseInt(document.getElementById('w-age').value) || 0,
-                    phone: document.getElementById('w-phone').value,
-                    country: document.getElementById('w-country').value,
-                    city: document.getElementById('w-city').value,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                await createSystemNotification({
-                    title: "Nouveau Dossier Veuve",
-                    message: `La veuve ${firstName} ${lastName} a été enregistrée (Matricule : ${matricule}).`,
-                    category: "Veuves",
-                    priority: "importante"
-                });
-
-                alert(`Veuve enregistrée avec succès ! ID : ${matricule}`);
-                closeForm('widow'); refreshCounters();
-            } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function deleteDocument(col, id) {
-            if (confirm("Supprimer ce dossier ?")) {
-                await db.collection(col).doc(id).delete();
-                loadAdminMasterList(); refreshCounters();
-            }
-        }
-
-        async function executeIdSearch() {
-            const val = document.getElementById('input-search-id').value.trim().toUpperCase();
-            const card = document.getElementById('search-result-card');
-            if (!val) return;
-            card.classList.remove('hidden'); card.innerHTML = "Recherche...";
-            let found = null, type = '';
-            for (let col of ['children', 'widows', 'agents']) {
-                const snap = await db.collection(col).where('matricule', '==', val).get();
-                if (!snap.empty) { found = snap.docs[0].data(); type = col; break; }
-            }
-            if (found) {
-                let name = found.firstName ? `${found.firstName} ${type === 'children' ? '***' : found.lastName}` : (found.fullName || '');
-                card.innerHTML = `
-                    <div class="flex items-center gap-3 border-b pb-3">
-                        <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
-                        <div><span class="font-mono bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
-                    </div>
-                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil</button>
-                `;
-            } else {
-                card.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier correspondant à ce matricule.</p>`;
-            }
-        }
-
-        async function refreshCounters() {
-            try {
-                const c = await db.collection("children").get();
-                const w = await db.collection("widows").get();
-                const a = await db.collection("agents").get();
-                document.getElementById('stat-children-count').innerText = c.size;
-                document.getElementById('stat-widows-count').innerText = w.size;
-                document.getElementById('stat-agents-count').innerText = a.size;
-            } catch (e) { console.error(e); }
-        }
-
-        async function loadHomeFeaturedProfiles() {
-            const container = document.getElementById('home-featured-grid');
-            if (!container) return;
-            container.innerHTML = '<p class="text-xs text-slate-400 col-span-3 text-center py-4">Chargement des profils...</p>';
-            
-            try {
-                let items = [];
-                const cSnap = await db.collection("children").limit(2).get();
-                cSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Enfant Orphelin', badgeBg: 'bg-blue-50 text-blue-700' }));
-                
-                const wSnap = await db.collection("widows").limit(1).get();
-                wSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Veuve', badgeBg: 'bg-emerald-50 text-emerald-700' }));
-
-                if (items.length === 0) {
-                    container.innerHTML = `<p class="text-xs text-slate-500 col-span-3 text-center py-6">Aucun profil enregistré pour le moment.</p>`;
-                    return;
-                }
-
-                container.innerHTML = '';
-                items.forEach(d => {
-                    let displayName = d.firstName ? `${d.firstName} ${d.lastName ? d.lastName.charAt(0) + '.' : ''}` : (d.fullName || '');
-                    let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
-
-                    container.innerHTML += `
-                        <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
-                            <div class="space-y-2">
-                                <div class="w-full h-36 bg-slate-100 rounded-xl overflow-hidden border relative">
-                                    ${photoHtml}
-                                    <span class="absolute top-2 left-2 font-mono text-[10px] font-bold px-2 py-0.5 rounded-full ${d.badgeBg} shadow">${d.typeLabel}</span>
-                                </div>
-                                <div class="flex justify-between items-center pt-1">
-                                    <span class="font-mono font-bold text-slate-700">${d.matricule}</span>
-                                    <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
-                                </div>
-                                <h4 class="font-black text-slate-900 text-sm">${displayName}</h4>
-                                <p class="text-[11px] text-slate-600">Soutien prioritaire pour la scolarité et les besoins vitaux.</p>
-                            </div>
-                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
-                        </div>
-                    `;
-                });
-            } catch (err) {
-                container.innerHTML = `<p class="text-xs text-red-500 col-span-3 text-center">Erreur de chargement.</p>`;
-            }
-        }
-
-        async function loadCollection(col, containerId, protectNames = false) {
-            const container = document.getElementById(containerId);
-            const snap = await db.collection(col).get();
-            container.innerHTML = '';
-            snap.forEach(doc => {
-                const d = doc.data();
-                let displayName = d.firstName || d.fullName || '';
-                if (protectNames && d.lastName) {
-                    displayName = `${d.firstName} ${d.lastName.charAt(0)}.`;
-                }
-                let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
-
-                container.innerHTML += `
-                    <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
-                        <div class="space-y-2">
-                            <div class="w-full h-32 bg-slate-100 rounded-xl overflow-hidden border">${photoHtml}</div>
-                            <div class="flex justify-between items-center">
-                                <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
-                                <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
-                            </div>
-                            <p class="font-bold text-slate-900 text-sm">${displayName}</p>
-                            <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
-                        </div>
-                        <button onclick="switchTab('sponsoring-hub')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
-                    </div>
-                `;
-            });
-        }
-
-        async function updateFinancialReports() {
-            try {
-                const snap = await db.collection("donations").get();
-                let totalPromis = 0, totalConfirmed = 0;
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    totalPromis += (d.amount || 0);
-                    if (d.status === "confirmed") totalConfirmed += (d.amount || 0);
-                });
-                document.getElementById('report-promis-val').innerText = `${totalPromis} USD`;
-                document.getElementById('report-confirmed-val').innerText = `${totalConfirmed} USD`;
-            } catch (e) { console.error(e); }
-        }
-
-        async function loadAdminMasterList() {
-            const container = document.getElementById('admin-master-list');
-            container.innerHTML = 'Chargement...';
-            let html = '';
-            const labels = { children: 'ENFANT', widows: 'VEUVE', agents: 'AGENT', donations: 'DON' };
-            for (let col of ['children', 'widows', 'agents', 'donations']) {
-                const snap = await db.collection(col).get();
-                snap.forEach(doc => {
-                    const d = doc.data();
-                    let title = d.matricule || d.refId || d.fullName || 'Élément';
-                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
-                });
-            }
-            container.innerHTML = html || 'Aucun enregistrement trouvé.';
-        }
-
-        async function updateProfileCard(user) {
-            const card = document.getElementById('profile-card');
-            if (!card) return;
-
-            if (user) {
-                let userData = {};
-                try {
-                    const userDoc = await db.collection("users").doc(user.uid).get();
-                    if (userDoc.exists) {
-                        userData = userDoc.data();
-                    } else {
-                        userData = {
-                            nom: user.displayName || "", postnom: "", prenom: "", phone: "",
-                            pays: "République Démocratique du Congo (RDC)", ville: "Bukavu", langue: "fr",
-                            role: "Sponsor / Donateur", isVerified: false, photoURL: user.photoURL || "",
-                            memberId: 'BKDD-SP-' + Math.floor(1000 + Math.random() * 9000),
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                        };
-                        await db.collection("users").doc(user.uid).set(userData);
-                    }
-                } catch (e) { console.error(e); }
-
-                let userDonations = [];
-                let totalConfirmedDonations = 0;
-                try {
-                    const donSnap = await db.collection("donations").where("userId", "==", user.uid).get();
-                    donSnap.forEach(doc => {
-                        const d = { id: doc.id, ...doc.data() };
-                        userDonations.push(d);
-                        if (d.status === "confirmed") totalConfirmedDonations += (Number(d.amount) || 0);
-                    });
-                } catch (e) { console.error(e); }
-
-                const userPhoto = userData.photoURL || user.photoURL || "";
-                const userInitials = (userData.prenom ? userData.prenom.charAt(0) : '') + (userData.nom ? userData.nom.charAt(0) : 'U');
-
-                card.innerHTML = `
-                    <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
-                        <div class="flex items-center gap-4">
-                            <div class="relative w-20 h-20 rounded-full bg-slate-200 overflow-hidden border-2 border-green-500 shadow-md flex items-center justify-center font-black text-slate-700 text-xl">
-                                ${userPhoto ? `<img src="${userPhoto}" class="w-full h-full object-cover">` : `<span class="text-green-700">${userInitials}</span>`}
-                            </div>
-                            <div class="space-y-1">
-                                <h3 class="font-black text-slate-900 text-base md:text-lg">${userData.prenom || ''} ${userData.nom || user.displayName || 'Membre Panafricain'}</h3>
-                                <p class="text-xs font-mono text-blue-600 font-bold">${user.email}</p>
-                                <p class="text-[11px] text-slate-500">📍 ${userData.ville || 'Bukavu'}, ${userData.pays || 'RDC'}</p>
-                            </div>
-                        </div>
-                        <button onclick="auth.signOut()" class="bg-red-50 text-red-600 font-bold px-4 py-2.5 rounded-xl text-xs border border-red-200 cursor-pointer">Se Déconnecter</button>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
-                        <h3 class="font-black text-slate-900 text-sm border-b pb-3">Historique des Dons & Reçus Officiels</h3>
-                        <div class="space-y-3">
-                            ${userDonations.length > 0 ? userDonations.map(d => `
-                                <div class="p-4 bg-slate-50 border rounded-2xl flex justify-between items-center text-xs">
-                                    <div><p class="font-bold">Motif : ${d.cause}</p><p class="text-slate-500 font-mono text-[10px]">Réf : ${d.refId}</p></div>
-                                    <div class="flex items-center gap-2"><span class="font-mono font-black text-green-700">${d.amount}${d.currency || 'USD'}</span></div>
-                                </div>
-                            `).join('') : `<p class="text-xs text-slate-500 text-center py-4">Aucun don enregistré.</p>`}
-                        </div>
-                    </div>
-                `;
-            } else {
-                card.innerHTML = `<div class="bg-white p-8 rounded-3xl border shadow-sm text-center space-y-4 max-w-lg mx-auto"><h3 class="font-black text-slate-900 text-lg">Espace restreint</h3><button onclick="openAuthModal()" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl text-xs cursor-pointer">Se connecter</button></div>`;
-            }
-            if (window.lucide) lucide.createIcons();
-        }
-
         window.addEventListener('DOMContentLoaded', () => {
-            renderBranchesGrid();
-            populateAfricanCountries();
             initAuthListener();
-            refreshCounters();
-            loadHomeFeaturedProfiles();
-            updateNotificationBadges();
             if (window.lucide) lucide.createIcons();
         });
     </script>
