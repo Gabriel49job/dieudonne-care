@@ -16,7 +16,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-40">
 
-    <!-- EN-TÊTE PROFESSIONNEL CORRIGÉ -->
+    <!-- EN-TÊTE PROFESSIONNEL -->
     <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-3 py-2.5 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -76,7 +76,7 @@
 
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Organisation Panafricaine</p>
-                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Gestion des Activités & Programmes</button>
+                <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Gestion des Activités & 8 Branches</button>
                 <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 pays)</button>
                 <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center justify-between transition cursor-pointer">
                     <span class="flex items-center gap-2.5"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</span>
@@ -88,7 +88,6 @@
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Mon Espace</p>
                 <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-blue-400"></i> Mon Profil & Espace Sponsor</button>
-                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="settings" class="w-4 h-4 text-purple-400"></i> Paramètres & Sécurité</button>
             </div>
 
             <div class="space-y-1 pt-1 border-t border-slate-800/80 pb-6">
@@ -146,6 +145,7 @@
                 </div>
             </div>
 
+            <!-- COMPTEURS STATISTIQUES -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                     <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Enfants Suivis</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
@@ -242,25 +242,23 @@
             </div>
         </section>
 
-        <!-- MODAL DE PAIEMENT -->
+        <!-- MODAL DE PAIEMENT SÉCURISÉ -->
         <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
-            <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[90vh] flex flex-col my-6">
+            <div class="bg-white rounded-3xl max-w-xl w-full p-6 space-y-4 shadow-2xl relative">
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-green-700">Procédure de Paiement Sécurisé</h3>
-                    <button onclick="closeSponsoringModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
+                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-green-700">Paiement Sécurisé</h3>
+                    <button onclick="closeSponsoringModal()" class="p-2 font-bold cursor-pointer">✕</button>
                 </div>
-                <div id="modal-sponsoring-body" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
-            </div>
-        </div>
-
-        <!-- MODAL DÉTAILS BRANCHE -->
-        <div id="modal-branch-agents" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
-            <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative max-h-[85vh] flex flex-col my-6">
-                <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-branch-title" class="font-bold text-slate-900 text-xs uppercase">Détails, Tâches & Contacts</h3>
-                    <button onclick="closeBranchModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
+                <div id="modal-sponsoring-body" class="space-y-3 text-xs">
+                    <input type="text" id="don-name" placeholder="Votre Nom complet" class="w-full p-2.5 border rounded-xl bg-white">
+                    <input type="email" id="don-email" placeholder="Votre E-mail" class="w-full p-2.5 border rounded-xl bg-white">
+                    <div class="flex gap-2">
+                        <input type="number" id="don-amount" placeholder="Montant" class="w-full p-2.5 border rounded-xl bg-white">
+                        <select id="don-currency" class="p-2.5 border rounded-xl bg-white font-bold"><option value="USD">USD</option><option value="EUR">EUR</option><option value="CDF">CDF</option></select>
+                    </div>
+                    <input type="text" id="don-transid" placeholder="Réf / Numéro de Transaction Mobile Money" class="w-full p-2.5 border rounded-xl bg-white font-mono">
+                    <button onclick="submitActiveDonation()" class="w-full bg-green-600 text-white font-bold p-3 rounded-xl shadow cursor-pointer">Valider mon Don</button>
                 </div>
-                <div id="modal-branch-list" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
             </div>
         </div>
 
@@ -276,108 +274,41 @@
             <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
         </section>
 
-        <!-- ACTIVITÉS -->
+        <!-- ACTIVITÉS & 8 BRANCHES -->
         <section id="sec-team" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="flex justify-between items-center">
                     <div>
                         <span class="text-[10px] font-extrabold bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full border border-purple-500/30 uppercase tracking-widest">CENTRE OPÉRATIONNEL PANAFRICAIN</span>
                         <h2 class="text-2xl md:text-3xl font-black mt-2">GESTION DES ACTIVITÉS & 8 BRANCHES</h2>
                     </div>
-                    <button onclick="openForm('agent')" class="flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs cursor-pointer shadow shrink-0">
-                        <i data-lucide="user-plus" class="w-4 h-4"></i> Enregistrer un agent
-                    </button>
+                    <button onclick="openForm('agent')" class="bg-purple-600 hover:bg-purple-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs cursor-pointer shadow">+ Agent</button>
                 </div>
             </div>
             <div id="branches-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-            <div id="branch-details-view" class="hidden space-y-4">
-                <button onclick="backToBranchesGrid()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 cursor-pointer">← Retour</button>
-                <div id="branch-details-content" class="space-y-4"></div>
-            </div>
         </section>
 
-        <!-- PROFIL -->
-        <section id="sec-profile" class="hidden space-y-6 max-w-4xl mx-auto">
-            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
-                <span class="text-[10px] font-extrabold bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">ESPACE PERSONNEL</span>
-                <h2 class="text-2xl md:text-3xl font-black mt-2">Mon Profil & Espace Sponsor</h2>
-            </div>
-            <div id="profile-card" class="space-y-6"></div>
-        </section>
-
-        <!-- NOTIFICATIONS & PUSH -->
-        <section id="sec-notifications" class="hidden space-y-6 max-w-5xl mx-auto">
-            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <div>
-                        <span class="text-[10px] font-extrabold bg-pink-500/20 text-pink-300 px-3 py-1.5 rounded-full border border-pink-500/30 uppercase tracking-widest">CENTRE DE SUIVI PANAFRICAIN</span>
-                        <h2 class="text-2xl md:text-3xl font-black mt-2">Notifications & Alertes</h2>
-                        <p class="text-xs text-slate-300 max-w-2xl leading-relaxed pt-1">Supervision en temps réel des alertes et signalements.</p>
-                    </div>
-                    <div class="flex items-center gap-2 shrink-0 flex-wrap">
-                        <button id="push-toggle-btn" onclick="togglePushNotifications()" class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-3.5 py-2.5 rounded-xl text-xs transition cursor-pointer flex items-center gap-1.5 shadow">
-                            <i data-lucide="bell-ring" class="w-4 h-4"></i> Activer Notifications Push
-                        </button>
-                        <button onclick="markAllNotificationsAsRead()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-3.5 py-2.5 rounded-xl text-xs transition cursor-pointer border border-slate-700 flex items-center gap-1.5 shadow">
-                            <i data-lucide="check-check" class="w-4 h-4 text-green-400"></i> Tout lire
-                        </button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
-                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
-                        <div><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Non lues</p><p id="notif-stat-unread" class="text-2xl font-black text-pink-400 mt-0.5">0</p></div>
-                        <div class="w-8 h-8 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center"><i data-lucide="bell" class="w-4 h-4"></i></div>
-                    </div>
-                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
-                        <div><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Urgentes</p><p id="notif-stat-urgent" class="text-2xl font-black text-red-400 mt-0.5">0</p></div>
-                        <div class="w-8 h-8 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center"><i data-lucide="alert-triangle" class="w-4 h-4"></i></div>
-                    </div>
-                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
-                        <div><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Aujourd'hui</p><p id="notif-stat-today" class="text-2xl font-black text-amber-400 mt-0.5">0</p></div>
-                        <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center"><i data-lucide="calendar" class="w-4 h-4"></i></div>
-                    </div>
-                    <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
-                        <div><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total</p><p id="notif-stat-total" class="text-2xl font-black text-green-400 mt-0.5">0</p></div>
-                        <div class="w-8 h-8 rounded-xl bg-green-500/10 text-green-400 flex items-center justify-center"><i data-lucide="layers" class="w-4 h-4"></i></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-4 rounded-3xl border shadow-sm space-y-4">
-                <div class="flex flex-col md:flex-row gap-3 justify-between items-center">
-                    <div class="flex items-center gap-1.5 overflow-x-auto w-full pb-2 md:pb-0">
-                        <button onclick="filterNotifications('all')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white whitespace-nowrap transition cursor-pointer">Toutes</button>
-                        <button onclick="filterNotifications('unread')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition cursor-pointer">Non lues</button>
-                        <button onclick="filterNotifications('urgente')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition cursor-pointer">Urgentes</button>
-                        <button onclick="filterNotifications('traitee')" class="notif-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 whitespace-nowrap transition cursor-pointer">Traitées</button>
-                    </div>
-                    <div class="w-full md:w-72 shrink-0">
-                        <input type="text" id="notif-search-input" oninput="renderNotificationsList()" placeholder="Rechercher..." class="w-full bg-slate-50 border border-slate-200 p-2.5 rounded-xl text-xs focus:outline-none">
-                    </div>
-                </div>
-                <div id="notifications-container" class="space-y-3 pt-2"></div>
-            </div>
-        </section>
-
-        <!-- AUTRES SECTIONS -->
+        <!-- ENFANTS -->
         <section id="sec-children" class="hidden space-y-6">
             <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Enfants (BKDD-E)</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
             <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
+        <!-- VEUVES -->
         <section id="sec-widows" class="hidden space-y-6">
             <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Veuves (BKDD-V)</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
             <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
+        <!-- PAYS -->
         <section id="sec-countries" class="hidden space-y-6">
             <h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2>
-            <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-3">
+            <div class="bg-white p-6 rounded-2xl border shadow-sm">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pt-2" id="countries-list-container"></div>
             </div>
         </section>
 
+        <!-- RAPPORTS -->
         <section id="sec-reports" class="hidden space-y-6 max-w-4xl mx-auto">
             <div class="bg-white p-6 md:p-8 rounded-3xl border shadow-sm space-y-6">
                 <h2 class="text-2xl font-black text-slate-900">Rapports & Transparence Financière</h2>
@@ -388,84 +319,83 @@
             </div>
         </section>
 
+        <!-- PROFIL -->
+        <section id="sec-profile" class="hidden space-y-6 max-w-4xl mx-auto">
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
+                <h2 class="text-2xl font-black">Mon Profil & Espace Sponsor</h2>
+            </div>
+            <div id="profile-card" class="bg-white p-6 rounded-2xl border shadow-sm text-xs space-y-2">
+                <p>Connectez-vous pour voir vos parrainages et reçus fiscaux.</p>
+            </div>
+        </section>
+
+        <!-- NOTIFICATIONS & PUSH -->
+        <section id="sec-notifications" class="hidden space-y-6 max-w-5xl mx-auto">
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl font-black">Notifications & Alertes</h2>
+                    </div>
+                    <button id="push-toggle-btn" onclick="togglePushNotifications()" class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition cursor-pointer shadow">
+                        Activer Notifications Push
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-3xl border shadow-sm space-y-4">
+                <div id="notifications-container" class="space-y-3 pt-2"></div>
+            </div>
+        </section>
+
+        <!-- ADMIN -->
         <section id="sec-admin" class="hidden space-y-6">
-            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
-                <h2 class="text-xl font-black text-green-400">Administration Centrale</h2>
-            </div>
-            <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-3">
-                <div id="admin-master-list" class="space-y-2 text-xs"></div>
-            </div>
+            <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl"><h2 class="text-xl font-black text-green-400">Administration Centrale</h2></div>
+            <div class="bg-white rounded-2xl p-6 border shadow-sm"><div id="admin-master-list" class="space-y-2 text-xs"></div></div>
         </section>
 
     </main>
 
-    <!-- FORMULAIRES DE SAISIE -->
+    <!-- FORMULAIRES AJOUT ENFANT / VEUVE / AGENT -->
     <div id="modal-form-child" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+        <div class="bg-white rounded-3xl max-w-md w-full p-5 space-y-4 shadow-2xl my-6">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant</h3><button onclick="closeForm('child')" class="p-2 font-bold cursor-pointer">✕</button></div>
-            <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-green-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Enfant</label><input type="file" id="c-photo" accept="image/*" class="w-full text-[10px]"></div>
-                    <div class="bg-emerald-50 p-3 rounded-xl border"><label class="font-bold">🏠 Photo Famille</label><input type="file" id="c-family-photo" accept="image/*" class="w-full text-[10px]"></div>
-                </div>
-                <div class="grid grid-cols-3 gap-3">
-                    <div><label class="font-bold">Prénom *</label><input type="text" id="c-firstname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Nom *</label><input type="text" id="c-lastname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Post-nom</label><input type="text" id="c-postname" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Sexe *</label><select id="c-gender" class="w-full p-2 border rounded bg-white"><option value="M">Masculin</option><option value="F">Féminin</option></select></div>
-                    <div><label class="font-bold">Âge *</label><input type="number" id="c-age" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">ID Famille</label><input type="text" id="c-famid" value="FAM0001" required class="w-full p-2 border rounded font-mono bg-white"></div>
-                    <div><label class="font-bold">Pays *</label><select id="c-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
-                    <div><label class="font-bold">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded bg-white"></div>
-                </div>
-                <button type="button" onclick="saveChildForm()" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
+            <div class="space-y-3 text-xs">
+                <input type="text" id="c-firstname" placeholder="Prénom" class="w-full p-2.5 border rounded bg-white">
+                <input type="text" id="c-lastname" placeholder="Nom" class="w-full p-2.5 border rounded bg-white">
+                <select id="c-country" class="african-countries-select w-full p-2.5 border rounded bg-white"></select>
+                <button type="button" onclick="saveChildForm()" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl shadow cursor-pointer">Enregistrer</button>
             </div>
         </div>
     </div>
 
     <div id="modal-form-widow" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+        <div class="bg-white rounded-3xl max-w-md w-full p-5 space-y-4 shadow-2xl my-6">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Veuve</h3><button onclick="closeForm('widow')" class="p-2 font-bold cursor-pointer">✕</button></div>
-            <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-emerald-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Veuve</label><input type="file" id="w-photo" accept="image/*" class="w-full text-[10px]"></div>
-                    <div class="bg-teal-50 p-3 rounded-xl border"><label class="font-bold">🏠 Photo Foyer</label><input type="file" id="w-family-photo" accept="image/*" class="w-full text-[10px]"></div>
-                </div>
-                <div class="grid grid-cols-3 gap-3">
-                    <div><label class="font-bold">Prénom *</label><input type="text" id="w-firstname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Nom *</label><input type="text" id="w-lastname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Post-nom</label><input type="text" id="w-postname" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Âge</label><input type="number" id="w-age" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">ID Famille</label><input type="text" id="w-famid" value="FAM0001" required class="w-full p-2 border rounded font-mono bg-white"></div>
-                    <div><label class="font-bold">Téléphone</label><input type="text" id="w-phone" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Pays *</label><select id="w-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
-                    <div><label class="font-bold">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
-                </div>
-                <button type="button" onclick="saveWidowForm()" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
+            <div class="space-y-3 text-xs">
+                <input type="text" id="w-firstname" placeholder="Prénom" class="w-full p-2.5 border rounded bg-white">
+                <input type="text" id="w-lastname" placeholder="Nom" class="w-full p-2.5 border rounded bg-white">
+                <select id="w-country" class="african-countries-select w-full p-2.5 border rounded bg-white"></select>
+                <button type="button" onclick="saveWidowForm()" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl shadow cursor-pointer">Enregistrer</button>
             </div>
         </div>
     </div>
 
     <div id="modal-form-agent" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-2 z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full p-5 space-y-4 shadow-2xl my-6 max-h-[85vh] flex flex-col relative">
+        <div class="bg-white rounded-3xl max-w-md w-full p-5 space-y-4 shadow-2xl my-6">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Enregistrer Agent</h3><button onclick="closeForm('agent')" class="p-2 font-bold cursor-pointer">✕</button></div>
-            <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-24">
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-purple-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Agent</label><input type="file" id="a-photo" accept="image/*" class="w-full text-[10px]"></div>
-                    <div class="bg-indigo-50 p-3 rounded-xl border"><label class="font-bold">🏢 Photo Bureau</label><input type="file" id="a-family-photo" accept="image/*" class="w-full text-[10px]"></div>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    <div><label class="font-bold">Nom complet *</label><input type="text" id="a-fullname" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Branche *</label><select id="a-branch" onchange="updateSubactivityOptions()" class="w-full p-2 border rounded bg-white font-bold"></select></div>
-                    <div><label class="font-bold">Sous-programme *</label><select id="a-subactivity" class="w-full p-2 border rounded bg-white font-bold"></select></div>
-                    <div><label class="font-bold">Fonction *</label><input type="text" id="a-role" placeholder="Travailleur Social..." required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Matériel</label><input type="text" id="a-equipments" class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Téléphone *</label><input type="text" id="a-phone" placeholder="+243..." required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Pays *</label><select id="a-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
-                    <div><label class="font-bold">Ville *</label><input type="text" id="a-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
-                </div>
-                <button type="button" onclick="saveAgentForm()" class="w-full bg-purple-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-6">Enregistrer</button>
+            <div class="space-y-3 text-xs">
+                <input type="text" id="a-fullname" placeholder="Nom complet" class="w-full p-2.5 border rounded bg-white">
+                <select id="a-branch" class="w-full p-2.5 border rounded bg-white font-bold">
+                    <option>01. Éducation & Scolarité</option>
+                    <option>02. Soins, Santé & Nutrition</option>
+                    <option>03. Autonomisation & Veuves</option>
+                    <option>04. Secours d'Urgence</option>
+                    <option>05. Hébergement & Abri</option>
+                    <option>06. Agriculture & Subsistance</option>
+                    <option>07. Juridique & Droits</option>
+                    <option>08. Administration & Finances</option>
+                </select>
+                <select id="a-country" class="african-countries-select w-full p-2.5 border rounded bg-white"></select>
+                <button type="button" onclick="saveAgentForm()" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl shadow cursor-pointer">Enregistrer</button>
             </div>
         </div>
     </div>
@@ -475,13 +405,14 @@
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900">Connexion</h3><button onclick="closeAuthModal()" class="p-2 font-bold cursor-pointer">✕</button></div>
             <div class="space-y-3 text-xs">
-                <input type="email" id="auth-email" placeholder="E-mail" required class="w-full p-3 border rounded-xl text-sm bg-white">
-                <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-3 border rounded-xl text-sm bg-white">
+                <input type="email" id="auth-email" placeholder="E-mail" class="w-full p-3 border rounded-xl text-sm bg-white">
+                <input type="password" id="auth-password" placeholder="Mot de passe" class="w-full p-3 border rounded-xl text-sm bg-white">
                 <button type="button" onclick="handleAuthSubmit()" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl text-sm shadow cursor-pointer">Se Connecter</button>
             </div>
         </div>
     </div>
 
+    <!-- SCRIPT LOGIQUE & FIREBASE -->
     <script>
         const africanCountries = [
             "République Démocratique du Congo (RDC)", "Afrique du Sud", "Algérie", "Angola", "Bénin", 
@@ -494,30 +425,7 @@
             "Tunisie", "Zambie", "Zimbabwe"
         ];
 
-        const structureData = [
-            {
-                id: "branch-1",
-                title: "01. Éducation & Scolarité",
-                photo: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&auto=format&fit=crop&q=60",
-                description: "Frais scolaires, inscriptions, manuels, fournitures, tutorat, informatique et orientation.",
-                items: [
-                    { name: "Frais scolaires & Inscriptions", objective: "Faciliter l’accès des enfants à l’école.", procedure: "L’enfant est inscrit via un agent.", activities: "Paiement, suivi des reçus." },
-                    { name: "Manuels & Kits scolaires", objective: "Fournir les outils pédagogiques.", procedure: "Recensement des besoins.", activities: "Distribution." }
-                ]
-            },
-            {
-                id: "branch-2",
-                title: "02. Soins, Santé & Nutrition",
-                photo: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&auto=format&fit=crop&q=60",
-                description: "Suivi médical, pharmacie, urgences, nutrition, hygiène et soins.",
-                items: [
-                    { name: "Suivi médical & Infirmerie", objective: "Assurer un suivi sanitaire.", procedure: "Consultations de routine.", activities: "Visites médicales." }
-                ]
-            }
-        ];
-
-        const OFFICIAL_WHATSAPP_NUMBER = "256792994716";
-        let currentNotificationFilter = 'all';
+        let activeSelectedCause = "Don Direct";
 
         const firebaseConfig = {
             apiKey: "AIzaSyATlu2mUJmPlmkJkVow1ap35RSl6zt30nY",
@@ -533,27 +441,30 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
         let messaging = null;
+
         try {
             if (firebase.messaging.isSupported()) {
                 messaging = firebase.messaging();
             }
-        } catch (e) {
-            console.warn("FCM non supporté sur ce navigateur");
-        }
+        } catch (e) { console.warn("FCM non supporté"); }
 
         async function togglePushNotifications() {
             if (!messaging) {
-                alert("Les notifications Push ne sont pas supportées par votre navigateur actuel.");
+                alert("Les notifications Push ne sont pas supportées par votre navigateur.");
                 return;
             }
             try {
                 const permission = await Notification.requestPermission();
                 if (permission === 'granted') {
-                    const token = await messaging.getToken({ vapidKey: 'BCEtzDDXKIWA3w1GwCdjgvZZ4kQvXfK4YwRzqaoDGybgJjtP79YKZ8IDF4knu8V_w0Nr51eHzfSO-HWC0XD0kV8' });
-                    if (token && auth.currentUser) {
-                        await db.collection("users").doc(auth.currentUser.uid).set({ fcmToken: token }, { merge: true });
+                    const token = await messaging.getToken({ 
+                        vapidKey: 'BCEtzDDXKIWA3w1GwCdjgvZZ4kQvXfK4YwRzqaoDGybgJjtP79YKZ8IDF4knu8V_w0Nr51eHzfSO-HWC0XD0kV8' 
+                    });
+                    if (token) {
+                        if (auth.currentUser) {
+                            await db.collection("users").doc(auth.currentUser.uid).set({ fcmToken: token }, { merge: true });
+                        }
                         alert("Notifications Push activées avec succès !");
-                        document.getElementById('push-toggle-btn').innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> Push Actives`;
+                        document.getElementById('push-toggle-btn').innerHTML = `✓ Push Actives`;
                     }
                 } else {
                     alert("Permission refusée pour les notifications.");
@@ -563,214 +474,102 @@
             }
         }
 
+        async function generateNextMatricule(collectionName, prefix) {
+            try {
+                const snap = await db.collection(collectionName).get();
+                const count = snap.size + 1;
+                return `BKDD-${prefix}${String(count).padStart(2, '0')}`;
+            } catch (e) {
+                return `BKDD-${prefix}01`;
+            }
+        }
+
         async function createSystemNotification(notifData) {
             try {
                 await db.collection("notifications").add({
                     title: notifData.title,
                     message: notifData.message,
-                    category: notifData.category || "Système & Technique",
+                    category: notifData.category || "Système",
                     priority: notifData.priority || "information",
-                    status: "nouvelle",
                     isRead: false,
-                    targetRole: notifData.targetRole || "all",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    actionHistory: [{ action: "Création automatique", date: new Date().toISOString() }]
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 updateNotificationBadges();
-            } catch (e) {
-                console.error("Erreur création notification:", e);
-            }
+            } catch (e) { console.error(e); }
         }
 
         async function updateNotificationBadges() {
             try {
-                const snap = await db.collection("notifications").get();
-                let unreadCount = 0;
-                snap.forEach(doc => {
-                    if (!doc.data().isRead) unreadCount++;
-                });
-
+                const snap = await db.collection("notifications").where("isRead", "==", false).get();
                 const badge = document.getElementById('sidebar-notif-badge');
                 if (badge) {
-                    if (unreadCount > 0) {
-                        badge.innerText = unreadCount;
+                    if (snap.size > 0) {
+                        badge.innerText = snap.size;
                         badge.classList.remove('hidden');
                     } else {
                         badge.classList.add('hidden');
                     }
                 }
-            } catch (e) {
-                console.error(e);
-            }
+            } catch (e) {}
         }
 
-        function filterNotifications(filter) {
-            currentNotificationFilter = filter;
-            renderNotificationsList();
+        function openFormForCause(cause) {
+            activeSelectedCause = cause;
+            document.getElementById('modal-sponsoring-title').innerText = `Soutien : ${cause}`;
+            document.getElementById('modal-sponsoring-action').classList.replace('hidden', 'flex');
         }
 
-        async function renderNotificationsList() {
-            const container = document.getElementById('notifications-container');
-            const searchInput = document.getElementById('notif-search-input');
-            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-            if (!container) return;
-
-            container.innerHTML = `<div class="text-center py-8 text-xs text-slate-400">Chargement des notifications...</div>`;
-
-            try {
-                const snap = await db.collection("notifications").orderBy("createdAt", "desc").get();
-                let notifications = [];
-                let unreadCount = 0;
-                let urgentCount = 0;
-                let todayCount = 0;
-                let totalCount = 0;
-                const todayStr = new Date().toDateString();
-
-                snap.forEach(doc => {
-                    const data = { id: doc.id, ...doc.data() };
-                    totalCount++;
-                    if (!data.isRead) unreadCount++;
-                    if (data.priority === 'urgente' && data.status !== 'cloturee') urgentCount++;
-                    
-                    const notifDate = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
-                    if (notifDate.toDateString() === todayStr) todayCount++;
-
-                    let matchesFilter = true;
-                    if (currentNotificationFilter === 'unread') matchesFilter = !data.isRead;
-                    else if (currentNotificationFilter === 'urgente') matchesFilter = data.priority === 'urgente';
-                    else if (currentNotificationFilter === 'traitee') matchesFilter = data.status === 'resolue' || data.status === 'cloturee';
-
-                    let matchesSearch = true;
-                    if (searchTerm) {
-                        matchesSearch = (data.title && data.title.toLowerCase().includes(searchTerm)) ||
-                                        (data.message && data.message.toLowerCase().includes(searchTerm));
-                    }
-
-                    if (matchesFilter && matchesSearch) notifications.push(data);
-                });
-
-                document.getElementById('notif-stat-unread').innerText = unreadCount;
-                document.getElementById('notif-stat-urgent').innerText = urgentCount;
-                document.getElementById('notif-stat-today').innerText = todayCount;
-                document.getElementById('notif-stat-total').innerText = totalCount;
-                updateNotificationBadges();
-
-                if (notifications.length === 0) {
-                    container.innerHTML = `<div class="text-center py-12 space-y-3 bg-slate-50 rounded-2xl border"><p class="text-xs font-bold text-slate-700">Aucune notification</p></div>`;
-                    return;
-                }
-
-                container.innerHTML = '';
-                notifications.forEach(n => {
-                    const dateFormatted = n.createdAt?.toDate ? n.createdAt.toDate().toLocaleString() : 'Récemment';
-                    container.innerHTML = container.innerHTML + `
-                        <div class="p-4 rounded-2xl border ${n.isRead ? 'bg-white border-slate-200' : 'bg-slate-50 border-slate-300 shadow-sm'} space-y-2">
-                            <div class="flex justify-between items-center text-[10px] text-slate-400 font-mono">
-                                <span>${dateFormatted}</span>
-                                <span class="uppercase font-bold px-2 py-0.5 rounded ${n.priority === 'urgente' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}">${n.priority}</span>
-                            </div>
-                            <h4 class="font-black text-slate-900 text-xs">${n.title}</h4>
-                            <p class="text-xs text-slate-600">${n.message}</p>
-                        </div>
-                    `;
-                });
-                if (window.lucide) lucide.createIcons();
-            } catch (e) {
-                container.innerHTML = `<p class="text-xs text-red-500 text-center py-4">Erreur de chargement.</p>`;
-            }
+        function closeSponsoringModal() {
+            document.getElementById('modal-sponsoring-action').classList.replace('flex', 'hidden');
         }
 
-        async function toggleNotificationRead(id, isRead) {
-            await db.collection("notifications").doc(id).update({ isRead });
-            renderNotificationsList();
-        }
-
-        async function markAllNotificationsAsRead() {
-            const snap = await db.collection("notifications").get();
-            const batch = db.batch();
-            snap.forEach(doc => batch.update(doc.ref, { isRead: true }));
-            await batch.commit();
-            renderNotificationsList();
-        }
-
-        async function submitDonation(cause) {
+        async function submitActiveDonation() {
             const name = document.getElementById('don-name').value || "Anonyme";
             const email = document.getElementById('don-email').value || "Non fourni";
             const amount = parseFloat(document.getElementById('don-amount').value) || 0;
             const currency = document.getElementById('don-currency').value;
             const transId = document.getElementById('don-transid').value.trim();
 
-            if (amount <= 0 || !transId) { alert("Veuillez remplir tous les champs requis."); return; }
+            if (amount <= 0 || !transId) { alert("Veuillez remplir le montant et la référence."); return; }
 
             try {
-                const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
                 await db.collection("donations").add({
-                    refId, name, email, amount, currency, cause, transId,
-                    status: "pending",
+                    name, email, amount, currency, cause: activeSelectedCause, transId,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
                 await createSystemNotification({
-                    title: "Confirmation Vérifiée Don / Sponsoring",
-                    message: `${name} a déclaré un don de ${amount} ${currency} (${cause}). Ref: ${transId}`,
-                    category: "Sponsors, Dons & Partenariats",
-                    priority: "importante",
-                    targetRole: "admin"
+                    title: "Nouveau Don / Sponsoring Enregistré",
+                    message: `${name} a versé ${amount} ${currency} pour ${activeSelectedCause}.`,
+                    priority: "importante"
                 });
 
-                alert("Don enregistré avec succès !");
+                alert("Don enregistré avec succès ! Merci.");
                 closeSponsoringModal();
                 updateFinancialReports();
             } catch (err) { alert("Erreur : " + err.message); }
-        }
-
-        async function saveAgentForm() {
-            try {
-                const fullName = document.getElementById('a-fullname').value;
-                const branch = document.getElementById('a-branch').value;
-                const matricule = await generateNextMatricule('agents', 'A');
-
-                await db.collection("agents").add({
-                    matricule, fullName, branch,
-                    role: document.getElementById('a-role').value,
-                    phone: document.getElementById('a-phone').value,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                await createSystemNotification({
-                    title: "Nouvelle Tâche / Agent Assigné",
-                    message: `L'agent ${fullName} a été assigné à la branche ${branch} (${matricule}).`,
-                    category: "Agents",
-                    priority: "information"
-                });
-
-                alert("Agent enregistré avec succès !");
-                closeForm('agent');
-                refreshCounters();
-            } catch (e) { alert("Erreur : " + e.message); }
         }
 
         async function saveChildForm() {
             try {
                 const firstName = document.getElementById('c-firstname').value;
                 const lastName = document.getElementById('c-lastname').value;
-                const matricule = await generateNextMatricule('children', 'E');
+                const country = document.getElementById('c-country').value;
+                if (!firstName || !lastName) { alert("Veuillez remplir les champs obligatoires."); return; }
 
+                const matricule = await generateNextMatricule('children', 'E');
                 await db.collection("children").add({
-                    matricule, firstName, lastName,
-                    country: document.getElementById('c-country').value,
+                    matricule, firstName, lastName, country,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
                 await createSystemNotification({
-                    title: "Nouveau Dossier à Valider",
-                    message: `Le dossier enfant ${firstName} ${lastName} (${matricule}) requiert une validation.`,
-                    category: "Enfants",
-                    priority: "urgente",
-                    targetRole: "admin"
+                    title: "Nouveau Dossier Enfant",
+                    message: `Enfant ${firstName} ${lastName} enregistré sous le matricule ${matricule}.`,
+                    priority: "urgente"
                 });
 
-                alert("Enfant enregistré !");
+                alert("Enfant enregistré avec succès !");
                 closeForm('child');
                 refreshCounters();
             } catch (e) { alert("Erreur : " + e.message); }
@@ -780,38 +579,107 @@
             try {
                 const firstName = document.getElementById('w-firstname').value;
                 const lastName = document.getElementById('w-lastname').value;
-                const matricule = await generateNextMatricule('widows', 'V');
+                const country = document.getElementById('w-country').value;
+                if (!firstName || !lastName) { alert("Veuillez remplir les champs obligatoires."); return; }
 
+                const matricule = await generateNextMatricule('widows', 'V');
                 await db.collection("widows").add({
-                    matricule, firstName, lastName,
-                    country: document.getElementById('w-country').value,
+                    matricule, firstName, lastName, country,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
                 await createSystemNotification({
-                    title: "Nouveau Dossier Veuve à Valider",
-                    message: `Le dossier de la veuve ${firstName} ${lastName} (${matricule}) requiert une validation.`,
-                    category: "Veuves",
-                    priority: "urgente",
-                    targetRole: "admin"
+                    title: "Nouveau Dossier Veuve",
+                    message: `Veuve ${firstName} ${lastName} enregistrée sous le matricule ${matricule}.`,
+                    priority: "urgente"
                 });
 
-                alert("Veuve enregistrée !");
+                alert("Veuve enregistrée avec succès !");
                 closeForm('widow');
                 refreshCounters();
             } catch (e) { alert("Erreur : " + e.message); }
         }
 
-        function initAuthListener() {
-            auth.onAuthStateChanged(user => {
-                if (user) {
-                    document.getElementById('user-display').innerText = user.email;
-                    document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
-                } else {
-                    document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
+        async function saveAgentForm() {
+            try {
+                const fullName = document.getElementById('a-fullname').value;
+                const branch = document.getElementById('a-branch').value;
+                const country = document.getElementById('a-country').value;
+                if (!fullName) { alert("Veuillez remplir le nom complet."); return; }
+
+                const matricule = await generateNextMatricule('agents', 'A');
+                await db.collection("agents").add({
+                    matricule, fullName, branch, country,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                await createSystemNotification({
+                    title: "Nouvel Agent Enregistré",
+                    message: `Agent ${fullName} affecté à la branche ${branch} (${matricule}).`,
+                    priority: "information"
+                });
+
+                alert("Agent enregistré avec succès !");
+                closeForm('agent');
+                refreshCounters();
+            } catch (e) { alert("Erreur : " + e.message); }
+        }
+
+        async function refreshCounters() {
+            try {
+                const cSnap = await db.collection("children").get();
+                const wSnap = await db.collection("widows").get();
+                const aSnap = await db.collection("agents").get();
+
+                if (document.getElementById('stat-children-count')) document.getElementById('stat-children-count').innerText = cSnap.size;
+                if (document.getElementById('stat-widows-count')) document.getElementById('stat-widows-count').innerText = wSnap.size;
+                if (document.getElementById('stat-agents-count')) document.getElementById('stat-agents-count').innerText = aSnap.size;
+            } catch (e) { console.error(e); }
+        }
+
+        async function updateFinancialReports() {
+            try {
+                const snap = await db.collection("donations").get();
+                let total = 0;
+                snap.forEach(doc => { total += doc.data().amount || 0; });
+                if (document.getElementById('report-promis-val')) document.getElementById('report-promis-val').innerText = total + " USD";
+                if (document.getElementById('report-confirmed-val')) document.getElementById('report-confirmed-val').innerText = total + " USD (Vérifié)";
+            } catch (e) {}
+        }
+
+        async function executeIdSearch() {
+            const queryId = document.getElementById('input-search-id').value.trim().toUpperCase();
+            const resultCard = document.getElementById('search-result-card');
+            if (!queryId) return;
+
+            resultCard.classList.remove('hidden');
+            resultCard.innerHTML = `<p class="text-xs text-slate-400">Recherche en cours...</p>`;
+
+            try {
+                let found = null;
+                for (let col of ['children', 'widows', 'agents']) {
+                    const snap = await db.collection(col).where("matricule", "==", queryId).get();
+                    if (!snap.empty) {
+                        found = snap.docs[0].data();
+                        break;
+                    }
                 }
-                updateNotificationBadges();
-            });
+
+                if (found) {
+                    resultCard.innerHTML = `
+                        <div class="space-y-2">
+                            <span class="text-[10px] font-bold bg-green-100 text-green-800 px-2 py-0.5 rounded">Dossier Trouvé</span>
+                            <h4 class="font-black text-slate-900 text-sm">${found.fullName || (found.firstName + ' ' + found.lastName)}</h4>
+                            <p class="text-xs text-slate-600 font-mono">Matricule : ${found.matricule}</p>
+                            <p class="text-xs text-slate-500">Pays : ${found.country || 'RDC'}</p>
+                        </div>
+                    `;
+                } else {
+                    resultCard.innerHTML = `<p class="text-xs text-red-500">Aucun dossier trouvé pour le matricule ${queryId}.</p>`;
+                }
+            } catch (e) {
+                resultCard.innerHTML = `<p class="text-xs text-red-500">Erreur lors de la recherche.</p>`;
+            }
         }
 
         function toggleSidebar() {
@@ -824,16 +692,15 @@
             document.getElementById(`sec-${tab}`)?.classList.remove('hidden');
             document.getElementById('sidebar').classList.add('-translate-x-full');
             document.getElementById('sidebar-overlay').classList.add('hidden');
-            if (tab === 'notifications') renderNotificationsList();
             window.scrollTo(0, 0);
             if (window.lucide) lucide.createIcons();
+            if (tab === 'reports') updateFinancialReports();
         }
 
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); document.getElementById('auth-modal').classList.add('hidden'); }
-        function closeSponsoringModal() { document.getElementById('modal-sponsoring-action').classList.replace('flex', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
@@ -845,9 +712,32 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
+        function populateCountrySelects() {
+            const selects = document.querySelectorAll('.african-countries-select');
+            selects.forEach(sel => {
+                sel.innerHTML = '';
+                africanCountries.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.innerText = c;
+                    sel.appendChild(opt);
+                });
+            });
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
-            initAuthListener();
-            updateNotificationBadges();
+            populateCountrySelects();
+            refreshCounters();
+            updateFinancialReports();
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    document.getElementById('user-display').innerText = user.email;
+                    document.getElementById('user-info-badge').classList.replace('hidden', 'flex');
+                } else {
+                    document.getElementById('user-info-badge').classList.replace('flex', 'hidden');
+                }
+                updateNotificationBadges();
+            });
             if (window.lucide) lucide.createIcons();
         });
     </script>
