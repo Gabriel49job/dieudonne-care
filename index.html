@@ -64,7 +64,7 @@
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pb-1">Navigation Principale</p>
                 <button onclick="switchTab('home')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-lime-400"></i> Accueil & Missions</button>
                 <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-lime-400"></i> Soutenir & Parrainer</button>
-                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / QR code</button>
+                <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche & QR Code</button>
             </div>
 
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
@@ -131,13 +131,10 @@
                     </p>
                 </div>
 
-                <!-- BOUTONS TRICOLORES LOGO : Vert Lime (Enfant), Bleu (Veuve), Jaune/Orange (Don Direct) -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
-                    <!-- BOUTON VERT LIME MODIFIÉ ICI -->
                     <button onclick="switchTab('sponsoring-hub')" class="bg-lime-600 hover:bg-lime-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="baby" class="w-5 h-5"></i> <span>Parrainer un enfant</span>
                     </button>
-                    <!-- BOUTON BLEU -->
                     <button onclick="switchTab('sponsoring-hub')" class="bg-sky-600 hover:bg-sky-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="users" class="w-5 h-5"></i> <span>Soutenir une veuve</span>
                     </button>
@@ -166,7 +163,6 @@
                 </div>
             </div>
 
-            <!-- ENFANTS & VEUVES EN VEDETTE -->
             <div class="space-y-4 pt-4">
                 <div class="flex justify-between items-center">
                     <div>
@@ -189,7 +185,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- PARRAINER ENFANT (VERT LIME) -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3 border-b pb-3">
@@ -200,23 +195,22 @@
                             </div>
                         </div>
                         <div class="space-y-2 pt-1">
-                            <button onclick="openFormForCause('Parrainer un Enfant — Frais scolaires & Inscriptions')" class="w-full text-left bg-slate-50 hover:bg-lime-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('études', 'Parrainer un Enfant — Frais scolaires & Inscriptions')" class="w-full text-left bg-slate-50 hover:bg-lime-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🎓 Frais scolaires & Inscriptions</span> <span class="text-lime-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openFormForCause('Parrainer un Enfant — Manuels & Kits scolaires')" class="w-full text-left bg-slate-50 hover:bg-lime-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('études', 'Parrainer un Enfant — Manuels & Kits scolaires')" class="w-full text-left bg-slate-50 hover:bg-lime-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>📚 Manuels & Kits scolaires</span> <span class="text-lime-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openFormForCause('Parrainer un Enfant — Fournitures scolaires')" class="w-full text-left bg-slate-50 hover:bg-lime-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
-                                <span>✏️ Fournitures scolaires</span> <span class="text-lime-600 text-[10px]">Choisir →</span>
+                            <button onclick="openFormForCause('vêtements', 'Parrainer un Enfant — Vêtements & Kits vestimentaires')" class="w-full text-left bg-slate-50 hover:bg-lime-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>👕 Vêtements & Habillage</span> <span class="text-lime-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openFormForCause('Parrainer un Enfant — Nutrition & Repas')" class="w-full text-left bg-slate-50 hover:bg-lime-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('alimentation', 'Parrainer un Enfant — Nutrition & Repas')" class="w-full text-left bg-slate-50 hover:bg-lime-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🍲 Nutrition & Repas</span> <span class="text-lime-600 text-[10px]">Choisir →</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- SOUTENIR VEUVE (BLEU) -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3 border-b pb-3">
@@ -227,20 +221,19 @@
                             </div>
                         </div>
                         <div class="space-y-2 pt-1">
-                            <button onclick="openFormForCause('Soutenir une Veuve — Formation professionnelle')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('études', 'Soutenir une Veuve — Formation professionnelle')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🧵 Formation professionnelle</span> <span class="text-sky-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openFormForCause('Soutenir une Veuve — Petits commerces & AGR')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
-                                <span>🛒 Petits commerces & AGR</span> <span class="text-sky-600 text-[10px]">Choisir →</span>
+                            <button onclick="openFormForCause('logement', 'Soutenir une Veuve — Petits commerces & Logement')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🏠 Logement & Commerces</span> <span class="text-sky-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openFormForCause('Soutenir une Veuve — Vivres & Approvisionnement')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                            <button onclick="openFormForCause('alimentation', 'Soutenir une Veuve — Vivres & Approvisionnement')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
                                 <span>🌾 Vivres & Approvisionnement</span> <span class="text-sky-600 text-[10px]">Choisir →</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- DON LIBRE (JAUNE/ORANGE) -->
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3 border-b pb-3">
@@ -253,7 +246,7 @@
                         <p class="text-xs text-slate-600">Participez au budget général pour couvrir les urgences et la gestion panafricaine.</p>
                         
                         <div class="space-y-2 pt-1">
-                            <button onclick="openFormForCause('Don Direct & Libre')" class="w-full text-left bg-amber-50 hover:bg-amber-100 p-4 rounded-xl border border-amber-200 text-xs font-bold text-amber-900 flex justify-between items-center transition cursor-pointer mt-6">
+                            <button onclick="openFormForCause('aide libre', 'Don Direct & Libre')" class="w-full text-left bg-amber-50 hover:bg-amber-100 p-4 rounded-xl border border-amber-200 text-xs font-bold text-amber-900 flex justify-between items-center transition cursor-pointer mt-6">
                                 <span>💛 Faire un don libre</span> <span class="text-amber-700 text-xs">Donner →</span>
                             </button>
                         </div>
@@ -262,7 +255,7 @@
             </div>
         </section>
 
-        <!-- MODAL DE PAIEMENT UNIQUE -->
+        <!-- MODAL DE PAIEMENT UNIQUE & PARCOURS DE SOUTIEN -->
         <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[90vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
@@ -270,6 +263,17 @@
                     <button onclick="closeSponsoringModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
                 </div>
                 <div id="modal-sponsoring-body" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
+            </div>
+        </div>
+
+        <!-- MODAL DÉTAILS COMPLETS DU BÉNÉFICIAIRE -->
+        <div id="modal-beneficiary-profile" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
+            <div class="bg-white rounded-3xl max-w-xl w-full p-6 space-y-4 shadow-2xl relative max-h-[90vh] flex flex-col my-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <h3 class="font-black text-slate-900 text-sm uppercase text-sky-700">Profil Complet du Bénéficiaire</h3>
+                    <button onclick="closeBeneficiaryModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
+                </div>
+                <div id="modal-beneficiary-body" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
             </div>
         </div>
 
@@ -284,16 +288,31 @@
             </div>
         </div>
 
-        <!-- RECHERCHE PAR ID -->
+        <!-- SECTION RECHERCHE CORRIGÉE ET PROFESSIONNELLE -->
         <section id="sec-search-id" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
-                <h2 class="text-xl font-bold">Recherche par Matricule Unique</h2>
-                <div class="flex gap-2 pt-2">
-                    <input type="text" id="input-search-id" placeholder="Ex: KHI-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
-                    <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer">Chercher</button>
+                <h2 class="text-xl font-bold">Rechercher un bénéficiaire</h2>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Retrouvez rapidement un enfant, une veuve ou un autre bénéficiaire enregistré en renseignant son matricule unique officiel (ex: <span class="font-mono text-lime-400 font-bold">KHI-E01</span> ou <span class="font-mono text-sky-400 font-bold">KHI-V01</span>). La recherche interroge directement notre base de données sécurisée.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-2 pt-2">
+                    <div class="relative w-full">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                            <i data-lucide="search" class="w-4 h-4"></i>
+                        </span>
+                        <input type="text" id="input-search-id" placeholder="Ex: KHI-E01 (ou KHI-V01)..." class="w-full bg-slate-800 text-white pl-10 pr-4 py-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none focus:border-lime-500 transition">
+                    </div>
+                    <button onclick="executeIdSearch()" id="search-btn-action" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer shrink-0 flex items-center justify-center gap-2">
+                        <span>Rechercher</span>
+                    </button>
                 </div>
             </div>
-            <div id="search-result-card" class="hidden bg-white p-6 rounded-2xl border shadow-lg space-y-4"></div>
+
+            <!-- FICHE DE RÉSULTAT ET ÉTATS DE CHARGEMENT / ERREUR -->
+            <div id="search-result-container" class="space-y-4">
+                <div id="search-result-card" class="hidden"></div>
+            </div>
         </section>
 
         <!-- GESTION DES ACTIVITÉS & 8 BRANCHES PANAFRICAINES -->
@@ -311,10 +330,8 @@
                 </div>
             </div>
 
-            <!-- VUE DES 8 GRANDES BRANCHES -->
             <div id="branches-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
 
-            <!-- VUE DES PROGRAMMES DE LA BRANCHE SÉLECTIONNÉE -->
             <div id="branch-details-view" class="hidden space-y-4">
                 <button onclick="backToBranchesGrid()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 cursor-pointer">
                     ← Retour aux 8 branches
@@ -637,21 +654,31 @@
             });
         }
 
-        function openFormForCause(causeName) {
+        function openFormForCause(selectedNeed = 'aide libre', causeName = 'Don Direct & Libre - Kids Hope') {
             const modal = document.getElementById('modal-sponsoring-action');
             const title = document.getElementById('modal-sponsoring-title');
             const body = document.getElementById('modal-sponsoring-body');
 
-            title.innerText = `Validation du Paiement`;
+            title.innerText = `Parcours de Soutien & Paiement Sécurisé`;
             modal.classList.replace('hidden', 'flex');
 
             body.innerHTML = `
                 <div class="space-y-4 text-slate-700">
-                    <div class="bg-lime-50 border border-lime-200 p-3.5 rounded-2xl space-y-1 text-xs text-lime-950">
+                    <div class="bg-lime-50 border border-lime-200 p-3.5 rounded-2xl space-y-2 text-xs text-lime-950">
                         <p class="font-black text-lime-900 text-xs flex items-center gap-1.5">
                             <i data-lucide="info" class="w-4 h-4 text-lime-600"></i> Motif sélectionné : <strong>${causeName}</strong>
                         </p>
-                        <p class="text-[11px] text-lime-800">Votre contribution sera directement attribuée sous la supervision de Kids Hope International.</p>
+                        <div>
+                            <label class="font-bold block mb-1 text-lime-900">Besoin ciblé dans le parcours :</label>
+                            <select id="selected-support-need" class="w-full p-2 border border-lime-300 rounded-xl bg-white font-bold text-lime-950">
+                                <option value="études" ${selectedNeed === 'études' ? 'selected' : ''}>🎓 Études & Scolarité</option>
+                                <option value="alimentation" ${selectedNeed === 'alimentation' ? 'selected' : ''}>🍲 Alimentation & Nutrition</option>
+                                <option value="vêtements" ${selectedNeed === 'vêtements' ? 'selected' : ''}>👕 Vêtements & Habillage</option>
+                                <option value="logement" ${selectedNeed === 'logement' ? 'selected' : ''}>🏠 Logement & Foyer</option>
+                                <option value="santé" ${selectedNeed === 'santé' ? 'selected' : ''}>💊 Santé & Soins médicaux</option>
+                                <option value="aide libre" ${selectedNeed === 'aide libre' ? 'selected' : ''}>💛 Aide libre & Soutien global</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
@@ -732,12 +759,17 @@
             document.getElementById('modal-sponsoring-action').classList.replace('flex', 'hidden');
         }
 
+        function closeBeneficiaryModal() {
+            document.getElementById('modal-beneficiary-profile').classList.replace('flex', 'hidden');
+        }
+
         async function submitDonation(cause) {
             const name = document.getElementById('don-name').value || "Anonyme";
             const email = document.getElementById('don-email').value || "Non fourni";
             const amount = parseFloat(document.getElementById('don-amount').value) || 0;
             const currency = document.getElementById('don-currency').value;
             const transId = document.getElementById('don-transid').value.trim();
+            const supportNeed = document.getElementById('selected-support-need') ? document.getElementById('selected-support-need').value : 'aide libre';
             const currentUser = auth.currentUser;
 
             if (amount <= 0) { alert("Veuillez entrer un montant valide."); return; }
@@ -747,6 +779,7 @@
                 const refId = 'REC-' + Math.floor(100000 + Math.random() * 900000);
                 await db.collection("donations").add({
                     refId, name, email, amount, currency, cause,
+                    supportNeed,
                     transId: transId,
                     userId: currentUser ? currentUser.uid : 'anonymous',
                     userEmail: currentUser ? currentUser.email : email,
@@ -757,13 +790,13 @@
 
                 await createSystemNotification({
                     title: "Nouveau Don Déclaré",
-                    message: `${name} a déclaré un don de ${amount} ${currency} pour [${cause}]. Réf: ${transId}`,
+                    message: `${name} a déclaré un don de ${amount} ${currency} pour [${cause}] (Besoin : ${supportNeed}). Réf: ${transId}`,
                     category: "Sponsors, Dons & Partenariats",
                     priority: "importante",
                     targetRole: "admin"
                 });
 
-                alert(`Paiement transmitted avec succès !\nMotif : ${cause}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nVotre don est enregistré en attente de confirmation par l'administration.`);
+                alert(`Paiement transmis avec succès !\nMotif : ${cause}\nBesoin : ${supportNeed}\nRéférence : ${refId}\nTransaction ID : ${transId}\n\nVotre don est enregistré en attente de confirmation par l'administration.`);
                 closeSponsoringModal();
                 updateFinancialReports();
                 if (currentUser) updateProfileCard(currentUser);
@@ -1294,6 +1327,8 @@
                     country: document.getElementById('c-country').value,
                     city: document.getElementById('c-city').value,
                     center: document.getElementById('c-center').value,
+                    supportNeeds: ["Scolarité", "Alimentation", "Vêtements"],
+                    careStatus: "En attente de parrainage",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
@@ -1327,6 +1362,8 @@
                     phone: document.getElementById('w-phone').value,
                     country: document.getElementById('w-country').value,
                     city: document.getElementById('w-city').value,
+                    supportNeeds: ["Formation professionnelle", "Petits commerces & AGR", "Vivres"],
+                    careStatus: "En attente de soutien",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
@@ -1349,27 +1386,170 @@
             }
         }
 
+        // FONCTION DE RECHERCHE CORRIGÉE ET PROFESSIONNELLE
         async function executeIdSearch() {
-            const val = document.getElementById('input-search-id').value.trim().toUpperCase();
+            const searchInput = document.getElementById('input-search-id');
             const card = document.getElementById('search-result-card');
-            if (!val) return;
-            card.classList.remove('hidden'); card.innerHTML = "Recherche...";
-            let found = null, type = '';
-            for (let col of ['children', 'widows', 'agents']) {
-                const snap = await db.collection(col).where('matricule', '==', val).get();
-                if (!snap.empty) { found = snap.docs[0].data(); type = col; break; }
-            }
-            if (found) {
-                let name = found.firstName ? `${found.firstName} ${type === 'children' ? '***' : found.lastName}` : (found.fullName || '');
+            const val = searchInput ? searchInput.value.trim().toUpperCase() : '';
+            
+            if (!val) {
+                card.classList.remove('hidden');
                 card.innerHTML = `
-                    <div class="flex items-center gap-3 border-b pb-3">
-                        <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
-                        <div><span class="font-mono bg-slate-900 text-lime-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
+                    <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl text-xs text-amber-900 flex items-center gap-2">
+                        <i data-lucide="alert-circle" class="w-5 h-5 text-amber-600 shrink-0"></i>
+                        <span>Veuillez entrer un matricule unique valide (ex: <strong>KHI-E01</strong> ou <strong>KHI-V01</strong>).</span>
                     </div>
-                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-lime-600 hover:bg-lime-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil (Choisir un motif)</button>
                 `;
-            } else {
-                card.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier correspondant à ce matricule.</p>`;
+                if (window.lucide) lucide.createIcons();
+                return;
+            }
+
+            card.classList.remove('hidden');
+            card.innerHTML = `
+                <div class="bg-white p-6 rounded-2xl border shadow-sm text-center space-y-3">
+                    <div class="animate-spin w-8 h-8 border-4 border-lime-500 border-t-transparent rounded-full mx-auto"></div>
+                    <p class="text-xs text-slate-500 font-bold">Recherche du bénéficiaire en cours dans la base de données...</p>
+                </div>
+            `;
+
+            let found = null, type = '', collectionName = '';
+            try {
+                for (let col of ['children', 'widows']) {
+                    const snap = await db.collection(col).where('matricule', '==', val).get();
+                    if (!snap.empty) { 
+                        found = snap.docs[0].data(); 
+                        collectionName = col;
+                        type = col === 'children' ? 'Enfant Bénéficiaire' : 'Veuve Bénéficiaire'; 
+                        break; 
+                    }
+                }
+
+                if (found) {
+                    // PROTECTION DES INFORMATIONS PRIVÉES DES ENFANTS
+                    let displayName = '';
+                    if (collectionName === 'children') {
+                        displayName = `${found.firstName || ''} ${found.lastName ? found.lastName.charAt(0) + '.' : ''}`;
+                    } else {
+                        displayName = `${found.firstName || ''} ${found.lastName || ''}`;
+                    }
+
+                    // GESTION STRICTE DE LA PHOTO : Photo réelle enregistrée OU avatar neutre. Jamais le logo de l'organisation.
+                    let photoHtml = '';
+                    if (found.photo && found.photo.trim() !== '') {
+                        photoHtml = `<img src="${found.photo}" alt="Photo de ${displayName}" class="w-full h-full object-cover">`;
+                    } else {
+                        photoHtml = `<div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400"><i data-lucide="user" class="w-10 h-10"></i></div>`;
+                    }
+
+                    const countryStr = found.country || 'RDC';
+                    const cityStr = found.city || 'Bukavu';
+                    const needsList = found.supportNeeds ? found.supportNeeds.join(', ') : 'Scolarité, Alimentation, Suivi global';
+                    const statusStr = found.careStatus || 'En attente de prise en charge';
+
+                    card.innerHTML = `
+                        <div class="bg-white p-6 rounded-3xl border shadow-lg space-y-4">
+                            <div class="flex flex-col sm:flex-row items-center gap-4 border-b pb-4">
+                                <div class="w-20 h-20 bg-slate-100 rounded-2xl overflow-hidden border shadow-sm shrink-0">
+                                    ${photoHtml}
+                                </div>
+                                <div class="space-y-1 text-center sm:text-left flex-grow">
+                                    <div class="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+                                        <span class="font-mono bg-slate-900 text-lime-400 px-2.5 py-0.5 rounded-full text-xs font-bold">${found.matricule}</span>
+                                        <span class="text-[10px] uppercase font-bold bg-lime-50 text-lime-700 px-2.5 py-0.5 rounded-full border border-lime-200">${type}</span>
+                                    </div>
+                                    <h3 class="font-black text-slate-900 text-base md:text-lg">${displayName}</h3>
+                                    <p class="text-xs text-slate-500">📍 ${cityStr}, ${countryStr}</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-slate-50 p-3.5 rounded-2xl border space-y-1">
+                                    <p class="font-bold text-slate-400 uppercase text-[10px]">Statut de prise en charge</p>
+                                    <p class="font-bold text-slate-900">${statusStr}</p>
+                                </div>
+                                <div class="bg-lime-50 p-3.5 rounded-2xl border border-lime-200 space-y-1">
+                                    <p class="font-bold text-lime-800 uppercase text-[10px]">Besoins de soutien validés</p>
+                                    <p class="font-bold text-lime-950">${needsList}</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+                                <button onclick="openBeneficiaryFullProfile('${found.matricule}', '${collectionName}')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-2">
+                                    <i data-lucide="eye" class="w-4 h-4 text-sky-600"></i> Voir le profil complet
+                                </button>
+                                <button onclick="openFormForCause('études', 'Soutien ciblée pour ${displayName} (${found.matricule})')" class="bg-lime-600 hover:bg-lime-500 text-white font-bold py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-2 shadow">
+                                    <i data-lucide="heart-handshake" class="w-4 h-4"></i> Soutenir cette personne
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="bg-red-50 border border-red-200 p-6 rounded-3xl text-center space-y-2">
+                            <div class="w-10 h-10 mx-auto rounded-full bg-red-100 text-red-600 flex items-center justify-center"><i data-lucide="x-circle" class="w-5 h-5"></i></div>
+                            <h4 class="font-bold text-red-900 text-sm">Aucun bénéficiaire trouvé</h4>
+                            <p class="text-xs text-red-700 max-w-md mx-auto">Aucun dossier ne correspond au matricule <strong>"${val}"</strong> dans notre base de données. Veuillez vérifier la saisie (ex: KHI-E01).</p>
+                        </div>
+                    `;
+                }
+                if (window.lucide) lucide.createIcons();
+            } catch (err) {
+                card.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 p-4 rounded-2xl text-xs text-red-800 text-center">
+                        Erreur lors de la recherche dans la base de données : ${err.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function openBeneficiaryFullProfile(matricule, collectionName) {
+            const modal = document.getElementById('modal-beneficiary-profile');
+            const body = document.getElementById('modal-beneficiary-body');
+            modal.classList.replace('hidden', 'flex');
+            body.innerHTML = `<div class="text-center py-6 text-xs text-slate-400">Chargement des informations autorisées...</div>`;
+
+            try {
+                const snap = await db.collection(collectionName).where('matricule', '==', matricule).get();
+                if (snap.empty) {
+                    body.innerHTML = `<p class="text-xs text-red-600 text-center">Profil introuvable.</p>`;
+                    return;
+                }
+                const data = snap.docs[0].data();
+                const isChild = collectionName === 'children';
+                let displayName = isChild ? `${data.firstName || ''} ${data.lastName ? data.lastName.charAt(0) + '.' : ''}` : `${data.firstName || ''} ${data.lastName || ''}`;
+                
+                let photoHtml = data.photo ? `<img src="${data.photo}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400"><i data-lucide="user" class="w-12 h-12"></i></div>`;
+
+                body.innerHTML = `
+                    <div class="space-y-4 text-xs text-slate-700">
+                        <div class="flex items-center gap-4 border-b pb-4">
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden border shrink-0 bg-slate-100">${photoHtml}</div>
+                            <div>
+                                <span class="font-mono bg-slate-900 text-lime-400 px-2 py-0.5 rounded text-[10px] font-bold">${data.matricule}</span>
+                                <h4 class="font-black text-slate-900 text-sm md:text-base mt-1">${displayName}</h4>
+                                <p class="text-slate-500">📍 ${data.city || 'Bukavu'}, ${data.country || 'RDC'}</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-3.5 rounded-2xl border space-y-2">
+                            <p><strong>Catégorie :</strong> ${isChild ? 'Enfant Orphelin / Vulnérable (KHI-E)' : 'Veuve / Mère de famille (KHI-V)'}</p>
+                            <p><strong>ID Famille :</strong> <span class="font-mono font-bold">${data.famId || 'FAM0001'}</span></p>
+                            <p><strong>Statut de prise en charge :</strong> ${data.careStatus || 'En attente'}</p>
+                            <p><strong>Besoins validés :</strong> ${data.supportNeeds ? data.supportNeeds.join(', ') : 'Scolarité & Alimentation'}</p>
+                        </div>
+
+                        <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-[11px] text-amber-900">
+                            🔒 <strong>Protection des données privées :</strong> Conformément aux protocoles de protection des mineurs et veuves, les dossiers médicaux complets, les coordonnées téléphoniques privées et les adresses exactes sont strictement protégés et réservés aux agents sociaux agréés.
+                        </div>
+
+                        <button onclick="closeBeneficiaryModal(); openFormForCause('études', 'Soutien pour ${displayName} (${data.matricule})');" class="w-full bg-lime-600 hover:bg-lime-500 text-white font-bold py-3 rounded-xl transition shadow cursor-pointer">
+                            Soutenir cette personne maintenant
+                        </button>
+                    </div>
+                `;
+                if (window.lucide) lucide.createIcons();
+            } catch (err) {
+                body.innerHTML = `<p class="text-xs text-red-600 text-center">Erreur : ${err.message}</p>`;
             }
         }
 
@@ -1405,7 +1585,7 @@
                 container.innerHTML = '';
                 items.forEach(d => {
                     let displayName = d.firstName ? `${d.firstName} ${d.lastName ? d.lastName.charAt(0) + '.' : ''}` : (d.fullName || '');
-                    let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
+                    let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl text-slate-400">👤</div>`;
 
                     container.innerHTML += `
                         <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
@@ -1421,7 +1601,7 @@
                                 <h4 class="font-black text-slate-900 text-sm">${displayName}</h4>
                                 <p class="text-[11px] text-slate-600">Soutien prioritaire pour la scolarité et les besoins vitaux.</p>
                             </div>
-                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-lime-600 hover:bg-lime-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
+                            <button onclick="openFormForCause('études', 'Parrainage pour ${displayName} (${d.matricule})')" class="w-full bg-lime-600 hover:bg-lime-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
                         </div>
                     `;
                 });
@@ -1440,7 +1620,7 @@
                 if (protectNames && d.lastName) {
                     displayName = `${d.firstName} ${d.lastName.charAt(0)}.`;
                 }
-                let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl">👤</div>`;
+                let photoHtml = d.photo ? `<img src="${d.photo}" class="w-full h-full object-cover">` : `<div class="flex items-center justify-center h-full text-2xl text-slate-400">👤</div>`;
 
                 container.innerHTML += `
                     <div class="bg-white p-4 rounded-2xl border shadow-sm text-xs space-y-3 flex flex-col justify-between">
@@ -1453,7 +1633,7 @@
                             <p class="font-bold text-slate-900 text-sm">${displayName}</p>
                             <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
                         </div>
-                        <button onclick="switchTab('sponsoring-hub')" class="w-full bg-slate-100 hover:bg-lime-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
+                        <button onclick="openFormForCause('études', 'Soutien pour ${displayName} (${d.matricule})')" class="w-full bg-slate-100 hover:bg-lime-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
                     </div>
                 `;
             });
