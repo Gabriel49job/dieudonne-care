@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-40">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-44">
 
     <!-- EN-TÊTE PROFESSIONNEL -->
     <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b border-slate-800">
@@ -97,8 +97,8 @@
         </div>
     </aside>
 
-    <!-- BARRE DE NAVIGATION INFÉRIEURE -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-3 px-2 shadow-2xl">
+    <!-- BARRE DE NAVIGATION INFÉRIEURE AVEC ZONE DE SÉCURITÉ -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-3 px-2 shadow-2xl pb-safe">
         <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-lime-400 transition cursor-pointer">
             <i data-lucide="home" class="w-5 h-5 text-lime-400"></i> Accueil
         </button>
@@ -1386,9 +1386,10 @@
             }
         }
 
-        // FONCTION DE RECHERCHE CORRIGÉE ET PROFESSIONNELLE
+        // FONCTION DE RECHERCHE CORRIGÉE ET PROFESSIONNELLE AVEC PROTECTION & ÉTATS DE CHARGEMENT
         async function executeIdSearch() {
             const searchInput = document.getElementById('input-search-id');
+            const searchBtn = document.getElementById('search-btn-action');
             const card = document.getElementById('search-result-card');
             const val = searchInput ? searchInput.value.trim().toUpperCase() : '';
             
@@ -1404,11 +1405,17 @@
                 return;
             }
 
+            // Empêcher les doubles soumissions pendant la recherche
+            if (searchBtn) {
+                searchBtn.disabled = true;
+                searchBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+
             card.classList.remove('hidden');
             card.innerHTML = `
                 <div class="bg-white p-6 rounded-2xl border shadow-sm text-center space-y-3">
                     <div class="animate-spin w-8 h-8 border-4 border-lime-500 border-t-transparent rounded-full mx-auto"></div>
-                    <p class="text-xs text-slate-500 font-bold">Recherche du bénéficiaire en cours dans la base de données...</p>
+                    <p class="text-xs text-slate-500 font-bold">Interrogation de la base de données sécurisée...</p>
                 </div>
             `;
 
@@ -1425,7 +1432,7 @@
                 }
 
                 if (found) {
-                    // PROTECTION DES INFORMATIONS PRIVÉES DES ENFANTS
+                    // PROTECTION DES INFORMATIONS PRIVÉES DES ENFANTS (Confidentialité)
                     let displayName = '';
                     if (collectionName === 'children') {
                         displayName = `${found.firstName || ''} ${found.lastName ? found.lastName.charAt(0) + '.' : ''}`;
@@ -1433,7 +1440,7 @@
                         displayName = `${found.firstName || ''} ${found.lastName || ''}`;
                     }
 
-                    // GESTION STRICTE DE LA PHOTO : Photo réelle enregistrée OU avatar neutre. Jamais le logo de l'organisation.
+                    // GESTION STRICTE DE LA PHOTO : Photo réelle enregistrée OU avatar neutre. Jamais le logo.
                     let photoHtml = '';
                     if (found.photo && found.photo.trim() !== '') {
                         photoHtml = `<img src="${found.photo}" alt="Photo de ${displayName}" class="w-full h-full object-cover">`;
@@ -1448,7 +1455,12 @@
 
                     card.innerHTML = `
                         <div class="bg-white p-6 rounded-3xl border shadow-lg space-y-4">
-                            <div class="flex flex-col sm:flex-row items-center gap-4 border-b pb-4">
+                            <div class="flex items-center justify-between border-b pb-2">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">1 résultat trouvé</span>
+                                <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold">Connexion sécurisée active</span>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row items-center gap-4 pb-2">
                                 <div class="w-20 h-20 bg-slate-100 rounded-2xl overflow-hidden border shadow-sm shrink-0">
                                     ${photoHtml}
                                 </div>
@@ -1477,7 +1489,7 @@
                                 <button onclick="openBeneficiaryFullProfile('${found.matricule}', '${collectionName}')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-2">
                                     <i data-lucide="eye" class="w-4 h-4 text-sky-600"></i> Voir le profil complet
                                 </button>
-                                <button onclick="openFormForCause('études', 'Soutien ciblée pour ${displayName} (${found.matricule})')" class="bg-lime-600 hover:bg-lime-500 text-white font-bold py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-2 shadow">
+                                <button onclick="openFormForCause('études', 'Soutien ciblé pour ${displayName} (${found.matricule})')" class="bg-lime-600 hover:bg-lime-500 text-white font-bold py-3 rounded-xl transition cursor-pointer flex items-center justify-center gap-2 shadow">
                                     <i data-lucide="heart-handshake" class="w-4 h-4"></i> Soutenir cette personne
                                 </button>
                             </div>
@@ -1495,10 +1507,17 @@
                 if (window.lucide) lucide.createIcons();
             } catch (err) {
                 card.innerHTML = `
-                    <div class="bg-red-50 border border-red-200 p-4 rounded-2xl text-xs text-red-800 text-center">
-                        Erreur lors de la recherche dans la base de données : ${err.message}
+                    <div class="bg-red-50 border border-red-200 p-6 rounded-3xl text-center space-y-2">
+                        <div class="w-10 h-10 mx-auto rounded-full bg-red-100 text-red-600 flex items-center justify-center"><i data-lucide="wifi-off" class="w-5 h-5"></i></div>
+                        <h4 class="font-bold text-red-900 text-sm">Erreur de connexion</h4>
+                        <p class="text-xs text-red-700 max-w-md mx-auto">Impossible d'interroger la base de données. Veuillez vérifier votre connexion Internet et réessayer.</p>
                     </div>
                 `;
+            } finally {
+                if (searchBtn) {
+                    searchBtn.disabled = false;
+                    searchBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
             }
         }
 
