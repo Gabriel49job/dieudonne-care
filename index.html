@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIEUDONNÉ CARE — Plateforme Panafricaine de Suivi Social</title>
+    <title>KIDS HOPE INTERNATIONAL — Plateforme Panafricaine de Suivi Social</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -15,7 +15,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-40">
 
-    <!-- EN-TÊTE PROFESSIONNEL CORRIGÉ (Anti-débordement mobile) -->
+    <!-- EN-TÊTE PROFESSIONNEL CORRIGÉ -->
     <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-3 py-2.5 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -23,9 +23,9 @@
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
                 <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('home')">
-                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-xs text-white shadow-md">DC</div>
+                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-xs text-white shadow-md">KH</div>
                     <div>
-                        <span class="text-xs font-black tracking-wider text-white block leading-tight">DIEUDONNÉ <span class="text-green-400">CARE</span></span>
+                        <span class="text-xs font-black tracking-wider text-white block leading-tight">KIDS HOPE <span class="text-green-400">INTERNATIONAL</span></span>
                         <span class="text-[8px] text-slate-400 tracking-widest uppercase block font-semibold">Panafricain</span>
                     </div>
                 </div>
@@ -48,12 +48,12 @@
         </div>
     </header>
 
-    <!-- MENU LATÉRAL STRUCTURÉ ET PROFESSIONNEL -->
+    <!-- MENU LATÉRAL STRUCTURÉ -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden transition-opacity"></div>
     <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
             <div class="flex items-center space-x-2">
-                <div class="w-7 h-7 rounded-lg bg-green-600 flex items-center justify-center font-bold text-xs text-white">DC</div>
+                <div class="w-7 h-7 rounded-lg bg-green-600 flex items-center justify-center font-bold text-xs text-white">KH</div>
                 <span class="font-black text-white text-xs tracking-wider uppercase">Menu Panafricain</span>
             </div>
             <button onclick="toggleSidebar()" class="text-slate-400 p-1.5 font-bold text-base hover:text-white rounded-lg bg-slate-800 cursor-pointer">✕</button>
@@ -71,8 +71,8 @@
             <!-- CATÉGORIE B : GESTION DES BÉNÉFICIAIRES -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Gestion des Bénéficiaires</p>
-                <button onclick="switchTab('children')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (BKDD-E)</button>
-                <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (BKDD-V)</button>
+                <button onclick="switchTab('children')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (KHI-E)</button>
+                <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (KHI-V)</button>
             </div>
 
             <!-- CATÉGORIE C : ORGANISATION PANAFRICAINE -->
@@ -91,7 +91,6 @@
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Mon Espace</p>
                 <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-blue-400"></i> Mon Profil & Espace Sponsor</button>
-                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="settings" class="w-4 h-4 text-purple-400"></i> Paramètres & Sécurité</button>
             </div>
 
             <!-- CATÉGORIE E : ADMINISTRATION -->
@@ -130,10 +129,10 @@
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-12 shadow-2xl space-y-6 border border-slate-800 relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="space-y-3 relative z-10">
-                    <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1.5 rounded-full border border-green-500/30 uppercase tracking-widest">CENTRE DIEUDONNÉ BUKAVU (RDC) — 54 PAYS</span>
+                    <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1.5 rounded-full border border-green-500/30 uppercase tracking-widest">KIDS HOPE INTERNATIONAL — 54 PAYS</span>
                     <h1 class="text-2xl md:text-5xl font-black mt-2 leading-tight">SOUTENEZ UN ENFANT, AIDEZ UNE VEUVE, CHANGEZ UNE VIE</h1>
                     <p class="text-xs md:text-sm text-slate-300 max-w-3xl leading-relaxed pt-2">
-                        Avec DIEUDONNÉ CARE PANAFRICAIN, contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables.
+                        Avec KIDS HOPE INTERNATIONAL[span_1](start_span)[span_1](end_span), contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables.
                     </p>
                 </div>
 
@@ -144,7 +143,7 @@
                     <button onclick="switchTab('sponsoring-hub')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="users" class="w-5 h-5"></i> <span>Soutenir une veuve</span>
                     </button>
-                    <button onclick="openFormForCause('Don Direct & Libre - Centre Dieudonné')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                    <button onclick="openFormForCause('Don Direct & Libre - Kids Hope')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="heart" class="w-5 h-5"></i> <span>Faire un don direct</span>
                     </button>
                 </div>
@@ -292,7 +291,7 @@
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
                 <h2 class="text-xl font-bold">Recherche par Matricule Unique</h2>
                 <div class="flex gap-2 pt-2">
-                    <input type="text" id="input-search-id" placeholder="Ex: BKDD-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
+                    <input type="text" id="input-search-id" placeholder="Ex: KHI-E01..." class="w-full bg-slate-800 text-white p-3.5 rounded-xl uppercase font-mono text-sm border border-slate-700 focus:outline-none">
                     <button onclick="executeIdSearch()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-sm transition cursor-pointer">Chercher</button>
                 </div>
             </div>
@@ -314,10 +313,10 @@
                 </div>
             </div>
 
-            <!-- VUE DES 8 GRANDES BRANCHES (CARTES ILLUSTRÉES) -->
+            <!-- VUE DES 8 GRANDES BRANCHES -->
             <div id="branches-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
 
-            <!-- VUE DES PROGRAMMES DE LA BRANCHE SÉLECTIONNÉE (CACHÉE PAR DÉFAUT) -->
+            <!-- VUE DES PROGRAMMES DE LA BRANCHE SÉLECTIONNÉE -->
             <div id="branch-details-view" class="hidden space-y-4">
                 <button onclick="backToBranchesGrid()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 cursor-pointer">
                     ← Retour aux 8 branches
@@ -337,7 +336,7 @@
             <div id="profile-card" class="space-y-6"></div>
         </section>
 
-        <!-- NOUVEAU MODULE : NOTIFICATIONS & ALERTES (CENTRE OPÉRATIONNEL) -->
+        <!-- NOTIFICATIONS & ALERTES -->
         <section id="sec-notifications" class="hidden space-y-6 max-w-5xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-4">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -353,7 +352,6 @@
                     </div>
                 </div>
 
-                <!-- STATISTIQUES DE NOTIFICATIONS -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
                     <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
                         <div>
@@ -386,7 +384,6 @@
                 </div>
             </div>
 
-            <!-- FILTRES DE RECHERCHE ET CATÉGORIES -->
             <div class="bg-white p-4 rounded-3xl border shadow-sm space-y-4">
                 <div class="flex flex-col md:flex-row gap-3 justify-between items-center">
                     <div class="flex items-center gap-1.5 overflow-x-auto w-full pb-2 md:pb-0" id="notif-filter-buttons">
@@ -402,28 +399,25 @@
                     </div>
                 </div>
 
-                <!-- LISTE DES NOTIFICATIONS -->
-                <div id="notifications-container" class="space-y-3 pt-2">
-                    <!-- Rempli dynamiquement -->
-                </div>
+                <div id="notifications-container" class="space-y-3 pt-2"></div>
             </div>
         </section>
 
         <!-- AUTRES SECTIONS -->
         <section id="sec-children" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Enfants (BKDD-E)</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Enfants (KHI-E)</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
             <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
         <section id="sec-widows" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Veuves (BKDD-V)</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Veuves (KHI-V)</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
             <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
         <section id="sec-countries" class="hidden space-y-6">
             <h2 class="text-2xl font-black">Réseau Panafricain (54 Pays)</h2>
             <div class="bg-white p-6 rounded-2xl border shadow-sm space-y-3">
-                <p class="text-xs text-slate-600">Coordination centralisée depuis Bukavu (RDC).</p>
+                <p class="text-xs text-slate-600">Coordination centralisée.</p>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pt-2" id="countries-list-container"></div>
             </div>
         </section>
@@ -471,7 +465,7 @@
                     <div><label class="font-bold">ID Famille</label><input type="text" id="c-famid" value="FAM0001" required class="w-full p-2 border rounded font-mono bg-white"></div>
                     <div><label class="font-bold">Pays *</label><select id="c-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
-                    <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Centre Dieudonné" class="w-full p-2 border rounded bg-white"></div>
+                    <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Kids Hope International" class="w-full p-2 border rounded bg-white"></div>
                 </div>
                 <button type="button" onclick="saveChildForm()" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
             </div>
@@ -608,7 +602,7 @@
                 description: "Logement, literie, vêtements, hygiène, eau potable, équipements et stocks.",
                 items: [
                     { name: "Gestion des Stocks & Vivres", objective: "Garantir la disponibilité des biens de première nécessité.", procedure: "Inventaire régulier, stockage sécurisé et approvisionnement.", activities: "Réception des marchandises, gestion des entrepôts." },
-                    { name: "Assassinement & Eau Potable", objective: "Assurer un environnement de vie sain et sécurisé.", procedure: "Nettoyage des infrastructures, contrôle de l'eau.", activities: "Distribution d'hygiène, traitement de l'eau." }
+                    { name: "Assainissement & Eau Potable", objective: "Assurer un environnement de vie sain et sécurisé.", procedure: "Nettoyage des infrastructures, contrôle de l'eau.", activities: "Distribution d'hygiène, traitement de l'eau." }
                 ]
             },
             {
@@ -659,7 +653,7 @@
                         <p class="font-black text-emerald-900 text-xs flex items-center gap-1.5">
                             <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${causeName}</strong>
                         </p>
-                        <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision du Centre Dieudonné.</p>
+                        <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision de Kids Hope International[span_2](start_span)[span_2](end_span).</p>
                     </div>
 
                     <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
@@ -763,7 +757,6 @@
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
-                // Création automatique d'une notification pour l'administration
                 await createSystemNotification({
                     title: "Nouveau Don Déclaré",
                     message: `${name} a déclaré un don de ${amount} ${currency} pour [${cause}]. Réf: ${transId}`,
@@ -779,15 +772,14 @@
             } catch (err) { alert("Erreur : " + err.message); }
         }
 
-        // --- GESTION DES NOTIFICATIONS AUTOMATIQUES ET DU CENTRE ---
         async function createSystemNotification(notifData) {
             try {
                 await db.collection("notifications").add({
                     title: notifData.title,
                     message: notifData.message,
                     category: notifData.category || "Système & Technique",
-                    priority: notifData.priority || "information", // urgente, importante, information, confirmation
-                    status: "nouvelle", // nouvelle, en_cours, resolue, cloturee
+                    priority: notifData.priority || "information",
+                    status: "nouvelle",
                     isRead: false,
                     targetRole: notifData.targetRole || "all",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -859,7 +851,6 @@
                     const notifDate = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
                     if (notifDate.toDateString() === todayStr) todayCount++;
 
-                    // Filtrage
                     let matchesFilter = true;
                     if (currentNotificationFilter === 'unread') matchesFilter = !data.isRead;
                     else if (currentNotificationFilter === 'urgente') matchesFilter = data.priority === 'urgente';
@@ -879,7 +870,6 @@
                     }
                 });
 
-                // Mise à jour des compteurs en haut
                 document.getElementById('notif-stat-unread').innerText = unreadCount;
                 document.getElementById('notif-stat-urgent').innerText = urgentCount;
                 document.getElementById('notif-stat-today').innerText = todayCount;
@@ -902,7 +892,6 @@
                 notifications.forEach(n => {
                     const dateFormatted = n.createdAt?.toDate ? n.createdAt.toDate().toLocaleString() : 'Récemment';
                     
-                    // Couleur selon priorité
                     let priorityBadge = '';
                     if (n.priority === 'urgente') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-red-100 text-red-800 uppercase">Urgente</span>`;
                     else if (n.priority === 'importante') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-amber-100 text-amber-800 uppercase">Importante</span>`;
@@ -1082,7 +1071,7 @@
         function openForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('hidden', 'flex'); }
         function closeForm(type) { document.getElementById(`modal-form-${type}`)?.classList.replace('flex', 'hidden'); }
         function openAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'flex'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('hidden', 'hidden'); }
+        function closeAuthModal() { document.getElementById('auth-modal').classList.replace('flex', 'hidden'); }
 
         async function handleAuthSubmit() {
             const email = document.getElementById('auth-email').value;
@@ -1253,7 +1242,7 @@
         async function generateNextMatricule(col, prefix) {
             const snap = await db.collection(col).get();
             const count = snap.size + 1;
-            return `BKDD-${prefix}${count < 10 ? '0' + count : count}`;
+            return `KHI-${prefix}${count < 10 ? '0' + count : count}`;
         }
 
         async function saveAgentForm() {
@@ -1528,7 +1517,7 @@
                             role: "Sponsor / Donateur",
                             isVerified: false,
                             photoURL: user.photoURL || "",
-                            memberId: 'BKDD-SP-' + Math.floor(1000 + Math.random() * 9000),
+                            memberId: 'KHI-SP-' + Math.floor(1000 + Math.random() * 9000),
                             createdAt: firebase.firestore.FieldValue.serverTimestamp()
                         };
                         await db.collection("users").doc(user.uid).set(userData);
@@ -1569,7 +1558,7 @@
                 const userPhoto = userData.photoURL || user.photoURL || "";
                 const userInitials = (userData.prenom ? userData.prenom.charAt(0) : '') + (userData.nom ? userData.nom.charAt(0) : (user.email ? user.email.charAt(0).toUpperCase() : 'U'));
                 const isVerified = userData.isVerified === true;
-                const memberId = userData.memberId || 'BKDD-SP-0001';
+                const memberId = userData.memberId || 'KHI-SP-0001';
                 const memberSince = userData.createdAt ? (userData.createdAt.toDate ? userData.createdAt.toDate().toLocaleDateString() : 'Récemment') : 'Récemment';
 
                 card.innerHTML = `
@@ -1853,8 +1842,8 @@
                 </head>
                 <body>
                     <div class="header">
-                        <h1>DIEUDONNÉ CARE PANAFRICAIN</h1>
-                        <p>Centre de Bukavu (RDC) — Reçu de Don Officiel</p>
+                        <h1>KIDS HOPE INTERNATIONAL</h1>
+                        <p>Centre de Suivi — Reçu de Don Officiel</p>
                     </div>
                     <div class="details">
                         <p><strong>Référence de transaction :</strong> ${refId}</p>
@@ -1864,7 +1853,7 @@
                         <p><strong>Statut :</strong> <span style="color: #166534; font-weight: bold;">CONFIRMÉ</span></p>
                     </div>
                     <div class="footer">
-                        <p>Ce document certifie la bonne réception du don au profit des actions humanitaires de Dieudonné Care.</p>
+                        <p>Ce document certifie la bonne réception du don au profit des actions humanitaires de Kids Hope International.</p>
                         <button onclick="window.print()" style="background: #166534; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px;">Imprimer / Télécharger en PDF</button>
                     </div>
                 </body>
