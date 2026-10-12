@@ -15,33 +15,33 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pb-40">
 
-    <!-- EN-TÊTE PROFESSIONNEL CORRIGÉ -->
+    <!-- EN-TÊTE PROFESSIONNEL HARMONISÉ -->
     <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-30 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-3 py-2.5 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <button onclick="toggleSidebar()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-green-400 transition cursor-pointer shadow">
+                <button onclick="toggleSidebar()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-emerald-400 transition cursor-pointer shadow">
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
                 <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('home')">
-                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-green-600 to-emerald-400 flex items-center justify-center font-black text-xs text-white shadow-md">KH</div>
+                    <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500 via-sky-400 to-amber-400 flex items-center justify-center font-black text-xs text-slate-950 shadow-md">KH</div>
                     <div>
-                        <span class="text-xs font-black tracking-wider text-white block leading-tight">KIDS HOPE <span class="text-green-400">INTERNATIONAL</span></span>
+                        <span class="text-xs font-black tracking-wider text-white block leading-tight">KIDS <span class="text-sky-400">HOPE</span> <span class="text-emerald-400">INT.</span></span>
                         <span class="text-[8px] text-slate-400 tracking-widest uppercase block font-semibold">Panafricain</span>
                     </div>
                 </div>
             </div>
 
             <div class="flex items-center space-x-2">
-                <select id="lang-selector" class="bg-slate-800 text-green-400 font-bold text-[11px] px-2 py-1.5 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
+                <select id="lang-selector" class="bg-slate-800 text-emerald-400 font-bold text-[11px] px-2 py-1.5 rounded-xl border border-slate-700 focus:outline-none cursor-pointer">
                     <option value="fr">🇫🇷 FR</option>
                     <option value="en">🇬🇧 EN</option>
                     <option value="sw">🇹🇿 SW</option>
                 </select>
 
                 <div id="user-info-badge" class="hidden items-center gap-1.5 bg-slate-800/80 px-2.5 py-1 rounded-xl border border-slate-700">
-                    <span id="user-display" class="text-[11px] font-mono text-green-400 font-bold truncate max-w-[100px]"></span>
+                    <span id="user-display" class="text-[11px] font-mono text-emerald-400 font-bold truncate max-w-[100px]"></span>
                 </div>
-                <button id="auth-btn" onclick="openAuthModal()" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 shadow-md cursor-pointer">
+                <button id="auth-btn" onclick="openAuthModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 shadow-md cursor-pointer">
                     <i data-lucide="log-in" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Connexion</span>
                 </button>
             </div>
@@ -53,33 +53,30 @@
     <aside id="sidebar" class="fixed top-0 left-0 w-80 h-full bg-slate-900 text-slate-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out p-5 space-y-6 overflow-y-auto shadow-2xl">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
             <div class="flex items-center space-x-2">
-                <div class="w-7 h-7 rounded-lg bg-green-600 flex items-center justify-center font-bold text-xs text-white">KH</div>
+                <div class="w-7 h-7 rounded-lg bg-emerald-600 flex items-center justify-center font-bold text-xs text-white">KH</div>
                 <span class="font-black text-white text-xs tracking-wider uppercase">Menu Panafricain</span>
             </div>
             <button onclick="toggleSidebar()" class="text-slate-400 p-1.5 font-bold text-base hover:text-white rounded-lg bg-slate-800 cursor-pointer">✕</button>
         </div>
         
         <div class="space-y-5 text-xs">
-            <!-- CATÉGORIE A : NAVIGATION PRINCIPALE -->
             <div class="space-y-1">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pb-1">Navigation Principale</p>
-                <button onclick="switchTab('home')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-green-400"></i> Accueil & Missions</button>
-                <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-green-400"></i> Soutenir & Parrainer</button>
+                <button onclick="switchTab('home')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-white flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="home" class="w-4 h-4 text-emerald-400"></i> Accueil & Missions</button>
+                <button onclick="switchTab('sponsoring-hub')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="heart-handshake" class="w-4 h-4 text-emerald-400"></i> Soutenir & Parrainer</button>
                 <button onclick="switchTab('search-id')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="search" class="w-4 h-4 text-amber-400"></i> Recherche ID / QR code</button>
             </div>
 
-            <!-- CATÉGORIE B : GESTION DES BÉNÉFICIAIRES -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Gestion des Bénéficiaires</p>
-                <button onclick="switchTab('children')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-blue-400"></i> Dossiers Enfants (KHI-E)</button>
+                <button onclick="switchTab('children')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="baby" class="w-4 h-4 text-sky-400"></i> Dossiers Enfants (KHI-E)</button>
                 <button onclick="switchTab('widows')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Dossiers Veuves (KHI-V)</button>
             </div>
 
-            <!-- CATÉGORIE C : ORGANISATION PANAFRICAINE -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Organisation Panafricaine</p>
                 <button onclick="switchTab('team')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="briefcase" class="w-4 h-4 text-purple-400"></i> Gestion des Activités & Programmes</button>
-                <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Pays & Centres (54 pays)</button>
+                <button onclick="switchTab('countries')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="globe" class="w-4 h-4 text-sky-400"></i> Pays & Centres (54 pays)</button>
                 <button onclick="switchTab('notifications')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center justify-between transition cursor-pointer">
                     <span class="flex items-center gap-2.5"><i data-lucide="bell" class="w-4 h-4 text-pink-400"></i> Notifications & Alertes</span>
                     <span id="sidebar-notif-badge" class="bg-pink-500 text-white font-mono text-[9px] px-1.5 py-0.5 rounded-full hidden">0</span>
@@ -87,13 +84,11 @@
                 <button onclick="switchTab('reports')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-400"></i> Statistiques & Rapports</button>
             </div>
 
-            <!-- CATÉGORIE D : MON ESPACE -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Mon Espace</p>
-                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-blue-400"></i> Mon Profil & Espace Sponsor</button>
+                <button onclick="switchTab('profile')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-200 flex items-center gap-2.5 transition cursor-pointer"><i data-lucide="user" class="w-4 h-4 text-sky-400"></i> Mon Profil & Espace Sponsor</button>
             </div>
 
-            <!-- CATÉGORIE E : ADMINISTRATION -->
             <div class="space-y-1 pt-1 border-t border-slate-800/80 pb-6">
                 <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 px-3 pt-3 pb-1">Administration</p>
                 <button onclick="switchTab('admin')" class="w-full text-left px-3 py-2 rounded-xl bg-red-950/40 text-red-300 border border-red-900/50 flex items-center gap-2.5 font-bold transition cursor-pointer"><i data-lucide="shield" class="w-4 h-4 text-red-400"></i> Administration Centrale</button>
@@ -104,11 +99,11 @@
 
     <!-- BARRE DE NAVIGATION INFÉRIEURE -->
     <nav class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 text-white z-35 flex justify-around items-center py-3 px-2 shadow-2xl">
-        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition cursor-pointer">
-            <i data-lucide="home" class="w-5 h-5 text-green-400"></i> Accueil
+        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-emerald-400 transition cursor-pointer">
+            <i data-lucide="home" class="w-5 h-5 text-emerald-400"></i> Accueil
         </button>
-        <button onclick="switchTab('sponsoring-hub')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-green-400 transition cursor-pointer">
-            <i data-lucide="heart-handshake" class="w-5 h-5 text-green-400"></i> Soutenir
+        <button onclick="switchTab('sponsoring-hub')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-emerald-400 transition cursor-pointer">
+            <i data-lucide="heart-handshake" class="w-5 h-5 text-emerald-400"></i> Soutenir
         </button>
         <button onclick="switchTab('search-id')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-amber-400 transition cursor-pointer">
             <i data-lucide="search" class="w-5 h-5 text-amber-400"></i> Recherche
@@ -116,8 +111,8 @@
         <button onclick="switchTab('team')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-purple-400 transition cursor-pointer">
             <i data-lucide="briefcase" class="w-5 h-5 text-purple-400"></i> Activités
         </button>
-        <button onclick="switchTab('profile')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-blue-400 transition cursor-pointer">
-            <i data-lucide="user" class="w-5 h-5 text-blue-400"></i> Mon profil
+        <button onclick="switchTab('profile')" class="flex flex-col items-center gap-1 text-[10px] text-slate-300 hover:text-sky-400 transition cursor-pointer">
+            <i data-lucide="user" class="w-5 h-5 text-sky-400"></i> Mon profil
         </button>
     </nav>
 
@@ -127,20 +122,21 @@
         <!-- SECT 1 : ACCUEIL -->
         <section id="sec-home" class="space-y-6">
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-12 shadow-2xl space-y-6 border border-slate-800 relative overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="space-y-3 relative z-10">
-                    <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1.5 rounded-full border border-green-500/30 uppercase tracking-widest">KIDS HOPE INTERNATIONAL — 54 PAYS</span>
+                    <span class="text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-full border border-emerald-500/30 uppercase tracking-widest">KIDS HOPE INTERNATIONAL — 54 PAYS</span>
                     <h1 class="text-2xl md:text-5xl font-black mt-2 leading-tight">SOUTENEZ UN ENFANT, AIDEZ UNE VEUVE, CHANGEZ UNE VIE</h1>
                     <p class="text-xs md:text-sm text-slate-300 max-w-3xl leading-relaxed pt-2">
-                        Avec KIDS HOPE INTERNATIONAL[span_1](start_span)[span_1](end_span), contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables.
+                        Avec KIDS HOPE INTERNATIONAL[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span), contribuez à l'éducation des orphelins, au soutien des veuves et au développement des communautés vulnérables.
                     </p>
                 </div>
 
+                <!-- BOUTONS AVEC COULEURS OFFICIELLES DU LOGO (Vert, Bleu, Orange/Jaune) -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 relative z-10">
-                    <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 hover:bg-green-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                    <button onclick="switchTab('sponsoring-hub')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="baby" class="w-5 h-5"></i> <span>Parrainer un enfant</span>
                     </button>
-                    <button onclick="switchTab('sponsoring-hub')" class="bg-emerald-600 hover:bg-emerald-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
+                    <button onclick="switchTab('sponsoring-hub')" class="bg-sky-600 hover:bg-sky-500 text-white p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
                         <i data-lucide="users" class="w-5 h-5"></i> <span>Soutenir une veuve</span>
                     </button>
                     <button onclick="openFormForCause('Don Direct & Libre - Kids Hope')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-4 rounded-2xl font-black text-xs uppercase flex items-center justify-center gap-2 shadow-lg transition cursor-pointer">
@@ -152,7 +148,7 @@
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                     <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Enfants Suivis</p><p id="stat-children-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="baby" class="w-5 h-5"></i></div>
+                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center"><i data-lucide="baby" class="w-5 h-5"></i></div>
                 </div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                     <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Veuves Aidées</p><p id="stat-widows-count" class="text-3xl font-black text-slate-900 mt-1">0</p></div>
@@ -163,8 +159,8 @@
                     <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center"><i data-lucide="user-check" class="w-5 h-5"></i></div>
                 </div>
                 <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Pays Couverts</p><p class="text-3xl font-black text-green-600 mt-1">54</p></div>
-                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center"><i data-lucide="globe" class="w-5 h-5"></i></div>
+                    <div><p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Pays Couverts</p><p class="text-3xl font-black text-emerald-600 mt-1">54</p></div>
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><i data-lucide="globe" class="w-5 h-5"></i></div>
                 </div>
             </div>
 
@@ -175,7 +171,7 @@
                         <h3 class="text-lg font-black text-slate-900">Enfants et Veuves en attente de parrainage</h3>
                         <p class="text-xs text-slate-500">Choisissez un profil ci-dessous et parrainez directement sa prise en charge.</p>
                     </div>
-                    <button onclick="switchTab('sponsoring-hub')" class="text-xs font-bold text-green-600 hover:underline">Voir tout le catalogue →</button>
+                    <button onclick="switchTab('sponsoring-hub')" class="text-xs font-bold text-emerald-600 hover:underline">Voir tout le catalogue →</button>
                 </div>
                 <div id="home-featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
             </div>
@@ -184,8 +180,8 @@
         <!-- SECT 2 : SOUTENIR AVEC CHOIX DU MOTIF -->
         <section id="sec-sponsoring-hub" class="hidden space-y-6 max-w-6xl mx-auto">
             <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-800 shadow-xl space-y-4 text-center">
-                <div class="w-14 h-14 mx-auto rounded-2xl bg-green-600/20 border border-green-500/30 flex items-center justify-center text-green-400"><i data-lucide="heart-handshake" class="w-7 h-7"></i></div>
-                <span class="text-[10px] font-extrabold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30 uppercase tracking-widest">ESPACE DONATEUR & SOUTIEN CIBLÉ</span>
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400"><i data-lucide="heart-handshake" class="w-7 h-7"></i></div>
+                <span class="text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/30 uppercase tracking-widest">ESPACE DONATEUR & SOUTIEN CIBLÉ</span>
                 <h2 class="text-2xl md:text-3xl font-black">Choisissez précisément le besoin que vous souhaitez financer</h2>
                 <p class="text-xs text-slate-300 max-w-xl mx-auto leading-relaxed">Sélectionnez directement un sous-besoin ci-dessous pour ouvrir le formulaire de contribution sécurisé.</p>
             </div>
@@ -195,24 +191,24 @@
                 <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4 flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"><i data-lucide="baby" class="w-5 h-5"></i></div>
+                            <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0"><i data-lucide="baby" class="w-5 h-5"></i></div>
                             <div>
                                 <h3 class="font-black text-slate-900 text-sm">Parrainer un Enfant</h3>
                                 <p class="text-[10px] text-slate-500">Besoins scolaires & survie</p>
                             </div>
                         </div>
                         <div class="space-y-2 pt-1">
-                            <button onclick="openFormForCause('Parrainer un Enfant — Frais scolaires & Inscriptions')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
-                                <span>🎓 Frais scolaires & Inscriptions</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            <button onclick="openFormForCause('Parrainer un Enfant — Frais scolaires & Inscriptions')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🎓 Frais scolaires & Inscriptions</span> <span class="text-sky-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openFormForCause('Parrainer un Enfant — Manuels & Kits scolaires')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
-                                <span>📚 Manuels & Kits scolaires</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            <button onclick="openFormForCause('Parrainer un Enfant — Manuels & Kits scolaires')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>📚 Manuels & Kits scolaires</span> <span class="text-sky-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openFormForCause('Parrainer un Enfant — Fournitures scolaires')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
-                                <span>✏️ Fournitures scolaires</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            <button onclick="openFormForCause('Parrainer un Enfant — Fournitures scolaires')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>✏️ Fournitures scolaires</span> <span class="text-sky-600 text-[10px]">Choisir →</span>
                             </button>
-                            <button onclick="openFormForCause('Parrainer un Enfant — Nutrition & Repas')" class="w-full text-left bg-slate-50 hover:bg-blue-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
-                                <span>🍲 Nutrition & Repas</span> <span class="text-blue-600 text-[10px]">Choisir →</span>
+                            <button onclick="openFormForCause('Parrainer un Enfant — Nutrition & Repas')" class="w-full text-left bg-slate-50 hover:bg-sky-50 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 flex justify-between items-center transition cursor-pointer">
+                                <span>🍲 Nutrition & Repas</span> <span class="text-sky-600 text-[10px]">Choisir →</span>
                             </button>
                         </div>
                     </div>
@@ -268,7 +264,7 @@
         <div id="modal-sponsoring-action" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 overflow-y-auto">
             <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl relative max-h-[90vh] flex flex-col my-6">
                 <div class="flex justify-between items-center border-b pb-3">
-                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-green-700">Procédure de Paiement Sécurisé</h3>
+                    <h3 id="modal-sponsoring-title" class="font-black text-slate-900 text-sm uppercase text-emerald-700">Procédure de Paiement Sécurisé</h3>
                     <button onclick="closeSponsoringModal()" class="p-2 font-bold text-lg cursor-pointer">✕</button>
                 </div>
                 <div id="modal-sponsoring-body" class="space-y-4 overflow-y-auto flex-grow text-xs pr-1"></div>
@@ -328,7 +324,7 @@
         <!-- MON PROFIL & ESPACE SPONSOR -->
         <section id="sec-profile" class="hidden space-y-6 max-w-4xl mx-auto">
             <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl space-y-3">
-                <span class="text-[10px] font-extrabold bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">ESPACE PERSONNEL & TABLEAU DE BORD</span>
+                <span class="text-[10px] font-extrabold bg-sky-500/20 text-sky-300 px-3 py-1 rounded-full border border-sky-500/30 uppercase tracking-widest">ESPACE PERSONNEL & TABLEAU DE BORD</span>
                 <h2 class="text-2xl md:text-3xl font-black mt-2">Mon Profil & Espace Sponsor</h2>
                 <p class="text-xs text-slate-300">Gérez vos informations personnelles, vos parrainages, vos dons et vos reçus officiels en toute sécurité.</p>
             </div>
@@ -347,7 +343,7 @@
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
                         <button onclick="markAllNotificationsAsRead()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-3.5 py-2.5 rounded-xl text-xs transition cursor-pointer border border-slate-700 flex items-center gap-1.5 shadow">
-                            <i data-lucide="check-check" class="w-4 h-4 text-green-400"></i> Tout marquer comme lu
+                            <i data-lucide="check-check" class="w-4 h-4 text-emerald-400"></i> Tout marquer comme lu
                         </button>
                     </div>
                 </div>
@@ -377,9 +373,9 @@
                     <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700 flex items-center justify-between">
                         <div>
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total</p>
-                            <p id="notif-stat-total" class="text-2xl font-black text-green-400 mt-0.5">0</p>
+                            <p id="notif-stat-total" class="text-2xl font-black text-emerald-400 mt-0.5">0</p>
                         </div>
-                        <div class="w-8 h-8 rounded-xl bg-green-500/10 text-green-400 flex items-center justify-center"><i data-lucide="layers" class="w-4 h-4"></i></div>
+                        <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center"><i data-lucide="layers" class="w-4 h-4"></i></div>
                     </div>
                 </div>
             </div>
@@ -405,12 +401,12 @@
 
         <!-- AUTRES SECTIONS -->
         <section id="sec-children" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Enfants (KHI-E)</h2><button onclick="openForm('child')" class="bg-green-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Enfants (KHI-E)</h2><button onclick="openForm('child')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
             <div id="children-grid-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
         <section id="sec-widows" class="hidden space-y-6">
-            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Veuves (KHI-V)</h2><button onclick="openForm('widow')" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
+            <div class="flex justify-between items-center"><h2 class="text-2xl font-black">Registre Public des Veuves (KHI-V)</h2><button onclick="openForm('widow')" class="bg-sky-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer">+ Ajouter</button></div>
             <div id="widows-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
@@ -430,14 +426,14 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                     <div class="p-4 bg-slate-50 border rounded-2xl space-y-2"><h4 class="font-black text-slate-900 text-sm">💰 Dons Totaux Enregistrés</h4><p id="report-promis-val" class="text-lg font-mono font-bold text-slate-800">Calcul...</p></div>
-                    <div class="p-4 bg-green-50 border border-green-200 rounded-2xl space-y-2"><h4 class="font-black text-green-900 text-sm">✅ Paiements Confirmés</h4><p id="report-confirmed-val" class="text-lg font-mono font-bold text-green-700">Calcul...</p></div>
+                    <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl space-y-2"><h4 class="font-black text-emerald-900 text-sm">✅ Paiements Confirmés</h4><p id="report-confirmed-val" class="text-lg font-mono font-bold text-emerald-700">Calcul...</p></div>
                 </div>
             </div>
         </section>
 
         <section id="sec-admin" class="hidden space-y-6">
             <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex justify-between items-center">
-                <div><h2 class="text-xl font-black text-green-400">Administration Centrale</h2><p class="text-xs text-slate-400">Gestion sécurisée.</p></div>
+                <div><h2 class="text-xl font-black text-emerald-400">Administration Centrale</h2><p class="text-xs text-slate-400">Gestion sécurisée.</p></div>
             </div>
             <div class="bg-white rounded-2xl p-6 border shadow-sm space-y-3">
                 <h3 class="font-bold text-slate-900 text-sm">Enregistrements</h3>
@@ -453,8 +449,8 @@
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Enfant</h3><button onclick="closeForm('child')" class="p-2 font-bold cursor-pointer">✕</button></div>
             <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-green-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Enfant</label><input type="file" id="c-photo" accept="image/*" class="w-full text-[10px]"></div>
-                    <div class="bg-emerald-50 p-3 rounded-xl border"><label class="font-bold">🏠 Photo Famille</label><input type="file" id="c-family-photo" accept="image/*" class="w-full text-[10px]"></div>
+                    <div class="bg-emerald-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Enfant</label><input type="file" id="c-photo" accept="image/*" class="w-full text-[10px]"></div>
+                    <div class="bg-sky-50 p-3 rounded-xl border"><label class="font-bold">🏠 Photo Famille</label><input type="file" id="c-family-photo" accept="image/*" class="w-full text-[10px]"></div>
                 </div>
                 <div class="grid grid-cols-3 gap-3">
                     <div><label class="font-bold">Prénom *</label><input type="text" id="c-firstname" required class="w-full p-2 border rounded bg-white"></div>
@@ -467,7 +463,7 @@
                     <div><label class="font-bold">Ville *</label><input type="text" id="c-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                     <div><label class="font-bold">Centre</label><input type="text" id="c-center" value="Kids Hope International" class="w-full p-2 border rounded bg-white"></div>
                 </div>
-                <button type="button" onclick="saveChildForm()" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
+                <button type="button" onclick="saveChildForm()" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
             </div>
         </div>
     </div>
@@ -477,8 +473,8 @@
             <div class="flex justify-between items-center border-b pb-3"><h3 class="font-bold text-slate-900 text-sm">Dossier Veuve</h3><button onclick="closeForm('widow')" class="p-2 font-bold cursor-pointer">✕</button></div>
             <div class="space-y-4 text-xs overflow-y-auto flex-grow pb-12">
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-emerald-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Veuve</label><input type="file" id="w-photo" accept="image/*" class="w-full text-[10px]"></div>
-                    <div class="bg-teal-50 p-3 rounded-xl border"><label class="font-bold">🏠 Photo Foyer</label><input type="file" id="w-family-photo" accept="image/*" class="w-full text-[10px]"></div>
+                    <div class="bg-sky-50 p-3 rounded-xl border"><label class="font-bold">📷 Photo Veuve</label><input type="file" id="w-photo" accept="image/*" class="w-full text-[10px]"></div>
+                    <div class="bg-emerald-50 p-3 rounded-xl border"><label class="font-bold">🏠 Photo Foyer</label><input type="file" id="w-family-photo" accept="image/*" class="w-full text-[10px]"></div>
                 </div>
                 <div class="grid grid-cols-3 gap-3">
                     <div><label class="font-bold">Prénom *</label><input type="text" id="w-firstname" required class="w-full p-2 border rounded bg-white"></div>
@@ -490,7 +486,7 @@
                     <div><label class="font-bold">Pays *</label><select id="w-country" class="african-countries-select w-full p-2 border rounded bg-white"></select></div>
                     <div><label class="font-bold">Ville *</label><input type="text" id="w-city" value="Bukavu" required class="w-full p-2 border rounded bg-white"></div>
                 </div>
-                <button type="button" onclick="saveWidowForm()" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
+                <button type="button" onclick="saveWidowForm()" class="w-full bg-sky-600 text-white font-bold py-4 rounded-xl shadow cursor-pointer mt-4">Enregistrer</button>
             </div>
         </div>
     </div>
@@ -525,7 +521,7 @@
             <div class="space-y-3 text-xs">
                 <input type="email" id="auth-email" placeholder="E-mail" required class="w-full p-3 border rounded-xl text-sm bg-white">
                 <input type="password" id="auth-password" placeholder="Mot de passe" required class="w-full p-3 border rounded-xl text-sm bg-white">
-                <button type="button" onclick="handleAuthSubmit()" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl text-sm shadow cursor-pointer">Se Connecter</button>
+                <button type="button" onclick="handleAuthSubmit()" class="w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl text-sm shadow cursor-pointer">Se Connecter</button>
             </div>
         </div>
     </div>
@@ -653,7 +649,7 @@
                         <p class="font-black text-emerald-900 text-xs flex items-center gap-1.5">
                             <i data-lucide="info" class="w-4 h-4 text-emerald-600"></i> Motif sélectionné : <strong>${causeName}</strong>
                         </p>
-                        <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision de Kids Hope International[span_2](start_span)[span_2](end_span).</p>
+                        <p class="text-[11px] text-emerald-800">Votre contribution sera directement attribuée sous la supervision de Kids Hope International[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).</p>
                     </div>
 
                     <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 space-y-2">
@@ -668,8 +664,8 @@
 
                     <div class="bg-slate-900 text-white p-4 rounded-2xl space-y-3">
                         <div class="border-b border-slate-800 pb-2 flex justify-between items-center">
-                            <span class="text-[10px] uppercase font-bold text-green-400 tracking-wider">💳 NUMÉRO DE TRANSFERT OFFICIEL</span>
-                            <span class="text-[9px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded font-mono font-bold">Actif</span>
+                            <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">💳 NUMÉRO DE TRANSFERT OFFICIEL</span>
+                            <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono font-bold">Actif</span>
                         </div>
                         
                         <div class="space-y-2 text-xs">
@@ -679,7 +675,7 @@
                                 <p class="text-[10px] text-amber-200">Nom du compte : <strong>GABRIEL MUSHAGALUSA</strong></p>
                                 
                                 <div class="grid grid-cols-2 gap-2 pt-2">
-                                    <button type="button" onclick="copyMtnNumber()" class="bg-green-600 hover:bg-green-500 text-white font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
+                                    <button type="button" onclick="copyMtnNumber()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
                                         📋 Copier le numéro
                                     </button>
                                     <a href="tel:*165#" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-2.5 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-1 cursor-pointer">
@@ -718,13 +714,13 @@
                         </div>
 
                         <div>
-                            <label class="font-bold block mb-1 text-green-700">Référence / ID de transaction Mobile Money * :</label>
-                            <input type="text" id="don-transid" placeholder="Ex: 254896321 (ID reçu par SMS)" class="w-full p-2.5 border border-green-500 rounded-xl bg-white font-mono font-bold text-slate-900">
+                            <label class="font-bold block mb-1 text-emerald-700">Référence / ID de transaction Mobile Money * :</label>
+                            <input type="text" id="don-transid" placeholder="Ex: 254896321 (ID reçu par SMS)" class="w-full p-2.5 border border-emerald-500 rounded-xl bg-white font-mono font-bold text-slate-900">
                             <p class="text-[9px] text-slate-500 mt-0.5">Entrez le code de confirmation reçu par SMS après votre transfert.</p>
                         </div>
                     </div>
 
-                    <button type="button" onclick="submitDonation('${causeName}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs uppercase tracking-wider">Confirmer mon transfert</button>
+                    <button type="button" onclick="submitDonation('${causeName}')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow cursor-pointer text-xs uppercase tracking-wider">Confirmer mon transfert</button>
                 </div>
             `;
             if (window.lucide) lucide.createIcons();
@@ -895,8 +891,8 @@
                     let priorityBadge = '';
                     if (n.priority === 'urgente') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-red-100 text-red-800 uppercase">Urgente</span>`;
                     else if (n.priority === 'importante') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-amber-100 text-amber-800 uppercase">Importante</span>`;
-                    else if (n.priority === 'confirmation') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-green-100 text-green-800 uppercase">Confirmation</span>`;
-                    else priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-blue-100 text-blue-800 uppercase">Info</span>`;
+                    else if (n.priority === 'confirmation') priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-emerald-100 text-emerald-800 uppercase">Confirmation</span>`;
+                    else priorityBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-sky-100 text-sky-800 uppercase">Info</span>`;
 
                     let statusBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-slate-100 text-slate-700">${n.status || 'nouvelle'}</span>`;
                     if (n.status === 'resolue') statusBadge = `<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-emerald-100 text-emerald-800">Résolue</span>`;
@@ -1129,7 +1125,7 @@
                         <div class="space-y-2">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-black text-slate-900 text-sm">${sub.name}</h4>
-                                <span class="text-[10px] bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full font-bold border border-green-200">Actif</span>
+                                <span class="text-[10px] bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded-full font-bold border border-emerald-200">Actif</span>
                             </div>
                             <p class="text-xs text-slate-600"><strong>Objectif :</strong> ${sub.objective}</p>
                             <p class="text-xs text-slate-500"><strong>Procédure :</strong> ${sub.procedure}</p>
@@ -1190,8 +1186,8 @@
                                 <span class="font-mono text-[10px] bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded font-bold">${agent.matricule}</span>
                                 <h4 class="font-bold text-slate-900 text-xs">${agent.fullName} (${agent.role})</h4>
                                 <div class="grid grid-cols-2 gap-2 pt-1">
-                                    <a href="tel:${cleanPhone}" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold">📞 Appeler</a>
-                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-green-600 text-white p-2 rounded-xl text-center font-bold">💬 WhatsApp</a>
+                                    <a href="tel:${cleanPhone}" class="bg-sky-600 text-white p-2 rounded-xl text-center font-bold">📞 Appeler</a>
+                                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="bg-emerald-600 text-white p-2 rounded-xl text-center font-bold">💬 WhatsApp</a>
                                 </div>
                             </div>
                         `;
@@ -1366,9 +1362,9 @@
                 card.innerHTML = `
                     <div class="flex items-center gap-3 border-b pb-3">
                         <div class="w-14 h-14 bg-slate-100 rounded-xl overflow-hidden border">${found.photo ? `<img src="${found.photo}" class="w-full h-full object-cover">` : '👤'}</div>
-                        <div><span class="font-mono bg-slate-900 text-green-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
+                        <div><span class="font-mono bg-slate-900 text-emerald-400 px-2 py-0.5 rounded text-xs">${found.matricule}</span><h3 class="font-bold text-slate-900 text-sm mt-1">${name}</h3><p class="text-[10px] uppercase font-bold text-slate-500">${type}</p></div>
                     </div>
-                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil (Choisir un motif)</button>
+                    <button onclick="switchTab('sponsoring-hub')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-xl font-bold mt-2 cursor-pointer transition">Soutenir ce profil (Choisir un motif)</button>
                 `;
             } else {
                 card.innerHTML = `<p class="text-xs text-red-600 font-bold">Aucun dossier correspondant à ce matricule.</p>`;
@@ -1394,7 +1390,7 @@
             try {
                 let items = [];
                 const cSnap = await db.collection("children").limit(2).get();
-                cSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Enfant Orphelin', badgeBg: 'bg-blue-50 text-blue-700' }));
+                cSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Enfant Orphelin', badgeBg: 'bg-sky-50 text-sky-700' }));
                 
                 const wSnap = await db.collection("widows").limit(1).get();
                 wSnap.forEach(doc => items.push({ ...doc.data(), typeLabel: 'Veuve', badgeBg: 'bg-emerald-50 text-emerald-700' }));
@@ -1423,7 +1419,7 @@
                                 <h4 class="font-black text-slate-900 text-sm">${displayName}</h4>
                                 <p class="text-[11px] text-slate-600">Soutien prioritaire pour la scolarité et les besoins vitaux.</p>
                             </div>
-                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
+                            <button onclick="switchTab('sponsoring-hub')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl transition cursor-pointer">Soutenir ce profil</button>
                         </div>
                     `;
                 });
@@ -1449,13 +1445,13 @@
                         <div class="space-y-2">
                             <div class="w-full h-32 bg-slate-100 rounded-xl overflow-hidden border">${photoHtml}</div>
                             <div class="flex justify-between items-center">
-                                <span class="font-mono font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded">${d.matricule}</span>
+                                <span class="font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">${d.matricule}</span>
                                 <span class="text-[10px] text-slate-400">📍 ${d.country || 'RDC'}</span>
                             </div>
                             <p class="font-bold text-slate-900 text-sm">${displayName}</p>
                             <p class="text-[11px] text-slate-600">Besoin prioritaire : Scolarité & Alimentation</p>
                         </div>
-                        <button onclick="switchTab('sponsoring-hub')" class="w-full bg-slate-100 hover:bg-green-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
+                        <button onclick="switchTab('sponsoring-hub')" class="w-full bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-800 font-bold py-2 rounded-xl transition cursor-pointer">Soutenir</button>
                     </div>
                 `;
             });
@@ -1489,7 +1485,7 @@
                     const d = doc.data();
                     let title = d.matricule || d.refId || d.fullName || 'Élément';
                     let detail = d.transId ? `(TransID: ${d.transId})` : '';
-                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-green-700">[${labels[col]}]</strong> ${title} ${detail}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
+                    html += `<div class="p-2.5 border rounded-xl flex justify-between items-center bg-slate-50 text-xs"><span><strong class="font-mono text-emerald-700">[${labels[col]}]</strong> ${title} ${detail}</span><button onclick="deleteDocument('${col}', '${doc.id}')" class="bg-red-600 text-white px-2 py-1 rounded text-[10px] cursor-pointer">Supprimer</button></div>`;
                 });
             }
             container.innerHTML = html || 'Aucun enregistrement trouvé.';
@@ -1564,10 +1560,10 @@
                 card.innerHTML = `
                     <div class="bg-white p-6 rounded-3xl border shadow-sm flex flex-col md:flex-row items-center gap-6 justify-between">
                         <div class="flex items-center gap-4">
-                            <div class="relative w-20 h-20 rounded-full bg-slate-200 overflow-hidden border-2 border-green-500 shadow-md flex items-center justify-center font-black text-slate-700 text-xl">
+                            <div class="relative w-20 h-20 rounded-full bg-slate-200 overflow-hidden border-2 border-emerald-500 shadow-md flex items-center justify-center font-black text-slate-700 text-xl">
                                 ${userPhoto 
                                     ? `<img id="profile-avatar-preview" src="${userPhoto}" class="w-full h-full object-cover">`
-                                    : `<span id="profile-avatar-preview" class="text-green-700">${userInitials}</span>`
+                                    : `<span id="profile-avatar-preview" class="text-emerald-700">${userInitials}</span>`
                                 }
                                 <label for="avatar-file-input" class="absolute inset-0 bg-slate-950/50 opacity-0 hover:opacity-100 transition flex items-center justify-center text-white text-[10px] font-bold cursor-pointer">
                                     📷 Modifier
@@ -1576,7 +1572,7 @@
                             </div>
                             <div class="space-y-1">
                                 <h3 class="font-black text-slate-900 text-base md:text-lg">${userData.prenom || ''} ${userData.nom || user.displayName || 'Membre Panafricain'}</h3>
-                                <p class="text-xs font-mono text-blue-600 font-bold">${user.email}</p>
+                                <p class="text-xs font-mono text-sky-600 font-bold">${user.email}</p>
                                 <p class="text-[11px] text-slate-500">📍 ${userData.ville || 'Bukavu'}, ${userData.pays || 'RDC'}</p>
                                 <div class="flex items-center gap-2 pt-1 flex-wrap">
                                     <span class="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-slate-100 text-slate-700">ID : ${memberId}</span>
@@ -1584,7 +1580,7 @@
                                 </div>
                                 <div class="pt-1">
                                     ${isVerified 
-                                        ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800 flex items-center gap-1 w-fit"><i data-lucide="check-circle" class="w-3 h-3"></i> Compte vérifié</span>`
+                                        ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 flex items-center gap-1 w-fit"><i data-lucide="check-circle" class="w-3 h-3"></i> Compte vérifié</span>`
                                         : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 flex items-center gap-1 w-fit"><i data-lucide="clock" class="w-3 h-3"></i> Compte en attente de vérification</span>`
                                     }
                                 </div>
@@ -1600,7 +1596,7 @@
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Enfants parrainés</p>
-                            <p class="text-2xl font-black text-blue-600">${userSponsorships.filter(s => s.beneficiaryType === 'child').length}</p>
+                            <p class="text-2xl font-black text-sky-600">${userSponsorships.filter(s => s.beneficiaryType === 'child').length}</p>
                             <p class="text-[10px] text-slate-500">Suivi direct</p>
                         </div>
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
@@ -1615,14 +1611,14 @@
                         </div>
                         <div class="bg-white p-5 rounded-2xl border shadow-sm space-y-1">
                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Parrainages actifs</p>
-                            <p class="text-2xl font-black text-green-600">${activeSponsorshipsCount}</p>
+                            <p class="text-2xl font-black text-emerald-600">${activeSponsorshipsCount}</p>
                             <p class="text-[10px] text-slate-500">Engagements validés</p>
                         </div>
                     </div>
 
                     <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
                         <h3 class="font-black text-slate-900 text-sm flex items-center gap-2 border-b pb-3">
-                            <i data-lucide="user-edit" class="w-4 h-4 text-blue-600"></i> Modifier mes informations personnelles
+                            <i data-lucide="user-edit" class="w-4 h-4 text-sky-600"></i> Modifier mes informations personnelles
                         </h3>
                         <form id="user-profile-form" onsubmit="saveUserProfileChanges(event)" class="space-y-4 text-xs">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -1668,10 +1664,10 @@
                                 </div>
                                 <div>
                                     <label class="font-bold block mb-1 text-slate-400">Rôle administratif (Protégé) :</label>
-                                    <input type="text" disabled value="${userData.role || 'Sponsor / Donateur'}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono font-bold text-green-700">
+                                    <input type="text" disabled value="${userData.role || 'Sponsor / Donateur'}" class="w-full p-2.5 border rounded-xl bg-slate-100 text-slate-500 font-mono font-bold text-emerald-700">
                                 </div>
                             </div>
-                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition cursor-pointer shadow">
+                            <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl transition cursor-pointer shadow">
                                 Enregistrer les modifications du profil
                             </button>
                         </form>
@@ -1680,7 +1676,7 @@
                     <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b pb-3">
                             <h3 class="font-black text-slate-900 text-sm flex items-center gap-2">
-                                <i data-lucide="receipt" class="w-4 h-4 text-green-600"></i> Historique des Dons & Reçus Officiels
+                                <i data-lucide="receipt" class="w-4 h-4 text-emerald-600"></i> Historique des Dons & Reçus Officiels
                             </h3>
                             <span class="text-xs bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full font-bold">${userDonations.length} transaction(s)</span>
                         </div>
@@ -1688,7 +1684,7 @@
                             ${userDonations.length > 0 ? userDonations.map(d => {
                                 const isConfirmed = d.status === "confirmed";
                                 const statusBadge = isConfirmed 
-                                    ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">Confirmé</span>`
+                                    ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Confirmé</span>`
                                     : (d.status === "failed" ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-red-800">Échoué</span>` : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">En attente</span>`);
                                 
                                 return `
@@ -1699,9 +1695,9 @@
                                             <p class="text-slate-400 text-[10px]">Méthode : ${d.paymentMethod || 'Mobile Money'}</p>
                                         </div>
                                         <div class="flex items-center gap-3 flex-wrap">
-                                            <span class="font-mono font-black text-green-700 text-sm">${d.amount}${d.currency || 'USD'}</span>
+                                            <span class="font-mono font-black text-emerald-700 text-sm">${d.amount}${d.currency || 'USD'}</span>
                                             ${statusBadge}${isConfirmed 
-                                                ? `<button onclick="downloadDonationReceipt('${d.refId}', '${d.amount}', '${d.currency}', '${d.cause}')" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1 cursor-pointer"><i data-lucide="download" class="w-3.5 h-3.5"></i> Reçu PDF</button>`
+                                                ? `<button onclick="downloadDonationReceipt('${d.refId}', '${d.amount}', '${d.currency}', '${d.cause}')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl font-bold transition flex items-center gap-1 cursor-pointer"><i data-lucide="download" class="w-3.5 h-3.5"></i> Reçu PDF</button>`
                                                 : `<span class="text-[10px] text-slate-400 italic">Reçu disponible après confirmation</span>`
                                             }
                                         </div>
@@ -1710,7 +1706,7 @@
                             }).join('') : `
                                 <div class="text-center py-6 text-slate-500 text-xs space-y-2">
                                     <p>Aucun don enregistré sur votre compte.</p>
-                                    <button onclick="switchTab('sponsoring-hub')" class="bg-green-600 text-white font-bold px-4 py-2 rounded-xl">Faire un don</button>
+                                    <button onclick="switchTab('sponsoring-hub')" class="bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl">Faire un don</button>
                                 </div>
                             `}
                         </div>
@@ -1727,8 +1723,8 @@
                                 ${userSponsorships.map(s => `
                                     <div class="p-4 bg-slate-50 border rounded-2xl text-xs space-y-2">
                                         <div class="flex justify-between items-center">
-                                            <span class="font-mono font-bold text-green-700">${s.beneficiaryCode || 'REF-BEN'}</span>
-                                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-800">${s.status}</span>
+                                            <span class="font-mono font-bold text-emerald-700">${s.beneficiaryCode || 'REF-BEN'}</span>
+                                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">${s.status}</span>
                                         </div>
                                         <p><strong>Type de soutien :</strong> ${s.supportType || 'Prise en charge globale'}</p>
                                         <p class="text-slate-500 text-[10px]">Date de début : ${s.startDate ? new Date(s.startDate.toDate()).toLocaleDateString() : 'Récemment'}</p>
@@ -1737,7 +1733,7 @@
                             </div>
                         ` : `
                             <p class="text-xs text-slate-600">Aucun enfant ou veuve actuellement rattaché directement à votre profil. Explorez le catalogue public pour initier un parrainage sécurisé.</p>
-                            <button onclick="switchTab('children')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">Explorer les dossiers enfants →</button>
+                            <button onclick="switchTab('children')" class="bg-sky-600 hover:bg-sky-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">Explorer les dossiers enfants →</button>
                         `}
                     </div>
 
@@ -1757,7 +1753,7 @@
                                 <i data-lucide="help-circle" class="w-4 h-4 text-amber-600"></i> Assistance Officielle
                             </h4>
                             <p class="text-xs text-slate-600">Contactez directement l'administration via le canal officiel sécurisé.</p>
-                            <a href="https://wa.me/${OFFICIAL_WHATSAPP_NUMBER}" target="_blank" class="block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-2">
+                            <a href="https://wa.me/${OFFICIAL_WHATSAPP_NUMBER}" target="_blank" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-center text-xs transition shadow flex items-center justify-center gap-2">
                                 <i data-lucide="message-circle" class="w-4 h-4"></i> Support WhatsApp officiel
                             </a>
                         </div>
@@ -1772,10 +1768,10 @@
             } else {
                 card.innerHTML = `
                     <div class="bg-white p-8 rounded-3xl border shadow-sm text-center space-y-4 max-w-lg mx-auto">
-                        <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center"><i data-lucide="user-x" class="w-8 h-8"></i></div>
+                        <div class="w-16 h-16 mx-auto rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center"><i data-lucide="user-x" class="w-8 h-8"></i></div>
                         <h3 class="font-black text-slate-900 text-lg">Espace restreint aux membres connectés</h3>
                         <p class="text-xs text-slate-600">Veuillez vous connecter pour accéder à votre tableau de bord personnel, vos reçus de dons et vos parrainages.</p>
-                        <button onclick="openAuthModal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-xl text-xs transition shadow cursor-pointer">
+                        <button onclick="openAuthModal()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl text-xs transition shadow cursor-pointer">
                             Se connecter maintenant
                         </button>
                     </div>
@@ -1834,8 +1830,8 @@
                     <title>Reçu Officiel - ${refId}</title>
                     <style>
                         body { font-family: sans-serif; padding: 40px; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #cbd5e1; border-radius: 12px; }
-                        h1 { color: #166534; font-size: 22px; margin-bottom: 5px; }
-                        .header { border-bottom: 2px solid #22c55e; padding-bottom: 15px; margin-bottom: 20px; }
+                        h1 { color: #059669; font-size: 22px; margin-bottom: 5px; }
+                        .header { border-bottom: 2px solid #10b981; padding-bottom: 15px; margin-bottom: 20px; }
                         .details { margin: 20px 0; line-height: 1.6; }
                         .footer { margin-top: 40px; font-size: 11px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; }
                     </style>
@@ -1849,12 +1845,12 @@
                         <p><strong>Référence de transaction :</strong> ${refId}</p>
                         <p><strong>Date :</strong> ${new Date().toLocaleDateString()}</p>
                         <p><strong>Motif / Cause :</strong> ${cause}</p>
-                        <p><strong>Montant payé :</strong> <span style="font-size: 18px; color: #166534; font-weight: bold;">${amount} ${currency}</span></p>
-                        <p><strong>Statut :</strong> <span style="color: #166534; font-weight: bold;">CONFIRMÉ</span></p>
+                        <p><strong>Montant payé :</strong> <span style="font-size: 18px; color: #059669; font-weight: bold;">${amount} ${currency}</span></p>
+                        <p><strong>Statut :</strong> <span style="color: #059669; font-weight: bold;">CONFIRMÉ</span></p>
                     </div>
                     <div class="footer">
                         <p>Ce document certifie la bonne réception du don au profit des actions humanitaires de Kids Hope International.</p>
-                        <button onclick="window.print()" style="background: #166534; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px;">Imprimer / Télécharger en PDF</button>
+                        <button onclick="window.print()" style="background: #059669; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px;">Imprimer / Télécharger en PDF</button>
                     </div>
                 </body>
                 </html>
